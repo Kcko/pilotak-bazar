@@ -1,0 +1,19 @@
+ {block #nav}
+
+    <ul class="list-group">
+        {foreach $model->getChildren($parent) as $child}
+        
+            <li class="list-group-item">
+                <a href="{$child['url']}">{$child['title']}</a>
+                {if in_array($child['id'], $selectedItems) && count($model->getChildren($child['id'], 'id')) && $depth < $maxDepth}
+                    {include this, model => $model, parent => $child['id'], depth => $depth + 1, maxDepth => $maxDepth}
+                {/if}
+            </li>    
+
+
+
+
+        {/foreach}
+    </ul>
+
+{/block}

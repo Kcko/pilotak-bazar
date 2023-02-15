@@ -1,0 +1,8 @@
+<div n:if="$photos && count($photos)" class="StaticMediaGroup">
+    <h2 class="text-h2 LinedRed !mb-6">Fotogalerie</h2>
+    <div class="Photogallery grid grid-cols-2 md:grid-cols-4 gap-4 | mfp-gallery">
+        {foreach $photos as $image}
+            <a href="{$image->getImageUrl('photogallery-modal')}">{$image->getImageElement('photogallery-thumb')}</a>
+        {/foreach}
+    </div>
+</div>

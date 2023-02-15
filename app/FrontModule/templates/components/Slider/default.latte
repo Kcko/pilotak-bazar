@@ -1,0 +1,47 @@
+{* Cover Banner / Slider *}
+<div n:if="$sliders->count()" class="swiper SwiperBanner">
+
+    <div class="swiper-wrapper">
+        {foreach $sliders as $row}
+            {var $url = ''}
+            {var $dataset = $row}
+            {var $url = $dataset['link']}
+            {if $dataset["link__navigation_id"]}
+                {var $url = $dataset->link__navigation->getUrl()}
+            {/if}	
+            <div class="CoverBanner swiper-slide">
+                <div class="Container h-full">
+                    <div class="Row h-full">
+                        <div class="Col w-full flex h-full items-center">
+                            <div class="CoverBanner__Content">
+                                <div class="mb-10">
+                                    <h1 class="text-h1 LinedRed mb-4 md:mb-8">{$dataset['name']|breakLines|noescape|predlozky}</h1>
+                                    {$dataset[content]|noescape|predlozky}
+                                </div>
+                                <a n:if="$url" href="{$url}" class="Btn Btn--Primary">Více informací</a>
+
+                                <div class="swiper-pager"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="CoverBanner__Image">
+                    {$dataset->image->getImageElement('slider')}
+
+            
+                </div>
+            </div>
+        {/foreach}
+
+
+    </div>
+
+    <div class="swiper-prev">
+        {='assets/gfx/svg/chevron-left-slider.svg'|svg:''|noescape}
+    </div>
+    <div class="swiper-next">
+        {='assets/gfx/svg/chevron-right-slider.svg'|svg:''|noescape}
+    </div>
+
+</div>

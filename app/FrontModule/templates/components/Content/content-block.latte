@@ -1,0 +1,30 @@
+{if $data->show_block}
+
+	<div class="static-block {$templateConfig['sectionClass']}">
+		<div class="container">
+			<div class="row">
+
+
+			<div class="col-lg-12 text-center">
+				<h2>{$data->heading}</h2>
+				<div class="lead">
+					{$data->content|noescape}
+				</div>
+			</div>
+
+				<div class="col-md-6">
+					<div class="pr-md-5">
+						{$data['content_left_col']|replace:'<ul>':'<ul class="list-green-arrow">'|noescape}
+					</div>
+				</div>
+		
+				<div class="col-md-6">
+					{$data['content_right_col']|replace:'<ul>':'<ul class="list-green-arrow">'|noescape}
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{/if}
+

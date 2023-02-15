@@ -1,0 +1,22 @@
+<div class="card-section {$templateConfig['sectionClass']}">
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<div class="col-lg-12 {if isset($templateConfig['contentClass'])}{$templateConfig['contentClass']}{/if}">
+				{if isset($templateConfig['headingTag'])}
+					<{$templateConfig['headingTag']}>{$data->heading}</{$templateConfig['headingTag']}>
+				{else}
+					<h1>{$data->heading}</h1>
+				{/if}
+				
+				<div class="lead">
+					{$data->content|noescape}
+				</div>
+			</div>
+
+			{control menu, 
+				navigation_group => $templateConfig['navigation_group'], template => 'cards-per-4', templateConfig => ['boxClass' => $templateConfig['boxClass']]}
+
+		</div>
+	</div>
+</div>

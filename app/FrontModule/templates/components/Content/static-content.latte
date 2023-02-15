@@ -1,0 +1,6 @@
+{$data->content|markdown|noescape}
+
+{if !$data->content}
+    <h1>{$presenter->navigation->navItem['title']}</h1>
+    @TODO: must be documented ...
+{/if}

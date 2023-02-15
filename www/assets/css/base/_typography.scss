@@ -1,0 +1,278 @@
+/* Headlines
+---------------------------------------------------------------------------------------------------- */
+
+// vynulovani nadpisu
+#{headings()}
+{
+	margin: 0;
+	font-weight: normal;
+	color: inherit;
+}
+
+
+.font-vag-light, .font-vag-light *  { font-family: $font-vag-light; }
+.font-vag-normal, .font-vag-normal * { font-family: $font-vag-normal; }
+.font-text, .font-text * { font-family: $font-text; }
+
+h1, .h1, .heading-h1
+{
+	@include fs(55, 55 * 1);
+	font-family: $font-vag-normal;
+	margin-bottom: 20px;
+	line-height: 1.07 !important;
+	
+	@include breakpoint(md)
+	{
+		@include fs(45, 45 * 1);
+	}	
+
+	@include breakpoint(sm)
+	{
+		@include fs(40, 35 * 1);
+	}	
+
+	@include breakpoint(is)
+	{
+		@include fs(35, 35 * 1);
+	}
+
+	@include breakpoint(xs)
+	{
+		@include fs(32, 32 * 1);
+	}
+}
+
+h2, .h2, .heading-h2
+{
+	@include fs(45, 45 * 1.25);
+	font-family: $font-vag-normal;
+	margin-bottom: 20px;
+	line-height: 1.07 !important;
+	
+
+	@include breakpoint(md)
+	{
+		@include fs(35, 35 * 1);
+	}	
+
+	@include breakpoint(sm)
+	{
+		@include fs(30, 30 * 1);
+	}	
+
+	@include breakpoint(is)
+	{
+		@include fs(25, 25 * 1);
+	}
+
+}
+
+
+h3, .h3, .heading-h3, .search-heading
+{
+	@include fs(24, 24 * 1.25);
+	font-family: $font-vag-normal;
+	margin-bottom: 20px;
+	line-height: 1.15 !important;
+	
+	@include breakpoint(is)
+	{
+		@include fs(20, 20 * 1);
+		line-height: 1.07;
+	}
+}
+
+.search-heading 
+{
+	@include fs(28, 28 * 1.25);
+}
+
+/* Dale nenadefinovano, tak neco nadefinujeme sami ... 
+---------------------------------------------------------------------------------------------------- */
+h4, .h4, .heading-h4
+{
+	@include fs(20);
+	font-family: $font-vag-normal;
+	margin-bottom: 10px;
+	line-height: 1.15 !important;
+}
+
+
+h5, .h5, .heading-h5
+{
+	@include fs(18);
+	font-family: $font-vag-light;
+	margin-bottom: 10px;
+	line-height: 1.15 !important;
+}
+
+.heading-svg
+{
+	display: flex;
+	align-items: center;
+}
+
+
+
+p
+{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+ 
+
+
+.spacer-line
+{
+	width: 50%;
+	height: 4px;
+	overflow: hidden;
+	display: block;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: color(blue-light);
+}
+
+
+.spacer-full
+{
+
+	height: 1px;
+	overflow: hidden;
+	display: block;
+	margin: auto;
+	clear: both;
+	margin-top: 40px;
+	margin-bottom: 30px;
+	background: color(input-border);
+}
+
+
+.font-weight-bold, b, strong
+{
+	font-weight: normal !important;
+	font-family: $font-vag-normal;
+}
+
+
+.para-lead
+{
+	font-family: $font-text;
+	@include fs(18);
+
+	p:first-child
+	{
+		margin-top: 0 !important;
+	}
+
+	&.-orange
+	{
+		b, strong 
+		{
+			color: color(orange);
+		}
+
+		a
+		{
+			color: color(orange);
+			text-decoration: underline;
+		}
+	}
+
+	&.-blue
+	{
+		b, strong
+		{
+			color: color(blue);
+		}
+
+		a
+		{
+			color: color(blue);
+			text-decoration: underline;
+		}
+	}
+
+	p
+	{
+		font-size: 18px !important;
+	}
+}
+
+.list-styled
+{
+	@include fs(15);
+	list-style-type: none !important;
+	margin: 30px 0;
+	padding: 0;
+
+	li
+	{
+		background: url(/assets/gfx/svg/tick.svg) no-repeat 0 3px;
+		background-size: 15px;
+		padding-left: 25px;
+		margin-bottom: 3px;
+	}
+}
+
+ol
+{
+	@include fs(15);
+	list-style-type: decimal !important;
+	margin: 30px 0;
+	padding: 0;
+
+	li
+	{
+		margin-bottom: 3px;
+	}
+}
+
+.list-unstyled
+{
+	@include fs(15);
+	list-style-type: none;
+	margin: 20px 0;
+	padding: 0;
+
+	li
+	{
+		margin-bottom: 3px;
+	}
+}
+
+.currentColor
+{
+	&,
+	&:hover
+	{
+		color: currentColor;
+	}
+}
+
+
+
+.font-inherit
+{
+	font-size: inherit;
+}
+
+
+.owl-my-0
+{
+	* 
+	{
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+}
+
+.para-m
+{
+	p 
+	{
+		font-size: 16px;
+	}
+}

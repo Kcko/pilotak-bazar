@@ -1,0 +1,20 @@
+<div class="Pager" n:if="count($steps) > 1">
+
+	{if !$paginator->isFirst()}
+		<a data-preloader-target=".PagerOverlayWrapper" class="prev ajax" n:href="page! $paginator->page - 1"><- Předchozí</a>
+	{/if}
+
+	{foreach $steps as $step}
+		{if $step == $paginator->page}
+			<a data-preloader-target=".PagerOverlayWrapper" class="num -active ajax" n:href="page! $step">{$step}</a>
+		{else}
+			<a data-preloader-target=".PagerOverlayWrapper" class="num ajax" n:href="page! $step">{$step}</a>
+		{/if}
+	{/foreach}
+
+	{if !$paginator->isLast()}
+		<a data-preloader-target=".PagerOverlayWrapper" class="next ajax" n:href="page! $paginator->page + 1">Další -></a>
+	{/if}
+
+</div>
+

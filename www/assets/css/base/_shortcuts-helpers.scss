@@ -1,0 +1,171 @@
+/* Floats
+---------------------------------------------------------------------------------------------------- */
+.fl {float:left!important; }
+.fr {float:right!important; }
+.clr {clear:right!important; }
+.cll {clear:left!important; }
+.cl,.cleaner {clear:both!important;height:0!important;overflow:hidden!important;font-size:0!important; }
+
+/* Alignment
+---------------------------------------------------------------------------------------------------- */
+.tac {text-align:center!important; }
+.tal {text-align:left!important; }
+.tar {text-align:right!important; }
+.taj {text-align:justify !important; }
+.vab {vertical-align:bottom!important; }
+.vat {vertical-align:top !important; }
+.vam {vertical-align:middle !important; }
+
+/* Displaying
+---------------------------------------------------------------------------------------------------- */
+.nod,.dn {display:none!important; }
+.db {display:block!important; }
+.dib {display:inline-block!important; }
+.hid {visibility:hidden; }
+
+/* TextTransform
+---------------------------------------------------------------------------------------------------- */
+.uppercase,.upper {text-transform:uppercase; }
+.lowercase,.lower {text-transform:lowercase; }
+
+/* Margins
+---------------------------------------------------------------------------------------------------- */
+.nmr,.mrn {margin-right:0!important; }
+.nml,.mln {margin-right:0!important; }
+.nm,.nomar, .mn {margin:0!important; }
+.nmb,.mbn {margin-bottom:0!important; }
+.nmt,.mtn {margin-top:0!important; }
+
+/* Paddings
+---------------------------------------------------------------------------------------------------- */
+.nopad, .pn, .np {padding:0!important; }
+.npl, .pln {padding-left:0!important; }
+.npr, .prn {padding-right:0!important; }
+.npt, .ptn {padding-top:0!important; }
+.npb, .pbn {padding-bottom:0!important; }
+
+/* Margins - defined
+---------------------------------------------------------------------------------------------------- */
+.mab30,.mab60 {margin-bottom:30px!important; }
+.mr4 {margin-right:4px; }
+.mb5 {margin-bottom:5px!important; }
+.mb10 {margin-bottom:10px!important; }
+
+/* Borders
+---------------------------------------------------------------------------------------------------- */
+.nb, .bn {border:none!important; }
+.bbn {border-bottom:0!important; }
+.bt0 {border-top:0!important; }
+.bln {border-left:0!important; }
+.brn {border-right:0!important; }
+
+/* Cursors
+---------------------------------------------------------------------------------------------------- */
+ .pointer {cursor:pointer!important; }
+ .default {cursor:default!important; }
+
+
+/* Misc
+---------------------------------------------------------------------------------------------------- */
+ .spaceman {position:absolute;top:-3000px;left:0; }
+ .overflow {overflow:hidden; }
+
+
+.tdu {position: relative; display: inline-block;}
+.tdu:after
+{
+  position: absolute;
+  height: 1px;
+  background: color(black);
+  content: "";
+  width: 100%;
+  bottom: 2px;
+  left: 0;
+
+}
+
+
+
+// .tdu
+// {
+//     border-bottom: 1px solid color(black);
+// }
+
+
+/* Tucnost rezu - pokryjeme vsechny moznosti
+---------------------------------------------------------------------------------------------------- */
+$fontWeight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+
+@each $fw in $fontWeight 
+{
+  .fw-#{$fw} 
+  {
+      font-weight: #{$fw}  !important;
+  }
+  
+}
+
+
+
+$heights: 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100;
+
+@each $h in $heights 
+{
+  .h#{$h} 
+  {
+      height: #{$h}px  !important;
+  }
+  
+}
+
+@for $i from 1 to 36
+{
+  .fz#{$i} 
+  {
+      font-size: #{$i}px !important;
+  }
+}
+
+.wauto
+{
+    width: auto !important;
+}
+
+
+
+
+/* Dolni odsazeni
+---------------------------------------------------------------------------------------------------- */
+$i: 0;
+@while $i < 100
+{
+  .mab-#{$i} 
+  {
+      margin-bottom: #{$i}px !important;
+  }
+
+  $i: $i + 10;
+}
+
+$i: 0;
+@while $i <= 50
+{
+  .mat-#{$i} 
+  {
+      margin-top: #{$i}px !important;
+  }
+
+  $i: $i + 5;
+}
+
+
+$i: 10;
+@while $i <= 40
+{
+  .font-size-#{$i} 
+  {
+     @include fs($i);
+  }
+
+  $i: $i + 1;
+}

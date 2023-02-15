@@ -1,0 +1,17 @@
+/* Very common responsive rules
+---------------------------------------------------------------------------------------------------- */
+ 
+img 
+{
+	max-width: 100%;
+	height: auto;
+}
+
+
+@media \0screen 
+{
+	img 
+	{ 
+		width: auto; /*  ie 8 */
+	}
+}

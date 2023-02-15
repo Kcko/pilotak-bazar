@@ -1,0 +1,10 @@
+<div data-aos="fade"  data-aos-delay="100" class="Hero text-center flex flex-wrap md:flex-nowrap w-full items-center mb-12 lg:mb-24 lg:relative lg:min-h-[400px]">
+    <h1 class="text-h1 flex-1 px-4 w-full md:w-auto order-2 md:order-1 lg:relative z-10">
+        {$data->heading|breaklines}
+    </h1>
+    <div class="w-full flex md:w-auto order-1 md:order-2 lg:absolute top-0 right-0">
+        {if $data->cover__image_id && $data->cover__image}
+            {$data->cover__image->getImageElement('hp-hero', ['class' => 'h-[140px] md:h-[400px] ml-auto mb-2 md:mb-0'])}
+        {/if}
+    </div>
+</div>

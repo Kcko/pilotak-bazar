@@ -1,0 +1,49 @@
+@layer components {
+  .BaseContainer {
+    @apply flex flex-col min-h-screen;
+
+    &__Main {
+      @apply flex-1;
+    }
+  }
+
+  .Container {
+    @apply w-full mx-auto /*px-4*/;
+    max-width: calc(100% - 32px);
+
+    @media (min-width: 1200px) {
+      max-width: 1170px;
+    }
+  }
+
+  /*
+  RJwebdesign, [24.10.2022 10:54]
+  1) https://play.tailwindcss.com/gvp9fCqPOB
+
+  RJwebdesign, [24.10.2022 10:54]
+  2) https://play.tailwindcss.com/wY4GfOI4pm?file=css
+*/
+
+  .ContainerEdge {
+    --col: calc((min(1170px, 100%) - (2rem * 2)) / 3);
+    --gap: 2rem;
+    --padding: 0;
+
+    @apply block lg:grid;
+
+    grid-template-columns: 1fr repeat(2, var(--col) var(--gap)) var(--col) 1fr;
+    padding: var(--padding, 0);
+
+    @media (min-width: 1170px) {
+      --padding: 0;
+    }
+
+    &.-MobilePadding {
+      --padding: 0 1rem;
+
+      @media (min-width: 1170px) {
+        --padding: 0;
+      }
+    }
+  }
+}

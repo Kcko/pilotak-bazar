@@ -1,0 +1,23 @@
+<div class="static-block {$templateConfig['sectionClass']} pb-70">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-12 text-center {if isset($templateConfig['contentClass'])}{$templateConfig['contentClass']}{/if}">
+				<h2>{$data->heading}</h2>
+				<div class="lead">
+					{$data->content|noescape}
+				</div>
+			</div>
+		</div>
+
+		<div class="row mfp-gallery">
+			{foreach $photos as $photo}
+				{breakIf $iterator->getCounter() > 8}
+				<div class="col-lg-3 col-sm-6 mb-20">
+					<a href="{$photo->image->getImageUrl('modal')}">{$photo->image->getImageElement('550x400', ['class' => 'img-fluid'])}</a>
+				</div>
+			{/foreach}
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,5 @@
+<ul class="nav nav-pills">
+	{foreach $data as $item}
+		<a href="{$item['url']}" n:class="in_array($item['id'], $selectedItems) ? 'active', 'nav-link'">{$item['title']}</a>
+	{/foreach}
+</ul>

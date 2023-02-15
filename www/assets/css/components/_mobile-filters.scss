@@ -1,0 +1,17 @@
+.MobileFilters {
+  @apply hidden;
+  @apply fixed z-50 inset-0 bg-bg p-5;
+
+  &.-Opened {
+    @apply block;
+  }
+}
+
+.MobileFiltersArea {
+  @apply flex flex-col h-full;
+
+  &__Filters {
+    @apply overflow-y-auto;
+    overscroll-behavior-y: contain;
+  }
+}

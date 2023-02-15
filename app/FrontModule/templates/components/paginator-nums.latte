@@ -1,0 +1,7 @@
+{if $paginator->pageCount > 1}
+
+	{foreach $steps as $step}
+		<a n:class="$step == $paginator->page ? active" href="{link this, 'page' => $step}">{$step}</a>
+	{/foreach}
+
+{/if}

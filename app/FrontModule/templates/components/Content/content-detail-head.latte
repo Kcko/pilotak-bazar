@@ -1,0 +1,55 @@
+{if $data->image}
+	{var $image = $data->image}
+{/if}
+
+
+
+<div class="static-block {if isset($templateConfig['sectionClass'])}{$templateConfig['sectionClass']}{/if}">
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-12 text-center {if isset($templateConfig['contentClass'])}{$templateConfig['contentClass']}{/if}">
+				<h1>{$data['heading']|noescape}</h1>
+				<div class="lead">
+					{$data['content']|noescape}
+				</div>
+			</div>
+
+			<div class="col-md-6 mb-4 mb-md-0">
+				{ifset $image}
+					{$image->getResponsiveImageElement([
+						'356x263'   => '350w',
+						'712x526'   => '700w',
+						'1068x789'  => '1000w',
+					], ['class' => "img-fluid"])}
+				{else}
+					<img class="card-img-top" 
+						src="https://via.placeholder.com/356x263" 
+						srcset="
+							https://via.placeholder.com/356x263 350w,
+							https://via.placeholder.com/712x526 700w,
+							https://via.placeholder.com/1068x789 1000w
+						"
+						alt="" />
+				{/ifset}
+				
+			</div>
+			<div class="col-md-6">
+				<div class="pl-4">
+					{* <h2>{$data['heading_1']}</h2> *}
+					<div class="no-lead">
+						{$data['content_1']|noescape}
+					</div>
+				</div>
+			</div>
+
+			
+			<div n:if="isset($data->file_id) && $data->file->fileExists()" class="col-lg-12 text-center mt-45">
+				<a href="{$data->file->getFileUrl()}" class="btn btn-outline-primary -width-fixed">{$data->button_text}</a>
+			</div>
+
+		</div>
+
+	</div>
+</div>

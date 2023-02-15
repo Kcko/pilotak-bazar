@@ -1,0 +1,22 @@
+{var $items = $model->getChildren($parent)}
+
+<nav n:if="$items" class="AsideNavigation" role="navigation">
+    {block #nav}
+
+        <ul>
+            {foreach $model->getChildren($parent) as $child}
+                <li n:class="in_array($child['id'], $selectedItems) ? active">
+                    <a href="{$child['url']}">
+                        {$child['title']}
+
+                        <span title="Odkaz vede pryč z webu Popovicky.cz" n:if="$child['outurl']" class="inline-flex transform -translate-y-1 -rotate-45">-></span>
+                    </a>
+                    {if in_array($child['id'], $selectedItems) && count($model->getChildren($child['id'], 'id')) && $depth < $maxDepth}
+                        {include this, model => $model, parent => $child['id'], depth => $depth + 1, maxDepth => $maxDepth}
+                    {/if}
+                </li>    
+
+            {/foreach}
+        </ul>
+    {/block}
+ </nav>

@@ -1,0 +1,29 @@
+.Alert {
+  @apply mt-8 mb-8 relative p-5 pl-16;
+  background-repeat: no-repeat;
+  background-position: 20px 16px;
+  background-size: 30px;
+
+  svg {
+  }
+}
+
+.Alert.Alert--Error {
+  @apply bg-red-200  rounded text-red-600;
+  background-image: url(/assets/gfx/svg/alert-alert.svg);
+}
+
+.Alert.Alert--Success {
+  @apply bg-green-200  rounded  text-green-600;
+  background-image: url(/assets/gfx/svg/alert-success.svg);
+}
+
+.Alert.Alert--Warning {
+  @apply bg-yellow-200  rounded  text-yellow-600;
+  background-image: url(/assets/gfx/svg/alert-warning.svg);
+}
+
+.Alert.Alert--Info {
+  @apply bg-blue-200  rounded text-blue-600;
+  background-image: url(/assets/gfx/svg/alert-info.svg);
+}

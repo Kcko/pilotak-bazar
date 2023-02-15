@@ -1,0 +1,7 @@
+<div class="list-group">
+	{foreach $data as $item}
+		<a href="{$item['url']}" n:class="in_array($item['id'], $selectedItems) ? 'active', 'list-group-item list-group-item-action'">{$item['title']}</a>
+	{/foreach}
+</div>
+
+

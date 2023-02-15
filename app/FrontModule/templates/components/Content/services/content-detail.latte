@@ -1,0 +1,15 @@
+<div data-aos="fade" data-aos-delay="100" class="Container grid lg:grid-cols-2 gap-6 lg:gap-8">
+    <div>
+        <h1 class="text-h2 mb-5">{$data->heading}</h1>
+        <div class="text-body">
+            {$data->content|predlozky|noescape}
+        </div>
+    </div>  
+    <div>
+        <div class="-mx-4 lg:mx-0">
+            {if $data->cover__image_id && $data->cover__image}
+                {$data->cover__image->getImageElement('services')}
+            {/if}
+        </div>
+    </div>  
+</div>

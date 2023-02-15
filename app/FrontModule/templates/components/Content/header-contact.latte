@@ -1,0 +1,8 @@
+<span class="inline-flex items-center space-x-1">
+    {='assets/gfx/svg/telefon.svg'|svg:'w-5 h-5'|noescape}
+    <a href="tel:{$data->phone|phone}" class="Link">{$data->phone}</a>
+</span>
+<span class="inline-flex items-center space-x-2">
+    {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
+    <a href="mailto:{$data->email}" class="Link">{$data->email}</a>
+</span>

@@ -1,0 +1,82 @@
+{foreach $rows as $index => $row}
+
+    <div data-aos="fade" data-aos-delay="100" class="Container mb-10">
+        <div class="-mx-4 lg:mx-0">
+            {if $row->cover__image_id && $row->cover__image}
+                {$row->cover__image->getImageElement('development-list')}
+            {/if}
+        </div>
+    </div>
+
+
+    <div data-aos="fade" data-aos-delay="100" class="Container grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div class="lg:col-span-2 lg:pr-36">
+            <h2 class="text-h4 mb-5">{$row->heading}</h2>
+            <div class="text-body space-y-5">
+                {$row->content|noescape}
+            </div>
+        </div>
+        <div class="lg:col-span-1">
+            <div class="Accordion">
+                <div class="Accordion__Item">
+                    <div class="Accordion__Heading flex items-center justify-between text-h7 cursor-pointer">
+                        {_}O projektu{/_}
+                        <span>
+                            {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4 transform'|noescape}
+                        </span>
+                    </div>
+                    <div class="Accordion__Content text-body-sm">
+                        <div class="py-4 Accordion__ContentInner">
+                            {$row->technical_specification|breaklines|noescape}
+                        </div>
+                    </div>
+                </div>
+                <div class="Accordion__Item">
+                    <div class="Accordion__Heading flex items-center justify-between text-h7 cursor-pointer">
+                        {_}Web projektu{/_}
+                        <span>
+                            {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4'|noescape}
+                        </span>
+                    </div>
+                    <div class="text-body-sm Accordion__Content">
+                        <div class="py-4 Accordion__ContentInner">
+                            {if strpos($row->web, 'http') !== false}
+                                {var $web = $row->web}
+                                {var $webHuman = $row->web}
+                                {var $webHuman = str_replace(['http://', 'https://', 'www.'], '', $webHuman)}
+                                {var $webHuman = 'www.'. $webHuman}
+                                
+                                <div><a href="{$web}" target="_blank">{$webHuman}</a></div>
+                            {else}
+                                <div>{$row->web}</div>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="Accordion__Item">
+                    <div class="Accordion__Heading flex items-center justify-between text-h7 cursor-pointer">
+                        {_}Plánované dokončení projektu{/_}
+                        <span>
+                            {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4'|noescape}
+                        </span>
+                    </div>
+                    <div class="text-body-sm Accordion__Content">
+                        <div class="py-4 Accordion__ContentInner">
+                            {$row->schedule|breaklines|noescape}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    {sep}
+        <div class="Line my-16 lg:my-24">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+    {/sep}
+
+{/foreach}

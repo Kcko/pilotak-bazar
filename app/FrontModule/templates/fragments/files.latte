@@ -1,0 +1,30 @@
+<div n:if="$files && count($files)" class="StaticMediaGroup">
+    <h2 class="text-h2 LinedRed !mb-6">Přílohy:</h2>
+    <div class="Files">
+		{var $filesSorted = []}
+        {foreach $files as $file}
+			{php $filesSorted[$file->file->added->getTimestamp() . $iterator->getCounter()] = $file}
+		{/foreach}
+		
+		{php rsort($filesSorted)}
+		
+		{foreach $filesSorted as $file}
+            <div>
+                <img src="{$file->file->getFileIconUrl('32px')}" class="w-6" alt="" />
+            </div>
+            <div title="{$file->file->sanitized_file_name}">
+                <a href="{plink :Service:FileDownloader:default, $file->file->id, $file->file->token}" class="text-pp-red Link">{$file->file->getFileName()}</a>
+                <div class="sm:hidden space-x-4 flex">
+                    <div>{$file->file->added|relativeDate}</div>
+                    <div>{$file->file->getFileSize()|bytes}</div>
+                </div>
+            </div>
+            <div class="text-right hidden sm:block">			
+                {$file->file->added|relativeDate}							
+            </div>
+            <div class="text-right hidden sm:block">
+                {$file->file->getFileSize()|bytes}
+            </div>
+		{/foreach}
+    </div>
+</div>

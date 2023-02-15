@@ -1,0 +1,80 @@
+{if $data->image}
+	{var $image = $data->image}
+{/if}
+
+
+<div class="static-block {if isset($templateConfig['sectionClass'])}{$templateConfig['sectionClass']}{/if}">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h1>{$data['heading']}</h1>
+				<div class="lead">
+					{$data['content']|noescape}
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row  mb-5">
+
+			<div class="col-md-6 mb-4 mb-md-0">
+				{ifset $image}
+					{$image->getResponsiveImageElement([
+						'356x263'   => '350w',
+						'712x526'   => '700w',
+						'1068x789'  => '1000w',
+					], ['class' => "img-fluid"])}
+				{else}
+					<img class="card-img-top" 
+						src="https://via.placeholder.com/356x263" 
+						srcset="
+							https://via.placeholder.com/356x263 350w,
+							https://via.placeholder.com/712x526 700w,
+							https://via.placeholder.com/1068x789 1000w
+						"
+						alt="" />
+				{/ifset}
+				
+			</div>
+			<div class="col-md-6">
+				<div class="pl-md-4">
+					<div class="no-lead">
+						{$data['content_1']|noescape}
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="pr-4">
+					{$data['content_2']|replace:'<h3>':'<h3 class="mb-40">'|replace:'<p>':'<p class="mb-40">'|noescape}
+	{* 				<h3 class="mb-40">WITKOWITZ ENVI a.s.</h3>
+					<p class="mb-40">
+						Ruská 1142/30 <br />
+						703 00 Ostrava - Vítkovice <br />
+						Česká republika <br />
+						IČ: 04528131 <br /><br />
+						tel.: +420 595 954 315 <br />
+						sales.envi@vitkovice.cz <br />
+						sales.envi@vitkovice.com <br />
+					</p>
+					Společnost je registrována v obchodním rejstříku vedeném
+					Krajským soudem v Ostravě oddíl B, vložka 10753.
+					Politika integrovaného systému managementu *}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.3804932793128!2d18.268905015708565!3d49.816513479393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e35bac874235%3A0x2b977ca3d0411602!2sRusk%C3%A1+1142%2F30%2C+703+00+Ostrava-V%C3%ADtkovice!5e0!3m2!1sen!2scz!4v1563807873270!5m2!1sen!2scz" width="100%" height="450" frameborder="0" class="img-bordered" allowfullscreen></iframe>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+

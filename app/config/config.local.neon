@@ -1,0 +1,153 @@
+#
+# CLIENT SETTING AND SERVICES
+#
+
+application:
+	silentLinks: true
+	errorPresenter: Front:Error
+	#catchExceptions: true
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+	scanDirs:
+#		- %appDir%/../vendor/andweb
+
+php:
+	date.timezone: Europe/Prague
+
+database:
+#	default: - use this line if yoo want to connect to multiple databases
+	options:
+		lazy: yes
+		driverClass: Andweb\Database\Drivers\MySqlDriver
+
+session:
+#	cookieDomain: .andweb.cz
+	autoStart: true
+	expiration: 1 hours
+	debugger: on 
+	savePath: "%tempDir%/sessions" #https://forum.nette.org/cs/22267-kdyz-zmenim-savepath-u-session-musim-neco-resit#p151688
+
+constants: 
+	SYSTEM_VERSION: "1.0.6"
+
+parameters:
+	recaptchaV3:
+		siteKey: '6LcVKxMkAAAAAG0ISI59tJjUC-8Dhxm29es_GIJu'
+		secretKey: '6LcVKxMkAAAAAL3urwM7lboUZOK1T_ynA3Vn0M7j'
+	assetsConfig:
+		repo: ''
+		projectName: 'H2Ogroup'
+		gitDirectory: '/../../.git'
+		versionOverlay:
+			default:
+				versionName: 'Vývojová verze'
+				versionDescription: 'vývojové prostředí'
+				databaseDescription: 'testovací databáze, změny v této verzi nemají vliv na produkční data'
+				theme: 'theme-5'
+			'*.pripravujeme.eu':
+				branche: preprod
+				versionName: 'Klientská akceptační verze'
+				versionDescription: 'prostředí pro schvalování změn před vystavením do produkční verze'
+				databaseDescription: 'testovací databáze, změny v této verzi nemají vliv na produkční data'
+				theme: 'theme-2'
+			'*.test.andweb.cz':
+				branche: test
+				versionName: 'Interní akceptační verze'
+				versionDescription: 'prostředí pro schvalování změn před vystavením do produkční verze'
+				databaseDescription: 'testovací databáze, změny v této verzi nemají vliv na produkční data'
+				theme: 'theme-3'
+
+	topBarControls:
+		- menu
+		- domainMenu
+		- userMenu
+	remoteCleanCache:
+	defaultLanguage: 1
+	defaultDomain: 1
+	eshopDashboard: FALSE
+		
+	routerDefaults:
+		module: 'Front'
+		
+services:
+	-
+		class: App\FrontModule\Routers\NavigationRouter(%routerDefaults%, ...)
+		autowired: self
+	
+	router: App\RouterFactory::createRouter
+
+	- App\Model\AssetsConfig(%assetsConfig%)
+	- Andweb\Application\UI\ControlFactory
+	- Andweb\Caching\DetectSqlDeps
+	- Andweb\Application\LinkGenerator
+	- Andweb\Model\Search(%elasticsearch%)
+	- Andweb\Database\Table\Cache
+
+	JsonDataConvertor:
+		class: App\Model\TemplateDataConvertor
+		setup: 
+			- addConvertor(App\Model\DataConvertors\ImageConvertor())
+			- addConvertor(App\Model\DataConvertors\FileConvertor())
+	
+	
+	ConditionResourceFactory:
+		class: Andweb\Filters\ConditionResourceFactory
+		tags:
+			- run
+
+	awLatteFilters:
+		class: Andweb\Latte\Filters
+		tags:
+			- run
+
+	popovickyLatteFilters:
+		class: Andweb\Latte\PopovickyFilters
+		tags:
+			- run
+
+	latte.templateFactory:
+		setup:
+			- "$onCreate[]" = [@awLatteFilters, 'register']
+			- "$onCreate[]" = [@popovickyLatteFilters, 'register']
+	
+	- Andweb\Model\RemoteHttp\CurlRemoteHttp
+
+	- Andweb\Security\Authenticator
+
+extensions:
+	#console: Kdyby\Console\DI\ConsoleExtension
+	events: Kdyby\Events\DI\EventsExtension
+	ReplicatorExtension: Kdyby\Replicator\DI\ReplicatorExtension
+	mailModule: App\MailModule\DI\MailExtension
+	user: App\UserModule\DI\UserExtension
+	datatypes: Andweb\Extensions\Datatypes
+
+
+	# Back module
+	back: App\BackModule\DI\BackExtension
+
+	# Media extension - images, files
+	media: App\MediaModule\DI\MediaExtension
+	
+	# Article module
+	article: App\ArticleModule\DI\ArticleExtension
+
+events:
+	debugger: off  # there is memory leak if debugger is on!!!!
+
+#console:
+#	commands:
+
+nette:
+
+#		mailer:
+#			smtp: true
+#			host: smtp.savana.cz
+#			username: xxx
+#			password: xxxx
+
+includes:
+	- front-module.neon
+#	- product-module.neon
+#	- eshop-module.neon
+#	- import-module.neon

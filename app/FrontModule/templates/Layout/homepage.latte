@@ -1,0 +1,15 @@
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+    <div x-data="test" class="BaseContainer__Main">
+        HOME :)
+        <span x-text="text" @click="$el.innerText = 'Miše je loskuták'"></span>
+    </div>
+
+
+    {include '../fragments/footer.latte'}
+    
+{/block}

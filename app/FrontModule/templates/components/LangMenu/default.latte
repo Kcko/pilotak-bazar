@@ -1,0 +1,11 @@
+{foreach $data as $language}
+	{if $language['selected']}
+		{$language['lang']|upper}
+	{/if}
+{/foreach}
+
+<span class="header__lang-dropdown">
+	{foreach $data as $language}
+		<a href="{$language['url']}" n:class="$language['selected'] ? '-active'">{$language['lang']|upper}</a>
+	{/foreach}
+</span>

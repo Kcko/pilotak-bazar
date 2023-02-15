@@ -1,0 +1,50 @@
+parameters:
+    imageDatabase:
+        oldRemoteImageStorageFolder: 'https://masoprofit.cz/storage/images/original/'
+    
+    oldFrontImport:
+        presenterMap:
+            1: 1
+            9: 2
+        presenterActionMap:
+            #old presenter_id:
+                #action:
+                    #- new action
+                    #- param entity object
+
+    databaseUniqueKeys:
+        measure_unit:
+            ':measure_unit_lang.unit': unit
+        language:
+            lang: lang
+            id: id
+        domain:
+            id: id
+        navgroup:
+            id: id
+        country:
+            id: id
+        image:
+            id: id
+        customer:
+            reg_no: reg_no
+            email: email
+
+extensions:
+    import: App\ImportModule\DI\ImportExtension
+
+services:
+    - App\Model\Import\Sources\OldEshopProducts('126_masoprofit', []) 
+    - App\Model\Import\Sources\OldEshop('188_advantage', []) 
+    - App\Model\Import\Sources\OldFront(%oldFrontImport%, '126_masoprofit')
+    #- App\Model\Import\Sources\OldMedia('126_masoprofit')
+    
+    importDestinationDatabase: 
+        class: App\Model\Import\Destinations\Database(%databaseUniqueKeys%)
+    
+    importDestinationImageDatabase:
+        class: App\Model\Import\Destinations\ImageDatabase(%imageDatabase%, @importDestinationDatabase)
+    
+    importDestinationProductDatabase:
+        class: App\Model\Import\Destinations\ProductDatabase(@importDestinationImageDatabase)
+

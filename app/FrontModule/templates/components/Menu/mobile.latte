@@ -1,0 +1,5 @@
+<ul class="text-mobile-menu uppercase text-white mb-10">
+	{foreach $data as $item}
+		<li n:class="in_array($item['id'], $selectedItems) ? '-Active'"><a href="{$item['url']}" class="py-3 block">{$item['title']}</a></li>
+	{/foreach}
+</ul>

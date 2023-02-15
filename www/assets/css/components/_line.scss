@@ -1,0 +1,14 @@
+.Line {
+  hr {
+    height: 1px;
+    border: 0;
+    overflow: hidden;
+    @apply bg-brown-light-super;
+  }
+
+  &.-Black {
+    hr {
+      @apply bg-black;
+    }
+  }
+}

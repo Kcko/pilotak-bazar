@@ -1,0 +1,136 @@
+stages:
+  - validate
+  - build
+  - deploy
+
+cache:
+  key: '$CI_COMMIT_SHA'
+
+php-lint:
+  stage: validate
+  script:
+    - 'php-lint.sh'
+  tags:
+    - docker-exec
+  cache:
+    key: DO_NOT_CACHE
+    policy: pull
+    untracked: false
+
+build:
+  stage: build
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+    - mkdir -p ~/.ssh
+    - 'ssh-keyscan -p 2222 git.andweb.cz >> gitlab-known-hosts'
+    - 'cat gitlab-known-hosts >> ~/.ssh/known_hosts'
+  script:
+    - 'composer install'
+    #    - "bower update"
+    - 'cd ./www'
+    - 'npm install'
+    - 'npm rebuild node-sass'
+    - 'gulp scss:back'
+    - 'gulp scss:dev'
+    - 'gulp scss:prod'
+    - 'npm prune --production'
+    - 'cd ..'
+    - 'jammit -c assets.yml -o www/assets/min'
+
+  cache:
+    key: '$CI_COMMIT_SHA'
+    policy: push
+    untracked: false
+    paths:
+      - app/
+      - vendor/
+      - migrations/
+      - www/
+      - ftp-deploy-preprod.ini
+      - ftp-deploy-test.ini
+      - ftp-deploy-www.ini
+  only:
+    - test
+    - preprod
+    - www
+  tags:
+    - docker-exec
+
+deploy-test:
+  stage: deploy
+  environment:
+    name: test
+    url: https://cms-demo.test.andweb.cz
+  script:
+    - mkdir log
+    - mkdir temp
+    - 'php /usr/local/bin/deployment.phar ftp-deploy-test.ini'
+  cache:
+    key: '$CI_COMMIT_SHA'
+    policy: pull
+    untracked: false
+    paths:
+      - app/
+      - vendor/
+      - migrations/
+      - www/
+      - ftp-deploy-preprod.ini
+      - ftp-deploy-test.ini
+      - ftp-deploy-www.ini
+  tags:
+    - docker-exec
+  only:
+    - test
+
+deploy-preprod:
+  stage: deploy
+  environment:
+    name: preprod
+    url: https://cms-demo.pripravujeme.eu
+  script:
+    - mkdir log
+    - mkdir temp
+    - 'php /usr/local/bin/deployment.phar ftp-deploy-preprod.ini'
+  cache:
+    key: '$CI_COMMIT_SHA'
+    policy: pull
+    untracked: false
+    paths:
+      - app/
+      - vendor/
+      - migrations/
+      - www/
+      - ftp-deploy-preprod.ini
+      - ftp-deploy-test.ini
+      - ftp-deploy-www.ini
+  tags:
+    - docker-exec
+  only:
+    - preprod
+
+deploy-www:
+  stage: deploy
+  environment:
+    name: production
+    url: https://cms-demo.andweb.cz
+  script:
+    - mkdir log
+    #- mkdir temp
+    - 'php /usr/local/bin/deployment.phar ftp-deploy-www.ini'
+  cache:
+    key: '$CI_COMMIT_SHA'
+    policy: pull
+    untracked: false
+    paths:
+      - app/
+      - vendor/
+      - migrations/
+      - www/
+      - ftp-deploy-preprod.ini
+      - ftp-deploy-test.ini
+      - ftp-deploy-www.ini
+  tags:
+    - docker-exec
+  only:
+    - www

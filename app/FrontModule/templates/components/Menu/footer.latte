@@ -1,0 +1,25 @@
+{var $items = []}
+
+{foreach $data as $item}
+	{php $items[] = $item}
+{/foreach}
+
+{php 
+
+	if (isset($templateConfig['part']))
+	{
+		$divideBy = ceil(count($items) / 2);
+		$parts = array_chunk($items, $divideBy);
+		$items = $parts[$templateConfig['part']];
+	}
+
+}
+
+<ul class="list-unstyled">
+
+	{foreach $items as $item}
+		<li n:class="in_array($item['id'], $selectedItems) ? '-active'"><a href="{$item['url']}">{$item['title']}</a></li>
+	{/foreach}
+
+</ul>
+

@@ -1,0 +1,21 @@
+.Breadcrumbs {
+  @apply text-base flex flex-wrap py-6 mb-2;
+
+  li {
+    @apply inline-flex items-center;
+  }
+
+  li:not(:last-child) {
+    @apply relative;
+
+    &:after {
+      content: '/';
+      @apply mx-3;
+    }
+  }
+
+  a {
+    @apply text-pp-blue-dark;
+    @apply Link;
+  }
+}

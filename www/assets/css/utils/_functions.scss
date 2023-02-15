@@ -1,0 +1,111 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+/* Maps functions
+---------------------------------------------------------------------------------------------------- */
+@function lineSpace($key) {
+  @if map-has-key($lineSpaces, $key) {
+    @return map-get($lineSpaces, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $lineSpaces.";
+  @return null;
+}
+
+@function font($key) {
+  @if map-has-key($fontSizes, $key) {
+    @return map-get($fontSizes, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $fontSizes.";
+  @return null;
+}
+
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
+
+/* Prepocet na %
+  ---------------------------------------------------------------------------------------------------- */
+@function calc-percent($target, $parent) {
+  @return ($target / $parent) * 100%;
+}
+
+@function font-size($fontSize) {
+  @return ($fontSize / 16) * 100%;
+}
+
+@function em2px($px) {
+  @return ($px / 16) +0em;
+}
+
+@function toEm($px) {
+  @return ($px / 16) +0em;
+}
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+/// Native `url(..)` function wrapper
+/// @param {String} $base - base URL for the asset
+/// @param {String} $type - asset type folder (e.g. `fonts/`)
+/// @param {String} $path - asset path
+/// @return {Url}
+@function asset($base, $type, $path) {
+  @return url($base+$type+$path);
+}
+
+/// Returns URL to an image based on its path
+/// @param {String} $path - image path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url
+@function image($path, $base: $base-url) {
+  @return asset($base, 'images/', $path);
+}
+
+/// Returns URL to a font based on its path
+/// @param {String} $path - font path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url
+@function font($path, $base: $base-url) {
+  @return asset($base, 'fonts/', $path);
+}
+
+@function temp($path, $base: $base-url) {
+  @return asset($base, 'temp/', $path);
+}
+
+@function image-url($image) {
+  @return '/assets/gfx/' + $image;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function headings($from: 1, $to: 6) {
+  @if $from == $to {
+    @return 'h#{$from}';
+  } @else {
+    @return 'h#{$from},' + headings($from + 1, $to);
+  }
+}
+
+@function photoshop-letter-spacing($unit, $base: '16') {
+  @return (($unit * $base) / 1000) + 0px;
+}
+@function photoshop-line-spacing($ps-line-height, $base: '16') {
+  @return ($ps-line-height / $base);
+}

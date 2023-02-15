@@ -1,0 +1,39 @@
+<section class="bg-white py-10 lg:py-20">
+  <div class="Container">
+    <div class="Row">
+      <div class="Col w-full">
+        <h2 class="text-h2 LinedRed">{$data->heading}</h2>
+
+        <div class="grid grid-cols-6 sm:grid-cols-12 gap-8">
+          <div class="StaticSimpleText col-span-6 order-2 sm:order-1">
+            {$data->content|predlozky|noescape}
+
+            <nav class="mt-4 mb-12 font-medium">
+              <a href="{plink Layout:default, navId => 14}" class="text-pp-red Link">Popovičky a současnost</a>
+              |
+              <a href="{plink Layout:default, navId => 15}" class="text-pp-red Link">Historie Popoviček</a>
+              |
+              <a href="{plink Layout:default, navId => 16}" class="text-pp-red Link">Zajímavá místa v okolí</a>
+            </nav>
+
+            <a href="{plink Layout:default, navId => 14}" class="Btn Btn--Primary">Více o obci -></a>
+          </div>
+
+          <div class="col-span-6 order-1 sm:order-2">
+            <div class="aspect-w-5 aspect-h-4">
+              <div class="absolute w-2/3 h-3/5 left-0 z-10 top-0 right-auto border-8 border-white">
+               {*  <img class="h-full w-full object-cover" src="https://picsum.photos/id/1000/500/500" alt="" /> *}
+                {$data->photo1__image->getImageElement('photogallery-thumb', ['class' => 'h-full w-full object-cover'])}
+              </div>
+
+              <div class="absolute w-2/3 h-2/3 left-auto top-20 right-0">
+                {* <img class="h-full w-full object-cover" src="https://picsum.photos/id/237/500/600" /> *}
+                {$data->photo2__image->getImageElement('photogallery-thumb', ['class' => 'h-full w-full object-cover'])}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

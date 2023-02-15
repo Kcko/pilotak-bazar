@@ -1,0 +1,9 @@
+{if $paginator->pageCount > 1}
+	{if !$paginator->isFirst()}
+		<a href="{link this, 'page' => $paginator->page - 1}" class="retina-pager-arrow-left left">&lt;</a>
+	{/if}
+	{if !$paginator->isLast()}
+		<a href="{link this, 'page' => $paginator->page + 1}" class="retina-pager-arrow-right right">&gt;</a>
+	{/if}
+{/if}
+

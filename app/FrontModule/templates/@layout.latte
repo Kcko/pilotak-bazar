@@ -1,0 +1,142 @@
+{default $htmlClass = ''}
+{default $htmlId = ''}
+{default $bodyClass = ''}
+{default $bodyId = ''}
+<!DOCTYPE html>
+<html xmlns:og="http://opengraphprotocol.org/schema/" n:class="$presenter->isMobile() ? 'is-mobile' : 'is-desktop', $htmlClass, 'navId-'.$presenter->navId" id={$htmlId}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  	 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	    <title>{control breadcrumbs:title}</title>
+		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+		{control metaHeaders}
+		<meta name="author" content="Roman Janko, admin@rjwebdesign.cz, https://rjwebdesign.cz">
+		{block canonical}{/block}
+
+		{* Favicon *}
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/assets/favicon/site.webmanifest">
+		<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="theme-color" content="#ffffff">
+		{* /Favicon *}
+
+		{* CSS *}
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/app.dev.css?{=filemtime('./assets/css/app.dev.css')}" />
+
+		{* AOS *}
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>			
+		{* ALPINEJS *}
+		<script src="/assets/js/alpine.js?{=filemtime('./assets/js/alpine.js')}" defer type="module"></script>
+		{* APP *}
+		<script src="/assets/js/app.js?{=filemtime('./assets/js/app.js')}" defer type="module"></script>
+	
+		{* AlpineJs CDN *}
+		{* <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script> *}
+
+		<script type="text/javascript">
+	        var presenter = {$presenterInfo};
+			if ('createTouch' in document)
+			{
+				try
+				{
+					var ignore = /:hover/;
+					for (var i=0; i<document.styleSheets.length; i++)
+					{
+						var sheet = document.styleSheets[i];
+						for (var j=sheet.cssRules.length-1; j>=0; j--)
+						{
+							var rule = sheet.cssRules[j];
+							if (rule.type === CSSRule.STYLE_RULE && ignore.test(rule.selectorText))
+							{
+								sheet.deleteRule(j);
+							}
+						}
+					}
+				}
+				catch(e){}
+			}
+		</script>
+
+	</head>
+
+
+	{* Preloader *}
+	{if empty($_SESSION['web-preloader'])}
+		<div id="web-preloader">
+			<div id="web-status">&nbsp;</div>
+		</div>
+	{/if}
+
+	<body n:class="App\Bootstrap::$debugMode ? 'debug-screens'">
+
+		{* MAIN CONTENT *}
+		<div class="BaseContainer">
+			{include #content}
+		</div>
+		{* //MAIN CONTENT *}
+
+		{* JS *}
+		{* <script src="/node_modules/requirejs/require.js"></script>
+		{var $bust = \App\Bootstrap::$debugMode ? 'bust='.SYSTEM_VERSION : 'bust='.SYSTEM_VERSION}
+		<script>
+			requirejs.config({
+				waitSeconds : 30,
+				baseUrl: '/node_modules',
+				urlArgs: {$bust}
+			});
+		</script> *}
+		
+		{* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcFgoyHWelsoBm3W_VKNhriydSnM4mWJI&amp;libraries=places"></script> *}
+		{block recaptcha}
+			{* {if in_array($presenter->navigation->navItem['id'], [7, 9])
+				|| in_array($presenter->getName(), ['Front:PopoUser'])
+			} *}
+				<script src="https://www.google.com/recaptcha/api.js?render={$presenter->recaptchaConfig->getSiteKey()}"></script>
+			{* {/if} *}
+		{/block}
+	
+		{* {control assets:Js 'basejs', [
+			"/assets/js/app.js",
+		], false} *}
+
+		{* COOKIES *}
+		{* {include './fragments/eu-cookies.latte'} *}
+		{* //COOKIES *}
+
+		<script	n:syntax="off"> 
+			AOS.init({
+				once: true,
+				disable: 'mobile',
+				duration: 750,
+			});
+		</script>
+
+
+
+		{* Balot / Browser update *}
+		<script	n:syntax="off"> 
+			var $buoop = {required:{e:-4,f:-3,o:-3,s:-1,c:-3},insecure:true,api:2021.10 }; 
+			function $buo_f(){ 
+			var e = document.createElement("script"); 
+			e.src = "//browser-update.org/update.min.js"; 
+			document.body.appendChild(e);
+			};
+			try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+			catch(e){window.attachEvent("onload", $buo_f)}
+		</script>
+
+
+		{if empty($_SESSION['web-preloader'])}
+			{php $_SESSION['web-preloader'] = true} 
+		{/if}
+
+
+			
+	</body>
+
+</html>

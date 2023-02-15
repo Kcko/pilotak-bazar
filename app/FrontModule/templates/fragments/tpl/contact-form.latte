@@ -1,0 +1,63 @@
+    {* Contact form *}
+    <section class="ContactForm mb-16 lg:mb-36">
+        <form action="">
+            <div class="Container grid lg:grid-cols-2">
+                <div class="lg:pr-12">
+                    <h4 class="text-h4 mb-6">Kontaktujte nás</h4>
+                    <div class="Line"><hr /></div>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-4 lg:pl-12 mt-8 lg:mt-0">
+                    <div class="text-body ">
+                        <div>Daniela Červinková</div>
+                        <div>office manager </div>
+                        <div>cervinkova@h2ogroup.cz </div>
+                        <div>+420 602 413 136 </div>
+                    </div>
+
+
+                    <div class="Line my-4 lg:hidden">
+                            <hr />
+                    </div>
+
+
+                    <div class="text-body">
+                        <div>Lucie Staňková</div>
+                        <div>marketing</div>
+                        <div>stankova@h2ogroup.cz </div>
+                        <div>+420 775 508 657</div>
+                    </div>
+                </div>
+
+                {* spacer *}
+                <div class="lg:col-span-2 mb-8 lg:mb-16"></div>
+
+                <div class="lg:pr-12 space-y-6">
+                    <div>
+                        <label class="FormLabel">Jméno*</label>
+                        <input class="FormControl" type="text" />
+                    </div>
+                    <div>
+                        <label class="FormLabel">E-mailová adresa</label>
+                        <input class="FormControl" type="text" />
+                    </div>
+                    <div>
+                        <label class="FormLabel">Telefonní číslo</label>
+                        <input class="FormControl" type="text" />
+                    </div>
+                </div>
+                <div class="lg:pl-12 mt-6 lg:mt-0">
+                    <div class="h-full flex flex-col">
+                        <div><label class="FormLabel">Vaše zpráva</label></div>
+                        <textarea class="FormControl flex-grow"></textarea>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 flex items-center justify-center mt-12">
+                    <button class="Btn -Primary">
+                        Odeslat
+                        {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-3.5 h-3.5 ml-3'|noescape}
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </section>

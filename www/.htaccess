@@ -1,0 +1,109 @@
+# Apache configuration file (see httpd.apache.org/docs/2.2/mod/quickreference.html)
+
+# disable directory listing
+Options -Indexes
+
+
+
+# enable cool URL
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+
+ 
+	# prevents files starting with dot to be viewed by browser
+	#RewriteRule ^index.php$ - [L]
+	RewriteRule "^.well-known/acme-challenge" - [L]
+	RewriteRule /\.|^\. - [F] 
+ 	RewriteRule ^(log/|temp/) - [F,L,NC]
+
+
+	RedirectMatch 301 /cs$ /
+	RedirectMatch 301 /cs/(.*) /
+
+
+	# back controller
+	RewriteCond %{REQUEST_URI} \.js$
+	RewriteCond %{REQUEST_URI} ^/project-base/www/admin/js/presenters/ [OR]
+	RewriteCond %{REQUEST_URI} ^/admin/js/presenters/ [OR]
+	RewriteCond %{REQUEST_URI} ^/assets/js/presenters/ [OR]
+	RewriteCond %{REQUEST_URI} ^/project-base/www/assets/js/presenters/
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule (.*) /node_modules/nette-base-module/assets/js/empty.js [R=301,L]
+
+
+	# CKEditor
+	RewriteCond %{REQUEST_URI} /ckeditor/
+  	RewriteCond %{REQUEST_FILENAME} !-f
+  	RewriteCond %{REQUEST_FILENAME} !-d
+  	RewriteRule (.*) /vendor/andweb/nette-andweb/$1 [L]
+
+  	#images and slug
+  	RewriteCond %{REQUEST_URI} /storage/images/(.*)/(.*)/(.*)$
+  	RewriteRule storage/images/(.*)/(.*)/(.*)$ /storage/images/$1/$2 [PT]
+
+
+	# RewriteCond %{REQUEST_FILENAME} !-f
+	# RewriteCond %{REQUEST_URI} ^/storage/
+	# #RewriteCond %{REQUEST_URI} !^/storage/images/(.*)/4[0-9]{4}
+	# #RewriteCond %{HTTP_HOST} !masoprofit\.cz$ [NC]
+	# RewriteRule ^(.*)$ https://masoprofit.cz/$1 [R=302,QSA,L]
+
+  	# STORAGE
+	#RewriteCond %{REQUEST_URI} ^/storage/
+	#RewriteCond %{REQUEST_URI} !^/storage/pdf-catalogue-page-images
+	#RewriteCond %{REQUEST_FILENAME} !-f
+    # RewriteCond %{HTTP_HOST} !prirodovedcem\.cz$ [NC]
+	#RewriteRule ^(.*)$ http://pc.v.dev7.andweb.cz/$1 [R=302,QSA,L]
+
+
+	# front controller
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	#RewriteRule !\.(pdf|js|ico|gif|jpg|png|css|rar|zip|tar\.gz)$ index.php [L]
+	RewriteRule !\.(pdf|ico|css|rar|zip|tar\.gz|php)$ index.php [L]
+</IfModule>
+
+# enable gzip compression
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json
+</IfModule>
+
+
+# allow combined JavaScript & CSS. Inside of script.combined.js you could use <!--#include file="script.js" -->
+<IfModule mod_include.c>
+	<FilesMatch "\.combined\.(js|css)$">
+		Options +Includes
+		SetOutputFilter INCLUDES
+	</FilesMatch>
+</IfModule>
+
+php_flag zlib.output_compression on
+php_value zlib.output_compression_level 8
+
+<IfModule mod_mime.c>
+	AddType font/opentype .otf
+	AddType font/eot .eot
+	AddType font/truetype .ttf
+</IfModule>
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 1 seconds"
+	ExpiresByType text/html "access plus 1 seconds"
+	ExpiresByType image/x-icon "access plus 2592000 seconds"
+	ExpiresByType image/gif "access plus 2592000 seconds"
+	ExpiresByType image/jpeg "access plus 2592000 seconds"
+	ExpiresByType image/png "access plus 2592000 seconds"
+	ExpiresByType text/css "access plus 2592000 seconds"
+	ExpiresByType text/javascript "access plus 2592000 seconds"
+	ExpiresByType application/javascript "access plus 2592000 seconds"
+	ExpiresByType application/x-javascript "access plus 2592000 seconds"
+	ExpiresByType font/opentype "access plus 2592000 seconds"
+	ExpiresByType font/eot "access plus 2592000 seconds"
+	ExpiresByType font/truetype "access plus 2592000 seconds"
+</IfModule>
+
+
+

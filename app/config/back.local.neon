@@ -1,0 +1,9 @@
+parameters: 
+	projectLoginPageName: AW # nadpis v prihlasovacim formulari
+	projectHeaderName: AW CMS  # nazev v adminku - logo
+	projectTitleName: AW CMS # titulek
+	copyright: 'ANDWEB s.r.o.' # copyright v paticce
+	projectLoginPageH1: ''
+	rememberCredentialsInSign: TRUE
+	eshopDashboard: TRUE
+services:

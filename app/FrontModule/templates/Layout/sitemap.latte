@@ -1,0 +1,6 @@
+{layout 'basePageAsideMenu.latte'}
+
+{block subcontent}
+    {control content}
+    {control menu start_parent => 0, template => site-map, open => true, depth => 2}
+{/block}

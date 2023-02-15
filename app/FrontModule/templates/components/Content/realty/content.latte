@@ -1,0 +1,22 @@
+<section data-aos="fade" data-aos-delay="100" class="mb-16 lg:mb-24">
+    <div class="ContainerEdge">
+        <div class="col-span-6">
+            <div class="grid lg:grid-cols-[9fr,5fr] gap-x-8">
+                <div class="order-2 lg:order-1">
+                    {if $data->cover__image_id && $data->cover__image}
+                        {$data->cover__image->getImageElement('realty-cover')}
+                    {/if}
+                </div>
+
+                <div class="p-4 lg:p-0 order-1 lg:order-2">
+                    <h2 class="text-h2 mb-5">{$data->heading}</h2>
+                    <div class="flex-grow lg:mb-8 text-body">
+                        {$data->content|predlozky|noescape}
+                    </div>
+                </div>
+            
+            </div>
+            
+        </div>
+    </div>
+</section>

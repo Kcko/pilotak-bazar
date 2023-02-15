@@ -1,0 +1,39 @@
+{foreach $data as $item}
+
+	{var $image = NULL}
+	{if $item->image}
+		{var $image = $item->image}
+	{/if}
+
+	<div class="col-md-6 cardbox">
+		<div class="cardbox__wrapper h-100 {$templateConfig['boxClass']}">
+			{* <div class="cardbox__header"> *}
+			<div class="cardbox__body">
+				<a href="{$item['url']}" class="cardbox__image-link">
+					{ifset $image}
+						{$image->getResponsiveImageElement([
+							'356x263'   => '350w',
+							'712x526'   => '700w',
+							'1068x789'  => '1000w',
+						], ['class' => "img-fluid"])}
+					{else}
+						<img class="img-fluid" 
+							src="https://via.placeholder.com/356x263" 
+							srcset="
+								https://via.placeholder.com/356x263 350w,
+								https://via.placeholder.com/712x526 700w,
+								https://via.placeholder.com/1068x789 1000w
+							"
+							alt="" />
+					{/ifset}
+				</a>
+{* 			</div>
+			<div class="cardbox__body"> *}
+				<h3>{$item['title']}</h3>
+				{$item['description']|noescape}
+				<a href="{$item['url']}" class="btn btn-outline-primary btn-block">{_}Více{/_} <span class="arrow"></span></a>
+			</div>
+		</div>
+	</div>
+
+{/foreach}

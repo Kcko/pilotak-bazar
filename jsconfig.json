@@ -1,0 +1,21 @@
+{
+  "exclude": [
+    ".git",
+    ".git/*",
+    "vendor",
+    ".app-cache",
+    ".npm",
+    "www",
+    "www/*",
+    ".npm-tmp",
+    "dist",
+    "dist*",
+    "temp/*",
+    "node_modules",
+    "node_modules/*",
+    "subfolder/dist",
+    "subfolder/node_modules",
+    "**/dist/*",
+    "**/node_modules/*"
+  ]
+}

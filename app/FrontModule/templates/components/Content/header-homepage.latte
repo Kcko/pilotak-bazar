@@ -1,0 +1,14 @@
+{if $data->image_id && $data->image->imageExists()}
+	<div class="hp-banner" style="background: url({$data->image->getImageURL('hp-header')|noescape}) no-repeat center; background-size: cover;">
+		<div class="container h-100">
+			<div class="row h-100 align-items-center">
+				<div class="col">
+					<h1 n:if="$data->heading1">{$data->heading1}</h1>
+					<div n:if="$data->heading2">{$data->heading2}</div>
+					<a n:if="$data->navigation_id" href="{$data->navigation->url}" class="btn btn-outline-light -width-fixed">{$data->button_text}</a>
+					<a n:if="isset($data->button_yt_url) && $data->button_yt_url" href="{$data->button_yt_url}" class="btn btn-outline-light -width-fixed popup-youtube">{$data->button_yt_text}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}

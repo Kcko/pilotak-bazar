@@ -1,0 +1,15 @@
+package_path: packages
+javascripts:
+    adminbasejs:
+        - vendor/andweb/nette-back-module/admin/js/jquery-3.2.1.min.js
+        - vendor/andweb/nette-andweb/ckeditor/ckeditor.js
+        - admin/js/app.js
+    js:
+        - assets/vendor/bootstrap/dist/js/bootstrap.js
+stylesheets:
+    maincss:
+        - assets/css/app.css
+    appcss:
+        - assets/css/dev/app.css
+    app:
+        - assets/css/app.dev.css

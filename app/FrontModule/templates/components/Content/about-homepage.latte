@@ -1,0 +1,47 @@
+{if $data->image}
+	{var $image = $data->image}
+{/if}
+
+
+{var $url = $data->navigation ? $data->navigation->url : NULL}
+
+
+<div class="static-block">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mb-5 mb-md-0">
+				<a href="{$url}">
+				
+                {ifset $image}
+                    {$image->getResponsiveImageElement([
+						'500x400'   => '500w',
+						'1100x800'  => '1000w',
+ 					], ['class' => "img-fluid"])}
+                {else}
+                    <img class="card-img-top" 
+                        src="https://picsum.photos/500/400?image=18" 
+                        srcset="
+                            https://picsum.photos/500/400?image=18 500w,
+                            https://picsum.photos/1100/800?image=18 1000w
+                        "
+                        alt="" />
+                {/ifset}
+				
+				</a>
+			</div>
+			<div class="col-md-6">
+				<div class="pl-4">
+					<h2>{$data->heading}</h2>
+					<div class="lead">
+						{$data->content|noescape}
+						{if $url}
+							<a href="{$url}" class="btn btn-outline-primary -width-fixed">{$data->button_text}</a>
+						{/if}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,7 @@
+<div class="LangNav hidden md:block">
+	{foreach $data as $language}
+		{if !$language['selected']}
+			<a href="{$language['url']}" class="text-menu uppercase">{$language['lang']|upper}</a>
+		{/if}
+	{/foreach}
+</div>

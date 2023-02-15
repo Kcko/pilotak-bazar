@@ -1,0 +1,103 @@
+{block content}
+
+    {include '../fragments/header.latte'}
+
+    <div class="BaseContainer__Main">
+
+        {foreach range(1, 3) as $i}
+            <div class="Container grid lg:grid-cols-2 gap-6 lg:gap-8">
+                <div class="flex flex-col">
+                    <div class="lg:pr-36 flex-1">
+                        <h1 class="text-h4 mb-5">Villas Husinec</h1>
+                        <div class="text-body-xl">
+                            <p>
+                                Za 29 let řízení procesů investiční výstavby jsme naše znalosti vypilovali k dokonalosti.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block">
+                        <div class="Line mb-2">
+                            <hr />
+                        </div>
+                        <div class="grid grid-cols-[200px,1fr] gap-2">
+                            <div class="py-1.5 text-h7">Objednatel</div>
+                            <div class="py-1.5 text-body-sm">TRENTA s.r.o.</div>
+                            <div class="py-1.5 text-h7">Předmět plnění</div>
+                            <div class="py-1.5 text-body-sm">Project Management</div>
+                            <div class="py-1.5 text-h7">Doba plnění</div>
+                            <div class="py-1.5 text-body-sm">2017 – 2019</div>
+                            <div class="py-1.5 text-h7">Zodpovědný tým</div>
+                            <div class="py-1.5 text-body-sm">Ing. M. Drábek, M. Otčenášek, Ing. K. Janoušek, Ing. K. Žák</div>
+                        </div>
+                        <div class="Line mt-2">
+                            <hr />
+                        </div>
+                    </div>
+
+                </div>  
+                <div>
+                    <div class="-mx-4 lg:mx-0">
+                        <img src="/assets/temp/reference-hero.jpg" alt="" />
+                    </div>
+
+
+                    {* Only mobile *}
+                    <div class="mt-8 lg:hidden">
+                        <div class="Line mb-2">
+                            <hr />
+                        </div>
+                        <div class="grid grid-cols-[1fr,1fr] gap-2">
+                            <div class="py-1.5 text-h7">Objednatel</div>
+                            <div class="py-1.5 text-body-sm">TRENTA s.r.o.</div>
+                            <div class="py-1.5 text-h7">Předmět plnění</div>
+                            <div class="py-1.5 text-body-sm">Project Management</div>
+                            <div class="py-1.5 text-h7">Doba plnění</div>
+                            <div class="py-1.5 text-body-sm">2017 – 2019</div>
+                            <div class="py-1.5 text-h7">Zodpovědný tým</div>
+                            <div class="py-1.5 text-body-sm">Ing. M. Drábek, M. Otčenášek, Ing. K. Janoušek, Ing. K. Žák</div>
+                        </div>
+                        <div class="Line mt-2">
+                            <hr />
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
+            {sep}
+                <div class="Line my-24 hidden lg:block">
+                    <div class="Container">
+                        <hr />
+                    </div>
+                </div>
+                <div class="Line -Black my-16  lg:hidden">
+                    <div class="Container">
+                        <hr />
+                    </div>
+                </div>
+            {/sep}
+        {/foreach}
+
+
+
+        <div class="Line my-16 lg:my-36 hidden lg:block">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+
+        <div class="Line my-8 lg:my-36 block lg:hidden">
+            <div class="Container">
+               &nbsp;
+            </div>
+        </div>
+
+
+        {* Contact form *}
+        {include '../fragments/tpl/contact-form.latte'}
+
+    </div>
+    
+    {include '../fragments/footer.latte'}
+
+{/block}

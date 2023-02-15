@@ -1,0 +1,25 @@
+<div data-aos="fade" data-aos-delay="100" class="Container">
+    <h2 class="text-h4 mb-16">{_}Další podobné nabídky{/_}</h2>
+</div>
+
+<div data-aos="fade" data-aos-delay="100" class="Container grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 lg:gap-x-8 mb-16">
+    {foreach $rows as $row}
+        <div class="group">
+            <a href="{plink Realty:detail $row->id}" class="block mb-5">
+                {if $row->cover__image_id && $row->cover__image}
+                    {$row->cover__image->getImageElement('realty-list', ['class' => 'group-hover:opacity-70'])}
+                {/if}
+            </a>
+            <h2 class="text-h5 mb-4"><a href="{plink Realty:detail $row->id}">{$row->heading}</a></h2>
+            <div class="text-h7">{$row->subheading|m2|noescape}</div>
+        </div>
+        <div class="Line md:hidden"><hr /></div>
+    {/foreach}
+</div>
+
+<div class="Container flex items-center">
+    <a href="{plink Realty:default}" class="Btn -Empty mx-auto">
+        {_}Všechny nabídky{/_}
+        {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4 ml-3'|noescape}
+    </a> 
+</div>

@@ -1,0 +1,40 @@
+<nav class="eshop-menu-categories">
+
+    {block #nav}
+
+        <ul class="nav nav-pills nav-fill mb-3 row" id="js-eshop-menu-categories">
+            {foreach $model->getChildren($parent) as $child}
+				{if $child->image}
+					{var $imageUrl = $child->image->getImageUrl('50x50')}
+				{else}
+					{var $imageUrl = 'https://via.placeholder.com/50'}
+				{/if}
+                <li class="nav-item d-flex mb-3 col-sm-12 col-md-6 col-lg-4 col-xl-3 -nod">
+                    <div class="d-flex w-100 h-100 align-items-center border">
+                        <a href=""><img src="{$imageUrl}" alt="" /></a>
+                        <a href="{$child['url']}" class="h-100 pl-3 d-block flex-grow-1 text-left d-flex align-items-center">
+                            <span>
+                                {$child['title']}
+                            </span>
+                        </a>
+                    </div>
+
+            {/foreach}
+        </ul>
+
+
+        <div class="eshop-menu-categories-btn-block text-center" style="display: none;">
+            <a 
+                href="" 
+                class="btn btn-primary" 
+                data-text-open="Další kategorie" 
+                data-text-close="Zavřít">
+                <span class="text">Další kategorie</span> 
+                <span class="cnt"></span>
+            </a>
+        </div>
+
+
+    {/block}
+
+</nav>

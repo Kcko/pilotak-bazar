@@ -1,0 +1,104 @@
+extensions:
+    product: App\ProductModule\DI\ProductExtension
+
+product:
+#    navigationPresenter: EshopItem:default
+#	 productEditPresenter: ':Back:Product:ProductEdit'
+#    productListPresenter: ':Back:Product:Product'
+
+services:
+    
+    # filtrovani a razeni produktu pro frontend
+    productListFactory:
+        setup:
+            - addFilter(null, App\ProductModule\Model\Filters\FilterNavigation())
+            - addFilter(null, App\ProductModule\Model\Filters\FilterNoPrice())
+            - addFilter(null, App\ProductModule\Model\Filters\FilterNoCode())
+            - addFilter(null, App\ProductModule\Model\Filters\FilterByState([1]))
+            - addFilter('filter_id', App\ProductModule\Model\Filters\FilterById())
+            - addFilter('filter_product_id', App\ProductModule\Model\Filters\FilterByProductId())
+            - addFilter('filter_item__product_id', App\ProductModule\Model\Filters\FilterByItemProductId())
+            - addFilter('filter_code', App\ProductModule\Model\Filters\FilterByCode())
+            - addFilter('m', App\ProductModule\Model\Filters\FilterByManufacturer())
+            - addFilter(null, App\ProductModule\Model\Filters\FilterByPrice())
+            - addFilter(null, App\ProductModule\Model\Filters\FilterByParams())
+            - addFilter('filter_inherit__product_inherit_cache_id', App\ProductModule\Model\Filters\FilterByInheritProductInheritCacheId())
+            - addFilter('filter_inherit_id_path', App\ProductModule\Model\Filters\FilterByInheritIdPath())
+            - addFilter('except_ids', App\ProductModule\Model\Filters\FilterExceptIds())
+            - addFilter('stock', App\ProductModule\Model\Filters\FilterOnStock())
+            - addFilter('warehouse_stock', App\ProductModule\Model\Filters\FilterOnStockOnWarehouse())
+            - addOrder('rank', App\ProductModule\Model\Filters\OrderRank())
+            - addOrder('price', App\ProductModule\Model\Filters\OrderPrice())
+            - addOrder('name', App\ProductModule\Model\Filters\OrderProductName())
+
+    
+    # -------- Produkty a generování cache
+    -
+        class: App\ProductModule\Model\Cache\LocalScheduler
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\Product
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductAccessory
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductAdfData
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductAdfDataNn
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductAlternate
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductCat
+        tags: [kdyby.subscriber]
+#	-
+#		class: App\ProductModule\Model\Cache\ProductCustomer
+#		tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductLang
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductMaincat
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductParameterValue
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductPhoto
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductVideo
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductPictogram
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductPrice
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductRelated
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductPriceSetting
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductStock
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductTransportType
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductPaymentType
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Cache\ProductChildren
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Callbacks\CreateNavItem
+        tags: [kdyby.subscriber]
+    -
+        class: App\ProductModule\Model\Callbacks\IndexToElasticSearch
+        tags: [kdyby.subscriber]

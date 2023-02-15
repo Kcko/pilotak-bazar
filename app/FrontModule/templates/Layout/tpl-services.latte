@@ -1,0 +1,55 @@
+{block content}
+
+    {include '../fragments/header.latte'}
+
+    <div class="BaseContainer__Main">
+
+        {* Hero *}
+        <section class="Services mb-16 lg:mb-24">
+            <div class="Container grid lg:grid-cols-7 gap-6 lg:gap-8">
+                <div class="col-span-4 order-2 lg:order-1">
+                    <div class="-mx-4 lg:mx-0">
+                        <img src="/assets/temp/service.jpg" alt="" />
+                    </div>
+                </div>
+
+                <div class="col-span-3 order-1 lg:order-2">
+                    <h1 class="text-h2 mb-5">Jsme světovým lídrem v oblasti prodeje</h1>
+                    <div class="text-body">
+                        <p>
+                            Předseda správní rady holdingu H2O Group Libor Vlasák patří k lidem, kteří se neustále snaží posouvat hranice svého oboru. „Mým cílem je do všech svých projektů vložit něco nového, přinést jedinečný příběh.” V současné době společnost H2O Group již asi třetinu svých zakázek realizuje v zahraničí.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="Line my-8 lg:my-36  lg:block">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+
+
+        {* Shamrock *}
+        {include '../fragments/tpl/shamrock.latte'}
+
+
+        <div class="Line my-8 lg:my-36 hidden lg:block">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+
+
+        {* Contact form *}
+        {include '../fragments/tpl/contact-form.latte'}
+
+    </div>
+    
+    {include '../fragments/footer.latte'}
+
+{/block}

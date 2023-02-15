@@ -1,0 +1,30 @@
+.Footer {
+  @apply py-10 lg:py-16 pb-8;
+  @apply text-gray-300 text-sm leading-relaxed;
+  //border-top: 4px solid theme('colors.pp-red');
+  background-color: theme('colors.pp-blue-dark');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+
+  a {
+    @apply text-gray-100 Link;
+  }
+
+  h4 {
+    @apply text-perex-md uppercase font-semibold;
+    @apply mb-2;
+    @apply text-white;
+  }
+
+  p + * {
+    @apply mt-8;
+  }
+
+  ul {
+    li {
+      @apply mb-2;
+    }
+    li a {
+      @apply Link;
+    }
+  }
+}

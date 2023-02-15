@@ -1,0 +1,13 @@
+.eu-cookies {
+  background: #252e39;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  color: #fff;
+  padding: 1rem;
+  z-index: 30;
+  text-align: center;
+  @apply rounded;
+  @apply w-full;
+}

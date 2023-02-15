@@ -1,0 +1,36 @@
+{var $icons = [
+	2 => 'uvod',
+	3 => 'urad',
+	4 => 'obec',
+	29 => 'telefon',
+	661 => 'chat',
+]}
+
+<nav class="MainNavigation" role="navigation">
+	{block #nav}
+		<ul>
+			{foreach $model->getChildren($parent) as $child}
+				{var $hasChildren = $model->hasChildren($child['id'])}
+				<li id="nav-{$child->id}" n:class="in_array($child['id'], $selectedItems) ? '-active'">
+					<a href="{$child['url']}">
+						{if $depth == 1}
+							{='assets/gfx/svg/'.$icons[$child->id].'.svg'|svg:'m-auto w-8 h-8 mb-1 hidden lg:block'|noescape}
+						{/if}
+						{$child->title} 
+
+						{if $hasChildren}
+							<span class="MainNavigation__Arrow">{='assets/gfx/svg/chevron-down.svg'|svg:''|noescape}</span>
+						{/if}
+					</a>
+					{if $hasChildren}
+					
+						{include this, 
+							model => $model, 
+							parent => $child['id'], 
+							depth => $depth + 1}
+					{/if}
+				</li>
+			{/foreach}
+		</ul>
+	{/block}
+</nav>

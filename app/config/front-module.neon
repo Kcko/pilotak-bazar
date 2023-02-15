@@ -1,0 +1,204 @@
+elasticsearch:
+	hosts:
+		-
+			host: 'elastic.kancl.andweb.cz'
+			port: 443
+			scheme: 'https'
+
+parameters:
+	elasticsearch:
+		settings:
+			index:
+				number_of_shards: 1
+				number_of_replicas: 0
+				analysis: 
+					analyzer: 
+						czech_lowercase: 
+							type: custom
+							tokenizer: standard
+							filter: 
+								- lowercase
+								- icu_folding
+
+						czech_hunspell: 
+							type: custom
+							tokenizer: standard
+							filter:
+								- czech_stop
+								- czech_hunspell
+								- lowercase
+								- icu_folding
+								- unique_on_same_position
+
+						czech_lemmmagen: 
+							type: custom
+							tokenizer: standard
+							filter:
+								- czech_stop
+								#- czech_hunspell
+								- lemmagen_lexicon_cs
+								- lowercase
+								- icu_folding
+								- unique_on_same_position
+						
+						czech_lemmmagen_shingle: 
+							type: custom
+							tokenizer: standard
+							filter:
+								- czech_stop
+								#- czech_hunspell
+								- lemmagen_lexicon_cs
+								- lowercase
+								- icu_folding
+								- unique_on_same_position
+								- czech_shingle
+
+						czech_hunspell_shingle: 
+							type: custom
+							tokenizer: standard
+							filter:
+								- czech_stop
+								- czech_hunspell
+								- lowercase
+								- icu_folding
+								- unique_on_same_position
+								- czech_shingle
+		
+					filter: 
+						czech_hunspell: 
+							type: hunspell
+							locale: cs_CZ
+						
+						czech_stop: 
+							type: stop
+							stopwords:
+								- '_czech_'
+						
+						unique_on_same_position: 
+							type: unique
+							only_on_same_position: true
+
+						lemmagen_lexicon_cs: 
+							type: lemmagen
+							lexicon: cs
+						
+						czech_shingle: 
+							type: shingle
+							max_shingle_size: 2
+							min_shingle_size: 2
+							output_unigrams: true
+							output_unigrams_if_no_shingles: false
+
+												
+		mappings:
+			properties:
+				title:
+					type: keyword
+					fields:
+						czech_hunspell:
+							type: text
+							analyzer: czech_hunspell
+						
+						czech_hunspell_shingle:
+							type: text
+							analyzer: czech_hunspell_shingle
+				
+						czech_lowercase:
+							type: text
+							analyzer: czech_lowercase
+						
+						czech_lemmmagen:
+							type: text
+							analyzer: czech_lemmmagen
+						
+						czech_lemmmagen_shingle:
+							type: text
+							analyzer: czech_lemmmagen_shingle
+				
+				description:
+					type: keyword
+					fields:
+						czech_hunspell:
+							type: text
+							analyzer: czech_hunspell
+						
+						czech_hunspell_shingle:
+							type: text
+							analyzer: czech_hunspell_shingle
+				
+						czech_lowercase:
+							type: text
+							analyzer: czech_lowercase
+						
+						czech_lemmmagen:
+							type: text
+							analyzer: czech_lemmmagen
+						
+						czech_lemmmagen_shingle:
+							type: text
+							analyzer: czech_lemmmagen_shingle
+
+				table:
+					type: keyword
+	
+	searchQuery:
+		bool:
+			must:
+				query_string:
+					query: '%q'
+					default_operator: 'AND'
+					analyzer: 'czech_hunspell'
+					fields:
+						- "code^10"
+						- "ean^10"
+						- "title.czech_lowercase^5"
+						- "title.czech_hunspell_shingle^4"
+						- "description.czech_hunspell_shingle^3"
+						- "breadcrumbs^2"
+			filter:
+				terms:
+					table: '%table'
+	searchIndex: 'db-adv'
+
+	userBoxLogin:
+		redirectUrl : '@proAkcionare'
+		toHomepage: false
+
+services:
+	- 
+		class: App\FrontModule\Security\Authorizator
+		autowired: self
+	- Andweb\Model\ElasticSearch
+	- App\FrontModule\Model\Search(%searchQuery%, %searchIndex%)
+	- App\FrontModule\Model\Visitor
+#	- App\FrontModule\Model\ProductVisitor
+	- Sinergi\BrowserDetector\Browser
+	- Sinergi\BrowserDetector\Os
+	- App\FrontModule\Model\RecaptchaValidationV3Config(%recaptchaV3%)
+	- App\FrontModule\Model\RecaptchaValidationV3
+	- App\FrontModule\Model\H2oDevelopment
+	- App\FrontModule\Model\H2oReference
+	- App\FrontModule\Model\H2oServices
+	- App\FrontModule\Model\Contact
+	- App\FrontModule\Model\RealtyList
+	# - App\FrontModule\Model\Epodatelna
+	# - App\FrontModule\Model\PopoOurTeam
+	# - App\FrontModule\Model\EnviReference
+	# - App\FrontModule\Model\Slider
+	# - App\FrontModule\Model\PopoArticle
+	# - App\FrontModule\Model\PopoEvent
+	# - App\FrontModule\Model\Calendar
+	# - App\FrontModule\Model\Places
+	# - App\FrontModule\Model\Magazine
+	# - App\FrontModule\Model\Firms
+	# - App\FrontModule\Model\PopoBoard
+	# - App\FrontModule\Model\PopoDocument
+	# - App\ServiceModule\Presenters\DbBackupPresenter(%db%)
+	# - App\FrontModule\Model\PopoSearch
+	# - App\FrontModule\Model\PopoUser
+	# - App\FrontModule\Model\PopoForum
+
+extensions:
+	front: App\FrontModule\DI\FrontExtension
+	elasticsearch: Andweb\DI\ElasticsearchExtension
+	antispam: Zet\AntiSpam\AntiSpamExtension

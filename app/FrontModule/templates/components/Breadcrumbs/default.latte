@@ -1,0 +1,26 @@
+<div class="Container">
+	<div class="Row">
+		<div class="Col w-full">
+			<nav aria-label="breadcrumb" class="break-all">
+				<ol class="Breadcrumbs bg-transparent rounded-0 m-0 p-0">
+					<li class="breadcrumb-item">
+						{='assets/gfx/svg/uvod.svg'|svg:'w-5 h-5 text-pp-blue-dark mr-3'|noescape}
+						<a href="{plink @homepage}">Úvod</a>
+					</li>
+					{foreach $data as $crumb}
+						{if $iterator->isLast()}
+							<li class="breadcrumb-item active text-pp-red font-semibold">{$crumb['title']|noescape}</li>
+						{else}
+							{if $crumb['url']} 
+								<li class="breadcrumb-item active"><a href="{$crumb['url']}">{$crumb['title']|noescape}</a></li>
+							{else}
+								<li class="breadcrumb-item active">{$crumb['title']|noescape}</li>
+							{/if}
+						{/if}
+					{/foreach}
+				</ol>
+			</nav>
+		</div>
+	</div>
+</div>
+

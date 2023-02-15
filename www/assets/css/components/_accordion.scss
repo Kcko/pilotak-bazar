@@ -1,0 +1,33 @@
+.Accordion {
+  &__Item:first-child {
+    .Accordion__Heading {
+      border-top: 1px solid theme('colors.brown-light-super');
+    }
+  }
+  &__Heading {
+    border-bottom: 1px solid theme('colors.brown-light-super');
+    @apply py-3;
+  }
+  &__Content {
+    //@apply py-4;
+    overflow: hidden;
+    max-height: 0;
+    transition: 300ms max-height linear;
+    //border-bottom: 1px solid theme('colors.brown-light-super');
+  }
+
+  &__ContentInner {
+    border-bottom: 1px solid theme('colors.brown-light-super');
+  }
+}
+
+.Accordion__Item.-Opened {
+  .Accordion__Heading {
+    svg {
+      @apply -rotate-90;
+    }
+  }
+  .Accordion__Content {
+    max-height: 30em;
+  }
+}

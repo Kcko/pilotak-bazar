@@ -1,0 +1,33 @@
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+    	{foreach $model->getChildren($parent) as $child}
+        
+
+            {var $children = $model->getChildren($child['id'])}
+            {foreach $children as $grandChild}
+
+                {var $sub = $model->getChildren($grandChild['id'])}
+                
+                <li class="nav-item {if count($sub)}dropdown{/if}">
+                    {if count($sub)}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{$grandChild['title']}</a>
+                    {else}
+                        <a class="nav-link" href="{$grandChild['url']}"">{$grandChild['title']}</a>
+                    {/if}
+                    {if count($sub)}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {foreach $sub as $subChild}
+                            <a class="dropdown-item" href="{$subChild['url']}">{$subChild['title']}</a>
+                            {/foreach}
+                        </div>
+                    {/if}
+                </li>
+
+                
+            {/foreach}
+
+            
+
+        {/foreach}
+    </ul>
+</div>

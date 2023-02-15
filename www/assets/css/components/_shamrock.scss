@@ -1,0 +1,10 @@
+.Shamrock {
+  &__Points div {
+    @apply py-3;
+    @apply text-h7 normal-case;
+  }
+
+  &__Points div:not(:last-child) {
+    border-bottom: 1px solid theme('colors.brown-light-super');
+  }
+}

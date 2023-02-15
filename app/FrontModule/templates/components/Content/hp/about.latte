@@ -1,0 +1,31 @@
+<section data-aos="fade" data-aos-delay="100" class="Prologue mb-24 lg:mb-36">
+    <div class="ContainerEdge">
+        <div 
+            class="col-span-4"
+            >
+            {if $data->cover__image_id && $data->cover__image}
+                {$data->cover__image->getImageElement('hp-about')}
+            {/if}
+        </div>
+        <div class="col-start-6 flex flex-col px-4 pt-8 lg:pt-0 lg:px-0">
+            <div class="flex-grow mb-8 text-body-xl">
+                {$data->content|predlozky|noescape}
+            </div>
+            <div class="space-y-1">
+                {if $data->btn1_text && $data->btn1__navigation_id}
+                    <a href="{$data->btn1__navigation->getUrl()}" class="BtnIcon text-h7 uppercase group">
+                        {='assets/gfx/svg/icon-plus.svg'|svg:'w-7 h-7 text-brown-light-super group-hover:text-black'|noescape}
+                        {$data->btn1_text}
+                    </a>
+                {/if}
+                <div></div>
+                {if $data->btn2_text && $data->btn2__navigation_id}
+                    <a href="{$data->btn2__navigation->getUrl()}" class="BtnIcon text-h7 uppercase group">
+                        {='assets/gfx/svg/icon-plus.svg'|svg:'w-7 h-7 text-brown-light-super group-hover:text-black'|noescape}
+                        {$data->btn2_text}
+                    </a>
+                {/if}
+            </div>
+        </div>              
+    </div>
+</section>

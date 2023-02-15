@@ -1,0 +1,25 @@
+
+    <div class="Container">
+        <div class="Row">
+            <div class="Col w-full flex flex-wrap gap-8 items-center justify-between gap-x-16 text-h7">
+             
+                <div>
+                    Copyright &copy; H2O group a.s. {=date('Y')}. All Rights Reserved. 
+                </div>
+
+                <div class="inline-flex gap-2">
+                    <a n:href="@podminky" class="underline">Podmínky užívání</a> 
+                        | 
+                    <a n:href="@ochrana" class="underline">Ochrana osobních údajů</a>
+                </div>
+
+                <div class="inline-flex items-center gap-3">
+                    {_}Sledujte nás{/_}
+                    <a n:if="$data->fb_visible" href="{$data->fb_link}" target="_blank" class="uppercase">{='assets/gfx/svg/icon-facebook.svg'|svg:'w-7 h-7'|noescape}</a>
+                    <a n:if="$data->ig_visible" href="{$data->ig_link}" target="_blank" class="uppercase">{='assets/gfx/svg/icon-instagram.svg'|svg:'w-7 h-7'|noescape}</a>
+                    <a n:if="$data->li_visible" href="{$data->li_link}" target="_blank" class="uppercase">{='assets/gfx/svg/icon-linkedin.svg'|svg:'w-7 h-7'|noescape}</a>
+                </div>
+           
+            </div>
+        </div>
+    </div>

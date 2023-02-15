@@ -1,0 +1,37 @@
+.MainNav,
+.LangNav {
+  a {
+    @apply relative py-2 block;
+
+    &:after {
+      content: '';
+      @apply absolute -bottom-0.5 h-px bg-brown-light-super w-0;
+      left: 0%;
+      transition: 300ms ease-in-out;
+    }
+  }
+  a:hover,
+  li.-Active a {
+    &:after {
+      left: 0;
+      @apply w-full;
+    }
+  }
+}
+
+.Hamburger {
+  @apply fixed top-7 right-4 z-10;
+  @apply block md:hidden;
+}
+
+.MainNavMobile {
+  @apply fixed top-0 left-0 right-0;
+  @apply px-4 py-6 bg-brown;
+  @apply z-20;
+  transform: translateX(100%);
+  transition: transform 300ms linear;
+
+  &.-Opened {
+    transform: translateX(0);
+  }
+}

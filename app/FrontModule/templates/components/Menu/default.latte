@@ -1,0 +1,5 @@
+<ul>
+	{foreach $data as $item}
+		<li n:class="in_array($item['id'], $selectedItems) ? '-active'"><a href="{$item['url']}">{$item['title']}</a></li>
+	{/foreach}
+</ul>

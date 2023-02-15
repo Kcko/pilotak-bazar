@@ -1,0 +1,23 @@
+# Apache configuration file (see httpd.apache.org/docs/2.2/mod/quickreference.html)
+
+# disable directory listing
+Options -Indexes
+
+# enable cool URL
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+
+	# zapnuti https pokud nejsme na testu
+	#RewriteCond %{HTTPS} off
+	#RewriteCond %{HTTP_HOST} !\.andweb\.cz$ [NC]
+	#RewriteCond %{HTTP_HOST} !\.pripravujeme\.eu$ [NC]
+	#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+    RewriteCond %{REQUEST_URI} !^/project-base/
+    RewriteCond %{REQUEST_URI} !^/www/
+    RewriteCond %{REQUEST_URI} !^/migrations/
+    RewriteRule (.*) /www/$1 [L]
+
+</IfModule>

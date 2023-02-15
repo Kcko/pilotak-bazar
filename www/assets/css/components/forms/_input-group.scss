@@ -1,0 +1,63 @@
+  
+//
+// Base styles
+//
+
+.input-group {
+  @apply relative flex flex-wrap items-stretch w-full;
+
+  > .form-control,
+  > .form-select {
+    @apply relative flex-1 min-w-0 focus:z-10;
+  }
+
+  // Rounded corners
+  //
+  // These rulesets must come after the sizing ones to properly override sm and lg
+  // border-radius values when extending. They're more specific than we'd like
+  // with the `.input-group >` part, but without it, we cannot override the sizing.
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  &:not(.has-validation) {
+    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
+    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) > .dropdown-button,
+    > .dropdown-toggle:nth-last-child(n + 3) {
+      @apply rounded-r-none;
+    }
+  }
+
+  &.has-validation {
+    > :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu),
+    > :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu) > .dropdown-button,
+    > .dropdown-toggle:nth-last-child(n + 4) {
+      @apply rounded-r-none;
+    }
+  }
+
+  > :not(:first-child):not(.dropdown-menu) {
+    @apply -ml-1 rounded-l-none;
+  }
+
+  // Textual addons
+  //
+  // Serves as a catch-all element for any text or radio/checkbox input you wish
+  // to prepend or append to an input.
+
+  .input-group-text {
+    @apply flex items-center p-2;
+    /*
+    display: flex;
+    align-items: center;
+    padding: $input-group-addon-padding-y $input-group-addon-padding-x;
+    @include font-size($input-font-size); // Match inputs
+    font-weight: $input-group-addon-font-weight;
+    line-height: $input-line-height;
+    color: $input-group-addon-color;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $input-group-addon-bg;
+    border: $input-border-width solid $input-group-addon-border-color;
+    @include border-radius($input-border-radius);
+    */
+  }
+}

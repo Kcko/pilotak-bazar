@@ -1,0 +1,145 @@
+parameters:
+	datahub:
+		accessToken: '9dd55b81930e3113b143efdcb05d83147711c3bd0ec84ffe997c11bea414f57690d98377238e9dd0'
+	zasilkovna:
+		url: 'http://www.zasilkovna.cz/api/v2/1deaede0779e3da1/branch.xml'
+		transportTypeIds:
+			cz: [5]
+			#sk: [3]
+	heureka: 
+		key: 'e1619d6d8aea15fb2dd0c5277120eb18'
+		jsKey: 'C3462C20A0616051717144451443EA54'
+		trackJs: true
+
+extensions:
+    eshop: App\EshopModule\DI\EshopExtension
+    price: App\PriceModule\DI\PriceExtension
+    crm: App\CrmModule\DI\CrmExtension
+
+services:
+    # --------- Eshop
+    - App\EshopModule\Model\Zasilkovna(%zasilkovna%)
+    - App\EshopModule\Model\HeurekaTestimonial(%heureka%)
+    - App\EshopModule\Model\PriceTypeProvider
+    - App\EshopModule\Model\Price\TransportPriceFactory
+    - App\EshopModule\Model\Price\PaymentPriceFactory
+    - App\ProductModule\Model\Price\ProductPriceFactory
+    - App\ProductModule\Model\ParamsPicker
+    -
+        class: App\ProductModule\Model\FilterForm
+        setup:
+                - addFormPart(App\FrontModule\Components\ProductsFilter\FormPartParams())
+                - addFormPart(App\FrontModule\Components\ProductsFilter\FormPartPrice())
+                - addFormPart(App\FrontModule\Components\ProductsFilter\FormPartManufacturer())
+                - addFormPart(App\FrontModule\Components\ProductsFilter\FormPartStock())
+
+    # --------- Eshop kosik 
+    - App\EshopModule\Model\Basket\Basket
+    - App\EshopModule\Model\Basket\BasketStorageSession	
+    - App\EshopModule\Model\CurrencySwitcher
+    -
+        class: App\EshopModule\Model\EventListeners\ProductAddedToCart
+        tags: [kdyby.subscriber]
+    -
+        class: App\EshopModule\Model\EventListeners\InvalidateBasketInfo
+        tags: [kdyby.subscriber]
+
+    # --------- Eshop nakupni proces
+    - App\EshopModule\Model\Order\SessionStorage
+    - App\EshopModule\Model\Order\DatabaseStorage
+    - App\EshopModule\Model\OrderProcess\PaymentPart(['payment_type_id', 'transport_type_id'])
+
+    orderProcess:
+        class: App\EshopModule\Model\OrderProcess\OrderProcess
+        setup:
+            # seznam produktu v kosiku
+            - addPart('default', App\EshopModule\Model\OrderProcess\BasketPart(), 'basket')
+            
+            # Zadani emailu
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\EmailPart(), 'email')
+            
+            # Kontrola existence uzivatelskeho uctu
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\LoginPart(), 'login')
+
+            # kontaktni informace -> jmeno, prijmeni, telefon
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\ContactPart(), 'contact')
+
+            # Vyber fakturacni adresy prihlaseneho uzivatele
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CustomerPart(), 'customer')
+            
+            # typ nakupu -> nakup na firmu vs. fyzicka osoba
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\PurchaseTypePart([1 => 'Soukromý nákup', 2 => 'Nakupuji na firmu'], ['billing__reg_no', 'billing__vat_no', 'billing__vat_no_sk', 'loaded_from_ares']), 'purchase-type')
+
+            # vyber zeme
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CountryPart('billing__', ..., ['billing__reg_no', 'billing__vat_no', 'billing__vat_no_sk', 'billing__name', 'billing__street', 'billing__city', 'billing__postal_code']), 'country')
+
+            # CZ company -> nacitani dat z ARES
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CzCompanyPurchasePart(2, 59), 'company-purchase-cz')
+            
+            # SK company -> IC, DIC, SK DIC
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\SkCompanyPurchasePart(2, 186), 'company-purchase-sk')
+
+            # Ostatni zeme company -> IC DIC
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CompanyPurchasePart(2, [59, 186]), 'company-purchase')
+            
+            # Fakturacni adresa -> pole Nazev firmy, Ulice, Mesto, PSC (Bez validace - jine zeme nez CZ SK)
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\AddressPart('billing__', [59, 186]), 'address')
+            
+            # Fakturacni adresa -> pole Nazev firmy, Ulice, Mesto, PSC (CZ, SK - validace smartform)
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CzSkAddressPart('billing__'), 'address')
+
+            # Dorucovaci adresa -> Stejna jako fakturacni?
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\SameAddressPart('delivery__', 'billing__'), 'delivery-address-same')
+
+            # Dorucovaci adresa - vyber existujici adresy
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CustomerAddressPart('delivery__'), 'customer-address')
+            
+            # Dorucovaci adresa - vyber zeme
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CountryPart('delivery__', ..., ['delivery__name', 'delivery__street', 'delivery__city', 'delivery__postal_code']), 'country')
+
+            # Dorucovaci adresa -> pole Nazev firmy, Ulice, Mesto, PSC (Bez validace - jine zeme nez CZ SK)
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\AddressPart('delivery__', [59, 186]), 'address')
+            
+            # Dorucovaci adresa -> pole Nazev firmy, Ulice, Mesto, PSC (CZ, SK - validace smartform)
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\CzSkAddressPart('delivery__'), 'address')
+
+            # Poznámka k objednávce
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\NotePart('note', 'Poznámka', true), 'note')
+            
+            # Registrace
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\RegisterPart(), 'register')
+            
+            - addPart('personalData', App\EshopModule\Model\OrderProcess\StepEndPart())
+
+            # Doprava a platba
+            - addPart('transportPayment', App\EshopModule\Model\OrderProcess\TransportPart([]), 'transport')
+            - addPart('transportPayment', @App\EshopModule\Model\OrderProcess\PaymentPart, 'payment')
+            - addPart('transportPayment', App\EshopModule\Model\OrderProcess\ApprovePart(), 'approve')
+
+
+    # -------- Ukladani objednavky
+    -
+        class: App\EshopModule\Model\Order\Actions\UpdateUser
+        tags: [kdyby.subscriber]
+    -
+        class: App\EshopModule\Model\Order\Actions\RegisterUser
+        tags: [kdyby.subscriber]
+    -
+        class: App\EshopModule\Model\Order\Actions\AssignCustomer
+        tags: [kdyby.subscriber]
+    -
+        class: App\EshopModule\Model\Order\Actions\SaveOrder
+        tags: [kdyby.subscriber]
+    # -
+    #     class: App\EshopModule\Model\Order\Actions\SendMail
+    #     tags: [kdyby.subscriber]
+    # -
+    #     class: App\EshopModule\Model\Order\Actions\Flush
+    #     tags: [kdyby.subscriber]
+    -
+        class: App\EshopModule\Model\Order\Actions\RedirectThankYou
+        tags: [kdyby.subscriber]
+    -
+        class: App\EshopModule\Model\Order\Actions\HeurekaOvereno
+        tags: [kdyby.subscriber]
+        arguments: [%heureka%]

@@ -1,0 +1,102 @@
+{
+    "name": "andweb/nette-bootstrap",
+    "description": "Bootstrap project for ANDWEB .ONE",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.1.0",
+        "andweb/nette-andweb": "^0.3",
+        "andweb/nette-front-module": "^0.3",
+        "andweb/nette-article-module": "^0.3",
+		"andweb/nette-back-module": "^0.3",
+		"jzechy/nette-antispam": "^2.0.5.1",
+        "dg/mysql-dump": "^1.5"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-andweb"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-back-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-front-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-eshop-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-crm-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-andweb-console"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-import-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-mail-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-media-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-price-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-product-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-article-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-pdf-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-newsletter-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-catalogue-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-base-module"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://git@git.andweb.cz:2222/andweb/nette-user-module"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "app/Bootstrap.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+			"php": "7.2",
+			"ext-json":  "1.3.7"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.3-dev"
+        }
+    }
+}

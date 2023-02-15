@@ -1,0 +1,11 @@
+{foreach $headers as $name => $content}
+	{if $name == ''}
+
+	{elseif substr($name, 0, 3) == 'og:'}
+		<meta property="{$name}" content="{$content}" />
+	{elseif in_array($name, ['canonical', 'prev', 'next'])}
+		<link rel="{$name}" href="{$content}">
+	{else}
+		<meta name="{$name}" content="{$content}" />
+	{/if}
+{/foreach}

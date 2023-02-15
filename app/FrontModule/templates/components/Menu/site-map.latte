@@ -1,0 +1,37 @@
+<ul class="NiceList">
+
+{foreach $data as $navItem}
+
+	{continueIf $navItem['alias'] == 'e404' || $navItem['alias'] == 'sitemap'}
+
+
+	<li class="sitemap-col">
+
+		<article>
+			<header>
+				<h3><a data-id="{$navItem['id']}" href="{$navItem['outurl'] != '' ? $navItem['outurl'] : $navItem['url']}">{$navItem['title']}</a></h3>
+			</header>
+			<div class="content">
+				{var $children = $navItem}
+				{block innerMenu}
+					{foreach $model->getChildren($children['id']) as $children}
+						{continueIf $children['depth'] > $maxDepth}
+						{first}
+							<ul>
+						{/first}
+							<li><a href="{$children['outurl'] != '' ? $children['outurl'] : $children['url']}">{$children['title']}</a>
+								{include #innerMenu children => $children}
+							</li>
+						{last}
+							</ul>
+						{/last}
+
+					{/foreach}
+				{/block}
+			</div>
+		</article>
+	</li>
+
+{/foreach}
+
+</ul>

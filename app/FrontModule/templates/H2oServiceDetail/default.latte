@@ -1,0 +1,34 @@
+{block content}
+
+    {include '../fragments/header.latte'}
+
+    <div class="BaseContainer__Main">
+
+        {control content}
+
+        <div class="Line mt-16 mb-10 lg:my-24">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+        {control h2oServices, 
+            template => 'detail', 
+            navigation_id => $presenter->navigation->navItem['id']
+        }
+
+        <div class="Line my-8 lg:my-36  lg:block">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+
+        {* Contact form *}
+        {control contactContent}
+
+    </div>
+    
+    {include '../fragments/footer.latte'}
+
+{/block}

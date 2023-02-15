@@ -1,0 +1,261 @@
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+    <div class="BaseContainer__Main">
+
+        {* HERO *}
+        <div class="Hero text-center flex flex-wrap md:flex-nowrap w-full items-center mb-12 lg:mb-24 lg:relative lg:min-h-[400px]">
+            <h1 class="text-h1 flex-1 px-4 w-full md:w-auto order-2 md:order-1 lg:relative z-10">
+                už 30 let Přinášíme <br />do našeho oboru vizi <br />a jsme na to hrdí
+            </h1>
+            <div class="w-full flex md:w-auto order-1 md:order-2 lg:absolute top-0 right-0">
+                <img src="/assets/gfx/hp-hero.jpg" class="h-[140px] md:h-[400px] ml-auto mb-2 md:mb-0" alt="" />
+            </div>
+        </div>
+
+
+        {* Prologue *}
+        <section class="Prologue mb-24 lg:mb-36">
+            <div class="ContainerEdge">
+                <div 
+                    class="col-span-4"
+                 >
+                    <img src="/assets/gfx/hp-about.jpg" alt="" />
+                </div>
+                <div class="col-start-6 flex flex-col px-4 pt-8 lg:pt-0 lg:px-0">
+                    <div class="flex-grow mb-8 text-body-xl">
+                        <p>
+                            Předseda správní rady holdingu H2O Group Libor Vlasák patří k lidem, kteří se neustále snaží posouvat hranice svého oboru. „Mým cílem je do všech svých projektů vložit něco nového, přinést jedinečný příběh.” V současné době společnost H2O Group již asi třetinu svých zakázek realizuje v zahraničí.
+                        </p>
+                    </div>
+                    <div class="space-y-1">
+                        <a href="" class="BtnIcon text-h7 uppercase group">
+                            {='assets/gfx/svg/icon-plus.svg'|svg:'w-7 h-7 text-brown-light-super group-hover:text-black'|noescape}
+                            Rezidence na prodej
+                        </a>
+                        <div></div>
+                        <a href="" class="BtnIcon text-h7 uppercase group">
+                            {='assets/gfx/svg/icon-plus.svg'|svg:'w-7 h-7 text-brown-light-super group-hover:text-black'|noescape}
+                            Rezidence na pronájem
+                        </a>
+                    </div>
+                </div>              
+            </div>
+        </section>
+
+
+        {* <section class="Prologue mb-24">
+            <div class="ContainerEdge">
+                <div class="col-start-2" style="border: 1px solid green;">
+                    <p>
+                        Předseda správní rady holdingu H2O Group Libor Vlasák patří k lidem, kteří se neustále snaží posouvat hranice svého oboru. „Mým cílem je do všech svých projektů vložit něco nového, přinést jedinečný příběh.” V současné době společnost H2O Group již asi třetinu svých zakázek realizuje v zahraničí.
+                    </p>
+                </div> 
+
+                <div 
+                    class="col-span-4 col-start-4"
+                    style="border: 1px solid red;"
+                 >
+                    <img src="/assets/gfx/hp-about.jpg" alt="" />
+                </div>
+             
+            </div>
+        </section> *}
+
+
+
+        {* Slider development *}
+        {var $uniqid = uniqid()}
+        <div class="ContainerEdge -MobilePadding | mb-24 lg:mb-36">
+
+                <div 
+                    class="col-start-2 col-span-6"
+                 >
+                    <h4 class="text-h4 mb-12">Náš development</h4>
+
+                    <div class="relative">
+                    
+
+                        <div class="swiper-button-prev" data-uniqid="{$uniqid}">
+                            {='assets/gfx/svg/icon-slider-arrow-left.svg'|svg:'w-10 h-10 text-brown-light-super hover:text-black'|noescape}
+                        </div>
+                        <div class="swiper-button-next" data-uniqid="{$uniqid}">
+                             {='assets/gfx/svg/icon-slider-arrow-right.svg'|svg:'w-10 h-10 text-brown-light-super hover:text-black'|noescape}
+                        </div>
+                   
+                        <div class="EdgeSlider swiper" data-uniqid="{$uniqid}">
+
+                            <div class="swiper-pagination-h2o"></div>
+
+                            <div class="swiper-wrapper">
+                                <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <picture>
+                                        <source media="(max-width: 1024px)" srcset="/assets/temp/development/1b.jpg">
+                                        <img src="/assets/temp/development/1a.jpg" alt="">
+                                    </picture>
+                                    <div class="mt-4 text-body-sm">
+                                        <div class="text-h7 mb-1">Rekonstrukce vodní věže v Kladně</div>
+                                        <div>www.villashusinec.cz</div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <picture>
+                                        <source media="(max-width: 1024px)" srcset="/assets/temp/development/2b.jpg">
+                                        <img src="/assets/temp/development/2b.jpg" alt="">
+                                    </picture>
+                                    <div class="mt-4 text-body-sm">
+                                        <div class="text-h7 mb-1">Revitalizace bývalých mrazíren v Lanškrouně</div>
+                                        <div>www.mrazirny.cz</div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <picture>
+                                        <source media="(max-width: 1024px)" srcset="/assets/temp/development/3b.jpg">
+                                        <img src="/assets/temp/development/3a.jpg" alt="">
+                                    </picture>
+                                    <div class="mt-4 text-body-sm">
+                                        <div class="text-h7 mb-1">Development číslo 3 - na ukázku</div>
+                                        <div>www.ukazka3.cz</div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <picture>
+                                        <source media="(max-width: 1024px)" srcset="/assets/temp/development/4b.jpg">
+                                        <img src="/assets/temp/development/4b.jpg" alt="">
+                                    </picture>
+                                    <div class="mt-4 text-body-sm">
+                                        <div class="text-h7 mb-1">Development číslo 4 - na ukázku</div>
+                                        <div>www.ukazka4.cz</div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                 </div>
+        </div>
+
+
+
+
+        {* SERVICES *}
+        <section class="Services mb-16 lg:mb-24">
+            <div class="Container">
+                <h4 class="text-h4 normal-case mb-10">Služby</h4>
+                <div class="text-body-xl">
+                    <p>
+                        Předseda správní rady holdingu H2O Group Libor Vlasák patří k lidem, kteří se neustále snaží posouvat hranice svého oboru.
+                        <br />
+                        „Mým cílem je do všech svých projektů vložit něco nového, přinést jedinečný příběh.”
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+
+        {* Shamrock *}
+        {include '../fragments/tpl/shamrock.latte'}
+
+
+
+        {* Slider reference *}
+        {var $uniqid = uniqid()}
+        <div class="Container mb-24 lg:mb-36">
+                <div 
+                    class="col-start-2 col-span-6"
+                 >
+                    <h4 class="text-h4 mb-12">Vybrané reference</h4>
+
+                    <div class="relative">
+                    
+                        <div class="swiper-button-prev" data-uniqid="{$uniqid}">
+                            {='assets/gfx/svg/icon-slider-arrow-left.svg'|svg:'w-10 h-10 text-brown-light-super hover:text-black'|noescape}
+                        </div>
+                        <div class="swiper-button-next" data-uniqid="{$uniqid}">
+                             {='assets/gfx/svg/icon-slider-arrow-right.svg'|svg:'w-10 h-10 text-brown-light-super hover:text-black'|noescape}
+                        </div>
+                   
+                        <div class="swiper" data-uniqid="{$uniqid}">
+
+                            <div class="swiper-pagination-h2o"></div>
+
+                            <div class="swiper-wrapper">
+                                <!-- Slides -->
+                                <div class="swiper-slide" style="width: 100%">
+                                    <div class="grid grid-cols-12 gap-x-8 gap-y-6">
+                                        <div class="col-span-12 lg:col-span-6">
+                                            <img src="/assets/temp/reference/1.jpg" alt="" />
+                                        </div>
+                                        <div class="col-span-12 lg:col-span-6">
+                                            <div class="text-h6 uppercase mb-5">VILLAS HUSINEC</div>
+                                            <div class="lg:w-4/6">
+                                                <p>
+                                                    Za 29 let řízení procesů investiční výstavby jsme naše znalosti vypilovali k dokonalosti. Proto jsme se v roce 2021 rozhodli realizovat náš vlastní developerský projekt. Brzy vám představíme rezidenční komplex Husinec. 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide" style="width: 100%">
+                                    <div class="grid grid-cols-12 gap-x-8 gap-y-6">
+                                        <div class="col-span-12 lg:col-span-6">
+                                            <img src="/assets/temp/reference/2.jpg" alt="" />
+                                        </div>
+                                        <div class="col-span-12 lg:col-span-6">
+                                            <div class="text-h6 uppercase mb-5">Reference číslo 2</div>
+                                            <div class="lg:w-4/6">
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet totam, tempore dolorem nulla, illum sed voluptas quod expedita beatae id laborum impedit quidem? Modi, laudantium?
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide" style="width: 100%">
+                                    <div class="grid grid-cols-12 gap-x-8 gap-y-6">
+                                        <div class="col-span-12 lg:col-span-6">
+                                            <img src="/assets/temp/reference/3.jpg" alt="" />
+                                        </div>
+                                        <div class="col-span-12 lg:col-span-6">
+                                            <div class="text-h6 uppercase mb-5">Reference číslo 3</div>
+                                            <div class="lg:w-4/6">
+                                                <p>
+                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi numquam ex ullam cum atque, sit velit debitis accusantium quas possimus. Non.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+
+                        </div>
+                    </div>
+
+                 </div>
+        </div>
+
+
+        <div class="Line mb-8 lg:mb-36 hidden lg:block">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+
+        {* Contact form *}
+        {include '../fragments/tpl/contact-form.latte'}
+
+    </div>
+
+    {include '../fragments/footer.latte'}
+    
+
+{/block}

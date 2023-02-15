@@ -1,0 +1,61 @@
+{var $data = []}
+{var $i = 0}
+{var $pair = 1}
+{foreach $rows as $index => $row}
+ 
+    {var $data[$i][] = $row}
+
+    {if $pair % 2 == 0}
+        {var $i = $i + 1}
+        {var $pair = 0}
+    {/if}
+
+    {var $pair = $pair + 1}
+
+{/foreach}
+
+
+       
+{foreach $data as $index => $dataRows}
+    <div class="Container grid lg:grid-cols-2 gap-6 lg:gap-8">
+
+            {if isset($dataRows[0])}
+ 
+                <div class="lg:pr-24">
+                    <h2 class="text-h6 mb-5">{$dataRows[0]->heading}</h2>
+                    <div class="text-body">
+                        {$dataRows[0]->content|predlozky|noescape}
+                    </div>
+                </div>
+
+
+                <div class="Line my-4 lg:hidden">
+                    <hr />
+                </div>
+
+            {/if}
+
+
+            {if isset($dataRows[1])}
+ 
+                <div class="lg:pr-24">
+                    <h2 class="text-h6 mb-5">{$dataRows[1]->heading}</h2>
+                    <div class="text-body">
+                        {$dataRows[1]->content|predlozky|noescape}
+                    </div>
+                </div>
+
+            {/if}
+       
+    </div>
+
+    {sep}
+        <div class="Line my-8 lg:my-24">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+    {/sep}
+
+{/foreach}
+

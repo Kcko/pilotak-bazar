@@ -1,0 +1,59 @@
+{* <a href="" id="collapse-all">Zabalit vše</a> |
+<a href="" id="expand-all">Rozbalit vše</a> *}
+
+
+<nav class="eshop-menu-aside-tree">
+
+    {block #nav}
+
+        {var $ulShowHide = ''}
+
+
+        {if $depth > 1}
+            {var $ulShowHide = 'display: none'}
+        {/if}
+
+        {if in_array($parent, $selectedItems)}
+            {var $ulShowHide = ''}
+        {/if}
+
+        <ul 
+            n:class="$depth == 1 ? '', ''" 
+            {if $depth == 1}id="js-aside-menu-collapser"{/if} 
+            style="{$ulShowHide|noescape}"
+            >
+            {foreach $model->getChildren($parent) as $child}
+
+                {var $hasChildren = $model->hasChildren($child['id'])}
+                <li 
+					n:class="in_array($child['id'], $selectedItems) ? active"
+                    data-depth="{$depth}" 
+                    data-has-children="{$hasChildren}"
+                    data-id="{$child->id}"
+                    >
+                    <div>
+                        {if $hasChildren}
+                            {var $collapserIcon = !in_array($child->id, $selectedItems) ? 'fa-angle-right' : 'fa-angle-down'}
+                            <span class="eshop-menu-aside-tree__collapser">
+                                <i class="fa {$collapserIcon}"></i>
+                            </span>
+                        {else}
+                            <span class="eshop-menu-aside-tree__collapser-fake"></span>
+                        {/if}
+                        <a href="{$child['url']}">
+                            {$child['title']}
+                        </a>
+                    </div>
+
+                    {if /*in_array($child['id'], $selectedItems) && */ $hasChildren && $depth < $maxDepth}
+                        {include this, model => $model, parent => $child['id'], depth => $depth + 1, maxDepth => $maxDepth}
+                    {/if}
+                </li>    
+
+
+            {/foreach}
+        </ul>
+
+    {/block}
+
+</nav>

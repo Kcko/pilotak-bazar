@@ -1,0 +1,5 @@
+database:
+	dsn: 'mysql:host=kancelar.andweb.cz;dbname=xxx'
+	user: xxx
+	password: xxx
+	reflection: Andweb\Database\Conventions\Conventions

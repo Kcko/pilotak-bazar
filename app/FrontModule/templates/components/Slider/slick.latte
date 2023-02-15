@@ -1,0 +1,62 @@
+<div class="SwiperBanner" id="slider-wrapper" n:if="$sliders->count()">
+	<div id="slick-slider">
+		{foreach $sliders as $row}
+			{var $url = ''}
+			{var $dataset = $row}
+			{var $url = $dataset['link']}
+			{if $dataset["link__navigation_id"]}
+				{var $url = $dataset->link__navigation->getUrl()}
+			{/if}	
+
+			<div class="slide" data-id="{$row->id}">
+
+				<div class="CoverBanner">
+					<div class="Container h-full">
+						<div class="Row h-full">
+							<div class="Col w-full flex h-full items-center">
+								<div class="CoverBanner__Content">
+									<div class="mb-1 lg:mb-2">
+										<h1 class="text-h2 lg:text-slider LinedRed line-clamp-5 !mb-6">{$dataset['name']|breakLines|noescape|predlozky}</h1>
+										{* <div class="hidden lg:block">
+											<div class="line-clamp-3">
+												{$dataset[content]|noescape|predlozky}
+											</div>
+										</div> *}
+									
+									</div>
+									<a n:if="$url" href="{$url}" class="Btn Btn--Primary">Více informací -></a>
+
+								
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div n:class="'CoverBanner__Image', $row->id === 1 ? 'SnowFall'">
+						{$dataset->image->getImageElement('slider')}
+					</div>
+				</div>
+
+			</div>	
+		{/foreach}
+
+
+	
+	</div>
+
+
+	{* Custom pager *}
+	{* <div class="slider-dots swiper-pager">
+		<div id="slider-dots-append"></div>
+	</div> *}
+
+	<div class="swiper-prev">
+		{='assets/gfx/svg/chevron-left-slider.svg'|svg:''|noescape}
+	</div>
+	
+	<div class="swiper-next">
+		{='assets/gfx/svg/chevron-right-slider.svg'|svg:''|noescape}
+	</div>
+
+</div>
+

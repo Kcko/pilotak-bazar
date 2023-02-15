@@ -1,0 +1,68 @@
+@layer components {
+  .BtnIcon {
+    min-height: 42px;
+    transition: ease-in-out 150ms;
+    @apply cursor-pointer;
+    @apply inline-flex items-center justify-center gap-x-2;
+
+    /* aka typo */
+    @apply uppercase;
+    font-size: 12px;
+    line-height: 1.1;
+    font-family: 'Graphik';
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0.05rem;
+
+    &:hover {
+      @apply text-black;
+    }
+  }
+
+  .Btn {
+    min-height: 52px;
+    transition: ease-in-out 150ms;
+    @apply cursor-pointer;
+    @apply inline-flex items-center justify-center;
+    @apply px-6;
+
+    /* aka typo */
+    @apply uppercase;
+    font-size: 12px;
+    line-height: 1.1;
+    font-family: 'Graphik';
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0.05rem;
+
+    &.-Primary {
+      @apply bg-brown-light text-white text-h7 inline-flex;
+      border: 1px solid theme('colors.brown');
+
+      &:hover {
+        @apply bg-bg text-black;
+      }
+    }
+
+    &.-Secondary {
+      @apply bg-brown text-white text-h7 inline-flex;
+      border: 1px solid theme('colors.brown-light-super');
+
+      &:hover {
+        @apply bg-brown text-white;
+      }
+    }
+
+    &.-Empty {
+      @apply text-h7 inline-flex;
+      backround: #f4f0ea;
+      border: 1px solid theme('colors.brown-light-super');
+
+      &:hover {
+        @apply bg-brown text-white;
+      }
+    }
+  }
+}

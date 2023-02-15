@@ -1,0 +1,96 @@
+{block content}
+
+    {include '../fragments/header.latte'}
+
+    <div class="BaseContainer__Main">
+
+        {foreach range(1, 3) as $i}
+
+            <div class="Container mb-10">
+                <div class="-mx-4 lg:mx-0">
+                    <img src="/assets/temp/development-hero.jpg" alt="" />
+                </div>
+            </div>
+
+
+            <div class="Container grid lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="lg:col-span-2 lg:pr-36">
+                    <h2 class="text-h4 mb-5">Villas Husinec</h2>
+                    <div class="text-body">
+                        <p>Předseda správní rady holdingu H2O Group Libor Vlasák patří k lidem, kteří se neustále snaží posouvat hranice svého oboru. „Mým cílem je do všech svých projektů vložit něco nového, přinést jedinečný příběh.” V současné době společnost H2O Group již asi třetinu svých zakázek realizuje v zahraničí.</p>
+                    </div>
+                </div>
+                <div class="lg:col-span-1">
+                    <div class="Accordion">
+                        <div class="Accordion__Item">
+                            <div class="Accordion__Heading flex items-center justify-between text-h7 cursor-pointer">
+                                Technická specifikace
+                                <span>
+                                    {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4 transform'|noescape}
+                                </span>
+                            </div>
+                            <div class="Accordion__Content text-body-sm">
+                                <div class="py-4 Accordion__ContentInner">Za 29 let řízení procesů investiční výstavby jsme naše znalosti vypilovali k dokonalosti. Proto jsme se v roce 2021 rozhodli realizovat náš vlastní developerský projekt. Brzy vám představíme rezidenční komplex Husinec. </div>
+                            </div>
+                        </div>
+                        <div class="Accordion__Item">
+                            <div class="Accordion__Heading flex items-center justify-between text-h7 cursor-pointer">
+                            Cena projektu
+                                <span>
+                                    {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4'|noescape}
+                                </span>
+                            </div>
+                            <div class="text-body-sm Accordion__Content">
+                                <div class="py-4 Accordion__ContentInner">Za 29 let řízení procesů investiční výstavby jsme naše znalosti vypilovali k dokonalosti. Proto jsme se v roce 2021 rozhodli realizovat náš vlastní developerský projekt. Brzy vám představíme rezidenční komplex Husinec. </div>
+                            </div>
+                        </div>
+                        <div class="Accordion__Item">
+                            <div class="Accordion__Heading flex items-center justify-between text-h7 cursor-pointer">
+                            Harmonogram
+                                <span>
+                                    {='assets/gfx/svg/icon-arrow-right.svg'|svg:'w-4 h-4'|noescape}
+                                </span>
+                            </div>
+                            <div class="text-body-sm Accordion__Content">
+                                <div class="py-4 Accordion__ContentInner">Za 29 let řízení procesů investiční výstavby jsme naše znalosti vypilovali k dokonalosti. Proto jsme se v roce 2021 rozhodli realizovat náš vlastní developerský projekt. Brzy vám představíme rezidenční komplex Husinec. </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            {sep}
+                <div class="Line my-16 lg:my-24">
+                    <div class="Container">
+                        <hr />
+                    </div>
+                </div>
+            {/sep}
+
+        {/foreach}
+
+
+        <div class="Line my-16 lg:my-36 hidden lg:block">
+            <div class="Container">
+                <hr />
+            </div>
+        </div>
+
+
+      <div class="Line my-8 lg:my-36  lg:hidden">
+            <div class="Container">
+                &nbsp;
+            </div>
+        </div>
+
+
+
+        {* Contact form *}
+        {include '../fragments/tpl/contact-form.latte'}
+
+    </div>
+    
+    {include '../fragments/footer.latte'}
+
+{/block}

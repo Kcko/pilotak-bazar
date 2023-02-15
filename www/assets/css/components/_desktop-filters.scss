@@ -1,0 +1,40 @@
+.DesktopFilters {
+  @apply overflow-hidden;
+  overflow: hidden;
+  max-height: 0;
+  transition: 300ms max-height linear;
+
+  &.-Opened {
+    max-height: 99em;
+  }
+}
+
+#toggleDesktopFilters svg {
+  transition: 200ms;
+}
+
+#toggleDesktopFilters .toggleDesktopFilters__Button {
+  span:nth-child(1) {
+    @apply block;
+  }
+  span:nth-child(2) {
+    @apply hidden;
+  }
+}
+
+#toggleDesktopFilters.-Opened .toggleDesktopFilters__Button {
+  span:nth-child(1) {
+    @apply hidden;
+  }
+  span:nth-child(2) {
+    @apply block;
+  }
+}
+
+#toggleDesktopFilters svg {
+  @apply rotate-90;
+}
+
+#toggleDesktopFilters.-Opened svg {
+  @apply -rotate-90;
+}
