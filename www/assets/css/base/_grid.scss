@@ -47,3 +47,40 @@
     }
   }
 }
+
+.BaseContainer {
+  @apply flex flex-col min-h-screen;
+
+  &__Main {
+    @apply flex-1;
+  }
+}
+
+.Container {
+  @apply w-full mx-auto px-2;
+  max-width: calc(100% - 12px);
+
+  @media (min-width: 767px) {
+    max-width: calc(100% - 100px);
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+  }
+}
+
+.Row {
+  @apply flex flex-wrap -mx-2;
+  //@apply overflow-hidden;
+  border: 0px solid green;
+}
+
+.Col {
+  //@apply overflow-hidden;
+  border: 0px solid pink;
+  @apply px-2;
+}

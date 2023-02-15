@@ -1,6 +1,6 @@
 @layer components {
   .FormLabel {
-    @apply block text-h7 uppercase;
+    @apply block;
     @apply mb-1.5;
 
     &.-Error {

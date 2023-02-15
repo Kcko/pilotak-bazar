@@ -4,10 +4,257 @@
 
     {include '../fragments/header.latte'}
 
-    <div x-data="test" class="BaseContainer__Main">
-        HOME :)
-        <span x-text="text" @click="$el.innerText = 'Miše je loskuták'"></span>
-    </div>
+
+    <header class="Header bg-[#FFD015] sticky top-0 z-10">
+        <div class="Container">
+            <div class="Row">
+                <div class="Col w-full flex items-center justify-between py-2 gap-x-10">
+                    <img src="/assets/gfx/logo.png" class="h-16" alt="" />
+                    <div class="flex-grow">
+                        <form action="" class="mx-auto max-w-lg flex ">
+                            <input type="text" class="block w-full py-2.5 px-3 rounded" placeholder="Hledat v nabídce ..." />
+                            <button class="text-white bg-black rounded  px-3 -ml-1">
+                                 {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8'|noescape}
+                            </button>
+                        </form>
+                    </div>
+                    <nav class="text-black">
+                        <ul class="flex gap-x-6">
+                            <li><a href="" class="Btn px-0 underline">Prodám</a></li>
+                            <li><a href="" class="Btn px-0">Koupím</a></li>
+                            <li><a href="" class="Btn -Black">Vložit</a></li>
+                            <li>
+                                <a href="" class="Btn px-0 inline-flex items-center gap-x-2">
+                                    {='assets/gfx/svg/icon-user.svg'|svg:'w-4 h-4'|noescape}
+                                    Přihlásit se
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="BaseContainer__Main">
+
+        <section class="Hero bg-[#FFD015] ">
+            <div class="Container ">
+                <div class="Row min-h-[70vh] py-10 items-center">
+                    <div class="Col w-1/2 space-y-8">
+                        <h1 class="text-h1">Inzerujte na <br />Piloťákovi.cz</h1>
+                        <p class="font-medium">
+                            Můžete  prodat nebo koupit v našem leteckém bazaru. Najdete tu letadla, ultralighty, vrtulníky, vírníky, rogala, vybavení pro paragliding, horkovzdušné balóny, letecké motory, avioniku, díly a příslušenství.
+                            Zkrátka tady najdete veškerou inzerci pro piloty a stavitele létajících aparátů všeho druhu.
+                        </p>
+                        <p class="flex gap-3">
+                            <a href="" class="Btn -BlackOutlined min-w-[150px]">Prodat</a>
+                            <a href="" class="Btn -BlackOutlined min-w-[150px]">Koupit</a>
+                        </p>
+                    </div>
+                    <div class="Col w-1/2">
+                        <img src="/assets/gfx/tmp/airplane.svg" alt="" />
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+
+
+        <section class="py-10 bg-[#f2f2f2]">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        <div class="flex flex-wrap items-center justify-between mb-8">
+                            <h2 class="text-h2 text-center mb-0">Vyberte si ze <span class="text-[#FFD015]">169 450 nabídek</span></h2>
+                            <p class="flex gap-3">
+                                <a href="" class="Btn -Black min-w-[150px]">Nabídky </a>
+                                <a href="" class="Btn -BlackOutlined min-w-[150px]">Poptávky</a>
+                            </p>                    
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            {var $categories = [
+                                'Ultralehká letadla (UL)' => [
+                                    'Letadla',
+                                    'Přístroje a příslušenství',
+                                    'Spoluvlastnictví letadel',
+                                    'Vrtule a motory',
+
+                                ],
+                                'Klasická letadla (PPL+MEP)' => [
+                                    'AeroEngine',
+                                    'Letadla ',
+                                    'Přístroje a příslušenství',
+                                    'Spoluvlastnictví letadel',
+                                    'Vrtule a motory',
+                                ],
+                                'Vrtulníky a helikoptéry' => [
+                                    'Přístroje a příslušenství',
+                                    'Ultralehké vrtulníky (ULH)',
+                                    'Vrtule / Motory / Rotory',
+                                    'Vrtulníky a helikoptéry',
+
+                                ],
+                                'Větroně - Kluzáky (GLD)'  => [
+                                    'Motorové větroně ',
+                                    'Přístroje a příslušenství ',
+                                    'Spoluvlastnictví větroňů',
+                                    'Větroně a kluzáky ',
+                                ],
+                                'Ostatní inzerce a vybavení' => [
+                                    'Avionika a přístroje',
+                                    'Dokumentace a knihy ',
+                                    'Doplňky letadel ',
+                                    'GPS navigace, mapy ',
+                                    'Kamery, Foto, Videotechnika ',
+                                    'Modely letadel - modeláři ',
+                                    'Oblečení a doplňky ',
+                                    'Ostatní ',
+                                    'Pozemky a nemovitosti u letiště ',
+                                    'Rogala / Padáky / Motory ',
+                                ],
+                                'Práce v letectví' => [
+                                    'Nabídka práce v letectví',
+                                    'Poptávka práce v letectví',
+                                ],
+                                'Hangáry a parkování (ČR + SR)' => [
+                                    'Hangáry na Slovensku',
+                                    'Hangáry v Česku'
+                                ],
+                            ]}
+
+                            {foreach $categories as $cat => $sub}
+                                <div class="bg-white border border-gray-200 relative rounded-lg bg-white p-6 /*shadow-lg shadow-slate-900/10*/ p-5 rounded">
+                                    <h3 class="text-h3 mb-0 flex gap-x-4 items-center">
+                                        <img src="/assets/gfx/svg/airplane-1.svg" class="w-[50px]" alt="" />
+                                        
+                                        <a href="">{$cat}</a>
+                                    </h3>
+                                    {* <div class="flex flex-wrap gap-x-2 gap-y-1">
+                                        {foreach $sub as $subCat}
+                                            <span class="inline-flex items-center gap-x-1">
+                                                <a href="" class="text-sm hover:underline">{$subCat}</a> 
+                                                {sep}{='assets/gfx/svg/icon-dots.svg'|svg:'w-3 h-3'|noescape}{/sep}
+                                            </span>
+                                        {/foreach}
+                                    </div> *}
+                                </div>
+                            {/foreach}
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="py-10 ">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full space-y-8">
+                        <h2 class="text-h2 text-center">Nejnovější nabídky</h2>
+
+                        <div class="grid grid-cols-4 gap-4">
+                            {foreach range(1, 4) as $i}
+
+                                <article class="bg-gray-50 overflow-hidden rounded-lg border border-gray-200">
+                                    <img alt="" src="https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="h-56 w-full object-cover" />
+
+                                    <div class="p-5">
+                                        <a href="#">
+                                            <h3 class="text-h4 mb-4">
+                                                Palivový kohout pro dvě nádrže LUN 7520.02
+                                            </h3>
+                                        </a>
+                                        <div>
+                                            <p class="text-sm text-gray-500 line-clamp-3 mb-4">
+                                                Prodám plně funkční palivový kohout pro dvě nádrže LUN 7520.02. Používaný v letounech L-410 a Zlín 142. Kohout má 4 polohy. ZAVŘENO - LEVÁ - PRAVÁ - OBĚ SOUČASNĚ
+                                            </p>
+
+                                            <p class="text-h3 mb-0">
+                                                590 kč
+                                            </p>
+                                            <p class="text-sm text-gray-500 flex flex-wrap justify-between">
+                                                <span class="inline-flex items-center gap-x-1 -ml-0.5">
+                                                    {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5'|noescape}
+                                                    Praha - Východ
+                                                </span>
+                                                <span>12.3.2023</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            {/foreach}
+                        
+                        </div>
+
+                        <div class="text-center">
+                            <a href="" class="Btn -Black min-w-[150px] mx-auto">Všechny nabídky </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-10 ">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full space-y-8">
+                        <h2 class="text-h2 text-center">Populární nabídky</h2>
+
+                        <div class="grid grid-cols-4 gap-4">
+                            {foreach range(1, 4) as $i}
+
+                                <article class="bg-gray-50 overflow-hidden rounded-lg border border-gray-200">
+                                    <img alt="" src="https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="h-56 w-full object-cover" />
+
+                                    <div class="p-5">
+                                        <a href="#">
+                                            <h3 class="text-h4 mb-4">
+                                                Palivový kohout pro dvě nádrže LUN 7520.02
+                                            </h3>
+                                        </a>
+                                        <div>
+                                            <p class="text-sm text-gray-500 line-clamp-3 mb-4">
+                                                Prodám plně funkční palivový kohout pro dvě nádrže LUN 7520.02. Používaný v letounech L-410 a Zlín 142. Kohout má 4 polohy. ZAVŘENO - LEVÁ - PRAVÁ - OBĚ SOUČASNĚ
+                                            </p>
+
+                                            <p class="text-h3 mb-0">
+                                                590 kč
+                                            </p>
+                                            <p class="text-sm text-gray-500 flex flex-wrap justify-between">
+                                                <span class="inline-flex items-center gap-x-1 -ml-0.5">
+                                                    {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5'|noescape}
+                                                    Praha - Východ
+                                                </span>
+                                                <span>12.3.2023</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            {/foreach}
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="Footer">
+        FOOTER
+    </footer>
+    <div class="bg-[#FFD015] h-1.5"></div>
+
 
 
     {include '../fragments/footer.latte'}
