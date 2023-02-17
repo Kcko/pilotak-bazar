@@ -1,6 +1,4 @@
 import { preloaderInit } from './modules/preloader.js'
-
-import Swiper from './vndr/swiper/swiper-bundle.esm.browser.js'
 import naja from './vndr/naja/index.esm.js'
 
 function googleRecaptcha() {

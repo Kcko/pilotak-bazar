@@ -10,15 +10,17 @@ define('INDEX_DIR', __DIR__);
 
 // AUTH
 // if (strpos($_SERVER['HTTP_HOST'], 'andweb.cz') !== false) {
-	//require 'auth.php';
+//require 'auth.php';
 // }
 
 
 if (file_exists(__DIR__ . '/../.maintenance.php')) {
-    require __DIR__ . '/../.maintenance.php';
+	require __DIR__ . '/../.maintenance.php';
 } else {
-    require_once __DIR__ . '/../app/autoload.php';
-    
+	require_once __DIR__ . '/../app/autoload.php';
+
+	
+
 	(new Bootstrap())->boot()
 		->createContainer()
 		->getByType(Application::class)
