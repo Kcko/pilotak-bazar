@@ -5,7 +5,6 @@ module.exports = {
     preflight: true
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
     require('tailwindcss-debug-screens'),
     plugin(function ({ addVariant }) {
@@ -24,11 +23,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        error: '#EB5757',
-        brown: '#574328',
-        'brown-light': '#7E6749',
-        'brown-light-super': '#D2C0A7',
-        bg: '#F4F0EA'
+        _yellow: '#FFD015',
+        _black: '#020101',
+        '_black-light': '#202020',
+        _white: '#BDBDBD',
+        bg: '#202124'
       },
       fontFamily: {
         inter: ['Inter']

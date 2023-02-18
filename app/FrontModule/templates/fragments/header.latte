@@ -1,6 +1,53 @@
-{* 
-  {='assets/gfx/svg/icon-close.svg'|svg:'w-8 h-8 text-white'|noescape}
+<header class="Header bg-_yellow sticky top-0 z-10">
+    <div class="Container">
+        <div class="Row">
+            <div class="Col w-full flex items-center justify-between py-2 gap-x-10">
+                <img src="/assets/gfx/logo.png" class="h-14" alt="" />
+                <div class="flex-grow">
+                    <form action="" class="mx-auto max-w-lg flex ">
+                        <input type="text" class="focus-visible:outline-none focus:ring-2  ring-_black ring-offset-1 block w-full py-2.5 px-3 rounded-md" placeholder="Hledat v inzerátech..." />
+                        <button class="text-white bg-_black rounded-md  px-3 -ml-2">
+                              {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8'|noescape}
+                        </button>
+                    </form>
+                </div>
+                <nav class="text-_black">
+                    <ul class="flex gap-x-6">
+                        {* <li><a href="" class="Btn px-0">Prodám</a></li>
+                        <li><a href="" class="Btn px-0">Koupím</a></li> *}
+                        <li><a href="" class="Btn -Black">Vložit inzerát</a></li>
+                        <li x-data="{ opened: false }" class="relative">
+                            <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
+                                {='assets/gfx/svg/icon-user.svg'|svg:'w-5 h-5'|noescape}
+                                Patrik B.
+                                {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 -ml-1'|noescape}
+                                
+                            </span>
 
- *}
-
-
+                            <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-2 shadow absolute rounded-md py-2 px-4 min-w-[180px] right-0">
+                                <ul>
+                                    <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
+                                        {='assets/gfx/svg/icon-list.svg'|svg:'w-4 h-4'|noescape}
+                                        Moje inzeráty
+                                        </a></li>
+                                    <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
+                                        {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-4 h-4'|noescape}
+                                        Oblíbené
+                                        </a></li>
+                                    <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
+                                        {='assets/gfx/svg/icon-cog.svg'|svg:'w-4 h-4'|noescape}
+                                        Nastavení
+                                        </a></li>
+                                    <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
+                                        {='assets/gfx/svg/icon-logout.svg'|svg:'w-4 h-4'|noescape}
+                                        Odhlásit se
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

@@ -24,7 +24,7 @@
 
 .swiper-bullet {
   @apply inline-block w-2 h-2 ml-1 mr-1 rounded-full cursor-pointer;
-  border: 1px solid theme('colors.brown-light-super');
+  //border: 1px solid theme('colors.brown-light-super');
 }
 
 .swiper-bullet-active {

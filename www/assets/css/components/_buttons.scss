@@ -11,39 +11,44 @@
   }
 
   .Btn {
-    min-height: 48px;
+    min-height: 44px;
     transition: ease-in-out 150ms;
     @apply cursor-pointer;
     @apply inline-flex items-center justify-center;
     @apply px-6;
-    @apply rounded-lg border border-transparent;
+    @apply rounded-md border border-transparent;
     @apply font-normal;
 
     /* aka typo */
 
     &.-Black {
-      @apply bg-black text-white inline-flex  border-black;
+      @apply bg-_black text-white inline-flex  border-black;
 
       &:hover {
-        //@apply bg-bg text-black;
+        @apply bg-black;
       }
     }
 
     &.-BlackOutlined {
-      @apply text-black inline-flex border-black;
+      @apply text-_black inline-flex border-black;
 
       &:hover {
-        //@apply bg-bg text-black;
+        @apply bg-_black text-white;
       }
     }
 
     &.-White {
-      @apply bg-white text-black inline-flex border-white;
+      @apply bg-white text-_black inline-flex border-white;
       border: 1px solid theme('colors.black');
 
       &:hover {
         //@apply bg-black text-white;
       }
+    }
+
+    &.-Xl {
+      min-height: 56px;
+      @apply text-lg;
     }
   }
 }

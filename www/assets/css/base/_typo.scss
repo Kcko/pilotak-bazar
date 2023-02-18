@@ -1,17 +1,59 @@
 @layer components {
   .text-h1 {
     @apply text-6xl font-bold;
+    line-height: 1.053;
   }
 
   .text-h2 {
-    @apply text-4xl font-bold mb-8;
+    @apply text-4xl font-bold mb-8 leading-tight;
   }
 
   .text-h3 {
-    @apply text-xl font-bold mb-6;
+    @apply text-xl font-bold mb-6 leading-tight;
   }
 
   .text-h4 {
-    @apply text-xl font-bold mb-6;
+    @apply text-lg font-bold mb-6 leading-tight;
+  }
+
+  .BulletListYellow {
+    li {
+      @apply relative;
+      @apply pl-[1em];
+      &:before {
+        content: '';
+        @apply bg-_yellow absolute;
+        @apply w-1 h-1;
+        @apply top-[0.6em] left-0;
+      }
+    }
+  }
+
+  .Lined-1 {
+    @apply relative;
+
+    &:before {
+      content: '';
+      height: 4px;
+      width: 40px;
+      @apply bg-_yellow;
+      @apply absolute;
+      top: 115%;
+      transform: skewY(-5deg);
+    }
+  }
+
+  .Lined-2 {
+    @apply relative;
+
+    &:before {
+      content: '';
+      height: 4px;
+      width: 40px;
+      @apply bg-_white;
+      @apply absolute;
+      top: 120%;
+      transform: skewY(-5deg);
+    }
   }
 }

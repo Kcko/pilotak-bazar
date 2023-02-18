@@ -9,6 +9,8 @@
         'price' => '15 000 Kč',
         'date' => 'Dnes',
         'img' => '/assets/gfx/tmp/plane2.jpg',
+        'location' => 'Praha - Východ',
+        'top' => true,
     ],
     [
         'heading' => 'Tažná levotočivá vrtule Rotax 582',
@@ -16,14 +18,16 @@
         'price' => 'neuvedeno',
         'date' => 'Dnes',
         'img' => '/assets/gfx/tmp/plane3.jpg',
-        'top' => true,
+
+        'location' => 'Praha - Západ',
     ],
     [
         'heading' => 'Prodám FLYDAT pro Rotax+EGT+CHT',
         'content' => 'Prodám Flydat pro Rotax +4X EGT Rotax,1x CHT rotax, Snímač tlaku oleje VDO, propojovací kabel k PC+SW. Upgrade avioniky.',
         'price' => '1 200 Kč',
         'date' => 'Včera',
-        'img' => '/assets/gfx/tmp/plane4.jpg',
+        'img' => '/assets/gfx/tmp/plane8.jpg',
+        'location' => 'Zlínský',
     ],
     [
         'heading' => 'Pronájem 1 místa v soukromém hangáru',
@@ -37,6 +41,7 @@ Cena za měsíc 2000',
         'price' => '2 000 Kč',
         'date' => '12.2.2023',
         'img' => '/assets/gfx/tmp/plane5.jpg',
+        'location' => 'Moravský',
     ],
     [
         'heading' => 'Rotax 503 motor',
@@ -44,6 +49,52 @@ Cena za měsíc 2000',
         'price' => '43 500 Kč',
         'date' => '11.2.2023',
         'img' => '/assets/gfx/tmp/plane6.jpg',
+        'location' => 'KráloveHradecký',
+    ],
+]}
+
+
+{var $advertisements2 = [
+    [
+        'heading' => 'Válec vrtulníku',
+        'content' => 'Dobrý den,poptávám válec z letadla/vrtulník na výrobu podobné lampy. Klidně již nefunkční či vyřazený. Za nabídky předem děkuji',
+        'price' => '5 000 Kč',
+        'date' => 'Dnes',
+        'img' => '/assets/gfx/tmp/plane7.jpg',
+        'location' => 'Severočeský',
+    ],
+    [
+        'heading' => 'Záchranný systém',
+        'content' => 'Koupím záchranný systém do dvoumístného letadla Cora, v jakémkoliv stavu',
+        'price' => 'neuvedeno',
+        'date' => 'Dnes',
+        'img' => '/assets/gfx/tmp/plane12.jpg',
+
+        'location' => 'Ostravský',
+    ],
+    [
+        'heading' => 'Koupím Tuláka',
+        'content' => 'Koupím Tuláka s motorem Rotax 912. Nehavarovaného a s jasnou historií a údržbou. Ideálně s rádiem 8,33 a odpovídačem. Pouze z ČR.',
+        'price' => 'neuvedeno',
+        'date' => 'Včera',
+        'img' => '/assets/gfx/tmp/plane9.jpg',
+        'location' => 'Jihočeský',
+    ],
+    [
+        'heading' => 'Rogalo',
+        'content' => 'Koupím dvoumístný ZMK v dobrém stavu. Chci začít z lítáním proto preferují nějakou střední třídu',
+        'price' => 'neuvedeno',
+        'date' => '12.2.2023',
+        'img' => '/assets/gfx/tmp/plane10.jpg',
+        'location' => 'Moravský',
+    ],
+    [
+        'heading' => 'vírník Bauer BAD 12',
+        'content' => 'Koupíme kompletní vírník Bauer BAD 12 i bez motoru, nebo sháníme i jednotlivé funkční komponenty',
+        'price' => 'neuvedeno',
+        'date' => '11.2.2023',
+        'img' => '/assets/gfx/tmp/plane11.jpg',
+        'location' => 'KráloveHradecký',
     ],
 ]}
 
@@ -53,53 +104,22 @@ Cena za měsíc 2000',
     {include '../fragments/header.latte'}
 
 
-    <header class="Header bg-[#FFD015] sticky top-0 z-10">
-        <div class="Container">
-            <div class="Row">
-                <div class="Col w-full flex items-center justify-between py-2 gap-x-10">
-                    <img src="/assets/gfx/logo.png" class="h-16" alt="" />
-                    <div class="flex-grow">
-                        <form action="" class="mx-auto max-w-lg flex ">
-                            <input type="text" class="block w-full py-2.5 px-3 rounded" placeholder="Hledat v nabídce ..." />
-                            <button class="text-white bg-black rounded  px-3 -ml-1">
-                                 {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8'|noescape}
-                            </button>
-                        </form>
-                    </div>
-                    <nav class="text-black">
-                        <ul class="flex gap-x-6">
-                            <li><a href="" class="Btn px-0 underline">Prodám</a></li>
-                            <li><a href="" class="Btn px-0">Koupím</a></li>
-                            <li><a href="" class="Btn -Black">Vložit</a></li>
-                            <li>
-                                <a href="" class="Btn px-0 inline-flex items-center gap-x-2">
-                                    {='assets/gfx/svg/icon-user.svg'|svg:'w-4 h-4'|noescape}
-                                    Přihlásit se
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
     <main class="BaseContainer__Main">
 
-        <section class="Hero bg-[#FFD015] ">
+        <section class="Hero bg-_yellow">
             <div class="Container ">
                 <div class="Row min-h-[70vh] py-10 items-center">
                     <div class="Col w-1/2 space-y-8">
-                        <h1 class="text-h1">Inzerujte na <br />Piloťákovi.cz</h1>
-                        <p class="font-medium">
-                            Můžete  prodat nebo koupit v našem leteckém bazaru. Najdete tu letadla, ultralighty, vrtulníky, vírníky, rogala, vybavení pro paragliding, horkovzdušné balóny, letecké motory, avioniku, díly a příslušenství.
-                            Zkrátka tady najdete veškerou inzerci pro piloty a stavitele létajících aparátů všeho druhu.
-                        </p>
-                        <p class="flex gap-3">
-                            <a href="" class="Btn -BlackOutlined min-w-[150px]">Prodat</a>
-                            <a href="" class="Btn -BlackOutlined min-w-[150px]">Koupit</a>
-                        </p>
+                        <div class="space-y-8 max-w-[50ch]">
+                            <h1 class="text-h1">Inzerujte na Piloťákovi.cz</h1>
+                            <p class="font-medium">
+                                Můžete  prodat nebo koupit v našem leteckém bazaru. Najdete tu letadla, ultralighty, vrtulníky, vírníky, rogala, vybavení pro paragliding, horkovzdušné balóny, letecké motory, avioniku, díly a příslušenství.
+                                Zkrátka tady najdete veškerou inzerci pro piloty a stavitele létajících aparátů všeho druhu.
+                            </p>
+                            <p class="flex gap-3">
+                                <a href="" class="Btn -BlackOutlined -Xl min-w-[150px]">Vložit inzerát</a>
+                            </p>
+                        </div>
                     </div>
                     <div class="Col w-1/2">
                         <img src="/assets/gfx/tmp/airplane.svg" alt="" />
@@ -116,11 +136,11 @@ Cena za měsíc 2000',
                 <div class="Row">
                     <div class="Col w-full">
                         <div class="flex flex-wrap items-center justify-between mb-8">
-                            <h2 class="text-h2 text-center mb-0">Vyberte si ze <span class="text-[#FFD015]">169 450 nabídek</span></h2>
-                            <p class="flex gap-3">
+                            <h2 class="text-h2 text-center mb-0 Lined-1">Vyberte si ze <span class="text-_yellow">169 450</span> nabídek a <span class="text-_yellow">43 649</span> poptávek</h2>
+                            {* <p class="flex gap-3">
                                 <a href="" class="Btn -Black min-w-[150px]">Nabídky </a>
                                 <a href="" class="Btn -BlackOutlined min-w-[150px]">Poptávky</a>
-                            </p>                    
+                            </p>                     *}
                         </div>
 
                         <div class="grid grid-cols-3 gap-3">
@@ -168,7 +188,7 @@ Cena za měsíc 2000',
                                     'Nabídka práce v letectví',
                                     'Poptávka práce v letectví',
                                 ],
-                                'Hangáry a parkování (ČR + SR)' => [
+                                'Hangáry a parkování' => [
                                     'Hangáry na Slovensku',
                                     'Hangáry v Česku'
                                 ],
@@ -190,7 +210,15 @@ Cena za měsíc 2000',
                        
                                 {var $subCount = count($sub)}
 
-                                <a href="" class="bg-white border border-gray-200 relative rounded-lg bg-white p-6 hover:shadow-md hover:shadow-slate-900/10 p-5 rounded">
+                                <a href="" class="
+                                    bg-white border border-gray-200 relative rounded-md
+                                     bg-white p-6 hover:shadow-md hover:shadow-slate-900/10 p-5 rounded
+                                                                            
+                                            transition-transform
+                                            duration-200
+                                            transform hover:-translate-y-1 hover:shadow-md
+                                     
+                                     ">
                                     <h3 class="text-h3 mb-0 flex gap-x-4 items-center">
                                          {='assets/gfx/svg/'.$icons[$counter]|svg:'w-12 h-12 flex-shrink-0 text-[#FFD015]'|noescape}
                                         <div>
@@ -221,12 +249,11 @@ Cena za měsíc 2000',
         </section>
 
 
-
-        <section class="py-10 ">
+        <section class="py-10">
             <div class="Container">
                 <div class="Row">
-                    <div class="Col w-full space-y-10">
-                        <h2 class="text-h2 text-center">Nejnovější nabídky</h2>
+                    <div class="Col w-full">
+                        <h2 class="text-h2 text-left mb-6 Lined-1">Nejnovější nabídky</h2>
 
                         <div 
                             x-data="{ swiper: null }" 
@@ -234,6 +261,7 @@ Cena za měsíc 2000',
                                 loop: true,
                                 slidesPerView: 1,
                                 spaceBetween: 0,
+                                speed: 700,
                             
                                 breakpoints: {
                                     640: {
@@ -250,23 +278,34 @@ Cena za měsíc 2000',
                                     },
                                 },
                                 })"
-                            class="relative /*grid grid-cols-4 gap-4*/"
+                            class="relative mb-8 /*grid grid-cols-4 gap-4*/"
                         >
 
                             <div class="swiper-container" x-ref="container">
-                                <div class="swiper-wrapper | flex h-100">
+                                <div class="swiper-wrapper | py-2">
                                     {foreach $advertisements as $adv}
-                                        <article n:class="
+                                        <a href="#" n:class="
                                             'swiper-slide 
                                             relative
-                                            flex flex-col rounded-lg border border-gray-200',
-                                            isset($adv[top]) ? 'bg-yellow-50'
+                                            transition-transform
+                                            duration-200
+                                            transform hover:-translate-y-1 hover:shadow-md
+                                            flex flex-col rounded-md border border-gray-200',
+                                            isset($adv[top]) ? 'bg-yellow-100'
                                             "
                                             style="height: auto !important;"
                                         >
                                             <span n:if="isset($adv[top])"
-                                                class="absolute top-2.5 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-black text-xs"
+                                                class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-xs"
                                             >TOP</span>
+
+                                            <span
+                                                class="absolute 
+                                                group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+                                                 rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+                                            >
+                                                {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+                                            </span>
 
                                             <img 
                                             alt="" 
@@ -274,13 +313,11 @@ Cena za měsíc 2000',
                                             class="h-56 w-full object-cover" />
 
                                             <div class="p-5 pb-2 flex-grow flex flex-col">
-                                                <a href="#">
-                                                    <h3 class="text-h4 mb-4 line-clamp-3">
-                                                        {$adv['heading']} 
-                                                    </h3>
-                                                </a>
+                                                <h3 class="text-h4 mb-4 line-clamp-3">
+                                                    {$adv['heading']} 
+                                                </h3>
 
-                                                <p class="text-sm text-gray-500 line-clamp-3 mb-4">
+                                                <p class="text-sm text-_black line-clamp-3 mb-4">
                                                        {$adv['content']} 
                                                 </p>
                                                 <div class="mt-auto">
@@ -295,25 +332,25 @@ Cena za měsíc 2000',
                                                     <p class="border-t -ml-5 -mr-5 px-5 pt-2 mt-2 text-xs text-gray-500 flex flex-wrap justify-between">
                                                         <span class="inline-flex items-center gap-x-1 -ml-0.5">
                                                             {='assets/gfx/svg/icon-pin.svg'|svg:'w-4 h-4'|noescape}
-                                                            Praha - Východ
+                                                            {$adv['location']}
                                                         </span>
                                                         <span>{$adv['date']} </span>
                                                     </p>
                                                 </div>
                                             </div>
-                                        </article>
+                                        </a>
                                     {/foreach}
                                 </div>
                             </div>
 
-                            <div class="absolute inset-y-0 left-0 z-10 flex items-center">
-                                <button @click="swiper.slidePrev()" class="bg-white -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                            <div class="absolute inset-y-0 left-0 z-[3]  flex items-center">
+                                <button @click="swiper.slidePrev()" class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
                                 <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                                 </button>
                             </div>
 
-                            <div class="absolute inset-y-0 right-0 z-10 flex items-center">
-                                <button @click="swiper.slideNext()" class="bg-white -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                            <div class="absolute inset-y-0 right-0 z-[3] flex items-center">
+                                <button @click="swiper.slideNext()" class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
                                 <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                                 </button>
                             </div>
@@ -330,14 +367,125 @@ Cena za měsíc 2000',
         </section>
 
 
+        <section class="pb-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        <h2 class="text-h2 text-left mb-6 Lined-1">Nejnovější poptávky</h2>
+
+                        <div 
+                            x-data="{ swiper: null }" 
+                            x-init="swiper = new Swiper($refs.container, {
+                                loop: true,
+                                slidesPerView: 1,
+                                spaceBetween: 0,
+                                speed: 700,
+                            
+                                breakpoints: {
+                                    640: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 0,
+                                    },
+                                    768: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 16,
+                                    },
+                                    1024: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 16,
+                                    },
+                                },
+                                })"
+                            class="relative mb-8 /*grid grid-cols-4 gap-4*/"
+                        >
+
+                            <div class="swiper-container" x-ref="container">
+                                <div class="swiper-wrapper | py-2">
+                                    {foreach $advertisements2 as $adv}
+                                        <a href="#" n:class="
+                                            'swiper-slide 
+                                            relative
+                                            transition-transform
+                                            duration-200
+                                            transform hover:-translate-y-1 hover:shadow-md
+                                            flex flex-col rounded-md border border-gray-200',
+                                            isset($adv[top]) ? 'bg-yellow-100'
+                                            "
+                                            style="height: auto !important;"
+                                        >
+                                            <span n:if="isset($adv[top])"
+                                                class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-xs"
+                                            >TOP</span>
+
+                                            <span
+                                                class="absolute 
+                                                group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+                                                 rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+                                            >
+                                                {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+                                            </span>
+
+                                            <img 
+                                            alt="" 
+                                            src="{$adv['img']}" 
+                                            class="h-56 w-full object-cover" />
+
+                                            <div class="p-5 pb-2 flex-grow flex flex-col">
+                                                <h3 class="text-h4 mb-4 line-clamp-3">
+                                                    {$adv['heading']} 
+                                                </h3>
+
+                                                <p class="text-sm text-_black line-clamp-3 mb-4">
+                                                       {$adv['content']} 
+                                                </p>
+                                                <div class="mt-auto">
+
+                                                    <p class="text-h3 mb-0">
+                                                        {if $adv['price'] == 'neuvedeno'}
+                                                            <span class="text-gray-500 text-sm">cena neuvedena</span>
+                                                        {else}
+                                                            {$adv['price']} 
+                                                        {/if}
+                                                    </p>
+                                                    <p class="border-t -ml-5 -mr-5 px-5 pt-2 mt-2 text-xs text-gray-500 flex flex-wrap justify-between">
+                                                        <span class="inline-flex items-center gap-x-1 -ml-0.5">
+                                                            {='assets/gfx/svg/icon-pin.svg'|svg:'w-4 h-4'|noescape}
+                                                            {$adv['location']}
+                                                        </span>
+                                                        <span>{$adv['date']} </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    {/foreach}
+                                </div>
+                            </div>
+
+                            <div class="absolute inset-y-0 left-0 z-[3]  flex items-center">
+                                <button @click="swiper.slidePrev()" class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+
+                            <div class="absolute inset-y-0 right-0 z-[3] flex items-center">
+                                <button @click="swiper.slideNext()" class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        <div class="text-center">
+                            <a href="" class="Btn -Black min-w-[150px] mx-auto">Všechny poptávky</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
     </main>
-
-
-    <footer class="Footer">
-        FOOTER
-    </footer>
-    <div class="bg-[#FFD015] h-1.5"></div>
-
 
 
     {include '../fragments/footer.latte'}
