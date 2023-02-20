@@ -88,146 +88,157 @@ Cena za měsíc 2000',
         </div>
 
         
-        
-    <div class="pb-10">
-        <div class="Container">
-            <div class="Row">
-                <div class="Col w-full">
             
-                    <h1 class="text-h1 mb-10 Lined-1">Ull Vrabec</h1>
+        <div class="pb-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                
+                        <h1 class="text-h1 mb-10 Lined-1">Ull Vrabec</h1>
 
-                    <div class="grid grid-cols-3 gap-8">
-                        <div class="col-span-2">
-
-
-                            <div x-data="{ 
-                                    currentSrc: '/assets/gfx/tmp/plane10.jpg',
-                                    images: [
-                                        '/assets/gfx/tmp/plane10.jpg',
-                                        '/assets/gfx/tmp/plane11.jpg',
-                                        '/assets/gfx/tmp/plane12.jpg',
-                                        '/assets/gfx/tmp/plane9.jpg',
-                                        '/assets/gfx/tmp/plane8.jpg',
-                                        '/assets/gfx/tmp/plane7.jpg',
-                                        '/assets/gfx/tmp/plane6.jpg',
-                                        '/assets/gfx/tmp/plane4.jpg',
-                                        '/assets/gfx/tmp/plane3.jpg',
-                                        '/assets/gfx/tmp/plane2.jpg',
-                                    ],
-                                    prev() {
-                                        let index =  this.images.indexOf(this.currentSrc)
-                                        index = index - 1
-                                        if (index < 0) {
-                                            index = this.images.length - 1
-                                        }
-                                        this.currentSrc = this.images[index]
-                                    },
-                                    next() {
-                                        let index =  this.images.indexOf(this.currentSrc)
-                                        index = index + 1
-                                        if (index > this.images.length - 1) {
-                                            index = 0
-                                        }
-                                        this.currentSrc = this.images[index]                  
-                                    } 
-                                }" 
-                                class="mb-10">
-                                <div class="relative mb-4">
-                                        <span class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-sm"
-                                        >TOP</span>
-
-                                        <span
-                                            class="absolute 
-                                            group top-2.5 w-10 h-10 flex justify-center items-center left-2.5
-                                                rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
-                                        >
-                                            {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
-                                        </span>
+                        <div class="grid grid-cols-3 gap-8">
+                            <div class="col-span-2">
 
 
-                                        <div class="absolute inset-y-0 left-0 z-[3]  flex items-center">
-                                            <button @click="prev()" class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
-                                            <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                            </button>
+                                <div x-data="{ 
+                                        init() {
+                                            this.lightbox = new FsLightbox()
+                                            this.lightbox.props.sources = this.images
+                                        },
+                                        lightbox: '',
+                                        currentSrc: '/assets/gfx/tmp/plane10.jpg',
+                                        images: [
+                                            '/assets/gfx/tmp/plane10.jpg',
+                                            '/assets/gfx/tmp/plane11.jpg',
+                                            '/assets/gfx/tmp/plane12.jpg',
+                                            '/assets/gfx/tmp/plane9.jpg',
+                                            '/assets/gfx/tmp/plane8.jpg',
+                                            '/assets/gfx/tmp/plane7.jpg',
+                                            '/assets/gfx/tmp/plane6.jpg',
+                                            '/assets/gfx/tmp/plane4.jpg',
+                                            '/assets/gfx/tmp/plane3.jpg',
+                                            '/assets/gfx/tmp/plane2.jpg',
+                                        ],
+                                        prev() {
+                                            let index =  this.images.indexOf(this.currentSrc)
+                                            index = index - 1
+                                            if (index < 0) {
+                                                index = this.images.length - 1
+                                            }
+                                            this.currentSrc = this.images[index]
+                                        },
+                                        next() {
+                                            let index =  this.images.indexOf(this.currentSrc)
+                                            index = index + 1
+                                            if (index > this.images.length - 1) {
+                                                index = 0
+                                            }
+                                            this.currentSrc = this.images[index]                  
+                                        },
+                                        openPhoto() {
+                                            let index =  this.images.indexOf(this.currentSrc)
+                                            this.lightbox.open(index)
+                                        } 
+                                    }" 
+                                    class="mb-10">
+                                    <div class="relative mb-4">
+                                            <span class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-sm"
+                                            >TOP</span>
+
+                                            <span
+                                                class="absolute 
+                                                group top-2.5 w-10 h-10 flex justify-center items-center left-2.5
+                                                    rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+                                            >
+                                                {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+                                            </span>
+
+
+                                            <div class="absolute inset-y-0 left-0 z-[3]  flex items-center">
+                                                <button @click="prev()" class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                                </button>
+                                            </div>
+
+                                            <div class="absolute inset-y-0 right-0 z-[3] flex items-center">
+                                                <button @click="next()" class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                                </button>
+                                            </div>
+
+                                        <div class="aspect-video overflow-hidden">
+                                            <a @click="openPhoto"><img class="w-full h-full object-cover" :src="currentSrc" alt="" /></a>
                                         </div>
+                                    </div>
+                                    <div class="grid grid-cols-10 gap-2">
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane10.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane10.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane10.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane11.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane11.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane11.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane12.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane12.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane12.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane9.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane9.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane9.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane8.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane8.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane8.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane7.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane7.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane7.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane6.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane6.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane6.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane4.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane4.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane4.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane3.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane3.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane3.jpg" alt="" /></div>
+                                        <div @click="currentSrc='/assets/gfx/tmp/plane2.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane2.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane2.jpg" alt="" /></div>
+                                    </div>
 
-                                        <div class="absolute inset-y-0 right-0 z-[3] flex items-center">
-                                            <button @click="next()" class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
-                                            <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                            </button>
-                                        </div>
 
-                                    <div class="aspect-video overflow-hidden">
-                                        <img class="w-full h-full object-cover" :src="currentSrc" alt="" />
+                                </div>
+
+                                <div class="text-h3">
+                                    <span class="font-normal">Cena:</span> 30 000 Kč
+                                </div>
+
+                                <div class="text-lg mb-10">
+                                    Prodám Vrabce.Skladací křídla,po přestavbě na rotax 447 (5h od go).
+                                    Je potřeba dodělat palivovou soustavu,eletroinstalaci, překryt motoru,Letadlo po opravě zadní části trupu,v místě ostruhy.
+                                    Více po telefonu, zašlu mailem.
+                                    Nabídněte.
+                                </div>
+
+                                <div class="border-t pt-4 gap-y-4 border-gray-200 mb-10 flex flex-wrap justify-between">
+                                    <div>
+                                        <span class="text-gray-400">Lokalita:</span>
+                                        <span>Zlínský kraj</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-400">Vloženo:</span>
+                                        <span>Dnes</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-400">Zobrazeno:</span>
+                                        <span>113x</span>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-10 gap-2">
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane10.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane10.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane10.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane11.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane11.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane11.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane12.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane12.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane12.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane9.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane9.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane9.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane8.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane8.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane8.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane7.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane7.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane7.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane6.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane6.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane6.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane4.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane4.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane4.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane3.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane3.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane3.jpg" alt="" /></div>
-                                    <div @click="currentSrc='/assets/gfx/tmp/plane2.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane2.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane2.jpg" alt="" /></div>
+
+
+                                <div class="border border-gray-200 p-5 rounded-md">
+                                    <div class="text-h3 mb-3">Kontakt</div>
+                                    <div>
+                                        E-Mail: vlada.filip1@seznam.cz <br />
+                                        Tel.: 608528182 <br />
+                                        Město: Zlín - okraj <br />
+                                    </div>
+                            
                                 </div>
+
                             </div>
 
-                            <div class="text-h3">
-                                <span class="font-normal">Cena:</span> 30 000 Kč
+                            <div class="space-y-8">
+                                <img src="https://dummyimage.com/500x800/9e9e9e/fff&text=Reklama" alt="" />
+                                <img src="https://dummyimage.com/500x500/9e9e9e/fff&text=Reklama" alt="" />
                             </div>
 
-                            <div class="text-lg mb-10">
-                                Prodám Vrabce.Skladací křídla,po přestavbě na rotax 447 (5h od go).
-                                Je potřeba dodělat palivovou soustavu,eletroinstalaci, překryt motoru,Letadlo po opravě zadní části trupu,v místě ostruhy.
-                                Více po telefonu, zašlu mailem.
-                                Nabídněte.
-                            </div>
-
-                            <div class="border-t pt-4 gap-y-4 border-gray-200 mb-10 flex flex-wrap justify-between">
-                                <div>
-                                    <span class="text-gray-400">Lokalita:</span>
-                                    <span>Zlínský kraj</span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-400">Vloženo:</span>
-                                    <span>Dnes</span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-400">Zobrazeno:</span>
-                                    <span>113x</span>
-                                </div>
-                            </div>
-
-
-                            <div class="border border-gray-200 p-5 rounded-md">
-                                <div class="text-h3 mb-3">Kontakt</div>
-                                <div>
-                                    E-Mail: vlada.filip1@seznam.cz <br />
-                                    Tel.: 608528182 <br />
-                                    Město: Zlín - okraj <br />
-                                </div>
-                        
-                            </div>
-
-                        </div>
-
-                        <div class="space-y-8">
-                            <img src="https://dummyimage.com/500x800/9e9e9e/fff&text=Reklama" alt="" />
-                            <img src="https://dummyimage.com/500x500/9e9e9e/fff&text=Reklama" alt="" />
                         </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
 
 
-   <section class="pb-10">
+         <section class="pb-10">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">

@@ -1,0 +1,197 @@
+{var $htmlClass = 'homepage'}
+
+{var $advertisements = [
+    [
+        'heading' => 'UL letadlo části prodám',
+        'content' => 'Prodám potažená křídla,konstrukci trupu,motor. Cenu lze dohodnout.',
+        'price' => '15 000 Kč',
+        'date' => 'Dnes',
+        'img' => '/assets/gfx/tmp/plane2.jpg',
+        'location' => 'Praha - Východ',
+        'top' => true,
+    ],
+    [
+        'heading' => 'Tažná levotočivá vrtule Rotax 582',
+        'content' => 'Koupím zachovalou, na zemi/za letu stavitelnou (levotočivou) vrtuli pro Rotax 582.',
+        'price' => 'neuvedeno',
+        'date' => 'Dnes',
+        'img' => '/assets/gfx/tmp/plane3.jpg',
+
+        'location' => 'Praha - Západ',
+    ],
+    [
+        'heading' => 'Prodám FLYDAT pro Rotax+EGT+CHT',
+        'content' => 'Prodám Flydat pro Rotax +4X EGT Rotax,1x CHT rotax, Snímač tlaku oleje VDO, propojovací kabel k PC+SW. Upgrade avioniky.',
+        'price' => '1 200 Kč',
+        'date' => 'Včera',
+        'img' => '/assets/gfx/tmp/plane8.jpg',
+        'location' => 'Zlínský',
+    ],
+    [
+        'heading' => 'Pronájem 1 místa v soukromém hangáru',
+        'content' => '
+        Nabízíme 1 místo pro Ulla v soukromém hangáru na letišti Hosín.
+Hangár pro 4 Ulla
+Dveře ze dvou stran , vyndá se jen 1ulla .
+Hlídané on-line kamery.
+Alarm
+Cena za měsíc 2000',
+        'price' => '2 000 Kč',
+        'date' => '12.2.2023',
+        'img' => '/assets/gfx/tmp/plane5.jpg',
+        'location' => 'Moravský',
+    ],
+    [
+        'heading' => 'Rotax 503 motor',
+        'content' => 'Prodam motor Rotax 503 .Včetně sani,výfuku, nádrže a různé komponenty, které tím souvisí. K tomu spoustu dílů. Motor by mel byt nový, jako náhradní.',
+        'price' => '43 500 Kč',
+        'date' => '11.2.2023',
+        'img' => '/assets/gfx/tmp/plane6.jpg',
+        'location' => 'KráloveHradecký',
+    ],
+]}
+
+
+
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+
+    <main class="BaseContainer__Main">
+        
+        <div class="pt-5 pb-10">
+            <div class="Container">
+                <div class="Row space-y-8">
+                    <div class="Col w-full text-sm flex items-center gap-1">
+                        <a class="text-gray-500 hover:underline" href="">Úvod</a>
+                        /
+                        <a class="text-gray-500 hover:underline" href="">Nabídky</a>
+                        /
+                        <a class="text-gray-500 hover:underline" href="">Ultralehká letadla</a>
+                        /
+                        <span>Letadla</span>
+                    </div>
+                    <div class="Col w-full">
+                        <a href="" class="Btn -BlackOutlined">
+                            {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 transform rotate-90 mr-2'|noescape}
+                            Zpět na Ultralehká letadla
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+            
+        <section class="py-10">
+                <div class="Container">
+                    <div class="Row">
+                        <div class="Col w-full">
+                            <h2 class="text-h2 text-left mb-6 Lined-1">Ultralehká letadla</h2>
+
+                            <div 
+            
+                                class="relative mb-8 grid grid-cols-4 gap-4"
+                            >
+
+                            
+                                {foreach range(1, 4) as $i} 
+                                    {foreach $advertisements as $adv}
+                                        <a href="#" n:class="
+                                            'swiper-slide 
+                                            relative
+                                            transition-transform
+                                            duration-200
+                                            transform hover:-translate-y-1 hover:shadow-md
+                                            flex flex-col rounded-md border border-gray-200',
+                                            isset($adv[top]) ? 'bg-yellow-100'
+                                            "
+                                            style="height: auto !important;"
+                                        >
+                                            <span n:if="isset($adv[top])"
+                                                class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-xs"
+                                            >TOP</span>
+
+                                            <span
+                                                class="absolute 
+                                                group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+                                                    rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+                                            >
+                                                {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+                                            </span>
+
+                                            <img 
+                                            alt="" 
+                                            src="{$adv['img']}" 
+                                            class="h-56 w-full object-cover" />
+
+                                            <div class="p-5 pb-2 flex-grow flex flex-col">
+                                                <h3 class="text-h4 mb-4 line-clamp-3">
+                                                    {$adv['heading']} 
+                                                </h3>
+
+                                                <p class="text-sm text-_black line-clamp-3 mb-4">
+                                                        {$adv['content']} 
+                                                </p>
+                                                <div class="mt-auto">
+
+                                                    <p class="text-h3 mb-0">
+                                                        {if $adv['price'] == 'neuvedeno'}
+                                                            <span class="text-gray-500 text-sm">cena neuvedena</span>
+                                                        {else}
+                                                            {$adv['price']} 
+                                                        {/if}
+                                                    </p>
+                                                    <p class="border-t -ml-5 -mr-5 px-5 pt-2 mt-2 text-xs text-gray-500 flex flex-wrap justify-between">
+                                                        <span class="inline-flex items-center gap-x-1 -ml-0.5">
+                                                            {='assets/gfx/svg/icon-pin.svg'|svg:'w-4 h-4'|noescape}
+                                                            {$adv['location']}
+                                                        </span>
+                                                        <span>{$adv['date']} </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    {/foreach}
+                                {/foreach}
+                                
+                            
+        
+                            </div>
+
+
+
+                            <div class="text-center mb-6 mt-12">
+                                <a href="" class="Btn -Black min-w-[150px] mx-auto">Zobrazit další nabídky</a>
+                            </div>
+
+                            <div class="text-center">
+                             <a href="" class="Btn -BlackOutlined -Xs">1</a>
+                             <a href="" class="Btn -BlackOutlined -Xs">2</a>
+                             <span class="px-4">&hellip;</span>
+                             <a href="" class="Btn -BlackOutlined -Xs">23</a>
+                             <a href="" class="Btn -BlackOutlined -Xs">24</a>
+                             <a href="" class="Btn -BlackOutlined -Xs">25</a>
+
+                             <span class="px-4">&hellip;</span>
+                             <a href="" class="Btn -BlackOutlined -Xs">87</a>
+                             <a href="" class="Btn -BlackOutlined -Xs">88</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+  
+
+
+    </main>
+
+
+    {include '../fragments/footer.latte'}
+    
+{/block}

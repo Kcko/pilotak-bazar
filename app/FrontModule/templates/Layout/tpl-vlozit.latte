@@ -1,0 +1,267 @@
+{var $htmlClass = 'homepage'}
+
+
+{var $categories = [
+    'Ultralehká letadla (UL)' => [
+        'Letadla',
+        'Přístroje a příslušenství',
+        'Spoluvlastnictví letadel',
+        'Vrtule a motory',
+
+    ],
+    'Klasická letadla (PPL+MEP)' => [
+        'AeroEngine',
+        'Letadla ',
+        'Přístroje a příslušenství',
+        'Spoluvlastnictví letadel',
+        'Vrtule a motory',
+    ],
+    'Vrtulníky a helikoptéry' => [
+        'Přístroje a příslušenství',
+        'Ultralehké vrtulníky (ULH)',
+        'Vrtule / Motory / Rotory',
+        'Vrtulníky a helikoptéry',
+
+    ],
+    'Větroně - Kluzáky (GLD)'  => [
+        'Motorové větroně ',
+        'Přístroje a příslušenství ',
+        'Spoluvlastnictví větroňů',
+        'Větroně a kluzáky ',
+    ],
+    'Ostatní inzerce a vybavení' => [
+        'Avionika a přístroje',
+        'Dokumentace a knihy ',
+        'Doplňky letadel ',
+        'GPS navigace, mapy ',
+        'Kamery, Foto, Videotechnika ',
+        'Modely letadel - modeláři ',
+        'Oblečení a doplňky ',
+        'Ostatní ',
+        'Pozemky a nemovitosti u letiště ',
+        'Rogala / Padáky / Motory ',
+    ],
+    'Práce v letectví' => [
+        'Nabídka práce v letectví',
+        'Poptávka práce v letectví',
+    ],
+    'Hangáry a parkování' => [
+        'Hangáry na Slovensku',
+        'Hangáry v Česku'
+    ],
+]}
+
+
+
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+
+    <main class="BaseContainer__Main bg-gray-100">
+        
+        
+        <div class="py-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        
+                        <h1 class="text-h2 mb-10 Lined-1 text-center">Vložit inzerát</h1>
+                
+                        
+                        <div class="mx-auto max-w-3xl bg-white rounded p-5 border  shadow border-gray-200">
+
+                            <form class="space-y-8 divide-y divide-gray-200">
+                                <div class="space-y-8 divide-y divide-gray-200">
+                                    <div>
+                                            <h3 class="text-h3 relative Lined-1 mb-8">Co nabízíte / poptáváte?</h3>
+                                            {* Heading *}
+                                            <div class="mb-5">
+                                                <label for="country" class="block font-medium text-gray-700 text-base">Typ inzerátu</label>
+                                                <div class="mt-1">
+                                                    <select id="type" name="type" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <option>Prodám</option>
+                                                        <option>Koupím</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="mb-5">
+                                                <label for="heading" class="block font-medium text-gray-700 text-base">Název inzerátu</label>
+                                                <div class="mt-1">
+                                                    <input id="heading" name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <div class="text-gray-400 text-sm pt-1">Pojmenujte inzerát co nejvýstižněji</div>
+                                                </div>
+                                            </div>
+
+
+                                            {* Content *}
+                                            <div class="mb-5" x-data="{ chars: 0 }">
+                                                <label for="about" class="block font-medium text-gray-700 text-base">Popište detail inzerátu</label>
+                                                <div class="mt-1">
+                                                    <textarea @input="chars = $el.value.length" maxlength="1000" id="about" name="about" rows="6" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                                    <div class="text-gray-400 text-sm pt-1 flex justify-between">
+                                                        <span>Nepovinné, max. 1000 znaků</span>
+                                                        <span><span x-text="chars">0</span>/1000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-5">
+                                                <label for="cover-photo" class="block font-medium text-gray-700 text-base">Fotografie</label>
+                                                <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                                    <div class="space-y-1 text-center">
+                                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                        <div class="flex text-sm text-gray-600">
+                                                            <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                                                <span>Nahrát fotografie</span>
+                                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                            </label>
+                                                            <p class="pl-1">nebo přetáhněte ze svého PC</p>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">PNG; JPG do 5MB</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-gray-400 text-sm pt-1">Nepovinné, maximálně lze vložit 10 fotografií</div>
+                                            </div>
+
+                                            <h3 class="text-h3 relative Lined-1 mt-8 mb-8">Kategorie a cena</h3>
+
+                                            <div class="mb-5">
+                                                <label for="country" class="block font-medium text-gray-700 text-base">Kategorie</label>
+                                                <div class="mt-1">
+                                                    <select id="category" name="category" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        {foreach $categories as $category => $arr}
+                                                            <optgroup label="{$category}">
+                                                                {foreach $arr as $subcategory}
+                                                                    <option value="{$subcategory}">{$subcategory}</option>
+                                                                {/foreach}
+                                                            </optgroup>
+                                                        {/foreach}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <div class="grid grid-cols-3 gap-5 mb-5">
+                                            
+                                                <div class="col-span-2">
+                                                    <label for="price" class="block font-medium text-gray-700 text-base">Cena</label>
+                                                    <div class="mt-1">
+                                                        <input id="price" name="price" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <div class="text-gray-400 text-sm pt-1">Nepovinné, při neuvedení ceny se zobrazí "neuvedeno"</div>
+                                                    
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <label for="currency" class="block font-medium text-gray-700 text-base">Měna</label>
+                                                    <div class="mt-1">
+                                                        <select id="currency" name="currency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <option value="Kč">Kč</option>
+                                                        <option value="Eur">Eur</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+
+
+
+                                            <h3 class="text-h3 relative Lined-1 mt-8 mb-8">Kontaktní údaje</h3>
+                                            
+                                            <div class="grid grid-cols-2 gap-5 mb-5">
+                                                <div>
+                                                    <label for="email" class="block font-medium text-gray-700 text-base">E-mail</label>
+                                                    <div class="mt-1">
+                                                          <input id="email" name="email" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <label for="phone" class="block font-medium text-gray-700 text-base">Telefon</label>
+                                                    <div class="mt-1">
+                                                          <input id="phone" name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+ 
+                                            <div class="grid grid-cols-2 gap-5 mb-5">
+                                                <div>
+                                                    <label for="currency" class="block font-medium text-gray-700 text-base">Kraj</label>
+                                                    <div class="mt-1">
+                                                        <select id="currency" name="currency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <optgroup label="Česká republika">
+                                                       
+                                                            <option value="1">Praha</option>
+                                                            <option value="2">Liberecký</option>
+                                                            <option value="3">Zlínský</option>
+                                                            <option value="4">Moravský</option>
+                                                            <option value="5">Středočeský</option>
+                                                            <option value="5">Liberecký</option>
+                                                            <option value="6">KráloveHradecký</option>
+                                                            <option value="7">Ústecký</option>
+                                                            <option value="8">Plzeňský</option>
+                                                            <option value="9">Jihočeský</option>
+                                                            <option value="10">Ostravský</option>
+                                                            <option value="11">Vysočina</option>
+                                                        </optgroup>
+
+                                                        <optgroup label="Slovensko">
+                                                            <option value="xx">Celé slovensko</option>
+                                                        </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <label for="phone" class="block font-medium text-gray-700 text-base">Město</label>
+                                                    <div class="mt-1">
+                                                          <input id="phone" name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                             
+
+                                        </div>
+                                    </div>
+                
+
+                                    <div class="pt-5">
+                                        <div class="text-sm text-gray-400">
+                                            Odesláním formuláře souhlasíte se <a href="" class="underline">smluvními podmínkami</a>.
+                                        </div>
+
+
+                                        <div class="flex justify-end">
+                                            <button type="submit" class="Btn -Black">Uložit</button>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </form>
+                        </div>
+
+
+                
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  
+        </section>
+
+
+    </main>
+
+
+    {include '../fragments/footer.latte'}
+    
+{/block}

@@ -46,6 +46,10 @@
       }
     }
 
+    &.-Xs {
+      min-height: 32px;
+      @apply text-sm px-3;
+    }
     &.-Xl {
       min-height: 56px;
       @apply text-lg;

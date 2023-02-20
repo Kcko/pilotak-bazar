@@ -136,7 +136,11 @@ Cena za měsíc 2000',
                 <div class="Row">
                     <div class="Col w-full">
                         <div class="flex flex-wrap items-center justify-between mb-8">
-                            <h2 class="text-h2 text-center mb-0 Lined-1">Vyberte si ze <span class="text-_yellow">169 450</span> nabídek a <span class="text-_yellow">43 649</span> poptávek</h2>
+                            <h2 class="text-h2 text-center mb-0 Lined-1">
+                                Vyberte si ze 
+                                <span class="text-gray-400">169 450</span> nabídek a 
+                                <span class="text-gray-400">43 649</span> poptávek
+                            </h2>
                             {* <p class="flex gap-3">
                                 <a href="" class="Btn -Black min-w-[150px]">Nabídky </a>
                                 <a href="" class="Btn -BlackOutlined min-w-[150px]">Poptávky</a>
@@ -231,6 +235,18 @@ Cena za měsíc 2000',
                                                     kategorie
                                                 {else}
                                                     kategorií
+                                                {/if}
+
+                                            </div>
+                                            <div class="text-xs text-gray-500 font-light">
+                                                {var $rand = rand(60, 2000)}
+                                                {$rand}
+                                                {if $rand == 1}
+                                                    inzerát
+                                                {elseif $rand < 5}
+                                                    inzeráty
+                                                {else}
+                                                    inzerátů
                                                 {/if}
 
                                             </div>

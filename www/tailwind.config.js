@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/forms'),
     require('tailwindcss-debug-screens'),
     plugin(function ({ addVariant }) {
       addVariant('important', ({ container }) => {

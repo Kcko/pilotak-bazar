@@ -37,8 +37,13 @@
 
 		{* AOS *}
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>			
+		
+		{* Modal gallery *}
+		<script src="/assets/js/vndr/fslightbox/fslightbox.js"></script>
+	
 		{* ALPINEJS *}
 		<script src="/assets/js/alpine.js?{=filemtime('./assets/js/alpine.js')}" defer type="module"></script>
+		
 		{* APP *}
 		<script src="/assets/js/app.js?{=filemtime('./assets/js/app.js')}" defer type="module"></script>
 	
@@ -114,6 +119,11 @@
 		{* COOKIES *}
 		{* {include './fragments/eu-cookies.latte'} *}
 		{* //COOKIES *}
+
+
+		{* Modal*}
+		
+		{block modalGallery}{/block}
 
 		<script	n:syntax="off"> 
 			AOS.init({
