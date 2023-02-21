@@ -16,6 +16,10 @@
     @apply text-lg font-bold mb-6 leading-tight;
   }
 
+  .text-h5 {
+    @apply text-base font-bold mb-6 leading-tight;
+  }
+
   .BulletListYellow {
     li {
       @apply relative;

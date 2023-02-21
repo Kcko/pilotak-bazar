@@ -592,6 +592,7 @@ html {
 
 body {
   font-weight: 400;
+  line-height: 1.5;
   --tw-text-opacity: 1;
   color: rgb(2 1 1 / var(--tw-text-opacity));
   -webkit-font-smoothing: antialiased;
@@ -862,6 +863,13 @@ html.Lock,
   margin-bottom: 1.5rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.text-h5 {
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -1346,6 +1354,10 @@ html.Lock,
   margin-bottom: 3rem;
 }
 
+.mb-14 {
+  margin-bottom: 3.5rem;
+}
+
 .mb-16 {
   margin-bottom: 4rem;
 }
@@ -1384,6 +1396,10 @@ html.Lock,
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
 }
 
 .ml-3 {
@@ -1502,10 +1518,6 @@ html.Lock,
   height: 66.666667%;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
 .h-3 {
   height: 0.75rem;
 }
@@ -1554,8 +1566,8 @@ html.Lock,
   min-height: 300px;
 }
 
-.min-h-\[70vh\] {
-  min-height: 70vh;
+.min-h-\[50vh\] {
+  min-height: 50vh;
 }
 
 .w-1\/2 {
@@ -1638,8 +1650,32 @@ html.Lock,
   max-width: 50ch;
 }
 
+.max-w-\[75\%\] {
+  max-width: 75%;
+}
+
 .max-w-lg {
   max-width: 32rem;
+}
+
+.max-w-\[50\%\] {
+  max-width: 50%;
+}
+
+.max-w-\[60\%\] {
+  max-width: 60%;
+}
+
+.max-w-\[65\%\] {
+  max-width: 65%;
+}
+
+.max-w-\[70\%\] {
+  max-width: 70%;
+}
+
+.max-w-\[80\%\] {
+  max-width: 80%;
 }
 
 .flex-1 {
@@ -1695,6 +1731,14 @@ html.Lock,
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.auto-rows-auto {
+  grid-auto-rows: auto;
+}
+
+.auto-rows-fr {
+  grid-auto-rows: minmax(0, 1fr);
 }
 
 .grid-cols-10 {
@@ -2043,6 +2087,11 @@ html.Lock,
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
 .bg-transparent {
   background-color: transparent;
 }
@@ -2085,6 +2134,10 @@ html.Lock,
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-px {
+  padding: 1px;
 }
 
 .px-0 {
@@ -2179,6 +2232,10 @@ html.Lock,
 
 .pl-1 {
   padding-left: 0.25rem;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
 }
 
 .pl-3 {
@@ -4564,16 +4621,16 @@ https://picsum.photos/id/13/1810/1150
     min-height: 400px;
   }
 
-  .lg\:w-4\/12 {
-    width: 33.333333%;
-  }
-
   .lg\:w-4\/6 {
     width: 66.666667%;
   }
 
-  .lg\:w-8\/12 {
-    width: 66.666667%;
+  .lg\:w-5\/12 {
+    width: 41.666667%;
+  }
+
+  .lg\:w-7\/12 {
+    width: 58.333333%;
   }
 
   .lg\:grid-cols-2 {
@@ -4649,14 +4706,6 @@ https://picsum.photos/id/13/1810/1150
 
   .xl\:col-span-2 {
     grid-column: span 2 / span 2;
-  }
-
-  .xl\:h-28 {
-    height: 7rem;
-  }
-
-  .xl\:w-28 {
-    width: 7rem;
   }
 
   .xl\:grid-cols-12 {

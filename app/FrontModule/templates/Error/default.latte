@@ -10,15 +10,22 @@
 
         <div class="Container pb-16">
             <div class="Row">
-                <main class="PagerOverlayWrapper Col w-full lg:w-8/12 lg:pr-20" role="main">
-					<h1 class="text-h1 mt-12 mb-8">Chybová stránka - 404</h1>
-                    <div class="RichText">
+                <main class="Col w-full lg:w-5/12 lg:pr-20" role="main">
+					<h1 class="text-h1 mt-12 mb-12 Lined-1">Stránka nenalezena</h1>
+                    <div class="RichText mb-10">
               		    {control content}
+                    </div>
+            
+                    <div>
+                        <a href="" class="Btn -BlackOutlined">
+                            {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 transform rotate-90 mr-2'|noescape}
+                            Zpět
+                        </a>
                     </div>
                 </main>
 
-                <aside class="Col w-full lg:w-4/12 mt-10 lg:mt-0 hidden md:flex items-center justify-center" role="complementary">
-                   {='assets/gfx/svg/alert-alert.svg'|svg:'w-20 h-20 xl:w-28 xl:h-28'|noescape}
+                <aside class="Col w-full lg:w-7/12 mt-10 lg:mt-0  md:flex items-center justify-center" role="complementary">
+                  <img src="/assets/gfx/tmp/404.svg" alt="" />
                 </aside>
 
             </div>

@@ -2,7 +2,7 @@
     <div class="Container">
         <div class="Row">
             <div class="Col w-full flex items-center justify-between py-2 gap-x-10">
-                <img src="/assets/gfx/logo.png" class="h-14" alt="" />
+                <a href="/"><img src="/assets/gfx/logo.png" class="h-14" alt="" /></a>
                 <div class="flex-grow">
                     <form action="" class="mx-auto max-w-lg flex ">
                         <input type="text" class="border-0 focus-visible:outline-none focus:ring-2 pr-12 ring-_black ring-offset-1 block w-full py-2.5 px-3 rounded-md" placeholder="Hledat v inzerátech..." />
@@ -51,7 +51,7 @@
                             <li x-data="{ opened: false }" class="relative">
                                 <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
                                     {='assets/gfx/svg/icon-user-na.svg'|svg:'w-5 h-5'|noescape}
-                                    Přihlásit se.
+                                    Přihlásit se
                                 </span>
 
                                 <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-2 shadow absolute rounded-md py-4 px-4 min-w-[350px] right-0">
@@ -83,7 +83,6 @@
                                             Pokud u nás ještě nemáte účet, <a href="" class="text-gray-400 underline ">zaregistrujte se</a> a získejte výhody s registrací spojené 👍
                                         </div>
 
-                                    
                                     </form>
                                 </div>
                             </li>

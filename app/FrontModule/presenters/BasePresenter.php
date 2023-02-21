@@ -3,8 +3,8 @@
 namespace App\FrontModule\Presenters;
 
 use Nette,
-	Andweb,
-	App;
+Andweb,
+App;
 
 use App\FrontModule\Model\PopoUser;
 
@@ -13,7 +13,7 @@ class BasePresenter extends App\Presenters\BasePresenter
 {
 	protected $mobileDetect;
 
-    // /**
+	// /**
 	//  * @var PopoUser $popoUser
 	//  * @inject
 	//  */
@@ -47,7 +47,7 @@ class BasePresenter extends App\Presenters\BasePresenter
 		$navItem = $this->navigation->navItem;
 
 		// title a desc konkretni nav polozky
-		$title       = $navItem['page_title'] ? $navItem['page_title']: $navItem['title'];
+		$title = $navItem['page_title'] ? $navItem['page_title'] : $navItem['title'];
 		$description = strip_tags($navItem['page_description']);
 		$image = null;
 		if ($navItem['image_id'] && $navItem->image) {
@@ -63,7 +63,7 @@ class BasePresenter extends App\Presenters\BasePresenter
 		// FB + Common
 		$this['metaHeaders']->setHeader('og:locale', $locale);
 		$this['metaHeaders']->setHeader('og:type', 'website');
-		$this['metaHeaders']->setHeader('og:site_name', 'H2O Group');
+		$this['metaHeaders']->setHeader('og:site_name', 'Pilotak.cz - letecký bazar');
 
 		$this['metaHeaders']->setHeader('og:title', $title);
 		$this['metaHeaders']->setHeader('og:description', $description);
@@ -88,7 +88,7 @@ class BasePresenter extends App\Presenters\BasePresenter
 
 		$this->mobileDetect = new \Mobile_Detect;
 
-	
+
 	}
 
 	public function isMobile()
@@ -103,6 +103,6 @@ class BasePresenter extends App\Presenters\BasePresenter
 
 	protected function ajaxRedraw()
 	{
-	
+
 	}
 }

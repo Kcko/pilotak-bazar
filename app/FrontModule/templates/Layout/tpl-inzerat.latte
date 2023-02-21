@@ -226,8 +226,12 @@ Cena za měsíc 2000',
                             </div>
 
                             <div class="space-y-8">
-                                <img src="https://dummyimage.com/500x800/9e9e9e/fff&text=Reklama" alt="" />
-                                <img src="https://dummyimage.com/500x500/9e9e9e/fff&text=Reklama" alt="" />
+                                <div class="border border-gray-200 rounded p-px">
+                                    <img src="https://dummyimage.com/500x800/9e9e9e/fff&text=Reklama" alt="" />
+                                </div>
+                                <div class="border border-gray-200 rounded p-px">
+                                    <img src="https://dummyimage.com/500x500/9e9e9e/fff&text=Reklama" alt="" />
+                                </div>
                             </div>
 
                         </div>
@@ -348,7 +352,10 @@ Cena za měsíc 2000',
                         </div>
 
                         <div class="text-center">
-                            <a href="" class="Btn -Black min-w-[150px] mx-auto">Další nabídky</a>
+                            <a href="" class="Btn -Black min-w-[150px] mx-auto">
+                                Další nabídky
+                                {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,26 @@
     ],
     [
         'heading' => 'Tažná levotočivá vrtule Rotax 582',
+        'content' => 'Trup trubkový svařenec, křídlo minimax, cestovní rychlost: 100-110km/h, maximální rychlost: 150 km/h, minimální rychlost: 65 km/h. Trup nově potažen, motor vw 1.6 dvouděrové hlavy, výkon 55 koní, objem nádrží 2x 20l, vrtule woodcomp 150, klapky neutrál, přistávací a 1 poloha záporné, vyvážení pevné. Po předchozí domluvě možno vidět ve Strunkovicích. Kontakt: 730587328.',
+        'price' => '130 000 Kč',
+        'date' => 'Dnes',
+        'img' => '/assets/gfx/tmp/plane13.jpg',
+
+        'location' => 'Moravský',
+    ],
+
+    [
+        'heading' => 'Vyhlídkové lety vrtulníkem',
+        'content' => 'Vyzkoušejte si jak se létá vrtulníkem a staňte se pilotem vrtulníku na zkoušku americké výroby Robinson R22 nebo vrtulníkem Robinson R44 s odletem přímo Brna, Olomouce, Mladé Boleslavi, Roudnice nad Labem nebo Hradce Králové.',
+        'price' => '3600 Kč',
+        'date' => 'reklama',
+        'img' => '/assets/gfx/tmp/helicopter.jpg',
+        'location' => 'Celá ČR',
+        'adv' => true,
+    ],
+
+    [
+        'heading' => 'Čertolet OK-CUX 19',
         'content' => 'Koupím zachovalou, na zemi/za letu stavitelnou (levotočivou) vrtuli pro Rotax 582.',
         'price' => 'neuvedeno',
         'date' => 'Dnes',
@@ -19,6 +39,25 @@
 
         'location' => 'Praha - Západ',
     ],
+    [
+        'heading' => 'Cora 9',
+        'content' => 'Prodám ULL Cora, nálet 366h, motor Subaru EA81 s jedním karburátorem Weber, řemenový reduktor s příčným ozubením, vrtule třílistá Woodcomp, zabudovaná ručka , sluchátka, zatáčkoměr,rychloměr, taplota vody, oleje, topení, ampérmetr,vario, teploměr vnější i vnitřní. Nikdy nehavarované pohodové letadlo s cestovní rychlostí díky použitému motoru 130-140km. Obdélníková dřevěná křídla s křidélky po celém rozpětí.',
+        'price' => '220 000 Kč',
+        'date' => 'Včera',
+        'img' => '/assets/gfx/tmp/plane14.jpg',
+
+        'location' => 'Středočeský',
+    ],
+    [
+        'heading' => 'Vyhlídkové lety',
+        'content' => 'Rádi byste si užili zážitek vyhlídkového letu společně se svoji rodinou nebo blízkými přáteli? V tom případě Vám nabízíme vyhlídkové lety v letadle určeném až pro 5 pasažérů a jednoho pilota. Vyhlídkový let se tak stane jedinečnou vzpomínkou nejen pro Vás, ale i Vaše blízké.',
+        'price' => '1890 Kč',
+        'date' => 'reklama',
+        'img' => '/assets/gfx/tmp/plane15.jpg',
+        'location' => 'Celá ČR',
+        'adv' => true,
+    ],
+
     [
         'heading' => 'Prodám FLYDAT pro Rotax+EGT+CHT',
         'content' => 'Prodám Flydat pro Rotax +4X EGT Rotax,1x CHT rotax, Snímač tlaku oleje VDO, propojovací kabel k PC+SW. Upgrade avioniky.',
@@ -61,7 +100,7 @@ Cena za měsíc 2000',
 
     <main class="BaseContainer__Main">
         
-        <div class="pt-5 pb-10">
+        <div class="pt-5 pb-10 bg-[#f2f2f2]">
             <div class="Container">
                 <div class="Row space-y-8">
                     <div class="Col w-full text-sm flex items-center gap-1">
@@ -73,24 +112,85 @@ Cena za měsíc 2000',
                         /
                         <span>Letadla</span>
                     </div>
-                    <div class="Col w-full">
+                    {* <div class="Col w-full">
                         <a href="" class="Btn -BlackOutlined">
                             {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 transform rotate-90 mr-2'|noescape}
                             Zpět na Ultralehká letadla
                         </a>
-                    </div>
+                    </div> *}
                 </div>
             </div>
         </div>
 
-
-
-            
-        <section class="py-10">
+     
+        <section class="pb-10 bg-[#f2f2f2]">
                 <div class="Container">
                     <div class="Row">
                         <div class="Col w-full">
-                            <h2 class="text-h2 text-left mb-6 Lined-1">Ultralehká letadla</h2>
+                            <h2 class="text-h2 text-left mb-14 Lined-1">Ultralehká letadla</h2>
+
+
+                            <div class="grid grid-cols-4 gap-3  auto-rows-fr">
+
+                                {var $categories = [
+
+                                    'Letadla',
+                                    'Přístroje a příslušenství',
+                                    'Spoluvlastnictví letadel',
+                                    'Vrtule a motory',
+                                ]}
+
+                                {foreach $categories as $cat}
+                        
+                                    <a href="" class="
+                                        bg-white border border-gray-200 relative rounded-md
+                                        bg-white  hover:shadow-md hover:shadow-slate-900/10 px-5 py-3 rounded
+                                                                                
+                                                transition-transform
+                                                duration-200
+                                                transform hover:-translate-y-1 hover:shadow-md
+                                        
+                                        ">
+                                        <h3 class="text-h4 mb-0 flex gap-x-4 items-center">
+
+                                            <div>
+                                                {$cat}
+                                                <div class="text-xs text-gray-500 font-light">
+                                                    {var $rand = rand(60, 2000)}
+                                                    {$rand}
+                                                    {if $rand == 1}
+                                                        inzerát
+                                                    {elseif $rand < 5}
+                                                        inzeráty
+                                                    {else}
+                                                        inzerátů
+                                                    {/if}
+
+                                                </div>
+                                            </div>
+                                        </h3>
+                                        
+                                    </a>
+                                {/foreach}
+                            
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="pb-10">
+
+                <div class="border-t border-gray-200 mb-10"></div>
+
+                <div class="Container">
+                    <div class="Row">
+                        <div class="Col w-full">
+
+                            <div class="border border-gray-200 rounded mb-6 p-4">
+                                Filtry
+                            </div>
 
                             <div 
             
@@ -98,7 +198,7 @@ Cena za měsíc 2000',
                             >
 
                             
-                                {foreach range(1, 4) as $i} 
+                                {foreach range(1, 2) as $i} 
                                     {foreach $advertisements as $adv}
                                         <a href="#" n:class="
                                             'swiper-slide 
@@ -115,13 +215,17 @@ Cena za měsíc 2000',
                                                 class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-xs"
                                             >TOP</span>
 
-                                            <span
+                                            <span n:if="!isset($adv['adv'])"
                                                 class="absolute 
                                                 group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
-                                                    rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+                                                 rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
                                             >
                                                 {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
                                             </span>
+
+                                            <span n:if="isset($adv[adv])"
+                                                class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs"
+                                            >Reklama</span>
 
                                             <img 
                                             alt="" 
@@ -164,10 +268,20 @@ Cena za měsíc 2000',
 
 
 
-                            <div class="text-center mb-6 mt-12">
-                                <a href="" class="Btn -Black min-w-[150px] mx-auto">Zobrazit další nabídky</a>
-                            </div>
+                            <div class="mt-12 flex flex-wrap gap-6 justify-center">
+                                <a href="" class="Btn -BlackOutlined min-w-[150px]">
+                                    
+                                    {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 mr-2'|noescape}
+                                    Předchozí
 
+                                </a>
+                                <a href="" class="Btn -BlackOutlined min-w-[150px]"
+                                >
+                                    Další
+                                    {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                                </a>
+                            </div>
+{* 
                             <div class="text-center">
                              <a href="" class="Btn -BlackOutlined -Xs">1</a>
                              <a href="" class="Btn -BlackOutlined -Xs">2</a>
@@ -179,7 +293,7 @@ Cena za měsíc 2000',
                              <span class="px-4">&hellip;</span>
                              <a href="" class="Btn -BlackOutlined -Xs">87</a>
                              <a href="" class="Btn -BlackOutlined -Xs">88</a>
-                            </div>
+                            </div> *}
 
                         </div>
                     </div>
