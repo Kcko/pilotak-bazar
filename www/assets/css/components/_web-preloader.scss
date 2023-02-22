@@ -10,13 +10,13 @@
 }
 
 #web-status {
-  @apply w-20 h-20 lg:w-48 lg:h-48;
+  @apply w-20 h-20 lg:w-60 lg:h-60;
 
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-image: url('/assets/gfx/logo.png');
+  background-image: url('/assets/gfx/logo-preloader.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

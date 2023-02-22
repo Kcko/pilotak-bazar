@@ -45,39 +45,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
   })
 
   // welcome preloader
-
   preloaderInit().then(() => {})
-
-  // sliders
-  const sliders = document.querySelectorAll('.swiper')
-  sliders.forEach((slider) => {
-    const uniqid = slider.getAttribute('data-uniqid')
-
-    const swiper = new Swiper(slider, {
-      loop: true,
-      slidesPerView: 'auto',
-      speed: 750,
-      spaceBetween: 32,
-      pagination: {
-        el: '.swiper-pagination-h2o',
-        clickable: true,
-        bulletClass: 'swiper-bullet',
-        bulletActiveClass: 'swiper-bullet-active',
-        renderBullet: function (index, className) {
-          return '<span class="' + className + '"></span>'
-        }
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next[data-uniqid="' + uniqid + '"]',
-        prevEl: '.swiper-button-prev[data-uniqid="' + uniqid + '"]'
-      }
-
-      // // And if we need scrollbar
-      // scrollbar: {
-      //   el: '.swiper-scrollbar'
-      // }
-    })
-  })
 })

@@ -35,7 +35,7 @@
         'content' => 'Koupím zachovalou, na zemi/za letu stavitelnou (levotočivou) vrtuli pro Rotax 582.',
         'price' => 'neuvedeno',
         'date' => 'Dnes',
-        'img' => '/assets/gfx/tmp/plane3.jpg',
+        'img' => '/assets/gfx/no-image.jpg',
 
         'location' => 'Praha - Západ',
     ],
@@ -102,7 +102,7 @@ Cena za měsíc 2000',
         
         <div class="pt-5 pb-10 bg-[#f2f2f2]">
             <div class="Container">
-                <div class="Row space-y-8">
+                <div class="Row space-y-4">
                     <div class="Col w-full text-sm flex items-center gap-1">
                         <a class="text-gray-500 hover:underline" href="">Úvod</a>
                         /
@@ -112,12 +112,12 @@ Cena za měsíc 2000',
                         /
                         <span>Letadla</span>
                     </div>
-                    {* <div class="Col w-full">
-                        <a href="" class="Btn -BlackOutlined">
-                            {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 transform rotate-90 mr-2'|noescape}
-                            Zpět na Ultralehká letadla
+                    <div class="Col w-full">
+                        <a href="" class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
+                            {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 transform mr-1'|noescape}
+                            Zpět
                         </a>
-                    </div> *}
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,7 +126,16 @@ Cena za měsíc 2000',
         <section class="pb-10 bg-[#f2f2f2]">
                 <div class="Container">
                     <div class="Row">
-                        <div class="Col w-full">
+
+                        <div  n:if="isset($_GET['search'])" class="Col w-full">
+                            <h2 class="flex gap-x-4 flex-wrap items-center text-h2 font-normal text-left mb-0 Lined-1">
+                                Výsledky pro 
+                                <mark class="font-bold bg-yellow-100 rounded px-1">&bdquo;náhradní vrtule ke kluzáku&ldquo;</mark> 
+                                <span class="text-gray-500 text-h3 mb-0">(41x)</span>
+                            </h2>
+                        </div>
+
+                        <div n:if="!isset($_GET['search'])" class="Col w-full">
                             <h2 class="text-h2 text-left mb-14 Lined-1">Ultralehká letadla</h2>
 
 
@@ -180,125 +189,203 @@ Cena za měsíc 2000',
                 </div>
         </section>
 
-        <section class="pb-10">
 
-                <div class="border-t border-gray-200 mb-10"></div>
+        <section class="pb-10" x-data="{ showFilters: false, view: $persist('columns'), loaded: true }">
+            <div class="border-t border-gray-200 mb-6"></div>
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
 
-                <div class="Container">
-                    <div class="Row">
-                        <div class="Col w-full">
-
-                            <div class="border border-gray-200 rounded mb-6 p-4">
+                        <div class="flex items-center gap-4  border-gray-200 rounded mb-6 py-4">
+                            <div @click="showFilters = true" class="Btn -BlackOutlined min-h-[36px]">
+                                {='assets/gfx/svg/icon-filter.svg'|svg:'w-5 h-5 mr-2'|noescape}
                                 Filtry
                             </div>
 
+                            {* Modal *}
                             <div 
-            
-                                class="relative mb-8 grid grid-cols-4 gap-4"
+                                x-show="showFilters"
+                                @click="showFilters = false"
+                                class="fixed inset-0 z-50"
                             >
-
+                               
+                                <div 
+                                    x-cloak
+                                    x-show="showFilters"
+                                    x-transition:enter="transition-all duration-300"
+                                    x-transition:enter-start="translate-x-full"
+                                    x-transition:enter-end="translate-x-0"
+                                    x-transition:leave="transition-all duration-300"
+                                    x-transition:leave-start="translate-x-0"
+                                    x-transition:leave-end="translate-x-full"
+                                    x-trap.noscroll.inert="showFilters"
+                                    class="fixed shadow z-50 top-0 right-0 bottom-0 overflow-y-auto bg-white p-4  w-[400px] max-w-[100%]"
+                                    @click.stop
+                                    @keyup.escape="showFilters = false"
                             
-                                {foreach range(1, 2) as $i} 
-                                    {foreach $advertisements as $adv}
-                                        <a href="#" n:class="
-                                            'swiper-slide 
-                                            relative
-                                            transition-transform
-                                            duration-200
-                                            transform hover:-translate-y-1 hover:shadow-md
-                                            flex flex-col rounded-md border border-gray-200',
-                                            isset($adv[top]) ? 'bg-yellow-100'
-                                            "
-                                            style="height: auto !important;"
-                                        >
-                                            <span n:if="isset($adv[top])"
-                                                class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-xs"
-                                            >TOP</span>
-
-                                            <span n:if="!isset($adv['adv'])"
-                                                class="absolute 
-                                                group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
-                                                 rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
-                                            >
-                                                {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
-                                            </span>
-
-                                            <span n:if="isset($adv[adv])"
-                                                class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs"
-                                            >Reklama</span>
-
-                                            <img 
-                                            alt="" 
-                                            src="{$adv['img']}" 
-                                            class="h-56 w-full object-cover" />
-
-                                            <div class="p-5 pb-2 flex-grow flex flex-col">
-                                                <h3 class="text-h4 mb-4 line-clamp-3">
-                                                    {$adv['heading']} 
-                                                </h3>
-
-                                                <p class="text-sm text-_black line-clamp-3 mb-4">
-                                                        {$adv['content']} 
-                                                </p>
-                                                <div class="mt-auto">
-
-                                                    <p class="text-h3 mb-0">
-                                                        {if $adv['price'] == 'neuvedeno'}
-                                                            <span class="text-gray-500 text-sm">cena neuvedena</span>
-                                                        {else}
-                                                            {$adv['price']} 
-                                                        {/if}
-                                                    </p>
-                                                    <p class="border-t -ml-5 -mr-5 px-5 pt-2 mt-2 text-xs text-gray-500 flex flex-wrap justify-between">
-                                                        <span class="inline-flex items-center gap-x-1 -ml-0.5">
-                                                            {='assets/gfx/svg/icon-pin.svg'|svg:'w-4 h-4'|noescape}
-                                                            {$adv['location']}
-                                                        </span>
-                                                        <span>{$adv['date']} </span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    {/foreach}
-                                {/foreach}
-                                
-                            
-        
-                            </div>
-
-
-
-                            <div class="mt-12 flex flex-wrap gap-6 justify-center">
-                                <a href="" class="Btn -BlackOutlined min-w-[150px]">
+                            >
                                     
-                                    {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 mr-2'|noescape}
-                                    Předchozí
+                                    <div @click="showFilters = false">close</div>
+                                    
+                                    <div>
+                                        <select  id="type" name="type" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm min-w-[180px]">
+                                            <option value="1">Nabídka</option>
+                                            <option value="2">Poptávka</option>
+                                        </select>
+                                    </div>
 
-                                </a>
-                                <a href="" class="Btn -BlackOutlined min-w-[150px]"
-                                >
-                                    Další
-                                    {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
-                                </a>
+                                    <div>
+                                        
+                                        <select  id="currency" name="currency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm min-w-[180px]">
+                                        <optgroup label="Česká republika">
+                                        
+                                            <option value="1">Praha</option>
+                                            <option value="2">Liberecký</option>
+                                            <option value="3">Zlínský</option>
+                                            <option value="4">Moravský</option>
+                                            <option value="5">Středočeský</option>
+                                            <option value="5">Liberecký</option>
+                                            <option value="6">KráloveHradecký</option>
+                                            <option value="7">Ústecký</option>
+                                            <option value="8">Plzeňský</option>
+                                            <option value="9">Jihočeský</option>
+                                            <option value="10">Ostravský</option>
+                                            <option value="11">Vysočina</option>
+                                        </optgroup>
+
+                                        <optgroup label="Slovensko">
+                                            <option value="xx">Celé slovensko</option>
+                                        </optgroup>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select  id="order" name="order" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm min-w-[180px]">
+                                            <option value="3">Nejnovější</option>
+                                            <option value="1">Nejlevnější</option>
+                                            <option value="2">Nejdražší</option>
+                                        </select>
+                                    </div>
+
+                                </div>
                             </div>
-{* 
-                            <div class="text-center">
-                             <a href="" class="Btn -BlackOutlined -Xs">1</a>
-                             <a href="" class="Btn -BlackOutlined -Xs">2</a>
-                             <span class="px-4">&hellip;</span>
-                             <a href="" class="Btn -BlackOutlined -Xs">23</a>
-                             <a href="" class="Btn -BlackOutlined -Xs">24</a>
-                             <a href="" class="Btn -BlackOutlined -Xs">25</a>
 
-                             <span class="px-4">&hellip;</span>
-                             <a href="" class="Btn -BlackOutlined -Xs">87</a>
-                             <a href="" class="Btn -BlackOutlined -Xs">88</a>
-                            </div> *}
+                            <div x-cloak x-show="loaded" class="ml-auto inline-flex gap-x-2 ">
+                                <span @click="view = 'columns'" class="cursor-pointer" :class="view == 'columns' ? 'text-_black' : 'text-gray-500'" title="Sloupce">
+                                    {='assets/gfx/svg/columns.svg'|svg:'w-8 h-8'|noescape}
+                                </span>
+                                <span @click="view = 'rows'" class="cursor-pointer"  :class="view == 'rows' ? 'text-_black' : 'text-gray-500'" title="Řádky">
+                                    {='assets/gfx/svg/columns.svg'|svg:'w-8 h-8 rotate-90'|noescape}
+                                </span>
+                            </div>
 
                         </div>
+
+
+                        <div x-show="!loaded" class="text-sm text-gray-500">Načítám&hellip;</div>
+
+                        <div 
+                            x-cloak
+                            x-show="loaded"
+                            class="relative mb-8"
+                            :class="{ 'grid grid-cols-4 gap-4' : view == 'columns' }"
+                        >
+
+                            {foreach range(1, 2) as $i} 
+                                {foreach $advertisements as $adv}
+                                    <a href="#" 
+                                    
+                                        n:class="
+                                        'swiper-slide 
+                                        flex
+                                        relative
+                                        transition-transform
+                                        duration-200
+                                        transform hover:-translate-y-1 hover:shadow-md
+                                        rounded-md border border-gray-200',
+                                        isset($adv[top]) ? 'bg-yellow-100'
+                                        
+                                        "
+                                    
+                                        :class="{ 'flex-col': view == 'columns', 'mb-4': view == 'rows' }"
+                                        style="height: auto !important;"
+                                    >
+                                        <span n:if="isset($adv[top])"
+                                            class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-xs"
+                                        >TOP</span>
+
+                                        <span n:if="!isset($adv['adv'])"
+                                            class="absolute 
+                                            group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+                                                rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+                                        >
+                                            {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+                                        </span>
+
+                                        <span n:if="isset($adv[adv])"
+                                            class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs"
+                                        >Reklama</span>
+
+                                        <img 
+                                        alt="" 
+                                        src="{$adv['img']}" 
+                                        :class="{'h-56 w-full object-cover' : view == 'columns', 'h-40 w-40 object-cover' : view == 'rows' }"
+                                        >
+
+                                        <div class="p-5 pb-2 flex-grow flex flex-col">
+                                            <h3 class="text-h4 mb-4 line-clamp-3">
+                                                {$adv['heading']} 
+                                            </h3>
+
+                                            <p class="text-sm text-_black line-clamp-3 mb-4">
+                                                    {$adv['content']} 
+                                            </p>
+                                            <div class="mt-auto">
+
+                                                <p class="text-h3 mb-0">
+                                                    {if $adv['price'] == 'neuvedeno'}
+                                                        <span class="text-gray-500 text-sm">cena neuvedena</span>
+                                                    {else}
+                                                        {$adv['price']} 
+                                                    {/if}
+                                                </p>
+                                                <p class="border-t -ml-5 -mr-5 px-5 pt-2 mt-2 text-xs text-gray-500 flex flex-wrap justify-between">
+                                                    <span class="inline-flex items-center gap-x-1 -ml-0.5">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-4 h-4'|noescape}
+                                                        {$adv['location']}
+                                                    </span>
+                                                    <span>{$adv['date']} </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {/foreach}
+                            {/foreach}
+                            
+                        
+    
+                        </div>
+
+
+
+                        <div class="mt-12 flex flex-wrap gap-6 justify-center">
+                            <a href="" class="Btn -BlackOutlined min-w-[150px]">
+                                
+                                {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 mr-2'|noescape}
+                                Předchozí
+
+                            </a>
+                            <a href="" class="Btn -BlackOutlined min-w-[150px]"
+                            >
+                                Další
+                                {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            </a>
+                        </div>
+
+
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
   
 
