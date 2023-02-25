@@ -50,3 +50,12 @@ https://picsum.photos/id/13/1810/1150
 .grecaptcha-badge {
   visibility: hidden;
 }
+
+.full-width {
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

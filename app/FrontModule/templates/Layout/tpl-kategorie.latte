@@ -139,7 +139,7 @@ Cena za měsíc 2000',
                             <h2 class="text-h2 text-left mb-14 Lined-1">Ultralehká letadla</h2>
 
 
-                            <div class="grid grid-cols-4 gap-3  auto-rows-fr">
+                            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
 
                                 {var $categories = [
 
@@ -196,7 +196,7 @@ Cena za měsíc 2000',
                 <div class="Row">
                     <div class="Col w-full">
 
-                        <div class="flex items-center gap-8 border px-4 border-gray-200 rounded-md mb-6 py-2">
+                        <div class="md:flex flex-wrap  items-center gap-8 border px-4 border-gray-200 rounded-md mb-6 py-2 space-y-3 md:space-y-0">
                             <div class="flex flex-wrap items-center gap-x-6">
                                 <div class="flex items-center">
                                     <input id="type" name="type" type="radio" value="1" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500" checked>
@@ -355,7 +355,7 @@ Cena za měsíc 2000',
                             x-cloak
                             x-show="loaded"
                             class="relative mb-8"
-                            :class="{ 'grid grid-cols-4 gap-4' : view == 'columns' }"
+                            :class="{ 'grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' : view == 'columns' }"
                         >
 
                             {foreach range(1, 2) as $i} 

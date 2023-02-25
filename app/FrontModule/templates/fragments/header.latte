@@ -1,9 +1,10 @@
-<header class="Header bg-_yellow sticky top-0 z-10">
+<header class="Header bg-_yellow sticky top-0 z-10 ">
     <div class="Container">
         <div class="Row">
-            <div class="Col w-full flex items-center justify-between py-2 gap-x-10">
-                <a href="/"><img src="/assets/gfx/logo.png" class="h-14" alt="" /></a>
-                <div class="flex-grow">
+            <div class="Col w-full flex items-center md:justify-between py-2 gap-x-5 md:gap-x-10">
+                <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-14" alt="" /></a>
+                {* Desktop *}
+                <div class="hidden md:block flex-grow">
                     <form action="" class="mx-auto max-w-lg flex ">
                         <input type="text" class="border-0 focus-visible:outline-none focus:ring-2 pr-12 ring-_black ring-offset-1 block w-full py-2.5 px-3 rounded-md" placeholder="Hledat v inzerátech..." />
                         <button class=" rounded-md  px-3 -ml-12">
@@ -11,17 +12,36 @@
                         </button>
                     </form>
                 </div>
-                <nav class="text-_black">
-                    <ul class="flex gap-x-6">
+        
+                <nav class="text-_black flex-shrink-0 flex-grow md:flex-grow-0">
+                    <ul class="flex items-center gap-x-0 md:gap-x-6">
                         {* <li><a href="" class="Btn px-0">Prodám</a></li>
                         <li><a href="" class="Btn px-0">Koupím</a></li> *}
-                        <li><a href="" class="Btn -Black">Vložit inzerát</a></li>
+                        <li class="ml-auto mr-auto"><a href="" class="Btn -Black">Vložit inzerát</a></li>
+                        
+                        {* Mobile *}
+                         <li x-data="{ opened: false }" class="">
+                                   
+                            <button @click="opened = !opened" class=" rounded-md  px-3">
+                                {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8 relative top-1'|noescape}
+                            </button>
+
+                            <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-0 shadow absolute rounded-md py-2 px-4 left-0 right-0">
+                                <form action="" class="mx-auto max-w-lg flex ">
+                                    <input type="text" class="border-0 focus-visible:outline-none focus:ring-2 pr-12 ring-_black ring-offset-1 block w-full py-2.5 px-3 rounded-md" placeholder="Hledat v inzerátech..." />
+                                    <button class=" rounded-md  px-3 -ml-12">
+                                        {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8'|noescape}
+                                    </button>
+                                </form>
+                            </div>
+                            
+                        </li>
                         
                         {if isset($_GET['logged'])}
                             <li x-data="{ opened: false }" class="relative">
                                 <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
-                                    {='assets/gfx/svg/icon-user.svg'|svg:'w-5 h-5'|noescape}
-                                    Patrik B.
+                                    {='assets/gfx/svg/icon-user.svg'|svg:'w-8 h-8 md:w-5 md:h-5'|noescape}
+                                    PB.
                                     {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 -ml-1'|noescape}
                                     
                                 </span>
@@ -50,8 +70,8 @@
                         {else}
                             <li x-data="{ opened: false }" class="relative">
                                 <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
-                                    {='assets/gfx/svg/icon-user-na.svg'|svg:'w-5 h-5'|noescape}
-                                    Přihlásit se
+                                    {='assets/gfx/svg/icon-user-na.svg'|svg:'w-8 h-8 md:w-5 md:h-5'|noescape}
+                                    <span class="hidden md:inline">Přihlásit se</span>
                                 </span>
 
                                 <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-2 shadow absolute rounded-md py-4 px-4 min-w-[350px] right-0">
