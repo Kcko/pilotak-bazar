@@ -1184,6 +1184,10 @@ html.Lock,
   bottom: 0px;
 }
 
+.bottom-8 {
+  bottom: 2rem;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -1244,6 +1248,10 @@ html.Lock,
   top: 100%;
 }
 
+.bottom-2 {
+  bottom: 0.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1258,6 +1266,14 @@ html.Lock,
 
 .z-\[3\] {
   z-index: 3;
+}
+
+.z-\[\] {
+  z-index: ;
+}
+
+.z-\[222\] {
+  z-index: 222;
 }
 
 .order-1 {
@@ -1466,6 +1482,10 @@ html.Lock,
   margin-right: auto;
 }
 
+.mt-0 {
+  margin-top: 0px;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1500,10 +1520,6 @@ html.Lock,
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mt-0 {
-  margin-top: 0px;
 }
 
 .block {
@@ -1688,10 +1704,6 @@ html.Lock,
 
 .min-w-\[180px\] {
   min-width: 180px;
-}
-
-.min-w-\[300px\] {
-  min-width: 300px;
 }
 
 .min-w-\[350px\] {

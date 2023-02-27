@@ -565,10 +565,10 @@ Cena za měsíc 2000',
 
                             </div>
                             <div>
-                                {var $rand = rand(1, 2)}
-                                 <img n:if="$rand === '1'" src="/assets/gfx/tmp/superman.svg" class="max-w-[70%] block mx-auto" alt="" />
+                                {var $rand = 1}
+                                 <img n:if="$rand == '1'" src="/assets/gfx/tmp/superman.svg" class="max-w-[70%] block mx-auto" alt="" />
 
-                                <div n:if=$rand === '2'" class="md:mt-8 p-1 bg-white rounded border border-gray-200">
+                                <div n:if="$rand === '2'" class="md:mt-8 p-1 bg-white rounded border border-gray-200">
                                     <iframe width="560" height="315" class="rounded block w-full " src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
 

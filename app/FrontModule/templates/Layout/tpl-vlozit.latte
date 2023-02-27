@@ -88,11 +88,14 @@
                                             </div>
 
 
-                                            <div class="mb-5">
+                                            <div class="mb-5" x-data="{ chars: 0 }">
                                                 <label for="heading" class="block font-medium text-gray-700 text-base">Název inzerátu</label>
                                                 <div class="mt-1">
-                                                    <input id="heading" name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                    <div class="text-gray-400 text-sm pt-1">Pojmenujte inzerát co nejvýstižněji</div>
+                                                    <input id="heading" @input="chars = $el.value.length" maxlength="100"  name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <div class="text-gray-400 text-sm pt-1 flex justify-between">
+                                                        <span>Pojmenujte inzerát co nejvýstižněji</span>
+                                                        <span><span x-text="chars">0</span>/100</span>
+                                                    </div>
                                                 </div>
                                             </div>
 

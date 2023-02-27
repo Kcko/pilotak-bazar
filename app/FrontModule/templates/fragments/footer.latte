@@ -69,3 +69,22 @@
     </div>
 </footer>
 <div class="bg-_yellow h-1.5"></div>
+
+
+<span
+    x-data="{ isVisible: false }"
+    x-cloak
+    @click="scrollTo(0, 0)"
+    @scroll.window="window.scrollY > 200 ? isVisible = true : isVisible = false,
+    console.log(window.scrollY, isVisible)"
+    x-show="isVisible"
+    x-transition
+    class="fixed  bottom-2 right-2 z-[222]"
+>
+
+    <span 
+        class="cursor-pointer bg-_yellow w-10 h-10 flex items-center justify-center rounded-full">
+        {='assets/gfx/svg/icon-chevron-up.svg'|svg:'w-8 h-8 text-_black'|noescape}
+    </span>
+
+</span>
