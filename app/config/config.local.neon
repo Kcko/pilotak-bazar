@@ -5,7 +5,7 @@
 application:
 	silentLinks: true
 	errorPresenter: Front:Error
-	catchExceptions: true
+	#catchExceptions: true
 	mapping:
 		*: App\*Module\Presenters\*Presenter
 	scanDirs:
