@@ -1,0 +1,55 @@
+
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+
+    <main class="BaseContainer__Main bg-gray-100">
+        
+        
+        <div class="py-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        
+                        <h1 class="text-h2 mb-10 Lined-1 text-left">{$presenter->navigation->navItem['title']}</h1>
+                
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-white rounded p-5 border border-gray-200 self-start">
+                               
+                                <div n:if="$flashes">
+                                    <div n:foreach="$flashes as $flash" class="my-0 alert -{$flash->type}">{$flash->message}</div>
+                                </div>
+
+                            </div>
+
+                            <div class="pl-10 relative">
+                                <img class="max-w-[80%]" src="/assets/gfx/tmp/done.svg" alt="" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  
+        </section>
+
+
+    </main>
+
+
+    {include '../fragments/footer.latte'}
+    
+{/block}
+
+
+
+
+

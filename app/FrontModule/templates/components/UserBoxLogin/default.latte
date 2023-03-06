@@ -1,0 +1,36 @@
+<div n:snippet="">
+
+    <form n:name="loginForm" class="">
+
+        <div x-init="() => {
+            $dispatch('force-opened')
+        }" n:foreach="$form->errors as $error" class="alert -error mt-0 mb-4 -xs">{$error}</div>
+
+        <div class="mb-5">
+            <label  n:name="login" class="block font-medium text-gray-700 text-base">Váš e-mail</label>
+            <div class="mt-1">
+                <input  n:name="login" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <label n:name="pwd" for="login-pwd" class="block font-medium text-gray-700 text-base">Heslo</label>
+            <div class="mt-1">
+                <input n:name="pwd" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+        </div>
+
+        
+
+        <div class="flex justify-between">
+            <a href="{plink @lostPassword}" class="underline text-gray-400 text-sm">Zapomenuté heslo</a>    
+            <button  n:name="submit"  type="submit" class="Btn -Black">Přihlásit se</button>
+        </div>
+
+        <div class="text-sm border-t border-gray-200 pt-5 mt-5">
+            Pokud u nás ještě nemáte účet, <a href="{plink @newRegister}" class="text-gray-400 underline ">zaregistrujte se</a> a získejte výhody s registrací spojené 👍
+        </div>
+
+    </form>
+
+</div>

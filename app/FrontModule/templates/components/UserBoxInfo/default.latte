@@ -1,0 +1,14 @@
+<li x-data="{ opened: false }" @force-opened.window="opened = true" class="relative">
+    <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
+        {='assets/gfx/svg/icon-user-na.svg'|svg:'w-8 h-8 md:w-5 md:h-5'|noescape}
+        <span class="hidden md:inline">Přihlášení</span>
+    </span>
+
+    <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-2 shadow absolute rounded-md py-4 px-4 min-w-[350px] right-0">
+        
+        {control userBoxLogin}
+
+    </div>
+</li>
+
+

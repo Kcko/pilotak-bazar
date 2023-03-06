@@ -161,8 +161,8 @@ parameters:
 	searchIndex: 'db-adv'
 
 	userBoxLogin:
-		redirectUrl : '@proAkcionare'
-		toHomepage: false
+		#redirectUrl : '@proAkcionare'
+		toHomepage: true
 
 services:
 	- 
@@ -181,6 +181,7 @@ services:
 	- App\FrontModule\Model\H2oServices
 	- App\FrontModule\Model\Contact
 	- App\FrontModule\Model\RealtyList
+	- App\FrontModule\Model\PopoUser
 	# - App\FrontModule\Model\Epodatelna
 	# - App\FrontModule\Model\PopoOurTeam
 	# - App\FrontModule\Model\EnviReference

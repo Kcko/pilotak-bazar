@@ -14,7 +14,7 @@
 @import 'base/typo';
 @import 'base/grid';
 
-// @import 'components/alert';
+@import 'components/alert';
 // @import 'components/accordion';
 // @import 'components/desktop-filters';
 // @import 'components/mobile-filters';
@@ -29,8 +29,8 @@
 @import 'components/web-preloader';
 
 // // forms
-// @import 'components/forms/form-control';
-// @import 'components/forms/form-select';
+@import 'components/forms/form-control';
+@import 'components/forms/form-select';
 
 // // vendors
 // @import 'vndr/magnific/settings';

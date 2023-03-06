@@ -32,8 +32,8 @@ constants:
 
 parameters:
 	recaptchaV3:
-		siteKey: '6LcVKxMkAAAAAG0ISI59tJjUC-8Dhxm29es_GIJu'
-		secretKey: '6LcVKxMkAAAAAL3urwM7lboUZOK1T_ynA3Vn0M7j'
+		siteKey: '6Leky9kkAAAAAJyF8NRBvpIraSzsn_PNslPYLC7H'
+		secretKey: '6Leky9kkAAAAAA6eqNViR2XSnP0atNZe3kdQBVXK'
 	assetsConfig:
 		repo: ''
 		projectName: 'H2Ogroup'

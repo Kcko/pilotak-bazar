@@ -1,29 +1,43 @@
-.Alert {
-  @apply mt-8 mb-8 relative p-5 pl-16;
-  background-repeat: no-repeat;
-  background-position: 20px 16px;
-  background-size: 30px;
+@layer components {
+  .Alert,
+  .alert {
+    @apply mt-0 mb-8 relative p-5 pl-16;
+    background-repeat: no-repeat;
+    background-position: 20px 16px;
+    background-size: 30px;
+    @apply text-base;
 
-  svg {
+    svg {
+    }
+
+    &.-xs {
+      @apply p-3 pl-10;
+      background-position: 12px 13.5px;
+      background-size: 20px;
+    }
   }
-}
 
-.Alert.Alert--Error {
-  @apply bg-red-200  rounded text-red-600;
-  background-image: url(/assets/gfx/svg/alert-alert.svg);
-}
+  .Alert.Alert--Error,
+  .alert.-error {
+    @apply bg-red-200  rounded text-red-600;
+    background-image: url(/assets/gfx/svg/alert-alert.svg);
+  }
 
-.Alert.Alert--Success {
-  @apply bg-green-200  rounded  text-green-600;
-  background-image: url(/assets/gfx/svg/alert-success.svg);
-}
+  .Alert.Alert--Success,
+  .alert.-success {
+    @apply bg-green-200  rounded  text-green-600;
+    background-image: url(/assets/gfx/svg/alert-success.svg);
+  }
 
-.Alert.Alert--Warning {
-  @apply bg-yellow-200  rounded  text-yellow-600;
-  background-image: url(/assets/gfx/svg/alert-warning.svg);
-}
+  .Alert.Alert--Warning,
+  .alert.-warning {
+    @apply bg-yellow-200  rounded  text-yellow-600;
+    background-image: url(/assets/gfx/svg/alert-warning.svg);
+  }
 
-.Alert.Alert--Info {
-  @apply bg-blue-200  rounded text-blue-600;
-  background-image: url(/assets/gfx/svg/alert-info.svg);
+  .Alert.Alert--Info,
+  .alert.-info {
+    @apply bg-blue-200  rounded text-blue-600;
+    background-image: url(/assets/gfx/svg/alert-info.svg);
+  }
 }

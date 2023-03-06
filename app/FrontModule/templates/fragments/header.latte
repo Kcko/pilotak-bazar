@@ -22,7 +22,7 @@
                         {* Mobile *}
                          <li x-data="{ opened: false }" class="">
                                    
-                            <button @click="opened = !opened" class=" rounded-md  px-3">
+                            <button @click="opened = !opened" class=" rounded-md  px-3 md:hidden">
                                 {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8 relative top-1'|noescape}
                             </button>
 
@@ -34,81 +34,10 @@
                                     </button>
                                 </form>
                             </div>
-                            
                         </li>
-                        
-                        {if isset($_GET['logged'])}
-                            <li x-data="{ opened: false }" class="relative">
-                                <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
-                                    {='assets/gfx/svg/icon-user.svg'|svg:'w-8 h-8 md:w-5 md:h-5'|noescape}
-                                    PB.
-                                    {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 -ml-1'|noescape}
-                                    
-                                </span>
 
-                                <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-2 shadow absolute rounded-md py-2 px-4 min-w-[180px] right-0">
-                                    <ul>
-                                        <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
-                                            {='assets/gfx/svg/icon-list.svg'|svg:'w-4 h-4'|noescape}
-                                            Moje inzeráty
-                                            </a></li>
-                                        <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
-                                            {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-4 h-4'|noescape}
-                                            Oblíbené
-                                            </a></li>
-                                        <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
-                                            {='assets/gfx/svg/icon-cog.svg'|svg:'w-4 h-4'|noescape}
-                                            Nastavení
-                                            </a></li>
-                                        <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
-                                            {='assets/gfx/svg/icon-logout.svg'|svg:'w-4 h-4'|noescape}
-                                            Odhlásit se
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        {else}
-                            <li x-data="{ opened: false }" class="relative">
-                                <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
-                                    {='assets/gfx/svg/icon-user-na.svg'|svg:'w-8 h-8 md:w-5 md:h-5'|noescape}
-                                    <span class="hidden md:inline">Přihlásit se</span>
-                                </span>
-
-                                <div @click.away="opened = false" x-show="opened" style="display: none" x-transition class="bg-white top-full mt-2 shadow absolute rounded-md py-4 px-4 min-w-[350px] right-0">
-                                    
-                                    <h3 class="text-h3 relative mb-5">Přihlásit se</h3>
-                                    <form action="">
-                                        <div class="mb-5">
-                                            <label for="login-email" class="block font-medium text-gray-700 text-base">Váš e-email</label>
-                                            <div class="mt-1">
-                                                <input id="login-email" name="login-email" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-5">
-                                            <label for="login-pwd" class="block font-medium text-gray-700 text-base">Heslo</label>
-                                            <div class="mt-1">
-                                                <input id="login-pwd" name="login-pwd" type="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                            </div>
-                                        </div>
-
-                                       
-
-                                        <div class="flex justify-between">
-                                            <a href="" class="underline text-gray-400 text-sm">Zapomenuté heslo</a>    
-                                            <button type="submit" class="Btn -Black">Přihlásit se</button>
-                                        </div>
-
-                                        <div class="text-sm border-t border-gray-200 pt-5 mt-5">
-                                            Pokud u nás ještě nemáte účet, <a href="" class="text-gray-400 underline ">zaregistrujte se</a> a získejte výhody s registrací spojené 👍
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </li>
-                        {/if}
-
-
+                        {control userBoxInfo}
+   
                     </ul>
                 </nav>
             </div>

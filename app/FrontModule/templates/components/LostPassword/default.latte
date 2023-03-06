@@ -1,0 +1,51 @@
+<div n:snippet="">
+
+    <div n:if="$flashes">
+        <div n:foreach="$flashes as $flash" class="alert -{$flash->type}">{$flash->message}</div>
+    </div>
+    
+
+    {if $control->hash}
+        <form n:name="newPasswordForm">
+            <div n:foreach="$form->errors as $error" class="alert -error">{$error}</div>
+
+            <div class="grid  gap-5 mb-5">
+                <div>
+                    <label n:name="pwd" class="block font-medium text-gray-700 text-base">Nové heslo</label>
+                    <div class="mt-1">
+                        <input n:name="pwd" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label n:name="pwd1" class="block font-medium text-gray-700 text-base">Nové heslo (opakujte)</label>
+                    <div class="mt-1">
+                        <input n:name="pwd1" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-10">
+                <button n:name="submit" class="Btn -Black">Uložit</button>
+            </div>
+    </form>
+    {else}
+        <form n:name="lostPasswordForm">
+            <div n:foreach="$form->errors as $error" class="alert -error">{$error}</div>
+
+            <div class="grid  gap-5 mb-5">
+                <div>
+                    <label n:name="email" class="block font-medium text-gray-700 text-base">Váš e-email</label>
+                        <div class="mt-1">
+                                <input n:name="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-10">
+                <button n:name="submit" class="Btn -Black">Odeslat</button>
+            </div>
+        </form>
+    {/if}
+
+
+</div>

@@ -1,0 +1,112 @@
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+
+    <main class="BaseContainer__Main bg-gray-100">
+        
+        
+        <div class="py-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        
+                        <h1 class="text-h2 mb-10 Lined-1 text-left">{$presenter->navigation->navItem['title']}</h1>
+                
+                        
+                        <div class=" grid md:grid-cols-2 gap-8">
+                            <div class="bg-white rounded p-5 border border-gray-200">
+                                <div class="mb-10">
+                                    <h3 class="text-h3 relative">Výhody registrace</h3>
+                                    <ul class="BulletListYellow text-base space-y-1">
+                                        <li>Oblíbené inzeráty</li>
+                                        <li>Možnost rychle editovat či smazat svůj inzerát</li>
+                                        <li>Vložit k inzerátu video z Youtube</li>
+                                        <li>Další výhody si vymyslí klient :-)</li>
+                                    </ul>
+                                </div>
+
+
+                                <div n:if="$flashes">
+                                    <div n:foreach="$flashes as $flash" class="alert -{$flash->type}">{$flash->message}</div>
+                                </div>
+
+                                <form n:if="!$flashes" n:name="registrationForm">
+
+                                    <div n:foreach="$form->errors as $error" class="alert -error">{$error}</div>
+
+                                        <div class="grid md:grid-cols-2 gap-5 mb-5">
+                                            <div>
+                                                <label n:name="email" class="block font-medium text-gray-700 text-base">Váš e-email</label>
+                                                <div class="mt-1">
+                                                    <input n:name="email" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                </div>
+                                            </div>
+
+                                             <div>
+                                                <label n:name="phone" class="block font-medium text-gray-700 text-base">Telefon (nepovinné)</label>
+                                                <div class="mt-1">
+                                                    <input n:name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label n:name="pwd" class="block font-medium text-gray-700 text-base">Heslo</label>
+                                                <div class="mt-1">
+                                                    <input n:name="pwd" type="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label n:name="pwd"1 class="block font-medium text-gray-700 text-base">Heslo znovu</label>
+                                                <div class="mt-1">
+                                                    <input n:name="pwd1" type="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="Alert Alert--Info !mt-8">
+                                            Pouze registrovaní uživatelé webového portálu Popovicky.cz mohou vkládat komentáře do diskusního fóra a v budoucnu využívat i další výhody s registrací spojené.
+                                            Registrace je zdarma a žádné služby s ní spojené, nejsou zpoplatněny.
+                                            Registrací souhlasíte s <a target="_blank" href="{plink Layout:default, navId => 658}" class="Link font-bold"> podmínkami užití</a> a <a  target="_blank" href="{plink Layout:default, navId => 38}" class="Link font-bold">ochranou osobních údajů</a>.
+                                        </div>
+                                        <div class="Alert Alert--Info">
+                                            Každá registrace musí být schválena administrátorem webu, proto prosím vyčkejte na potvrzení o aktivaci vašeho uživatelského účtu a neregistrujte se znovu.
+                                        </div>
+
+                                        
+
+                                        <div class="flex justify-end mt-10">
+                                            <button n:name="send" class="Btn -Black">Zaregistrovat se</button>
+                                        </div>
+
+                                </form>
+                            </div>
+
+                            <div class="pl-10 relative">
+        
+                                <img class="max-w-[80%]" src="/assets/gfx/tmp/registration.svg" alt="" />
+                            </div>
+                        </div>
+
+
+                
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  
+        </section>
+
+
+    </main>
+
+
+    {include '../fragments/footer.latte'}
+    
+{/block}
