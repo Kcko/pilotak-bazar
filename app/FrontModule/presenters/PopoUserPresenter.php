@@ -68,6 +68,17 @@ class PopoUserPresenter extends FrontPresenter
 	}
 
 
+	public function actionSettings()
+	{
+		if (!$this->user->isLoggedIn()) {
+			$this->redirectUrl('/');
+		}
+
+		$userRow = $this->popoUser->getById($this->getUser()->getId());
+		$this['settingsForm']->setDefaults($userRow->toArray());
+	}
+
+
 	public function actionRenewPassword($hash)
 	{
 		try {
@@ -126,7 +137,8 @@ class PopoUserPresenter extends FrontPresenter
 
 	public function renderLogin()
 	{
-
+		// mam to jako dropdown, takze ne
+		$this->redirectUrl('/');
 	}
 
 
@@ -231,6 +243,34 @@ class PopoUserPresenter extends FrontPresenter
 
 		return $form;
 	}
+
+
+
+	protected function createComponentSettingsForm()
+	{
+		$form = new Nette\Application\UI\Form;
+
+		$form->addText('email', 'Váš e-mail')->setDisabled(true);
+		$form->addText('phone', 'Kontaktní telefon');
+
+		$form->addPassword('pwd', 'Heslo');
+
+		$form->addPassword('pwd1', 'Heslo pro kontrolu')
+			->addConditionOn($form["pwd1"], $form::FILLED)
+			->addRule($form::EQUAL, "Hesla se musí shodovat", $form["pwd"]);
+
+		$form->addText('name', 'Jméno:')
+			->setRequired('Zadejte jméno');
+
+		$form->addText('surname', 'Příjmení:')
+			->setRequired('Zadejte příjmení');
+
+		$form->addSubmit('send', 'Změnit údaje');
+		$form->onSuccess[] = [$this, 'settingsSucceeded'];
+
+		return $form;
+	}
+
 
 
 	public function renewPasswordSucceeded($form)
@@ -357,6 +397,35 @@ class PopoUserPresenter extends FrontPresenter
 		$this->flashMessage('Byl(a) jste v pořádku přihlášen(a)', 'Success');
 		$this->redirect('this');
 	}
+
+
+	public function settingsSucceeded($form)
+	{
+		$values = $form->getValues(TRUE);
+
+		try {
+
+			if ($values['pwd']) {
+				$values['pwd'] = Andweb\Security\Authenticator::calculatePasswordHash($values['pwd']);
+			}
+
+			unset($values['pwd1']);
+			unset($values['g_recaptcha_response']);
+			unset($values['action']);
+
+			$userRow = $this->popoUser->getById($this->getUser()->getId());
+			$userRow->update($values);
+
+			$this->flashMessage('Změna nastavení proběhla úspěšně', 'Success');
+
+		} catch (\Exception $e) {
+			$form->addError($this->presenter->translator->translate($e->getMessage()));
+		}
+	}
+
+
+
+
 
 
 	public function validate($form)

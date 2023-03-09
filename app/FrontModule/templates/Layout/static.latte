@@ -1,13 +1,25 @@
+{var $htmlClass = 'homepage'}
+
 {block content}
 
     {include '../fragments/header.latte'}
 
-    <div class="BaseContainer__Main">
+    <main class="BaseContainer__Main bg-gray-100">
 
-        {control content}
+        <div class="py-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        {control content}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div>
-    
+        </section>
+
+    </main>
+
     {include '../fragments/footer.latte'}
 
 {/block}

@@ -10,6 +10,10 @@
     svg {
     }
 
+    a {
+      @apply underline;
+    }
+
     &.-xs {
       @apply p-3 pl-10;
       background-position: 12px 13.5px;
@@ -31,7 +35,8 @@
 
   .Alert.Alert--Warning,
   .alert.-warning {
-    @apply bg-yellow-200  rounded  text-yellow-600;
+    @apply bg-yellow-100  rounded  text-yellow-700;
+    /*background-color: #ffecb2;*/
     background-image: url(/assets/gfx/svg/alert-warning.svg);
   }
 

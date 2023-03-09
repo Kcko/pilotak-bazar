@@ -176,28 +176,10 @@ services:
 	- Sinergi\BrowserDetector\Os
 	- App\FrontModule\Model\RecaptchaValidationV3Config(%recaptchaV3%)
 	- App\FrontModule\Model\RecaptchaValidationV3
-	- App\FrontModule\Model\H2oDevelopment
-	- App\FrontModule\Model\H2oReference
-	- App\FrontModule\Model\H2oServices
+	- App\FrontModule\Model\MainAdvertItems
 	- App\FrontModule\Model\Contact
-	- App\FrontModule\Model\RealtyList
+	- App\FrontModule\Model\Ad
 	- App\FrontModule\Model\PopoUser
-	# - App\FrontModule\Model\Epodatelna
-	# - App\FrontModule\Model\PopoOurTeam
-	# - App\FrontModule\Model\EnviReference
-	# - App\FrontModule\Model\Slider
-	# - App\FrontModule\Model\PopoArticle
-	# - App\FrontModule\Model\PopoEvent
-	# - App\FrontModule\Model\Calendar
-	# - App\FrontModule\Model\Places
-	# - App\FrontModule\Model\Magazine
-	# - App\FrontModule\Model\Firms
-	# - App\FrontModule\Model\PopoBoard
-	# - App\FrontModule\Model\PopoDocument
-	# - App\ServiceModule\Presenters\DbBackupPresenter(%db%)
-	# - App\FrontModule\Model\PopoSearch
-	# - App\FrontModule\Model\PopoUser
-	# - App\FrontModule\Model\PopoForum
 
 extensions:
 	front: App\FrontModule\DI\FrontExtension

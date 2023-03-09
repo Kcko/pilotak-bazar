@@ -7,7 +7,7 @@ Andweb;
 
 use Andweb\Database\Context;
 
-class RealtyList
+class Ad
 {
 
 	/**

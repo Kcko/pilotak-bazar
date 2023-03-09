@@ -1,0 +1,8 @@
+{* <div class="Alert Alert--Warning !mt-8">
+    Pouze registrovaní uživatelé webového portálu Popovicky.cz mohou vkládat komentáře do diskusního fóra a v budoucnu využívat i další výhody s registrací spojené.
+    Registrace je zdarma a žádné služby s ní spojené, nejsou zpoplatněny.
+    Registrací souhlasíte s <a target="_blank" href="" class="Link font-bold"> podmínkami užití</a> a <a  target="_blank" href="" class="Link font-bold">ochranou osobních údajů</a>.
+</div> *}
+<div n:if="$data->content" class="Alert Alert--Warning mt-8 mb-0">
+    {$data->content|noescape}
+</div>

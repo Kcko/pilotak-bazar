@@ -13,11 +13,11 @@ class BasePresenter extends App\Presenters\BasePresenter
 {
 	protected $mobileDetect;
 
-	// /**
-	//  * @var PopoUser $popoUser
-	//  * @inject
-	//  */
-	// public $popoUser;
+	/**
+	 * @var PopoUser $popoUser
+	 * @inject
+	 */
+	public $popoUser;
 
 	public function startup()
 	{
@@ -27,20 +27,18 @@ class BasePresenter extends App\Presenters\BasePresenter
 		$storage->setNamespace("Front");
 
 		// Prihlaseni / Odhlaseni / LOGOVANI
-		// $this->user->onLoggedIn[] = function () {
-		// 	$this->popoUser->saveLogin($this->getUser()->getId());
-		// };
+		$this->user->onLoggedIn[] = function () {
+			$this->popoUser->saveLogin($this->getUser()->getId());
+		};
 
-		// $this->user->onLoggedOut[] = function () {
-		// 	$this->popoUser->saveLogout($this->getUser()->getId());
-		// };
+		$this->user->onLoggedOut[] = function () {
+			$this->popoUser->saveLogout($this->getUser()->getId());
+		};
 
-		// if ($this->user->isLoggedIn()) {
-		// 	$url = $this->getHttpRequest()->getUrl();
-		// 	$this->popoUser->saveLog($this->getUser()->getId(), (string)$url);
-		// }
-
-
+		if ($this->user->isLoggedIn()) {
+			$url = $this->getHttpRequest()->getUrl();
+			$this->popoUser->saveLog($this->getUser()->getId(), (string) $url);
+		}
 
 
 		// nav item

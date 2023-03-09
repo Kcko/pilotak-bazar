@@ -9,11 +9,11 @@ App;
 use App\FrontModule\Model;
 
 
-class RealtyPresenter extends FrontPresenter
+class AdPresenter extends FrontPresenter
 {
 
 	/**
-	 * @var Model\RealtyList
+	 * @var Model\Ad
 	 * @inject
 	 */
 	public $model;
@@ -33,7 +33,6 @@ class RealtyPresenter extends FrontPresenter
 			$this->error();
 		}
 
-		$this['contactContent']['h2oContactForm']['form']['realtyId']
-			->setDefaultValue($this->template->row->id);
+
 	}
 }

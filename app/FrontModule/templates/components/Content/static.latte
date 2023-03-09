@@ -1,20 +1,17 @@
-<div class="Container">
-    <div class="Row">
-        <div class="Col w-full">
-            <h1 class="text-h2 mb-10">{$presenter->navigation->navItem['title']}</h1>
-            <div class="RichText">
-                {$data->content|noescape}
-            </div>
+<div class="grid md:grid-cols-2 gap-8">
+
+    <div>
+
+        <h1 class="text-h2 Lined-1 mb-10">{$data->heading ?? $presenter->navigation->navItem['title']}</h1>
+        <div class="RichText">
+            {$data->content|noescape}
         </div>
+
     </div>
+    <div>
+        {if $data->image_id}
+            {$data->image->getImageElement('hero', ['class' => 'w-full block mx-auto max-w-[80%]'])}
+        {/if}
+    </div>
+
 </div>
-
-
-
-{* <div class="MediaGroup">
-    {include '../../fragments/photogallery.latte', photos => $photos}
-    {include '../../fragments/files.latte', files => $files}
-</div>
- *}
-
-

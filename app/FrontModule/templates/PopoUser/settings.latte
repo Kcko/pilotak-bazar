@@ -1,3 +1,4 @@
+
 {var $htmlClass = 'homepage'}
 
 {block content}
@@ -16,17 +17,17 @@
                         <h1 class="text-h2 mb-10 Lined-1 text-left">{$presenter->navigation->navItem['title']}</h1>
                 
                         
-                        <div class=" grid md:grid-cols-2 gap-8">
+                        <div class="grid md:grid-cols-2 gap-8">
                             <div class="bg-white rounded p-5 border border-gray-200 self-start">
                                
                                 <div n:if="$flashes">
                                     <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
                                 </div>
 
-                                <form n:if="!$flashes" n:name="signInForm" class="space-y-4">
+                                <form n:name="settingsForm" class="space-y-4">
 
                                     <div class="errors" n:if="$form->hasErrors()">
-                                        <div n:foreach="$form->errors as $error" class="Alert Alert--Error">{_}{$error}{/_}</div>
+                                        <div n:foreach="$form->errors as $error" class="Alert Alert--Error">{$error}</div>
                                     </div>
 
                                     <div class="grid sm:grid-cols-2 gap-4">
@@ -35,24 +36,39 @@
                                             <input n:name="email" class="form-control" />
                                         </div>
                                         <div>
-                                            <label n:name="password" class="form-label" />
-                                            <input n:name="password" class="form-control" />
+                                            <label n:name="phone" class="form-label" />
+                                            <input n:name="phone" class="form-control" />
+                                        </div>
+                                        <div>
+                                            <label n:name="name" class="form-label" />
+                                            <input n:name="name" class="form-control" />
+                                        </div>
+                                        <div>
+                                            <label n:name="surname" class="form-label" />
+                                            <input n:name="surname" class="form-control" />
+                                        </div>
+                                        <div>
+                                            <label n:name="pwd" class="form-label" />
+                                            <input n:name="pwd" class="form-control" />
+                                        </div>
+                                        <div>
+                                            <label n:name="pwd1" class="form-label" />
+                                            <input n:name="pwd1" class="form-control" />
                                         </div>
                                     </div>
-                                    <div><a n:href="PopoUser:lostPassword" class="underline text-base">Zapomenuté heslo</a></div>
+
                                     <div class="!mt-8">
                                         <input n:name="send" class="Btn -Black" />
                                     </div>
                                 </form>
-
+                                
                                 {control formInfo}
 
-                         
                             </div>
 
                             <div class="pl-10 relative">
         
-                                <img class="max-w-[80%]" src="/assets/gfx/tmp/login.svg" alt="" />
+                                <img class="max-w-[80%]" src="/assets/gfx/tmp/registration.svg" alt="" />
                             </div>
                         </div>
 
@@ -75,6 +91,12 @@
     {include '../fragments/footer.latte'}
     
 {/block}
+
+
+
+
+
+
 
 
 

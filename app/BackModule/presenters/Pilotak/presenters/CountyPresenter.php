@@ -22,7 +22,20 @@ class CountyPresenter extends FastAdminTablePresenter
 		$this->addEditTab('Obecné*8a*12', [
 			['name*12'],
 			['country_id*12'],
+			['county_nested_id*12'],
 		]);
+
+
+		$this->addEditTab('Vazby*12b', [
+			'county_navigation' => [
+				'navigation_id',
+				'image_id',
+				'county_nav_user'
+
+			]
+		]);
+
+
 	}
 
 }

@@ -11,17 +11,15 @@ use App\FrontModule;
 use Nette\Application\UI;
 
 
-class H2oReferenceSlider extends AbstractList
+class MainAdvertItems extends AbstractList
 {
 	protected $config = [
 		'template' => 'default',
-		'limit' => 100,
-		'paging' => false,
-		'filters' => false,
+		'navigation_id' => 0,
 	];
 
 	/**
-	 * @var FrontModule\Model\H2oReference
+	 * @var FrontModule\Model\MainAdvertItems
 	 */
 	protected $model;
 
@@ -31,7 +29,7 @@ class H2oReferenceSlider extends AbstractList
 	protected $modelNavigation;
 
 
-	public function __construct(FrontModule\Model\H2oReference $model, Navigation $modelNavigation)
+	public function __construct(FrontModule\Model\MainAdvertItems $model, Navigation $modelNavigation)
 	{
 		$this->model = $model;
 		$this->modelNavigation = $modelNavigation;
@@ -51,16 +49,7 @@ class H2oReferenceSlider extends AbstractList
 	{
 		$config = $this->getCurrentConfig($config);
 
-		list($limit, $offset) = $this->getPages($config);
-		$row = $this->model->getListOnHomepage($limit, $offset)->fetch();
-		$rows = [];
-		for ($i = 1; $i <= 10; $i++) {
-			if ($row['pos' . $i . '__reference_list_id'] && $row->{'pos' . $i . '__reference_list'}) {
-				$rows[] = $row->{'pos' . $i . '__reference_list'};
-			}
-		}
-
-		$this->template->rows = $rows;
+		$this->template->rows = $this->model->getList();
 		$this->template->config = $config;
 
 		$this->render($config);

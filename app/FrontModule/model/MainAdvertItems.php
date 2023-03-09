@@ -7,7 +7,7 @@ Andweb;
 
 use Andweb\Database\Context;
 
-class H2oServices
+class MainAdvertItems
 {
 
 	/**
@@ -22,10 +22,9 @@ class H2oServices
 	}
 
 
-	public function getList(int $navigationId = 0)
+	public function getList()
 	{
-		$selection = $this->connection->table('service_list');
-		$selection->where('navigation_id', $navigationId);
+		$selection = $this->connection->table('advert_item');
 		$selection->order('rank DESC');
 
 		return $selection;

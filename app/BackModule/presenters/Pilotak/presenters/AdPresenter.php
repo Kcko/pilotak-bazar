@@ -91,10 +91,10 @@ class AdPresenter extends FastAdminTablePresenter
 		$oldParentNavigationId = NULL;
 
 		if ($oldValues) {
-			$oldParentNavigationId = $oldValues['navigation_id'];
+			$oldParentNavigationId = 735; /*$oldValues['navigation_id'];*/
 		}
 
-		$parentNavigationId = $editRow['navigation_id'];
+		$parentNavigationId = 735; /*$editRow['navigation_id'];*/
 
 		$this->navigationWorker->createOrUpdateNavItem(
 			$oldParentNavigationId,
@@ -138,10 +138,10 @@ class AdPresenter extends FastAdminTablePresenter
 			]);
 		}
 		//throw new \Andweb\FlashMessageException('Test');
-		\Tracy\Debugger::barDump($editRow);
-		\Tracy\Debugger::barDump($values);
-		\Tracy\Debugger::barDump($form);
-		\Tracy\Debugger::barDump($oldValues);
+		// \Tracy\Debugger::barDump($editRow);
+		// \Tracy\Debugger::barDump($values);
+		// \Tracy\Debugger::barDump($form);
+		// \Tracy\Debugger::barDump($oldValues);
 	}
 
 }

@@ -1,0 +1,42 @@
+    <section class="py-10 bg-[#f2f2f2]">
+        <div class="Container">
+            <div class="Row">
+                <div class="Col w-full">
+
+                    <div class="grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <span class=" top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs">Reklama</span>
+                            <h2 class="text-h2 text-left mb-10 Lined-2">{$data->heading}</h2>
+                            <div class="space-y-5 mb-10">
+                                {$data->content|noescape}
+                            </div>
+
+                        </div>
+                        <div>
+                            {* <img  src="/assets/gfx/tmp/superman.svg" class="max-w-[70%] block mx-auto" alt="" /> *}
+
+                            {if $data->image_id}
+                                {$data->image->getImageElement('hero', ['class' => 'max-w-[70%] block mx-auto w-full'])}
+
+                            {/if}
+
+
+                            {* {var $rand = 1}
+                                <img n:if="$rand == '1'" src="/assets/gfx/tmp/superman.svg" class="max-w-[70%] block mx-auto" alt="" />
+
+                            <div n:if="$rand === '2'" class="md:mt-8 p-1 bg-white rounded border border-gray-200">
+                                <iframe width="560" height="315" class="rounded block w-full " src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div> *}
+
+                        </div>
+                    </div>
+
+
+                    {control mainAdvertItems}
+
+                  
+
+                </div>
+            </div>
+        </div>
+    </section>

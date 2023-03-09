@@ -18,7 +18,7 @@
                 
                         
                         <div class="grid md:grid-cols-2 gap-8">
-                            <div class="bg-white rounded p-5 border border-gray-200">
+                            <div class="bg-white rounded p-5 border border-gray-200 self-start">
                                
                                 <div n:if="$flashes">
                                     <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
@@ -52,18 +52,13 @@
                                             <input n:name="pwd1" class="form-control" />
                                         </div>
                                     </div>
-                                    <div class="Alert Alert--Info !mt-8">
-                                        Pouze registrovaní uživatelé webového portálu Popovicky.cz mohou vkládat komentáře do diskusního fóra a v budoucnu využívat i další výhody s registrací spojené.
-                                        Registrace je zdarma a žádné služby s ní spojené, nejsou zpoplatněny.
-                                        Registrací souhlasíte s <a target="_blank" href="{plink Layout:default, navId => 658}" class="Link font-bold"> podmínkami užití</a> a <a  target="_blank" href="{plink Layout:default, navId => 38}" class="Link font-bold">ochranou osobních údajů</a>.
-                                    </div>
-                                    <div class="Alert Alert--Info">
-                                        Každá registrace musí být schválena administrátorem webu, proto prosím vyčkejte na potvrzení o aktivaci vašeho uživatelského účtu a neregistrujte se znovu.
-                                    </div>
+
                                     <div class="!mt-8">
                                         <input n:name="send" class="Btn -Black" />
                                     </div>
                                 </form>
+                                
+                                {control formInfo}
 
                             </div>
 

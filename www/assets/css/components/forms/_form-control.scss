@@ -13,6 +13,10 @@
     &.is-valid {
       @apply border-green-300 text-green-900 placeholder-green-300 focus:ring-green-500 focus:border-green-500;
     }
+
+    &[disabled] {
+      @apply bg-gray-100;
+    }
   }
 
   input[type='checkbox'].form-control {

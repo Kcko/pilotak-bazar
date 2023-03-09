@@ -1,0 +1,108 @@
+<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:auto-rows-fr mt-8 md:mt-0">
+            
+    {foreach $rows as $row}
+        <a href="{$row->url}" target="_blank" class="bg-white rounded  border border-gray-200 grid grid-cols-2  transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+            <div>
+                {* <img class="h-full block w-full object-cover" src="/assets/gfx/tmp/plane15.jpg" alt="" /> *}
+                {$row->image->getImageElement('hero', ['class' => 'h-full block w-full object-cover"'])}
+            </div>
+            <div class="p-4 flex flex-col">
+                <div>
+                <h4 class="text-h5 mb-6 relative Lined-1">{$row->heading}</h4>
+                <div class="text-xs line-clamp-5">
+                    <p>{$row->content}</p>
+                </div>
+                </div>
+                <div class="text-right mt-auto">
+                    <button class="text-xs underline mt-4 font-medium">chci vědět víc</button>
+                </div>
+            </div>
+        </a>
+    {/foreach}
+
+            {* <a href="#" class="bg-white rounded  border border-gray-200 grid grid-cols-2  transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                <div>
+                    <img class="h-full block w-full object-cover" src="/assets/gfx/tmp/helicopter.jpg" alt="" />
+                </div>
+                <div class="p-4 flex flex-col">
+                    <div>
+                    <h4 class="text-h5 mb-6 relative Lined-1">Lety vrtulníkem</h4>
+                    <div class="text-xs line-clamp-5">
+                        <p>Exkluzivní dárek a zážitek pro všechny, kteří chtějí zažít něco netradičního.</p>
+                    </div>
+                    </div>
+                    <div class="text-right mt-auto">
+                        <button class="text-xs underline mt-4 font-medium">chci vědět víc</button>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="bg-white rounded  border border-gray-200 grid grid-cols-2  transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                <div>
+                    <img class="h-full block w-full object-cover" src="/assets/gfx/tmp/plane16.jpg" alt="" />
+                </div>
+                <div class="p-4 flex flex-col">
+                    <div>
+                    <h4 class="text-h5 mb-6 relative Lined-1">Pilotem na zkoušku</h4>
+                    <div class="text-xs line-clamp-5">
+                        <p>Chcete si vyzkoušet let sportovním letadlem nebo věnovat svým blízkým dárkový poukaz na pilotem letadla na zkoušku?</p>
+                    </div>
+                    </div>
+                    <div class="text-right mt-auto">
+                        <button class="text-xs underline mt-4 font-medium">chci vědět víc</button>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="bg-white rounded  border border-gray-200 grid grid-cols-2  transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                <div>
+                    <img class="h-full block w-full object-cover" src="/assets/gfx/tmp/plane16.jpg" alt="" />
+                </div>
+                <div class="p-4 flex flex-col">
+                    <div>
+                    <h4 class="text-h5 mb-6 relative Lined-1">Letecká škola</h4>
+                    <div class="text-xs line-clamp-5">
+                        <p>Cílem je zcela individuální pilotní výcvik na mezinárodním letišti  a zdárné složení zkoušek a získání kvalifikace pilota letadel.</p>
+                    </div>
+                    </div>
+                    <div class="text-right mt-auto">
+                        <button class="text-xs underline mt-4 font-medium">chci vědět víc</button>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="bg-white rounded  border border-gray-200 grid grid-cols-2  transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                <div>
+                    <img class="h-full block w-full object-cover" src="/assets/gfx/tmp/plane11.jpg" alt="" />
+                </div>
+                <div class="p-4 flex flex-col">
+                    <div>
+                    <h4 class="text-h5 mb-6 relative Lined-1">Akrobatický let</h4>
+                    <div class="text-xs line-clamp-5">
+                        <p>Akrobatické lety jsou skvělým dárkem pro všechny milovníky adrenalinu. Zkušený pilot s Vámi bude provádět různé akrobatické kousky ...</p>
+                    </div>
+                    </div>
+                    <div class="text-right mt-auto">
+                        <button class="text-xs underline mt-4 font-medium">chci vědět víc</button>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="bg-white rounded  border border-gray-200 grid grid-cols-2  transition-transform duration-200 transform hover:-translate-y-1 hover:shadow-md">
+                <div>
+                    <img class="h-full block w-full object-cover" src="/assets/gfx/tmp/plane10.jpg" alt="" />
+                </div>
+                <div class="p-4 flex flex-col">
+                    <div>
+                    <h4 class="text-h5 mb-6 relative Lined-1">Letecké služby</h4>
+                    <div class="text-xs line-clamp-5">
+                        <p>Letecké práce dronem a pořizování fotografií či natáčení profesionálním dronem nabývá na popularitě.</p>
+                    </div>
+                    </div>
+                    <div class="text-right mt-auto">
+                        <button class="text-xs underline mt-4 font-medium">chci vědět víc</button>
+                    </div>
+                </div>
+            </a> *}
+
+        </div>

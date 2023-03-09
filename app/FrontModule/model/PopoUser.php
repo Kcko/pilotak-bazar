@@ -20,6 +20,13 @@ class PopoUser
 	}
 
 
+	public function getById($id)
+	{
+		return $this->connection->table('user')
+			->where('id', $id)
+			->fetch();
+	}
+
 	public function isHashExists($hash)
 	{
 		return $this->connection->table('user')

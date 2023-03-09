@@ -944,6 +944,86 @@ html.Lock,
               transform: skewY(-5deg);
     }
 
+.RichText h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+@media (min-width: 1024px) {
+
+  .RichText h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.RichText h2 {
+  position: relative;
+}
+
+.RichText h2:before {
+      content: '';
+      height: 4px;
+      width: 40px;
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 208 21 / var(--tw-bg-opacity));
+      position: absolute;
+      top: 115%;
+      -webkit-transform: skewY(-5deg);
+          -ms-transform: skewY(-5deg);
+              transform: skewY(-5deg);
+    }
+
+.RichText h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.RichText h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.RichText h5 {
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.RichText ul li {
+  position: relative;
+  padding-left: 1em;
+}
+
+.RichText ul li:before {
+        content: '';
+        position: absolute;
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 208 21 / var(--tw-bg-opacity));
+        height: 0.25rem;
+        width: 0.25rem;
+        top: 0.6em;
+        left: 0px;
+      }
+
+.RichText ul {
+  margin-bottom: 2rem;
+}
+
+.RichText p {
+  margin-bottom: 1.5rem;
+}
+
 .BaseContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1037,6 +1117,10 @@ html.Lock,
 .Alert svg, .alert svg {
     }
 
+.Alert a, .alert a {
+  text-decoration-line: underline;
+}
+
 .Alert.-xs, .alert.-xs {
   padding: 0.75rem;
   padding-left: 2.5rem;
@@ -1068,9 +1152,10 @@ html.Lock,
   .alert.-warning {
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(254 240 138 / var(--tw-bg-opacity));
+  background-color: rgb(254 249 195 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
-  color: rgb(202 138 4 / var(--tw-text-opacity));
+  color: rgb(161 98 7 / var(--tw-text-opacity));
+    /*background-color: #ffecb2;*/
     background-image: url(/assets/gfx/svg/alert-warning.svg);
 }
 
@@ -1312,6 +1397,11 @@ input.form-control.is-valid:focus {
   --tw-ring-color: rgb(34 197 94 / var(--tw-ring-opacity));
 }
 
+input.form-control[disabled] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 input[type='checkbox'].form-control {
   height: 1rem;
   width: 1rem;
@@ -1541,6 +1631,11 @@ input[readonly]:focus {
   margin-right: auto;
 }
 
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .my-16 {
   margin-top: 4rem;
   margin-bottom: 4rem;
@@ -1559,11 +1654,6 @@ input[readonly]:focus {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.my-0 {
-  margin-top: 0px;
-  margin-bottom: 0px;
 }
 
 .\!mb-6 {
