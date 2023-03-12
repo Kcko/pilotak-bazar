@@ -22,48 +22,14 @@ class Ad
 	}
 
 
-	public function getList($filters = [], $limit = FALSE, $offset = 0)
+	public function getList(array $options = [], $limit = false, $offset = 0)
 	{
 		//\Tracy\Debugger::barDump($filters, 'filters');
-		$selection = $this->connection->table('realty_list');
-
-		// filters
-		if (count($filters)) {
-			// type
-			$type = array_filter($filters['type'], function ($k) {
-				return $k != 0;
-			});
-			// location
-			$location = array_filter($filters['location'], function ($k) {
-				return $k != 0;
-			});
-			// disposition
-			$disposition = array_filter($filters['disposition'], function ($k) {
-				return $k != 0;
-			});
-			// size
-			$size = array_filter($filters['size'], function ($k) {
-				return $k != 0;
-			});
-
-			if (count($type)) {
-				$selection->where(':realty_list_realty_list_size.realty_list_size_id', $type);
-			}
-
-			if (count($location)) {
-				$selection->where(':realty_list_realty_list_location.realty_list_location_id', $location);
-			}
-
-			if (count($disposition)) {
-				$selection->where(':realty_list_realty_list_disposition.realty_list_disposition_id', $disposition);
-			}
-
-			if (count($size)) {
-				$selection->where(':realty_list_realty_list_size.realty_list_size_id', $size);
-			}
-		}
-		$selection->order('rank DESC');
+		$selection = $this->connection->table('ad');
+		$selection->where('is_visible', 1);
+		$selection->where('expiration >', new \DateTime);
 		$selection->limit($limit, $offset);
+
 
 		return $selection;
 	}
@@ -80,9 +46,9 @@ class Ad
 	}
 
 
-	public function count($filters = [])
+	public function count(array $options = [])
 	{
-		return $this->getList($filters)->count('*');
+		return $this->getList($options)->count('*');
 	}
 
 
@@ -94,7 +60,7 @@ class Ad
 
 	public function getById($id)
 	{
-		return $this->connection->table('realty_list')->get($id);
+		return $this->connection->table('ad')->get($id);
 	}
 
 
@@ -129,6 +95,31 @@ class Ad
 		}
 
 		return $availableList;
+
+	}
+
+
+	public function getStats()
+	{
+		$selection = $this->connection->table('ad')
+			->select('COUNT(*) cnt, ad_type_id');
+		$selection->where('is_visible', 1);
+		$selection->where('expiration >', new \DateTime);
+		$selection->group('ad_type_id');
+
+		return $selection->fetchPairs('ad_type_id');
+	}
+
+
+	public function getAdInCategoriesCount()
+	{
+		$selection = $this->connection->table('ad');
+		$selection->select('COUNT(*) cnt, navigation_id');
+		$selection->where('is_visible', 1);
+		$selection->where('expiration >', new \DateTime);
+		$selection->group('navigation_id');
+
+		return $selection->fetchPairs('navigation_id', 'cnt');
 
 	}
 

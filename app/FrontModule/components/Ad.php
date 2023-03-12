@@ -18,6 +18,7 @@ class Ad extends AbstractList
 		'limit' => 16,
 		'paging' => true,
 		'filters' => false,
+		'type' => 'offer',
 		'year' => null,
 		'filter' => null, //  null | exposed | archived
 		'defaultFilter' => null,
@@ -115,19 +116,15 @@ class Ad extends AbstractList
 
 		// \Tracy\Debugger::barDump($config);
 		// \Tracy\Debugger::barDump($this);
+		$options = [];
 
 		list($limit, $offset) = $this->getPages($config);
-		$this->template->boards = $this->model->getList(
-			$config['filter'],
-			$config['year'],
-			$this->q,
+		$this->template->advertisements = $this->model->getList(
+			$options,
 			$limit,
 			$offset
 		);
 
-		$this->template->years = $this->model->getYears();
-		$this->template->selectedYear = $this->year;
-		$this->template->selectedFilter = $this->filter;
 		$this->template->config = $config;
 
 		$this->render($config);
@@ -139,9 +136,7 @@ class Ad extends AbstractList
 		$config = $this->getCurrentConfig($config);
 
 		return $this->model->count(
-			$config['filter'],
-			$config['year'],
-			$this->q
+			$config
 		);
 	}
 

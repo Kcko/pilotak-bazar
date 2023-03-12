@@ -1,0 +1,65 @@
+<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+
+    {var $icons = [ 
+        'airplane-2.svg',
+        'airplane-4.svg',
+        'helicopter.svg',
+        'airplane-3.svg',
+        'airplane-5.svg',
+        'repair.svg',
+        'parking.svg',
+    
+    ]}
+    {foreach $listByTree as $item}
+        {var $adCount =  isset($info[$item->id]['adCount']) ? $info[$item->id]['adCount'] : 0 }
+        {var $subCount = isset($info[$item->id]['subCategories']) ? count($info[$item->id]['subCategories']) : 0}
+        {var $heading = $item->title}
+        {var $counter = 2}
+
+
+
+        <a href="{plink Ad:default navId => $item->id}" class="
+            bg-white border border-gray-200 relative rounded-md
+                bg-white  hover:shadow-md hover:shadow-slate-900/10 px-5 py-4 rounded
+                                                    
+                    transition-transform
+                    duration-200
+                    transform hover:-translate-y-1 hover:shadow-md
+                
+                ">
+            <h3 class="text-h3 mb-0 flex gap-x-4 items-center">
+                    {='assets/gfx/svg/'.$icons[$counter]|svg:'w-12 h-12 flex-shrink-0 text-[#FFD015]'|noescape}
+                <div>
+                    {$heading}
+                    <div class="text-xs text-gray-500 font-light">
+                        {$subCount}
+                        {if $subCount == 1}
+                            kategorie
+                        {elseif $subCount < 5}
+                            kategorie
+                        {else}
+                            kategorií
+                        {/if}
+
+                    </div>
+                    <div class="text-xs text-gray-500 font-light">
+                        {$adCount}
+                        {if $adCount == 0}
+                            inzerátů
+                        {elseif $adCount == 1}
+                            inzerát
+                        {elseif $adCount < 5}
+                            inzeráty
+                        {else}
+                            inzerátů
+                        {/if}
+
+                    </div>
+                </div>
+            </h3>
+            
+        </a>
+    {/foreach}
+
+
+</div>
