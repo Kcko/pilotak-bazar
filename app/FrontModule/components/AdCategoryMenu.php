@@ -59,15 +59,13 @@ class AdCategoryMenu extends FrontControl
 			$childrenToParent[$ch->id] = $ch->parent__navigation_id;
 		}
 
-
-		\Tracy\Debugger::barDump($childrenToParent);
-
 		$info = [];
 
 		// pocet inzeratu v kategoriich
 		$adCounts = $this->model->getAdInCategoriesCount();
 
-		\Tracy\Debugger::barDump($adCounts);
+		// \Tracy\Debugger::barDump($adCounts);
+
 		foreach ($adCounts as $adId => $adCnt) {
 
 			$parent = null;
@@ -101,11 +99,9 @@ class AdCategoryMenu extends FrontControl
 			->where('parent__navigation_id', $config['parent'])
 			->order('rank');
 
-
-
-
 		$this->template->listByTree = $listByTree;
 		$this->template->info = $info;
+		$this->template->adCounts = $adCounts;
 
 
 		$this->render($config);

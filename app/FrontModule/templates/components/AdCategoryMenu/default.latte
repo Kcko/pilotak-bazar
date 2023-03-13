@@ -14,6 +14,9 @@
 
         {var $adCount =  isset($info[$item->id]['adCount']) ? $info[$item->id]['adCount'] : 0 }
         {var $subCount = isset($info[$item->id]['subCategories']) ? count($info[$item->id]['subCategories']) : 0}
+        {if isset($adCounts[$item->id])}
+            {var $adCount += $adCounts[$item->id]}
+        {/if}
         {var $heading = $item->title}
 
         <a href="{plink Ad:default navId => $item->id}" class="

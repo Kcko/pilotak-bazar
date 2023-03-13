@@ -1,98 +1,5 @@
 {var $htmlClass = 'homepage'}
 
-{var $advertisements = [
-    [
-        'heading' => 'UL letadlo části prodám',
-        'content' => 'Prodám potažená křídla,konstrukci trupu,motor. Cenu lze dohodnout.',
-        'price' => '15 000 Kč',
-        'date' => 'Dnes',
-        'img' => '/assets/gfx/tmp/plane2.jpg',
-        'location' => 'Praha - Východ',
-        'top' => true,
-    ],
-    [
-        'heading' => 'Tažná levotočivá vrtule Rotax 582',
-        'content' => 'Trup trubkový svařenec, křídlo minimax, cestovní rychlost: 100-110km/h, maximální rychlost: 150 km/h, minimální rychlost: 65 km/h. Trup nově potažen, motor vw 1.6 dvouděrové hlavy, výkon 55 koní, objem nádrží 2x 20l, vrtule woodcomp 150, klapky neutrál, přistávací a 1 poloha záporné, vyvážení pevné. Po předchozí domluvě možno vidět ve Strunkovicích. Kontakt: 730587328.',
-        'price' => '130 000 Kč',
-        'date' => 'Dnes',
-        'img' => '/assets/gfx/tmp/plane13.jpg',
-
-        'location' => 'Moravský',
-    ],
-
-    [
-        'heading' => 'Vyhlídkové lety vrtulníkem',
-        'content' => 'Vyzkoušejte si jak se létá vrtulníkem a staňte se pilotem vrtulníku na zkoušku americké výroby Robinson R22 nebo vrtulníkem Robinson R44 s odletem přímo Brna, Olomouce, Mladé Boleslavi, Roudnice nad Labem nebo Hradce Králové.',
-        'price' => '3600 Kč',
-        'date' => 'reklama',
-        'img' => '/assets/gfx/tmp/helicopter.jpg',
-        'location' => 'Celá ČR',
-        'adv' => true,
-    ],
-
-    [
-        'heading' => 'Čertolet OK-CUX 19',
-        'content' => 'Koupím zachovalou, na zemi/za letu stavitelnou (levotočivou) vrtuli pro Rotax 582.',
-        'price' => 'neuvedeno',
-        'date' => 'Dnes',
-        'img' => '/assets/gfx/no-image.jpg',
-
-        'location' => 'Praha - Západ',
-    ],
-    [
-        'heading' => 'Cora 9',
-        'content' => 'Prodám ULL Cora, nálet 366h, motor Subaru EA81 s jedním karburátorem Weber, řemenový reduktor s příčným ozubením, vrtule třílistá Woodcomp, zabudovaná ručka , sluchátka, zatáčkoměr,rychloměr, taplota vody, oleje, topení, ampérmetr,vario, teploměr vnější i vnitřní. Nikdy nehavarované pohodové letadlo s cestovní rychlostí díky použitému motoru 130-140km. Obdélníková dřevěná křídla s křidélky po celém rozpětí.',
-        'price' => '220 000 Kč',
-        'date' => 'Včera',
-        'img' => '/assets/gfx/tmp/plane14.jpg',
-
-        'location' => 'Středočeský',
-    ],
-    [
-        'heading' => 'Vyhlídkové lety',
-        'content' => 'Rádi byste si užili zážitek vyhlídkového letu společně se svoji rodinou nebo blízkými přáteli? V tom případě Vám nabízíme vyhlídkové lety v letadle určeném až pro 5 pasažérů a jednoho pilota. Vyhlídkový let se tak stane jedinečnou vzpomínkou nejen pro Vás, ale i Vaše blízké.',
-        'price' => '1890 Kč',
-        'date' => 'reklama',
-        'img' => '/assets/gfx/tmp/plane15.jpg',
-        'location' => 'Celá ČR',
-        'adv' => true,
-    ],
-
-    [
-        'heading' => 'Prodám FLYDAT pro Rotax+EGT+CHT',
-        'content' => 'Prodám Flydat pro Rotax +4X EGT Rotax,1x CHT rotax, Snímač tlaku oleje VDO, propojovací kabel k PC+SW. Upgrade avioniky.',
-        'price' => '1 200 Kč',
-        'date' => 'Včera',
-        'img' => '/assets/gfx/tmp/plane8.jpg',
-        'location' => 'Zlínský',
-    ],
-    [
-        'heading' => 'Pronájem 1 místa v soukromém hangáru',
-        'content' => '
-        Nabízíme 1 místo pro Ulla v soukromém hangáru na letišti Hosín.
-Hangár pro 4 Ulla
-Dveře ze dvou stran , vyndá se jen 1ulla .
-Hlídané on-line kamery.
-Alarm
-Cena za měsíc 2000',
-        'price' => '2 000 Kč',
-        'date' => '12.2.2023',
-        'img' => '/assets/gfx/tmp/plane5.jpg',
-        'location' => 'Moravský',
-    ],
-    [
-        'heading' => 'Rotax 503 motor',
-        'content' => 'Prodam motor Rotax 503 .Včetně sani,výfuku, nádrže a různé komponenty, které tím souvisí. K tomu spoustu dílů. Motor by mel byt nový, jako náhradní.',
-        'price' => '43 500 Kč',
-        'date' => '11.2.2023',
-        'img' => '/assets/gfx/tmp/plane6.jpg',
-        'location' => 'KráloveHradecký',
-    ],
-]}
-
-
-
-
 {block content}
 
     {include '../fragments/header.latte'}
@@ -104,16 +11,11 @@ Cena za měsíc 2000',
             <div class="Container">
                 <div class="Row space-y-4">
                     <div class="Col w-full text-sm flex items-center gap-1">
-                        <a class="text-gray-500 hover:underline" href="">Úvod</a>
-                        /
-                        <a class="text-gray-500 hover:underline" href="">Nabídky</a>
-                        /
-                        <a class="text-gray-500 hover:underline" href="">Ultralehká letadla</a>
-                        /
-                        <span>Letadla</span>
+                        {control breadcrumbs}
                     </div>
                     <div class="Col w-full">
-                        <a href="" class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
+                        <a n:if="$presenter->navigation->navItem->parent__navigation_id" 
+                            href="{$presenter->navigation->navItem->parent__navigation->getUrl()}" class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
                             {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 transform mr-1'|noescape}
                             Zpět
                         </a>
@@ -307,12 +209,19 @@ Cena za měsíc 2000',
 
                         <div x-show="!loaded" class="text-sm text-gray-500">Načítám&hellip;</div>
 
+
+                        {control adListByCategories}
+
                         <div 
                             x-cloak
                             x-show="loaded"
                             class="relative mb-8"
                             :class="{ 'grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' : view == 'columns' }"
                         >
+
+
+                            
+                        {* TODO do sablony *}
 
 
     
@@ -339,6 +248,12 @@ Cena za měsíc 2000',
                 </div>
             </div>
         </section>
+
+
+
+
+
+
 
 
 

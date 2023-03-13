@@ -23,6 +23,7 @@ class Ad extends AbstractList
 		'filter' => null, //  null | exposed | archived
 		'defaultFilter' => null,
 		'homepage' => false,
+		'categories' => [],
 	];
 
 	/**
@@ -52,6 +53,11 @@ class Ad extends AbstractList
 	 * @persistent
 	 */
 	public $q;
+
+	/**
+	 * @var array
+	 */
+	private $categories = [];
 
 
 	public function __construct(FrontModule\Model\Ad $model, Navigation $modelNavigation)
@@ -97,6 +103,11 @@ class Ad extends AbstractList
 	}
 
 
+	public function setCategories(array $categories)
+	{
+		$this->categories = $categories;
+	}
+
 	public function handleSetQuery($q)
 	{
 		$this->q = $q;
@@ -126,6 +137,8 @@ class Ad extends AbstractList
 		);
 
 		$this->template->config = $config;
+
+		\Tracy\Debugger::barDump($this->categories);
 
 		$this->render($config);
 	}
