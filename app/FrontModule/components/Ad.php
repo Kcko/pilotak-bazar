@@ -18,10 +18,8 @@ class Ad extends AbstractList
 		'limit' => 16,
 		'paging' => true,
 		'filters' => false,
-		'type' => 'offer',
+		'type' => null,
 		'year' => null,
-		'filter' => null, //  null | exposed | archived
-		'defaultFilter' => null,
 		'homepage' => false,
 		'categories' => [],
 	];
@@ -35,12 +33,6 @@ class Ad extends AbstractList
 	 * @var Navigation
 	 */
 	protected $modelNavigation;
-
-	/**
-	 * @var int
-	 * @persistent
-	 */
-	public $year;
 
 	/**
 	 * @var string
@@ -71,34 +63,17 @@ class Ad extends AbstractList
 	{
 		$config = parent::getCurrentConfig($config);
 
-		if ($this->year) {
-			$config['year'] = $this->year;
-		}
-
-		if ($this->filter) {
-			$config['filter'] = $this->filter;
-		}
-
-		if ($config['year']) {
-			$config['filter'] = null;
+		if ($this->categories) {
+			$config['categories'] = $this->categories;
 		}
 
 		return $config;
 	}
 
 
-	public function handleSetYear($year)
-	{
-		$this->year = $year;
-		$this->filter = null;
-		$this->redrawControl();
-	}
-
-
 	public function handleSetFilter($filter)
 	{
 		$this->filter = $filter;
-		$this->year = null;
 		$this->redrawControl();
 	}
 
@@ -125,20 +100,15 @@ class Ad extends AbstractList
 	{
 		$config = $this->getCurrentConfig($config);
 
-		// \Tracy\Debugger::barDump($config);
-		// \Tracy\Debugger::barDump($this);
-		$options = [];
-
 		list($limit, $offset) = $this->getPages($config);
+
 		$this->template->advertisements = $this->model->getList(
-			$options,
+			$config,
 			$limit,
 			$offset
 		);
 
 		$this->template->config = $config;
-
-		\Tracy\Debugger::barDump($this->categories);
 
 		$this->render($config);
 	}

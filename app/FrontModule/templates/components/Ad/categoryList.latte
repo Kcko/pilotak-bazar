@@ -1,0 +1,192 @@
+
+<section class="pb-10" x-data="{ showFilters: false, view: $persist('columns'), loaded: true }">
+            <div class="border-t border-gray-200 mb-6"></div>
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+
+                        <div class="md:flex flex-wrap  items-center gap-8 border px-4 border-gray-200 rounded-md mb-6 py-2 space-y-3 md:space-y-0">
+                            <div class="flex flex-wrap items-center gap-x-6">
+                                <div class="flex items-center">
+                                    <input id="type" name="type" type="radio" value="1" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500" checked>
+                                    <label for="type" class="ml-3 block text-base">Nabídky</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="type2" name="type" type="radio" value="2" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500">
+                                    <label for="type2" class="ml-3 block  text-base">Poptávky</label>
+                                </div>
+                            </div>
+                            
+                            
+
+                            <div title="Další filtry" @click="showFilters = true" class="cursor-pointer hover:bg-gray-100 border flex items-center rounded-md  border-gray-300 min-h-[36px] px-2">
+                                {='assets/gfx/svg/icon-filter.svg'|svg:'w-5 h-5'|noescape}
+                               
+                            </div>
+
+                            {* Modal *}
+                            <div 
+                                x-cloak
+                                x-show="showFilters"
+                                @click="showFilters = false"
+                                class="fixed inset-0 z-50 bg-black/50"
+                            >
+                               
+                                <div 
+                                    x-cloak
+                                    x-show="showFilters"
+                                    x-transition:enter="transition-all duration-300"
+                                    x-transition:enter-start="translate-x-full"
+                                    x-transition:enter-end="translate-x-0"
+                                    x-transition:leave="transition-all duration-300"
+                                    x-transition:leave-start="translate-x-0"
+                                    x-transition:leave-end="translate-x-full"
+                                    x-trap.noscroll.inert="showFilters"
+                                    class="fixed shadow z-50 top-0 right-0 bottom-0 overflow-y-auto bg-white p-4  w-[400px] max-w-[100%]"
+                                    @click.stop
+                                    @keyup.escape="showFilters = false"
+                            
+                            >
+                                    
+                                    <div class="flex justify-end cursor-pointer" @click="showFilters = false">
+                                        {='assets/gfx/svg/icon-close-rounded.svg'|svg:'w-8 h-8'|noescape}
+                                    </div>
+                                    
+                                    <div class="text-h4">Filtry</div>
+
+                                    <div class="grid grid-cols-1 mb-5">
+                                        <label for="type" class="block font-medium text-gray-700 text-base">Typ inzerátu</label>
+                                        <div class="flex flex-wrap items-center gap-x-6 mt-1">
+                                            <div class="flex items-center">
+                                                <input id="type_x" name="type_x" type="radio" value="1" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500" checked>
+                                                <label for="type_x" class="ml-3 block  text-base">Nabídky</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input id="type_y" name="type_x" type="radio" value="2" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500">
+                                                <label for="type_y" class="ml-3 block text-base">Poptávky</label>
+                                            </div>
+                                        </div>
+                                     </div>
+
+
+                                    <div class="grid grid-cols-1 gap-5 mb-5">
+                                        <div>
+                                            <label for="currency" class="block font-medium text-gray-700 text-base">Kraj</label>
+                                            <div class="mt-1">
+                                                <select id="currency" name="currency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                <optgroup label="Česká republika">
+                                                
+                                                    <option value="1">Praha</option>
+                                                    <option value="2">Liberecký</option>
+                                                    <option value="3">Zlínský</option>
+                                                    <option value="4">Moravský</option>
+                                                    <option value="5">Středočeský</option>
+                                                    <option value="5">Liberecký</option>
+                                                    <option value="6">KráloveHradecký</option>
+                                                    <option value="7">Ústecký</option>
+                                                    <option value="8">Plzeňský</option>
+                                                    <option value="9">Jihočeský</option>
+                                                    <option value="10">Ostravský</option>
+                                                    <option value="11">Vysočina</option>
+                                                </optgroup>
+
+                                                <optgroup label="Slovensko">
+                                                    <option value="xx">Celé slovensko</option>
+                                                </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="grid grid-cols-1 mb-5">
+                                            <div class="flex items-center">
+                                                <input id="price_xy" name="price_xy" type="checkbox" value="1" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500" checked>
+                                                <label for="price_xy" class="ml-3 block  text-sm">Cena bez omezení</label>
+                                            </div>
+                                    </div>
+
+
+                                    <div class="grid grid-cols-2 gap-5 mb-5">
+                                        <div>
+                                            <label for="price_x" class="block font-medium text-gray-700 text-base">Cena od</label>
+                                            <div class="mt-1">
+                                                    <input id="price_x" name="price_x" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="price_x_2" class="block font-medium text-gray-700 text-base">Cena do</label>
+                                            <div class="mt-1">
+                                                    <input id="price_x_2" name="price_x_2" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="flex justify-end">
+                                        <button type="submit" class="Btn -Black">Nastavit filtr</button>
+                                    </div>
+
+                                    <div class="mb-10"></div>
+                                    
+                                    <img src="/assets/gfx/tmp/find.svg" alt="" />
+
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <select  id="order" name="order" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm min-w-[180px]">
+                                    <option value="3">Nejnovější</option>
+                                    <option value="1">Nejlevnější</option>
+                                    <option value="2">Nejdražší</option>
+                                </select>
+                            </div>
+
+
+                            <div x-cloak x-show="loaded" class="ml-auto inline-flex gap-x-2 ">
+                                <span @click="view = 'columns'" class="cursor-pointer" :class="view == 'columns' ? 'text-_black' : 'text-gray-500'" title="Sloupce">
+                                    {='assets/gfx/svg/columns.svg'|svg:'w-8 h-8'|noescape}
+                                </span>
+                                <span @click="view = 'rows'" class="cursor-pointer"  :class="view == 'rows' ? 'text-_black' : 'text-gray-500'" title="Řádky">
+                                    {='assets/gfx/svg/columns.svg'|svg:'w-8 h-8 rotate-90'|noescape}
+                                </span>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <div x-show="!loaded" class="text-sm text-gray-500">Načítám&hellip;</div>
+
+                        <div 
+                            x-cloak
+                            x-show="loaded"
+                            class="relative mb-8"
+                            :class="{ 'grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' : view == 'columns' }"
+                        >
+                            {foreach $advertisements as $adv}
+                                {include 'card.latte', adv => $adv}
+                            {/foreach}
+
+                        </div>
+
+                        
+                        {if !count($advertisements)}
+                            <div class="Alert Alert--Warning">{_}V této kategorii zatím nic není, zkuste se podívat jinam nebo změnte nastavení filtrů{/_}</div>
+                        {/if}
+
+
+                        {if $config['paging']}
+                            {control p}
+                        {/if}
+
+
+                    </div>
+                </div>
+            </div>
+        </section>

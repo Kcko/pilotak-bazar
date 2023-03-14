@@ -22,24 +22,27 @@ class Ad
 	}
 
 
-	public function getList(array $options = [], $limit = false, $offset = 0)
+	public function getList(array $config = [], $limit = false, $offset = 0)
 	{
-		//\Tracy\Debugger::barDump($filters, 'filters');
+		// base
 		$selection = $this->connection->table('ad');
 		$selection->where('is_visible', 1);
 		$selection->where('expiration >', new \DateTime);
-		$selection->limit($limit, $offset);
+
+		// offer / demand
+		if (isset($config['type'])) {
+			$selection->where('ad_type_id', $config['type']);
+		}
+
+		// categories
+		if (isset($config['categories']) && count($config['categories'])) {
+			$selection->where('navigation_id', $config['categories']);
+		}
 
 
-		return $selection;
-	}
+		// order, default order
+		$selection->order('created');
 
-
-	public function getListRelated(int $relatedId = 0, $limit = FALSE, $offset = 0)
-	{
-		$selection = $this->connection->table('realty_list');
-		$selection->where('id != ?', $relatedId);
-		$selection->order('rank DESC');
 		$selection->limit($limit, $offset);
 
 		return $selection;
@@ -52,50 +55,9 @@ class Ad
 	}
 
 
-	public function countRelated(int $relatedId = 0)
-	{
-		return $this->getListRelated($relatedId)->count('*');
-	}
-
-
 	public function getById($id)
 	{
 		return $this->connection->table('ad')->get($id);
-	}
-
-
-
-	public function filterList($type)
-	{
-		$selection = $this->connection->table('realty_list_' . $type)
-			->order('name');
-
-		$rows = [];
-		foreach ($selection as $row) {
-			$rows[$row->id] = $row->name;
-		}
-
-		return $rows;
-	}
-
-
-	public function filterListAvailable($type)
-	{
-		$list = $this->filterList($type);
-
-		//$selection = $this->connection->table('realty_list_realty_list_' . $type);
-		//$selection->select('DISTINCT realty_list_' . $type . '_id AS id');
-		$selection = $this->connection->table('realty_list_' . $type);
-
-		$availableList = [];
-		foreach ($selection as $row) {
-			// if (array_key_exists($row->id, $list)) {
-			$availableList[$row->id] = $list[$row->id];
-			// }
-		}
-
-		return $availableList;
-
 	}
 
 

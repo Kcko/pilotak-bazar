@@ -32,28 +32,24 @@
                 
                         <h1 class="text-h1 mb-10 Lined-1">{$ad->heading}</h1>
 
+                        
+                        {var $photosEncoded = json_encode($photos)}
+                        {var $firstPhoto = $photos[0]}
+
+                        {dump $firstPhoto}
+                   
                         <div class="md:grid md:grid-cols-3 gap-8">
                             <div class="col-span-2">
 
                                 <div x-data="{ 
+                                        
                                         init() {
                                             this.lightbox = new FsLightbox()
                                             this.lightbox.props.sources = this.images
                                         },
                                         lightbox: '',
-                                        currentSrc: '/assets/gfx/tmp/plane10.jpg',
-                                        images: [
-                                            '/assets/gfx/tmp/plane10.jpg',
-                                            '/assets/gfx/tmp/plane11.jpg',
-                                            '/assets/gfx/tmp/plane12.jpg',
-                                            '/assets/gfx/tmp/plane9.jpg',
-                                            '/assets/gfx/tmp/plane8.jpg',
-                                            '/assets/gfx/tmp/plane7.jpg',
-                                            '/assets/gfx/tmp/plane6.jpg',
-                                            '/assets/gfx/tmp/plane4.jpg',
-                                            '/assets/gfx/tmp/plane3.jpg',
-                                            '/assets/gfx/tmp/plane2.jpg',
-                                        ],
+                                        currentSrc: '{$firstPhoto}',
+                                        images: {$photosEncoded},
                                         prev() {
                                             let index =  this.images.indexOf(this.currentSrc)
                                             index = index - 1
@@ -77,7 +73,7 @@
                                     }" 
                                     class="mb-10">
                                     <div class="relative mb-4">
-                                            <span class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-sm"
+                                            <span b:if="$adv->top" class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-sm"
                                             >TOP</span>
 
                                             <span
@@ -106,51 +102,59 @@
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-10 gap-2">
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane10.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane10.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane10.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane11.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane11.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane11.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane12.jpg'"  :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane12.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane12.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane9.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane9.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane9.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane8.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane8.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane8.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane7.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane7.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane7.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane6.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane6.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane6.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane4.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane4.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane4.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane3.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane3.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane3.jpg" alt="" /></div>
-                                        <div @click="currentSrc='/assets/gfx/tmp/plane2.jpg'"   :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '/assets/gfx/tmp/plane2.jpg' }" class="aspect-square"><img class="w-full h-full object-cover" src="/assets/gfx/tmp/plane2.jpg" alt="" /></div>
+                                        {foreach $photos as $photo}
+                                            <div @click="currentSrc='{$photo}'"  
+                                                :class="{ 'ring-offset-2 ring-_black ring-2' : currentSrc == '{$photo}' }" 
+                                                class="aspect-square">
+                                                    <img class="w-full h-full object-cover" src="{$photo}" alt="" />
+                                            </div>
+                                        {/foreach}
                                     </div>
 
 
                                 </div>
 
                                 <div class="text-h3">
-                                    <span class="font-normal">Cena:</span> 30 000 Kč
+                                    <span class="font-normal">Cena:</span>
+                                    {if $ad->price}
+                                         {$ad->price}
+                                         {$ad->currency->symbol}
+                                    {else}
+                                        neuvedeno
+                                    {/if}
                                 </div>
 
                                 <div class="text-lg mb-10">
-                                   {$ad->content}
+                                   {$ad->content|breaklines}
                                 </div>
 
                                 <div class="border-t pt-4 gap-y-4 border-gray-200 mb-10 md:flex flex-wrap justify-between">
                                     <div>
                                         <span class="text-gray-400">Lokalita:</span>
-                                        <span>Zlínský kraj</span>
+                                        <span>{$ad->county}</span>
                                     </div>
                                     <div>
                                         <span class="text-gray-400">Vloženo:</span>
-                                        <span>Dnes</span>
+                                        <span>{$ad->created->format('j.n.Y')}</span>
                                     </div>
                                     <div>
                                         <span class="text-gray-400">Zobrazeno:</span>
-                                        <span>113x</span>
+                                        <span>{$ad->views_cnt + 1}x</span>
                                     </div>
                                 </div>
 
 
                                 <div class="border border-gray-200 p-5 rounded-md">
                                     <div class="text-h3 mb-3">Kontakt</div>
-                                    <div>
-                                        E-Mail: vlada.filip1@seznam.cz <br />
-                                        Tel.: 608528182 <br />
-                                        Město: Zlín - okraj <br />
+                                    <div n:if="$ad->user_id">
+                                        <span class="text-gray-400">E-mail:</span> {$ad->user->email|mailObfuscate|noescape} <br />
+                                        <span class="text-gray-400">Telefon:</span> {$ad->user->phone|phoneObfuscate|noescape} <br />
+                                        <span class="text-gray-400">Město:</span> {$ad->contact_town} <br />
+                                    </div>
+                                    <div n:if="!$ad->user_id">
+                                        <span class="text-gray-400">E-mail</span>: {$ad->contact_email|mailObfuscate|noescape} <br />
+                                        <span class="text-gray-400">Telefon:</span> {$ad->contact_phone|phoneObfuscate|noescape} <br />
+                                        <span class="text-gray-400">Město:</span> {$ad->contact_town} <br />
                                     </div>
                             
                                 </div>

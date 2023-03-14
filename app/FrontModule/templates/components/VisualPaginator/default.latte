@@ -1,4 +1,4 @@
-<div class="Pager" n:if="count($steps) > 1">
+{* <div class="Pager" n:if="count($steps) > 1">
 
 	{if !$paginator->isFirst()}
 		<a data-preloader-target=".PagerOverlayWrapper" class="prev ajax" n:href="page! $paginator->page - 1"><- Předchozí</a>
@@ -17,4 +17,19 @@
 	{/if}
 
 </div>
+ *}
 
+
+<div class="mt-12 flex flex-wrap gap-6 justify-center"  n:if="count($steps) > 1">
+	<a  n:if=" !$paginator->isFirst()" n:href="page! $paginator->page - 1" class="Btn -BlackOutlined min-w-[150px]">
+		
+		{='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 mr-2'|noescape}
+		Předchozí
+
+	</a>
+	<a n:if="!$paginator->isLast()" n:href="page! $paginator->page + 1" class="Btn -BlackOutlined min-w-[150px]"
+	>
+		Další
+		{='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+	</a>
+</div>
