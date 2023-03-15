@@ -19,8 +19,27 @@ class AdPresenter extends FrontPresenter
 	public $model;
 
 
-	public function actionDefault()
+	public function startup()
 	{
+		parent::startup();
+
+		$this['adSearch']->onSearch[] = function ($o, $q) {
+			\Tracy\Debugger::barDump($o);
+			\Tracy\Debugger::barDump($q);
+
+			if ($q) {
+				$this->redirect('default', $q);
+			}
+		};
+	}
+
+
+	public function actionDefault($q = null)
+	{
+		if ($q) {
+			$this['adSearch']['form']['q']->setDefaultValue($q);
+			//$this['adListByCategories']->setSearch($q);
+		}
 
 		$category = $this->navigation->getById($this->presenter->navigation->navItem['id']);
 		$childrenAll = $this->navigation->getAdjacencyList()->getChildrenRecursive($this->presenter->navigation->navItem['id']);
@@ -28,7 +47,6 @@ class AdPresenter extends FrontPresenter
 		$this->template->categories = array_merge(array_keys($childrenAll), [$category->id]);
 
 		$this['adListByCategories']->setCategories($this->template->categories);
-
 
 
 	}

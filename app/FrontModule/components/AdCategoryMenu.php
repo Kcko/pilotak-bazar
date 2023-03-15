@@ -28,6 +28,11 @@ class AdCategoryMenu extends FrontControl
 	 */
 	protected $modelNavigation;
 
+	const AD_TYPES = [
+		1 => 'offers',
+		2 => 'demands'
+	];
+
 
 	public function __construct(FrontModule\Model\Ad $model, Navigation $modelNavigation)
 	{
@@ -64,9 +69,9 @@ class AdCategoryMenu extends FrontControl
 		// pocet inzeratu v kategoriich
 		$adCounts = $this->model->getAdInCategoriesCount();
 
-		// \Tracy\Debugger::barDump($adCounts);
+		\Tracy\Debugger::barDump($adCounts);
 
-		foreach ($adCounts as $adId => $adCnt) {
+		foreach ($adCounts as $adId => $arr) {
 
 			$parent = null;
 			if (isset($childrenToParent[$adId])) {
@@ -77,14 +82,18 @@ class AdCategoryMenu extends FrontControl
 				continue;
 			}
 
-			if (!isset($info[$parent]['adCount'])) {
-				$info[$parent]['adCount'] = 0;
-			}
+			foreach (self::AD_TYPES as $typeId => $typeName) {
+				if (!isset($info[$parent]['adCount'][$typeName])) {
+					$info[$parent]['adCount'][$typeName] = 0;
+				}
 
-			if (isset($childrenToParent[$adId])) {
-				$info[$parent]['adCount'] += $adCnt;
+				if (isset($childrenToParent[$adId]) && isset($arr[$typeId])) {
+					$info[$parent]['adCount'][$typeName] += $arr[$typeId];
+				}
 			}
 		}
+
+		\Tracy\Debugger::barDump($info);
 
 		// deti pod konkretnim rodicem, zde config[parent]
 		foreach ($children as $ch) {

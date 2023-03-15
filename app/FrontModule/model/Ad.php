@@ -76,12 +76,24 @@ class Ad
 	public function getAdInCategoriesCount()
 	{
 		$selection = $this->connection->table('ad');
-		$selection->select('COUNT(*) cnt, navigation_id');
+		$selection->select('COUNT(*) cnt, navigation_id, ad_type_id');
 		$selection->where('is_visible', 1);
 		$selection->where('expiration >', new \DateTime);
-		$selection->group('navigation_id');
+		$selection->group('navigation_id, ad_type_id');
 
-		return $selection->fetchPairs('navigation_id', 'cnt');
+		$data = [];
+		foreach ($selection as $row) {
+
+			if (!isset($data[$row->navigation_id]['total'])) {
+				$data[$row->navigation_id]['total'] = 0;
+			}
+
+			$data[$row->navigation_id]['total'] += $row->cnt;
+			$data[$row->navigation_id][$row->ad_type_id] = $row->cnt;
+		}
+
+		return $data;
+		//return $selection->fetchPairs('navigation_id', 'cnt');
 
 	}
 

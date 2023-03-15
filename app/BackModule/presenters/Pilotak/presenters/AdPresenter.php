@@ -12,7 +12,7 @@ class AdPresenter extends FastAdminTablePresenter
 
 	public $moduleName = 'Inzeráty';
 	protected $table = 'ad';
-	protected $colsOrder = array('heading', 'navigation_id', 'created', 'expiration', 'price', 'top');
+	protected $colsOrder = array('heading', 'navigation_id', 'ad_type_id', 'created', 'expiration', 'price', 'top');
 
 
 	/**
