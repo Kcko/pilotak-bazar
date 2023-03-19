@@ -13,8 +13,10 @@
                         {control breadcrumbs}
                     </div>
                     <div class="Col w-full">
-                        <a n:if="$backUrl" 
-                            href="{$backUrl}" class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
+
+                        <a n:if="$category->parent__navigation_id" 
+                            href="{plink Ad:default navId => $category->parent__navigation_id}" 
+                            class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
                             {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 transform mr-1'|noescape}
                             Zpět
                         </a>
@@ -32,10 +34,8 @@
                 
                         <h1 class="text-h1 mb-10 Lined-1">{$ad->heading}</h1>
 
-                        
                         {var $photosEncoded = json_encode($photos)}
                         {var $firstPhoto = $photos[0]}
-
                    
                         <div class="md:grid md:grid-cols-3 gap-8">
                             <div class="col-span-2">

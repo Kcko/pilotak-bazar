@@ -69,8 +69,6 @@ class AdCategoryMenu extends FrontControl
 		// pocet inzeratu v kategoriich
 		$adCounts = $this->model->getAdInCategoriesCount();
 
-		\Tracy\Debugger::barDump($adCounts);
-
 		foreach ($adCounts as $adId => $arr) {
 
 			$parent = null;
@@ -93,7 +91,6 @@ class AdCategoryMenu extends FrontControl
 			}
 		}
 
-		\Tracy\Debugger::barDump($info);
 
 		// deti pod konkretnim rodicem, zde config[parent]
 		foreach ($children as $ch) {

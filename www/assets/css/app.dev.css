@@ -1557,10 +1557,6 @@ input[readonly]:focus {
   z-index: 10;
 }
 
-.z-40 {
-  z-index: 40;
-}
-
 .z-50 {
   z-index: 50;
 }
@@ -1583,10 +1579,6 @@ input[readonly]:focus {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
-}
-
-.col-span-12 {
-  grid-column: span 12 / span 12;
 }
 
 .col-span-2 {
@@ -1636,24 +1628,9 @@ input[readonly]:focus {
   margin-bottom: 0px;
 }
 
-.my-16 {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-
-.my-24 {
-  margin-top: 6rem;
-  margin-bottom: 6rem;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 .\!mb-6 {
@@ -1694,6 +1671,10 @@ input[readonly]:focus {
 
 .-mr-5 {
   margin-right: -1.25rem;
+}
+
+.-mt-8 {
+  margin-top: -2rem;
 }
 
 .mb-0 {
@@ -1764,10 +1745,6 @@ input[readonly]:focus {
   margin-left: 0.75rem;
 }
 
-.ml-4 {
-  margin-left: 1rem;
-}
-
 .ml-auto {
   margin-left: auto;
 }
@@ -1826,6 +1803,10 @@ input[readonly]:focus {
 
 .mt-auto {
   margin-top: auto;
+}
+
+.-mt-6 {
+  margin-top: -1.5rem;
 }
 
 .block {
@@ -1904,10 +1885,6 @@ input[readonly]:focus {
   height: 1rem;
 }
 
-.h-40 {
-  height: 10rem;
-}
-
 .h-5 {
   height: 1.25rem;
 }
@@ -1956,10 +1933,6 @@ input[readonly]:focus {
   width: 66.666667%;
 }
 
-.w-20 {
-  width: 5rem;
-}
-
 .w-3 {
   width: 0.75rem;
 }
@@ -1970,10 +1943,6 @@ input[readonly]:focus {
 
 .w-4 {
   width: 1rem;
-}
-
-.w-40 {
-  width: 10rem;
 }
 
 .w-5 {
@@ -2040,12 +2009,6 @@ input[readonly]:focus {
   max-width: 32rem;
 }
 
-.flex-1 {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0%;
-          flex: 1 1 0%;
-}
-
 .flex-shrink-0 {
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -2102,23 +2065,12 @@ input[readonly]:focus {
   cursor: pointer;
 }
 
-.select-none {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .grid-cols-10 {
   grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-
-.grid-cols-12 {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 .grid-cols-2 {
@@ -2135,18 +2087,6 @@ input[readonly]:focus {
 
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.grid-cols-\[1fr\2c 1fr\2c 1fr\2c 1fr\2c 150px\] {
-  grid-template-columns: 1fr 1fr 1fr 1fr 150px;
-}
-
-.grid-cols-\[1fr\2c 1fr\] {
-  grid-template-columns: 1fr 1fr;
-}
-
-.grid-cols-\[200px\2c 1fr\] {
-  grid-template-columns: 200px 1fr;
 }
 
 .flex-col {
@@ -2267,20 +2207,8 @@ input[readonly]:focus {
           column-gap: 2rem;
 }
 
-.gap-y-12 {
-  row-gap: 3rem;
-}
-
-.gap-y-3 {
-  row-gap: 0.75rem;
-}
-
 .gap-y-4 {
   row-gap: 1rem;
-}
-
-.gap-y-6 {
-  row-gap: 1.5rem;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -2307,12 +2235,6 @@ input[readonly]:focus {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
-.space-y-10 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
-}
-
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -2323,12 +2245,6 @@ input[readonly]:focus {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
-}
-
-.space-y-3\.5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.875rem * var(--tw-space-y-reverse));
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -2377,17 +2293,6 @@ input[readonly]:focus {
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.truncate {
-  overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.break-all {
-  word-break: break-all;
 }
 
 .rounded {
@@ -2456,10 +2361,6 @@ input[readonly]:focus {
   background-color: rgb(255 208 21 / var(--tw-bg-opacity));
 }
 
-.bg-bg\/80 {
-  background-color: rgb(32 33 36 / 0.8);
-}
-
 .bg-black\/50 {
   background-color: rgb(0 0 0 / 0.5);
 }
@@ -2477,10 +2378,6 @@ input[readonly]:focus {
 .bg-red-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
-.bg-transparent {
-  background-color: transparent;
 }
 
 .bg-white {
@@ -2505,10 +2402,6 @@ input[readonly]:focus {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .p-1 {
@@ -2567,11 +2460,6 @@ input[readonly]:focus {
   padding-bottom: 0.25rem;
 }
 
-.py-1\.5 {
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
-}
-
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -2595,11 +2483,6 @@ input[readonly]:focus {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 
 .pb-0 {
@@ -2715,10 +2598,6 @@ input[readonly]:focus {
 
 .font-normal {
   font-weight: 400;
-}
-
-.font-semibold {
-  font-weight: 600;
 }
 
 .uppercase {
@@ -4846,11 +4725,6 @@ https://picsum.photos/id/13/1810/1150
   background-color: rgb(255 255 255 / 0.9);
 }
 
-.hover\:text-black:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .hover\:text-indigo-500:hover {
   --tw-text-opacity: 1;
   color: rgb(99 102 241 / var(--tw-text-opacity));
@@ -4912,10 +4786,6 @@ https://picsum.photos/id/13/1810/1150
 .group:hover .group-hover\:text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:opacity-70 {
-  opacity: 0.7;
 }
 
 @media (min-width: 640px) {
@@ -5097,10 +4967,6 @@ https://picsum.photos/id/13/1810/1150
             order: 2;
   }
 
-  .lg\:col-span-1 {
-    grid-column: span 1 / span 1;
-  }
-
   .lg\:col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -5109,18 +4975,9 @@ https://picsum.photos/id/13/1810/1150
     grid-column: span 3 / span 3;
   }
 
-  .lg\:col-span-6 {
-    grid-column: span 6 / span 6;
-  }
-
   .lg\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
-  }
-
-  .lg\:my-24 {
-    margin-top: 6rem;
-    margin-bottom: 6rem;
   }
 
   .lg\:-ml-4 {
@@ -5169,10 +5026,6 @@ https://picsum.photos/id/13/1810/1150
     display: none;
   }
 
-  .lg\:w-4\/6 {
-    width: 66.666667%;
-  }
-
   .lg\:w-5\/12 {
     width: 41.666667%;
   }
@@ -5209,12 +5062,6 @@ https://picsum.photos/id/13/1810/1150
     gap: 2rem;
   }
 
-  .lg\:gap-x-8 {
-    -webkit-column-gap: 2rem;
-       -moz-column-gap: 2rem;
-            column-gap: 2rem;
-  }
-
   .lg\:p-0 {
     padding: 0px;
   }
@@ -5239,14 +5086,6 @@ https://picsum.photos/id/13/1810/1150
 
   .lg\:pr-20 {
     padding-right: 5rem;
-  }
-
-  .lg\:pr-24 {
-    padding-right: 6rem;
-  }
-
-  .lg\:pr-36 {
-    padding-right: 9rem;
   }
 
   .lg\:pt-0 {

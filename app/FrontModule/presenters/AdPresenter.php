@@ -13,6 +13,19 @@ class AdPresenter extends FrontPresenter
 {
 
 	/**
+	 * @var string
+	 * @persistent
+	 */
+	public $adType = 'offers';
+
+	/**
+	 * @var string
+	 * @persistent
+	 */
+	public $q = '';
+
+
+	/**
 	 * @var Model\Ad
 	 * @inject
 	 */
@@ -23,14 +36,9 @@ class AdPresenter extends FrontPresenter
 	{
 		parent::startup();
 
-		$this['adSearch']->onSearch[] = function ($o, $q) {
-			\Tracy\Debugger::barDump($o);
-			\Tracy\Debugger::barDump($q);
-
-			if ($q) {
-				$this->redirect('default', $q);
-			}
-		};
+		if (!($this->adType == 'offers' || $this->adType == 'demands')) {
+			$this->error();
+		}
 	}
 
 
@@ -38,18 +46,28 @@ class AdPresenter extends FrontPresenter
 	{
 		if ($q) {
 			$this['adSearch']['form']['q']->setDefaultValue($q);
-			//$this['adListByCategories']->setSearch($q);
+			$this['adListByCategories']->setSearch($q);
+			$this->template->q = $q;
 		}
 
 		$category = $this->navigation->getById($this->presenter->navigation->navItem['id']);
 		$childrenAll = $this->navigation->getAdjacencyList()->getChildrenRecursive($this->presenter->navigation->navItem['id']);
+		$parents = $category->getParents();
+
+		$this['breadcrumbs']->removeCrumb(0);
+		$this['breadcrumbs']->removeCrumb(1);
+		$this['breadcrumbs']->removeCrumb(2);
+		foreach (array_reverse($parents) as $parent) {
+			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id]));
+		}
+		$this['breadcrumbs']->addCrumb($this->presenter->navigation->navItem['title']);
 
 		$this->template->categories = array_merge(array_keys($childrenAll), [$category->id]);
 
 		$this['adListByCategories']->setCategories($this->template->categories);
 
-
 	}
+
 
 	public function actionDetail($navParam)
 	{
@@ -60,6 +78,8 @@ class AdPresenter extends FrontPresenter
 			$this->error();
 		}
 
+		// persitent re-set
+		$this->adType = $ad->ad_type_id == 2 ? 'demands' : 'offers';
 
 		// save last HIT 
 		$session = $this->getSession('adDetail');
@@ -94,13 +114,14 @@ class AdPresenter extends FrontPresenter
 		$this['breadcrumbs']->removeCrumb(0);
 		$this['breadcrumbs']->removeCrumb(1);
 		foreach (array_reverse($parents) as $parent) {
-			$this['breadcrumbs']->addCrumb($parent->title, $parent->getUrl());
+			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id]));
 		}
 		$this['breadcrumbs']->addCrumb($ad->heading);
 
 
 		// back to parent
-		$this->template->backUrl = $category->parent__navigation->getUrl();
+		// $this->template->backUrl = $category->parent__navigation->getUrl();
+		$this->template->category = $category;
 
 
 		// photos
@@ -119,4 +140,5 @@ class AdPresenter extends FrontPresenter
 		$this->template->photos = $photos;
 
 	}
+
 }

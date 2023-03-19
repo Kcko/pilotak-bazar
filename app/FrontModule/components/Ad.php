@@ -51,6 +51,13 @@ class Ad extends AbstractList
 	 */
 	private $categories = [];
 
+	public $onRender = [];
+
+	/**
+	 * @var int
+	 */
+	public $itemsTotal;
+
 
 	public function __construct(FrontModule\Model\Ad $model, Navigation $modelNavigation)
 	{
@@ -65,6 +72,9 @@ class Ad extends AbstractList
 
 		if ($this->categories) {
 			$config['categories'] = $this->categories;
+		}
+		if ($this->q) {
+			$config['q'] = $this->q;
 		}
 
 		return $config;
@@ -110,68 +120,71 @@ class Ad extends AbstractList
 
 		$this->template->config = $config;
 
+		$this->onRender($this);
+
 		$this->render($config);
+
 	}
+
+	public function renderSearchTitle(array $config = [])
+	{
+
+		$config = $this->getCurrentConfig($config);
+
+
+		$this->template->config = $config;
+
+		$this->template->q = $this->q;
+		$this->template->searchResultCnt = $this->count($config);
+
+		$this->render($config);
+
+	}
+
+
 
 
 	public function count(array $config = [])
 	{
-		$config = $this->getCurrentConfig($config);
+		static $cache;
 
-		return $this->model->count(
-			$config
-		);
+		if ($cache === null) {
+			$config = $this->getCurrentConfig($config);
+			$cache = $this->model->count($config);
+		}
+
+		return $cache;
 	}
 
 
-	public function createComponentSearchForm()
+	public function createComponentFilterForm()
 	{
 		$form = new UI\Form;
 		$form->setMethod('GET');
 		// tohle je tu kvuli vycisteni persistentnich parametru; jinak to snad nejde nebo nevim jak ;]
-		$form->setAction($this->link('setQuery!', ['year' => null, 'filter' => null, 'p-p' => null]));
-		$form->getElementPrototype()->setClass('ajax');
-		$form->addText('q', 'Sem napište, co hledáte ...')
-			->setRequired('Zkuste něco napsat ...')
-			->addRule($form::MIN_LENGTH, 'Zadejte alespoň 3 znaky', 3);
-		// $form->addHidden('year');
-		// $form->addHidden('filter');
-		// $form['boards-filter']->setValue(null);
-		// $form['boards-year']->setValue(null);
+		//$form->setAction($this->link('setQuery!', ['year' => null, 'filter' => null, 'p-p' => null]));
+		//$form->getElementPrototype()->setClass('ajax');
+		$form->addRadioList('ad_type_id', 'Typ inzerátu', [
+			1 => 'Nabídky',
+			2 => 'Poptávky'
+		])->setDefaultValue(1);
 
-		// $form->addHidden('boardsYear', null)
-		// ->setHtmlAttribute('name', 'boards-year')
-		// ->setOmitted();
-
-		// $form->addHidden('boardsFilter', null)
-		// ->setHtmlAttribute('name', 'boards-filter')
-		// ->setOmitted();
-
-		// $form->addHidden('boardsQ', null)
-		// ->setHtmlAttribute('name', 'boards-q')
-		// ->setOmitted();
 
 		$form->addSubmit('_submit', 'Submit');
 
 
-		if ($this->q) {
-			$form['q']->setValue($this->q);
-		}
-
 		$form->onSuccess[] = function ($form, $values) {
-			// $this->filter = null;
-			// $this->year = null;
-			// $this->getComponent('p')->p = null;
-			$this->handleSetQuery($values->q);
-			//$this->q = $values->q;
-			//$this->filter = null;
-			//$this->year = null;
-			//$this->getComponent('p')->p = null;
-			//$this->redrawControl();
+
 
 		};
 
 		return $form;
+	}
+
+
+	public function setSearch($q)
+	{
+		$this->q = $q;
 	}
 
 }

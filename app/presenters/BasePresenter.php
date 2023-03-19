@@ -3,11 +3,12 @@
 namespace App\Presenters;
 
 use Nette,
-	App\Model,
-	Andweb;
+App\Model,
+Andweb;
 
 
 use Andweb\Presenters\Traits;
+
 //use App\EshopModule\Model\CurrencySwitcher;
 
 /**
@@ -16,11 +17,11 @@ use Andweb\Presenters\Traits;
 abstract class BasePresenter extends Andweb\Application\UI\Presenter
 {
 	use Traits\LanguageTrait;
-	
+
 	//use Traits\CurrencyTrait;
-	
+
 	use Traits\DomainTrait;
-	
+
 	/** @persistent */
 	public $domain;
 
@@ -33,7 +34,7 @@ abstract class BasePresenter extends Andweb\Application\UI\Presenter
 	 * @inject
 	 */
 	//public $currencySwitcher;
-	
+
 	/**
 	 * 
 	 * @var \App\FrontModule\Model\Visitor
@@ -49,13 +50,13 @@ abstract class BasePresenter extends Andweb\Application\UI\Presenter
 	 */
 	public $connection;
 
- 
+
 	/**
 	 *
 	 * @var \App\FrontModule\Model\RecaptchaValidationV3Config $recaptchaConfig
 	 * @inject
 	 */
-    public $recaptchaConfig;
+	public $recaptchaConfig;
 
 
 	public function startup()
@@ -64,19 +65,19 @@ abstract class BasePresenter extends Andweb\Application\UI\Presenter
 
 		// must be done this way, because configuration can change depends on available project modules
 		//$this->initCurrency($this->currencySwitcher->getSelectedCurrencyId());
-		
+
 		// visitor tracking
 		//$this->visitor->trackVisitor();
 	}
 
-	public function listImageGroups($navigationId) 
+	public function listImageGroups($navigationId)
 	{
 		return $this->connection->table('static_content_image_group')
 			->where('navigation_id', $navigationId)
 			->fetchAll();
 	}
 
-	public function listFilesGroups($navigationId) 
+	public function listFilesGroups($navigationId)
 	{
 		return $this->connection->table('static_content_file_group')
 			->where('navigation_id', $navigationId)

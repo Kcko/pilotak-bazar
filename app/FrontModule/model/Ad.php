@@ -15,24 +15,52 @@ class Ad
 	 */
 	protected $connection;
 
+	/**
+	 * @var AdSearch
+	 */
+	protected $search;
 
-	public function __construct(Context $connection)
+
+	public function __construct(Context $connection, AdSearch $search)
 	{
 		$this->connection = $connection;
+		$this->search = $search;
 	}
 
 
 	public function getList(array $config = [], $limit = false, $offset = 0)
 	{
+
+		$q = null;
+		if (isset($config['q']) && $config['q']) {
+			$q = $this->search->parseQuery($config['q']);
+		}
+
 		// base
 		$selection = $this->connection->table('ad');
+		$selection->select('*');
 		$selection->where('is_visible', 1);
 		$selection->where('expiration >', new \DateTime);
+
+		if ($q) {
+			$q = $this->search->parseQuery($config['q']);
+
+			$selection->select(
+				'MATCH(heading, content) AGAINST (? IN BOOLEAN MODE) AS score',
+				$q
+			);
+
+			$selection->where(
+				'MATCH(heading, content) AGAINST (? IN BOOLEAN MODE)',
+				$q
+			);
+		}
 
 		// offer / demand
 		if (isset($config['type'])) {
 			$selection->where('ad_type_id', $config['type']);
 		}
+
 
 		// categories
 		if (isset($config['categories']) && count($config['categories'])) {
@@ -41,7 +69,21 @@ class Ad
 
 
 		// order, default order
+
+		if ($q) {
+			$selection->order(
+				'5 * MATCH(heading) AGAINST (? IN BOOLEAN MODE)
+				+  MATCH(content) AGAINST (? IN BOOLEAN MODE) 
+				DESC
+				',
+				$q,
+				$q
+			);
+
+			$selection->order('score DESC');
+		}
 		$selection->order('created');
+
 
 		$selection->limit($limit, $offset);
 

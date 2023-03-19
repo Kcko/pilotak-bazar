@@ -179,6 +179,7 @@ services:
 	- App\FrontModule\Model\MainAdvertItems
 	- App\FrontModule\Model\Contact
 	- App\FrontModule\Model\Ad
+	- App\FrontModule\Model\AdSearch
 	- App\FrontModule\Model\PopoUser
 
 extensions:

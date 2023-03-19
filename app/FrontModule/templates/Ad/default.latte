@@ -15,7 +15,7 @@
                     </div>
                     <div class="Col w-full">
                         <a n:if="$presenter->navigation->navItem->parent__navigation_id" 
-                            href="{$presenter->navigation->navItem->parent__navigation->getUrl()}" class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
+                            href="{plink Ad:default navId => $presenter->navigation->navItem->parent__navigation_id}" class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
                             {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 transform mr-1'|noescape}
                             Zpět
                         </a>
@@ -29,25 +29,20 @@
                 <div class="Container">
                     <div class="Row">
 
-                        <div  n:if="isset($_GET['search'])" class="Col w-full">
-                            <h2 class="flex gap-x-4 flex-wrap items-center text-h2 font-normal text-left mb-0 Lined-1">
-                                Výsledky pro 
-                                <mark class="font-bold bg-yellow-100 rounded px-1">&bdquo;náhradní vrtule ke kluzáku&ldquo;</mark> 
-                                <span class="text-gray-500 text-h3 mb-0">(41x)</span>
-                            </h2>
-                        </div>
-
-                        <div n:if="!isset($_GET['search'])" class="Col w-full">
+                        <div class="Col w-full">
                             <h2 class="text-h2 text-left mb-14 Lined-1">{$presenter->navigation->navItem['title']}</h2>
 
-                            {control adCategoryMenu, parent => $presenter->navigation->navItem['id']}
+							{ifset $q}
+								{control adListByCategories:searchTitle, template => 'searchTitle'}
+							{/ifset}
 
+				            {control adCategoryMenu, parent => $presenter->navigation->navItem['id']}
                         </div>
                     </div>
                 </div>
         </section>
 
-
+    
         {control adListByCategories}
 
     </main>
