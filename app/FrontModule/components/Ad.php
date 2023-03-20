@@ -47,6 +47,11 @@ class Ad extends AbstractList
 	public $q;
 
 	/**
+	 * @var int
+	 */
+	public $type;
+
+	/**
 	 * @var array
 	 */
 	private $categories = [];
@@ -79,8 +84,13 @@ class Ad extends AbstractList
 		if ($this->categories) {
 			$config['categories'] = $this->categories;
 		}
+
 		if ($this->q) {
 			$config['q'] = $this->q;
+		}
+
+		if ($this->type) {
+			$config['type'] = $this->type;
 		}
 
 		return $config;
@@ -97,6 +107,11 @@ class Ad extends AbstractList
 	public function setCategories(array $categories)
 	{
 		$this->categories = $categories;
+	}
+
+	public function setType(int $type)
+	{
+		$this->type = $type;
 	}
 
 	public function handleSetQuery($q)
@@ -148,8 +163,6 @@ class Ad extends AbstractList
 	}
 
 
-
-
 	public function count(array $config = [])
 	{
 		static $cache;
@@ -199,7 +212,7 @@ class Ad extends AbstractList
 		$allLikes = $this->user->getId() ? $this->model->allLikesByUser($this->user->getId()) : [];
 
 		return new Nette\Application\UI\Multiplier(function (int $adId) use ($allLikes) {
-			return new Like($adId, $allLikes[$adId] ?? false, $this->model, $this->modelNavigation, $this->user);
+			return new Like($adId, $allLikes[$adId] ?? false, $this->model, $this->user);
 		});
 	}
 

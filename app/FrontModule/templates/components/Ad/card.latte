@@ -1,4 +1,4 @@
-    <div href="{plink Ad:detail $adv->id, q => null, adType => null}" n:class="
+    <div  n:class="
         'swiper-slide 
         relative
         transition-transform
@@ -17,10 +17,11 @@
         {if !isset($adv['adv'])}
             {control likeControl-$adv->id}
         {/if}
-            
+           
+        <a class="absolute z-[1] inset-0" href="{plink Ad:detail $adv->id, q => null, adType => null}"></a>    
 
         <span n:if="isset($adv[adv])"
-            class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs"
+            class="absolute  top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs"
         >Reklama</span>
 
         {if $adv->image}

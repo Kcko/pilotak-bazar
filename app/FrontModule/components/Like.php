@@ -23,12 +23,6 @@ class Like extends FrontControl
 	protected $model;
 
 	/**
-	 * @var Navigation
-	 */
-	protected $modelNavigation;
-
-
-	/**
 	 * @var Nette\Security\User
 	 */
 	protected $user;
@@ -49,12 +43,11 @@ class Like extends FrontControl
 	 */
 	public $onLikeAction = [];
 
-	public function __construct(int $id, bool $isLiked, FrontModule\Model\Ad $model, Navigation $modelNavigation, Nette\Security\User $user)
+	public function __construct(int $id, bool $isLiked, FrontModule\Model\Ad $model, Nette\Security\User $user)
 	{
 		$this->id = $id;
 		$this->isLiked = $isLiked;
 		$this->model = $model;
-		$this->modelNavigation = $modelNavigation;
 		$this->user = $user;
 
 		parent::__construct();

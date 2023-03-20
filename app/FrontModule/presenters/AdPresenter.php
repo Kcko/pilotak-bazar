@@ -44,6 +44,9 @@ class AdPresenter extends FrontPresenter
 
 	public function actionDefault($q = null)
 	{
+
+		$this['adListByCategories']->setType($this->adType == 'offers' ? 1 : 2);
+
 		if ($q) {
 			$this['adSearch']['form']['q']->setDefaultValue($q);
 			$this['adListByCategories']->setSearch($q);
@@ -140,5 +143,13 @@ class AdPresenter extends FrontPresenter
 		$this->template->photos = $photos;
 
 	}
+
+
+	protected function createComponentLikeControlInDetail()
+	{
+		$isLiked = $this->user->getId() ? $this->model->isLiked($this->template->ad->id, $this->user->getId()) : [];
+		return new App\FrontModule\Components\Like($this->template->ad->id, $isLiked ? true : false, $this->model, $this->user);
+	}
+
 
 }

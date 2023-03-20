@@ -1,7 +1,7 @@
 <div 
     x-data="{ swiper: null }" 
     x-init="swiper = new Swiper($refs.container, {
-        loop: true,
+        loop: false,
         slidesPerView: 1,
         spaceBetween: 0,
         speed: 700,
@@ -46,9 +46,16 @@
 </div>
 
 
-<div class="text-center">
-    <a href="" class="Btn -Black min-w-[150px] mx-auto">
+<div n:if="$config[type] == 1" class="text-center">
+    <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Black min-w-[150px] mx-auto">
         Všechny nabídky
+        {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+    </a>
+</div>
+
+<div n:if="$config[type] == 2" class="text-center">
+    <a href="{plink Ad:default, navId => 740, adType => demands}" class="Btn -Black min-w-[150px] mx-auto">
+        Všechny poptávky
         {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
     </a>
 </div>

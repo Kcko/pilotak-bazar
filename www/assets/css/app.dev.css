@@ -1577,6 +1577,10 @@ input[readonly]:focus {
   z-index: 3;
 }
 
+.z-\[1\] {
+  z-index: 1;
+}
+
 .order-1 {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
