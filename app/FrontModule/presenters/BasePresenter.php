@@ -30,12 +30,17 @@ class BasePresenter extends App\Presenters\BasePresenter
 		$this['adSearch']->onSearch[] = function ($o, $q) {
 			if ($q) {
 				$presenter = $this->getPresenterInfo();
+
+				$this->redirect('Ad:default', ['navId' => 740, 'q' => $q]);
+				
+				/*
 				// ad default ok na tu samou
 				if ($presenter['name'] == 'front.ad' && $presenter['action'] == 'default') {
 					$this->redirect('Ad:default', ['navId' => $this->presenter->navigation->navItem['id'], 'q' => $q]);
 				} else {
 					$this->redirect('Ad:default', ['navId' => 740, 'q' => $q]);
 				}
+				*/
 			}
 		};
 

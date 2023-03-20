@@ -58,7 +58,7 @@ class AdPresenter extends FrontPresenter
 		$this['breadcrumbs']->removeCrumb(1);
 		$this['breadcrumbs']->removeCrumb(2);
 		foreach (array_reverse($parents) as $parent) {
-			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id]));
+			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id, 'q' => null]));
 		}
 		$this['breadcrumbs']->addCrumb($this->presenter->navigation->navItem['title']);
 
@@ -114,7 +114,7 @@ class AdPresenter extends FrontPresenter
 		$this['breadcrumbs']->removeCrumb(0);
 		$this['breadcrumbs']->removeCrumb(1);
 		foreach (array_reverse($parents) as $parent) {
-			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id]));
+			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id, 'q' => null]));
 		}
 		$this['breadcrumbs']->addCrumb($ad->heading);
 

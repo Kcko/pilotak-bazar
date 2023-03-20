@@ -1,6 +1,15 @@
-<form n:name="form" class="mx-auto max-w-lg flex ">
-    <input n:name="q" type="text" class="border-0 focus-visible:outline-none focus:ring-2 pr-12 ring-_black ring-offset-1 block w-full py-2.5 px-3 rounded-md" placeholder="Hledat v inzerátech..." />
-    <button n:name="submit" class=" rounded-md  px-3 -ml-12">
+<form n:name="form" class="mx-auto max-w-lg flex rounded-md bg-white relative">
+    <button n:name="submit" class=" rounded-md  px-3">
         {='assets/gfx/svg/icon-search.svg'|svg:'w-8 h-8'|noescape}
     </button>
+    <input n:name="q" type="text" class="border-0 focus-visible:outline-none focus:ring-0 pl-0 pr-12 ring-_black ring-offset-1 block w-full py-2.5 px-3 rounded-md" placeholder="Hledat v inzerátech..." 
+    
+    />
+
+    {if isset($presenter->q) && $presenter->q}
+        <a href="{plink Ad:default, 'navId' => 740, 'q' => null}" class="absolute right-2 top-[50%] -mt-4 cursor-pointer">
+            {='assets/gfx/svg/cross.svg'|svg:'w-8 h-8'|noescape}
+        </a>
+    {/if}
+
 </form>

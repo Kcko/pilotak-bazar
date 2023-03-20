@@ -12,9 +12,9 @@
                 {='assets/gfx/svg/icon-list.svg'|svg:'w-4 h-4'|noescape}
                 Moje inzeráty
                 </a></li>
-            <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
+            <li><a href="{plink PopoUser:popularAds}" class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
                 {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-4 h-4'|noescape}
-                Oblíbené
+                Můj hangár {control adPopularByUser:cnt, template => 'cnt'}
                 </a></li>
             <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="{plink @settings}">
                 {='assets/gfx/svg/icon-cog.svg'|svg:'w-4 h-4'|noescape}

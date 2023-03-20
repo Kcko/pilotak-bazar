@@ -42,6 +42,10 @@ class Ad
 		$selection->where('is_visible', 1);
 		$selection->where('expiration >', new \DateTime);
 
+		if (isset($config['user_id']) && $config['user_id']) {
+			$selection->where(':ad_fav.user_id', $config['user_id']);
+		}
+
 		if ($q) {
 			$q = $this->search->parseQuery($config['q']);
 

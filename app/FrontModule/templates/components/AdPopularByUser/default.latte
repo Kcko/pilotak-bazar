@@ -1,0 +1,16 @@
+
+    {if !count($advertisements)}
+        <div class="Alert Alert--Warning">{_}Do hangáru jste zatím nic neparkoval(a) ;-){/_}</div>
+    {/if}
+
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {foreach $advertisements as $adv}
+            {include '../Ad/card.latte', adv => $adv}
+        {/foreach}
+    </div>
+
+
+    {if $config['paging']}
+        {control p}
+    {/if}

@@ -68,6 +68,14 @@ class PopoUserPresenter extends FrontPresenter
 	}
 
 
+	public function actionPopularAds()
+	{
+		if (!$this->user->isLoggedIn()) {
+			$this->redirectUrl('/');
+		}
+	}
+
+
 	public function actionSettings()
 	{
 		if (!$this->user->isLoggedIn()) {
