@@ -144,4 +144,42 @@ class Ad
 	}
 
 
+	public function likeAd($id, $userId)
+	{
+		try {
+			$this->connection->table('ad_fav')->insert([
+				'ad_id' => $id,
+				'user_id' => $userId,
+				'added' => new \DateTime
+			]);
+		} catch (\Exception $e) {
+
+		}
+	}
+
+	public function dislikeAd($id, $userId)
+	{
+		$this->connection->table('ad_fav')
+			->where('ad_id', $id)
+			->where('user_id', $userId)
+			->delete();
+	}
+
+
+	public function allLikesByUser($userId)
+	{
+		return $this->connection->table('ad_fav')
+			->where('user_id', $userId)
+			->order('added DESC')
+			->fetchPairs('ad_id', 'ad_id');
+	}
+
+
+	public function isLiked($id, $userId)
+	{
+		return $this->connection->table('ad_fav')
+			->where('ad_id', $id)
+			->where('user_id', $userId)
+			->fetch();
+	}
 }

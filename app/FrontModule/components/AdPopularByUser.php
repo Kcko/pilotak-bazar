@@ -74,7 +74,7 @@ class AdPopularByUser extends AbstractList
 
 
 
-	
+
 	public function renderCnt(array $config = [])
 	{
 		$config = $this->getCurrentConfig($config);
@@ -96,6 +96,22 @@ class AdPopularByUser extends AbstractList
 		}
 
 		return $cache;
+	}
+
+
+
+	protected function createComponentLikeControl()
+	{
+		$allLikes = $this->user->getId() ? $this->model->allLikesByUser($this->user->getId()) : [];
+
+		return new Nette\Application\UI\Multiplier(function (int $adId) use ($allLikes) {
+			$control = new Like($adId, $allLikes[$adId] ?? false, $this->model, $this->modelNavigation, $this->user);
+			$control->onLikeAction[] = function ($control) {
+				$this->redrawControl('list');
+			};
+			return $control;
+
+		});
 	}
 
 

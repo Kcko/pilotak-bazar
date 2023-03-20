@@ -58,11 +58,17 @@ class Ad extends AbstractList
 	 */
 	public $itemsTotal;
 
+	/**
+	 * @var Nette\Security\User
+	 */
+	protected $user;
 
-	public function __construct(FrontModule\Model\Ad $model, Navigation $modelNavigation)
+
+	public function __construct(FrontModule\Model\Ad $model, Navigation $modelNavigation, Nette\Security\User $user)
 	{
 		$this->model = $model;
 		$this->modelNavigation = $modelNavigation;
+		$this->user = $user;
 		parent::__construct();
 	}
 
@@ -185,6 +191,16 @@ class Ad extends AbstractList
 	public function setSearch($q)
 	{
 		$this->q = $q;
+	}
+
+
+	protected function createComponentLikeControl()
+	{
+		$allLikes = $this->user->getId() ? $this->model->allLikesByUser($this->user->getId()) : [];
+
+		return new Nette\Application\UI\Multiplier(function (int $adId) use ($allLikes) {
+			return new Like($adId, $allLikes[$adId] ?? false, $this->model, $this->modelNavigation, $this->user);
+		});
 	}
 
 }

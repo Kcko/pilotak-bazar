@@ -14,7 +14,10 @@
                 </a></li>
             <li><a href="{plink PopoUser:popularAds}" class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="">
                 {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-4 h-4'|noescape}
-                Můj hangár {control adPopularByUser:cnt, template => 'cnt'}
+                Můj hangár 
+                <span n:snippet="adPopularByUserCnt">
+                    {control adPopularByUser:cnt, template => 'cnt'}
+                </span>
                 </a></li>
             <li><a class="text-sm flex items-center gap-x-2 py-1 hover:underline" href="{plink @settings}">
                 {='assets/gfx/svg/icon-cog.svg'|svg:'w-4 h-4'|noescape}
@@ -27,5 +30,3 @@
         </ul>
     </div>
 </li>
-
-{dump $user}

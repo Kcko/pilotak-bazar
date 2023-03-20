@@ -1,0 +1,41 @@
+{if !$user->isLoggedIn()}
+    <span data-x
+        @click.stop.prevent="alert('Pro ukládání inzerátů do oblíbených se prosím prihlašte');"
+        class="
+            absolute 
+            group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+            rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+    >
+
+        {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+
+    </span>
+
+{else}
+    {snippet}
+        {if !$isLiked}
+            <a n:href="like!" 
+                class="ajax
+                    absolute 
+                    group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+                    rounded-full py-2 font-normal bg-white/10 hover:bg-white/90 text-white text-xs"
+            >
+
+                {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 group-hover:text-red-500'|noescape}
+
+            </a>
+        {else}
+            <a n:href="dislike!" 
+                class="ajax
+                    absolute 
+                    group top-2.5 w-8 h-8 flex justify-center items-center left-2.5
+                    rounded-full py-2 font-normal bg-white/90 text-white text-xs"
+            >
+
+                {='assets/gfx/svg/icon-heart-filled.svg'|svg:'w-5 h-5 text-red-500'|noescape}
+
+            </a>
+        {/if}
+    {/snippet}
+
+{/if}
