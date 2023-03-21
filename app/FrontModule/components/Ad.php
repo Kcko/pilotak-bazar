@@ -56,7 +56,7 @@ class Ad extends AbstractList
 	 */
 	private $categories = [];
 
-	public $onRender = [];
+	public $onFormFiltered = [];
 
 	/**
 	 * @var int
@@ -141,8 +141,6 @@ class Ad extends AbstractList
 
 		$this->template->config = $config;
 
-		$this->onRender($this);
-
 		$this->render($config);
 
 	}
@@ -183,18 +181,62 @@ class Ad extends AbstractList
 		// tohle je tu kvuli vycisteni persistentnich parametru; jinak to snad nejde nebo nevim jak ;]
 		//$form->setAction($this->link('setQuery!', ['year' => null, 'filter' => null, 'p-p' => null]));
 		//$form->getElementPrototype()->setClass('ajax');
-		$form->addRadioList('ad_type_id', 'Typ inzerátu', [
-			1 => 'Nabídky',
-			2 => 'Poptávky'
-		])->setDefaultValue(1);
+		$form->addRadioList('adType', 'Typ inzerátu', [
+			'offers' => 'Nabídky',
+			'demands' => 'Poptávky'
+		])->setDefaultValue('offers');
+
+		$form->addSelect('order', 'Seřadit dle:', [
+			'newest' => 'Nejnovější',
+			'priceAsc' => 'Nejlevnější',
+			'priceDesc' => 'Nejdražší',
+		])->setDefaultValue('newest');
 
 
-		$form->addSubmit('_submit', 'Submit');
+		$form->addSubmit('submit', 'Submit');
 
 
 		$form->onSuccess[] = function ($form, $values) {
 
+			$this->onFormFiltered($this, $form, $values);
+		};
 
+		return $form;
+	}
+
+
+
+	public function createComponentFilterModalForm()
+	{
+		$form = new UI\Form;
+		$form->setMethod('GET');
+		// tohle je tu kvuli vycisteni persistentnich parametru; jinak to snad nejde nebo nevim jak ;]
+		//$form->setAction($this->link('setQuery!', ['year' => null, 'filter' => null, 'p-p' => null]));
+		//$form->getElementPrototype()->setClass('ajax');
+		$form->addRadioList('adType', 'Typ inzerátu', [
+			'offers' => 'Nabídky',
+			'demands' => 'Poptávky'
+		])->setDefaultValue('offers');
+
+		$form->addSelect('order', 'Seřadit dle:', [
+			'newest' => 'Nejnovější',
+			'priceAsc' => 'Nejlevnější',
+			'priceDesc' => 'Nejdražší',
+		])->setDefaultValue('newest');
+
+		$form->addSelect('county', 'Kraj:', $this->model->listCounty())->setPrompt('Všude');
+
+		$form->addCheckbox('price_wo_limit', 'Cena bez omezení:')->setDefaultValue(1);
+		$form->addText('price_from', 'Cena od:');
+		$form->addText('price_to', 'Cena do:');
+
+
+		$form->addSubmit('submit', 'Submit');
+
+
+		$form->onSuccess[] = function ($form, $values) {
+
+			$this->onFormFiltered($this, $form, $values);
 		};
 
 		return $form;

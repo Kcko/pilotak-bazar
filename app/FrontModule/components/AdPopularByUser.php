@@ -105,7 +105,7 @@ class AdPopularByUser extends AbstractList
 		$allLikes = $this->user->getId() ? $this->model->allLikesByUser($this->user->getId()) : [];
 
 		return new Nette\Application\UI\Multiplier(function (int $adId) use ($allLikes) {
-			$control = new Like($adId, $allLikes[$adId] ?? false, $this->model, $this->modelNavigation, $this->user);
+			$control = new Like($adId, $allLikes[$adId] ?? false, $this->model, $this->user);
 			$control->onLikeAction[] = function ($control) {
 				$this->redrawControl('list');
 			};

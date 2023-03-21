@@ -36,22 +36,59 @@ class AdPresenter extends FrontPresenter
 	{
 		parent::startup();
 
+
 		if (!($this->adType == 'offers' || $this->adType == 'demands')) {
 			$this->error();
 		}
 	}
 
 
-	public function actionDefault($q = null)
+	public function actionDefault($q = null, $f = [])
 	{
 
+		/* Formular se odeslal, zpracovat hodnoty  */
+
+		$this['adListByCategories']->onFormFiltered[] = function ($control, $form, $values) {
+			$this->adType = $values->adType;
+
+			$f = [
+				'order' => $values->order,
+				'adType' => $values->adType,
+			];
+
+			if (isset($values->price_from)) {
+				$f['priceFrom'] = $values->price_from;
+			}
+			if (isset($values->price_to)) {
+				$f['priceTo'] = $values->price_to;
+			}
+			if (isset($values->price_wo_limit)) {
+				$f['priceWoLimit'] = $values->price_wo_limit;
+			}
+			if (isset($values->county)) {
+				$f['county'] = $values->county;
+			}
+
+			$this->redirect('default', ['f' => $f, 'p-p' => null]);
+		};
+
+
 		$this['adListByCategories']->setType($this->adType == 'offers' ? 1 : 2);
+
+		if ($f && count($f)) {
+			$this['adListByCategories']['filterForm']->setDefaults($f);
+			$this['adListByCategories']['filterModalForm']->setDefaults($f);
+		}
+
 
 		if ($q) {
 			$this['adSearch']['form']['q']->setDefaultValue($q);
 			$this['adListByCategories']->setSearch($q);
 			$this->template->q = $q;
 		}
+
+		/* //Formular se odeslal, zpracovat hodnoty  */
+
 
 		$category = $this->navigation->getById($this->presenter->navigation->navItem['id']);
 		$childrenAll = $this->navigation->getAdjacencyList()->getChildrenRecursive($this->presenter->navigation->navItem['id']);

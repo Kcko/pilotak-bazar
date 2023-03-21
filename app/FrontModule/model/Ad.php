@@ -182,4 +182,16 @@ class Ad
 			->where('user_id', $userId)
 			->fetch();
 	}
+
+	public function listCounty()
+	{
+		$rows = $this->connection->table('county')->order('country_id ASC, name ASC');
+
+		$countyList = [];
+		foreach ($rows as $row) {
+			$countyList[$row->country->name][$row->id] = $row->name;
+		}
+
+		return $countyList;
+	}
 }
