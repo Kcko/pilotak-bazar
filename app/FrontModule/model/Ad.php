@@ -46,6 +46,19 @@ class Ad
 			$selection->where(':ad_fav.user_id', $config['user_id']);
 		}
 
+		if (isset($config['filters']) && isset($config['filters']['priceFrom']) && $config['filters']['priceFrom']) {
+			$selection->where('price >=', (int) $config['filters']['priceFrom']);
+		}
+		
+		if (isset($config['filters']) && isset($config['filters']['priceTo']) && $config['filters']['priceTo']) {
+			$selection->where('price <=', (int) $config['filters']['priceTo']);
+		}
+
+		if (isset($config['filters']) && isset($config['filters']['county']) && $config['filters']['county']) {
+			$selection->where('county_id', (int) $config['filters']['county']);
+		}
+		
+
 		if ($q) {
 			$q = $this->search->parseQuery($config['q']);
 
@@ -73,6 +86,22 @@ class Ad
 
 
 		// order, default order
+		if (isset($config['filters']) && isset($config['filters']['order']) && $config['filters']['order']) {
+			switch ($config['filters']['order']) {
+				case 'newest':
+					$selection->order('created DESC');
+					break;
+				case 'priceAsc':
+					$selection->order('price ASC');
+					break;
+				case 'priceDesc':
+					$selection->order('price DESC');
+					break;
+			}
+		} else {
+			$selection->order('created DESC');
+		}
+			
 
 		if ($q) {
 			$selection->order(
@@ -86,8 +115,6 @@ class Ad
 
 			$selection->order('score DESC');
 		}
-		$selection->order('created');
-
 
 		$selection->limit($limit, $offset);
 

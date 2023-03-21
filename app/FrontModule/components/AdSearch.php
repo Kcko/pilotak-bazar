@@ -63,7 +63,7 @@ class AdSearch extends FrontControl
 
 		$form->addText('q', 'q')
 			->setRequired(true)
-			->addRule($form::FILLED, 'Zadejte hledaný výraz');
+			->addRule($form::MIN_LENGTH, 'Piloťáku, něco sem napiš ;-)', 2);
 
 		$form->addSubmit('submit', 'Hledat');
 

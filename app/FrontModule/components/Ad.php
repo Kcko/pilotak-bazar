@@ -17,7 +17,7 @@ class Ad extends AbstractList
 		'template' => 'default',
 		'limit' => 16,
 		'paging' => true,
-		'filters' => false,
+		'filters' => [],
 		'type' => null,
 		'year' => null,
 		'homepage' => false,
@@ -35,10 +35,10 @@ class Ad extends AbstractList
 	protected $modelNavigation;
 
 	/**
-	 * @var string
+	 * @var array
 	 * @persistent
 	 */
-	public $filter;
+	public $filters = [];
 
 	/**
 	 * @var string
@@ -93,14 +93,17 @@ class Ad extends AbstractList
 			$config['type'] = $this->type;
 		}
 
+		if ($this->filters) {
+			$config['filters'] = $this->filters;
+		}
+
 		return $config;
 	}
 
 
-	public function handleSetFilter($filter)
+	public function setFilters($filters)
 	{
-		$this->filter = $filter;
-		$this->redrawControl();
+		$this->filters = $filters;
 	}
 
 
@@ -109,10 +112,12 @@ class Ad extends AbstractList
 		$this->categories = $categories;
 	}
 
+
 	public function setType(int $type)
 	{
 		$this->type = $type;
 	}
+
 
 	public function handleSetQuery($q)
 	{
@@ -145,11 +150,10 @@ class Ad extends AbstractList
 
 	}
 
+
 	public function renderSearchTitle(array $config = [])
 	{
-
 		$config = $this->getCurrentConfig($config);
-
 
 		$this->template->config = $config;
 
@@ -178,9 +182,7 @@ class Ad extends AbstractList
 	{
 		$form = new UI\Form;
 		$form->setMethod('GET');
-		// tohle je tu kvuli vycisteni persistentnich parametru; jinak to snad nejde nebo nevim jak ;]
-		//$form->setAction($this->link('setQuery!', ['year' => null, 'filter' => null, 'p-p' => null]));
-		//$form->getElementPrototype()->setClass('ajax');
+
 		$form->addRadioList('adType', 'Typ inzerátu', [
 			'offers' => 'Nabídky',
 			'demands' => 'Poptávky'
@@ -205,14 +207,11 @@ class Ad extends AbstractList
 	}
 
 
-
 	public function createComponentFilterModalForm()
 	{
 		$form = new UI\Form;
 		$form->setMethod('GET');
-		// tohle je tu kvuli vycisteni persistentnich parametru; jinak to snad nejde nebo nevim jak ;]
-		//$form->setAction($this->link('setQuery!', ['year' => null, 'filter' => null, 'p-p' => null]));
-		//$form->getElementPrototype()->setClass('ajax');
+
 		$form->addRadioList('adType', 'Typ inzerátu', [
 			'offers' => 'Nabídky',
 			'demands' => 'Poptávky'
@@ -226,13 +225,14 @@ class Ad extends AbstractList
 
 		$form->addSelect('county', 'Kraj:', $this->model->listCounty())->setPrompt('Všude');
 
-		$form->addCheckbox('price_wo_limit', 'Cena bez omezení:')->setDefaultValue(1);
-		$form->addText('price_from', 'Cena od:');
-		$form->addText('price_to', 'Cena do:');
+		$form->addCheckbox('priceWoLimit', 'Cena bez omezení:')->setDefaultValue(1)
+			->addCondition($form::NOT_EQUAL, true)
+			->toggle('block-prices');
 
+		$form->addText('priceFrom', 'Cena od:');
+		$form->addText('priceTo', 'Cena do:');
 
 		$form->addSubmit('submit', 'Submit');
-
 
 		$form->onSuccess[] = function ($form, $values) {
 

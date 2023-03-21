@@ -33,7 +33,6 @@
                             </div>
 
 
-
                             {* Modal *}
                             <template x-teleport="body">
                                 <div 
@@ -95,24 +94,24 @@
 
                                             <div class="grid grid-cols-1 mb-5">
                                                 <div class="flex items-center">
-                                                    <input n:name="price_wo_limit" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500">
-                                                    <label n:name="price_wo_limit" class="ml-3 block  text-sm" />
+                                                    <input n:name="priceWoLimit" class="h-4 w-4 border-gray-300 text-_black focus:ring-indigo-500">
+                                                    <label n:name="priceWoLimit" class="ml-3 block  text-sm" />
                                                 </div>
                                             </div>
 
 
-                                            <div class="grid grid-cols-2 gap-5 mb-5">
+                                            <div id="block-prices" class="grid grid-cols-2 gap-5 mb-5">
                                                 <div>
-                                                    <label n:name="price_from" class="block font-medium text-gray-700 text-base" />
+                                                    <label n:name="priceFrom" class="block font-medium text-gray-700 text-base" />
                                                     <div class="mt-1">
-                                                        <input n:name="price_from" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <input n:name="priceFrom" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </div>
                                                 </div>
 
                                                 <div>
-                                                    <label n:name="price_to" class="block font-medium text-gray-700 text-base" />
+                                                    <label n:name="priceTo" class="block font-medium text-gray-700 text-base" />
                                                     <div class="mt-1">
-                                                        <input n:name="price_to" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <input n:name="priceTo" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </div>
                                                 </div>
                                             </div>

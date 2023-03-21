@@ -26,6 +26,13 @@ class AdPresenter extends FrontPresenter
 
 
 	/**
+	 * @var array
+	 * @persistent
+	 */
+	public $f = [];
+
+
+	/**
 	 * @var Model\Ad
 	 * @inject
 	 */
@@ -55,16 +62,24 @@ class AdPresenter extends FrontPresenter
 				'order' => $values->order,
 				'adType' => $values->adType,
 			];
+			
 
-			if (isset($values->price_from)) {
-				$f['priceFrom'] = $values->price_from;
+			if (isset($values->priceFrom) && $values->priceFrom) {
+				$f['priceFrom'] = $values->priceFrom;
 			}
-			if (isset($values->price_to)) {
-				$f['priceTo'] = $values->price_to;
+
+			if (isset($values->priceTo) && $values->priceTo) {
+				$f['priceTo'] = $values->priceTo;
 			}
-			if (isset($values->price_wo_limit)) {
-				$f['priceWoLimit'] = $values->price_wo_limit;
+
+			if (isset($values->priceWoLimit) && $values->priceWoLimit) {
+				$f['priceWoLimit'] = $values->priceWoLimit;
+				$f['priceFrom'] = null;
+				$f['priceTo'] = null;
+			} else {
+				$f['priceWoLimit'] = false;
 			}
+
 			if (isset($values->county)) {
 				$f['county'] = $values->county;
 			}
@@ -78,6 +93,7 @@ class AdPresenter extends FrontPresenter
 		if ($f && count($f)) {
 			$this['adListByCategories']['filterForm']->setDefaults($f);
 			$this['adListByCategories']['filterModalForm']->setDefaults($f);
+			$this['adListByCategories']->setFilters($f);
 		}
 
 
@@ -98,7 +114,7 @@ class AdPresenter extends FrontPresenter
 		$this['breadcrumbs']->removeCrumb(1);
 		$this['breadcrumbs']->removeCrumb(2);
 		foreach (array_reverse($parents) as $parent) {
-			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id, 'q' => null]));
+			$this['breadcrumbs']->addCrumb($parent->title, $this->presenter->link('Ad:default', ['navId' => $parent->id, 'q' => null, 'f' => null]));
 		}
 		$this['breadcrumbs']->addCrumb($this->presenter->navigation->navItem['title']);
 
