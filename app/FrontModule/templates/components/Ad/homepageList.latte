@@ -1,61 +1,71 @@
-<div 
-    x-data="{ swiper: null }" 
-    x-init="swiper = new Swiper($refs.container, {
-        loop: false,
-        slidesPerView: 1,
-        spaceBetween: 0,
-        speed: 700,
-    
-        breakpoints: {
-            640: {
-            slidesPerView: 2,
-            spaceBetween: 16,
-            },
-            768: {
-            slidesPerView: 3,
-            spaceBetween: 16,
-            },
-            1024: {
-            slidesPerView: 4,
-            spaceBetween: 16,
-            },
-        },
-        })"
-    class="relative mb-8 /*grid grid-cols-4 gap-4*/"
->
+{if !count($advertisements)}
+    <div class="Alert Alert--Warning mt-12">{_}Zatím tu nic není :/{/_}</div>
+{else}
 
-    <div class="swiper-container" x-ref="container">
-        <div class="swiper-wrapper | py-2">
-            {foreach $advertisements as $adv}
-                {include 'card.latte', adv => $adv}
-            {/foreach}
+    <div 
+        x-data="{ swiper: null }" 
+        x-init="swiper = new Swiper($refs.container, {
+            loop: false,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            speed: 700,
+            navigation: {
+            nextEl: '#{$control->getName()}-next',
+            prevEl: '#{$control->getName()}-prev',
+            },
+        
+            breakpoints: {
+                640: {
+                slidesPerView: 2,
+                spaceBetween: 16,
+                },
+                768: {
+                slidesPerView: 3,
+                spaceBetween: 16,
+                },
+                1024: {
+                slidesPerView: 4,
+                spaceBetween: 16,
+                },
+            },
+            })"
+        class="relative mb-8 /*grid grid-cols-4 gap-4*/"
+    >
+
+        <div class="swiper-container" x-ref="container">
+            <div class="swiper-wrapper | py-2"  x-data="{ view: 'columns' }">
+                {foreach $advertisements as $adv}
+                    {include 'card.latte', adv => $adv}
+                {/foreach}
+            </div>
+        </div>
+
+        <div id="{$control->getName()}-prev" class="absolute inset-y-0 left-0 z-[3]  flex items-center">
+            <button  class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </button>
+        </div>
+
+        <div id="{$control->getName()}-next" class="absolute inset-y-0 right-0 z-[3] flex items-center">
+            <button  class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </button>
         </div>
     </div>
 
-    <div class="absolute inset-y-0 left-0 z-[3]  flex items-center">
-        <button @click="swiper.slidePrev()" class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
-        <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-        </button>
+
+    <div n:if="$config[type] == 1" class="text-center">
+        <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Black min-w-[150px] mx-auto">
+            Všechny nabídky
+            {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+        </a>
     </div>
 
-    <div class="absolute inset-y-0 right-0 z-[3] flex items-center">
-        <button @click="swiper.slideNext()" class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
-        <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        </button>
+    <div n:if="$config[type] == 2" class="text-center">
+        <a href="{plink Ad:default, navId => 740, adType => demands}" class="Btn -Black min-w-[150px] mx-auto">
+            Všechny poptávky
+            {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+        </a>
     </div>
-</div>
 
-
-<div n:if="$config[type] == 1" class="text-center">
-    <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Black min-w-[150px] mx-auto">
-        Všechny nabídky
-        {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
-    </a>
-</div>
-
-<div n:if="$config[type] == 2" class="text-center">
-    <a href="{plink Ad:default, navId => 740, adType => demands}" class="Btn -Black min-w-[150px] mx-auto">
-        Všechny poptávky
-        {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
-    </a>
-</div>
+{/if}

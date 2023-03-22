@@ -51,3 +51,7 @@
 :where(.swiper-button-prev, .swiper-button-next):after {
   @apply hidden;
 }
+
+.swiper-button-disabled {
+  display: none !important;
+}

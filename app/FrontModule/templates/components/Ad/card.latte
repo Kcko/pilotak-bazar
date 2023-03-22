@@ -1,4 +1,4 @@
-    <div  n:class="
+    <div n:class="
         'swiper-slide 
         relative
         transition-transform
@@ -7,7 +7,7 @@
         flex rounded-md border border-gray-200',
         isset($adv[top]) && $adv->top ? 'bg-yellow-100'
         "
-        :class="{ ' flex-col': view == 'columns' }"
+        :class="{ 'flex-col': view == 'columns' || !view }"
         style="height: auto !important;"
     >
         <span n:if="isset($adv[top]) && $adv->top"
@@ -26,12 +26,12 @@
         >Reklama</span>
 
         {if $adv->image}
-            {$adv->image->getImageElement('hero', [':class' => "{ 'h-56  w-full object-cover' : view == 'columns', 'h-20 w-20 md:h-56 md:w-56 object-cover' : view == 'rows' }"])}
+            {$adv->image->getImageElement('hero', [':class' => "{ 'h-56  w-full object-cover' : view == 'columns' || !view, 'h-20 w-20 md:h-56 md:w-56 object-cover' : view == 'rows' }"])}
         {else}
             <img 
             alt="" 
             src="/assets/gfx/no-image.jpg" 
-            :class="{ h-56 w-full object-cover : view == 'columns', 'h-20 w-20 md:h-56 md:w-56 object-cover' : view == 'rows' }" />
+            :class="{ 'h-56 w-full object-cover' : view == 'columns' || !view, 'h-20 w-20 md:h-56 md:w-56 object-cover' : view == 'rows' }" />
         {/if}
 
 

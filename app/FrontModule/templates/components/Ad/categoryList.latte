@@ -167,8 +167,8 @@
                         <div 
                             x-cloak
                             x-show="loaded"
-                            class="relative mb-8"
-                            :class="{ 'grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' : view == 'columns' }"
+                            class="grid gap-4 relative mb-8"
+                            :class="{ 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : view == 'columns' }"
                         >
                             {foreach $advertisements as $adv}
                                 {include 'card.latte', adv => $adv}
