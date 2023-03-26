@@ -124,7 +124,7 @@ class PopovickyFilters
 
 	public static function svg($s, $classes = null)
 	{
-		$svg = file_get_contents($s);
+		$svg = @file_get_contents($s);
 		$hasClass = strpos($svg, "class");
 
 		if ($hasClass && $classes !== null) {
@@ -153,7 +153,7 @@ class PopovickyFilters
 		$ret = preg_match_all($ps_pattern, $ps_subject, $pa_matches, $pn_flags, $pn_offset);
 
 		if ($ret && ($pn_flags & PREG_OFFSET_CAPTURE))
-			foreach ($pa_matches as &$ha_match)foreach ($ha_match as &$ha_match)
+			foreach ($pa_matches as &$ha_match) foreach ($ha_match as &$ha_match)
 					$ha_match[1] = mb_strlen(substr($ps_subject, 0, $ha_match[1]), $ps_encoding);
 		//
 		// (code is independent of PREG_PATTER_ORDER / PREG_SET_ORDER)
