@@ -1,6 +1,8 @@
 import { preloaderInit } from './modules/preloader.js'
 import naja from './vndr/naja/index.esm.js'
 
+window.naja = naja
+
 function googleRecaptcha() {
   let g_recaptcha_response = document.querySelector('#g_recaptcha_response')
 
@@ -21,6 +23,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // Naja / ajax snippets
   naja.initialize()
   googleRecaptcha()
+
+  naja.addEventListener('success', (event) => {
+    console.log('success')
+    console.log(event.detail.payload)
+    console.log(dropzone)
+  })
+
+  naja.addEventListener('complete', (event) => {
+    console.debug(`Finished processing request ${event.detail.request.url}`)
+  })
 
   naja.snippetHandler.addEventListener('beforeUpdate', (event) => {
     if (event.detail.snippet.classList.contains('NajaShowPreloader')) {

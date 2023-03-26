@@ -1,58 +1,110 @@
 {var $htmlClass = 'homepage'}
 
 
-{var $categories = [
-    'Ultralehká letadla (UL)' => [
-        'Letadla',
-        'Přístroje a příslušenství',
-        'Spoluvlastnictví letadel',
-        'Vrtule a motory',
+{block js2}
+    {* <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script> *}
+    {* <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script> *}
+    <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+    <script src="/assets/js/vndr/sortable/Sortable.min.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        let totalFiles = 0;
+        let maxFiles = 10;
+        const dropzone = new Dropzone("#dropzone", { 
+            previewTemplate: document.querySelector('#tpl').innerHTML,
+            previewsContainer: '.dropzone-photos',
+            url:  {link uploadFiles!},
+            maxFilesize: 1, // in MB
+            maxFiles: maxFiles,
+            acceptedFiles: "image/*",
+            addRemoveLinks: true,
+            dictRemoveFile: "Odstranit",
+            dictDefaultMessage: "Vložte fotografie nebo přetáhněte ze svého PC",
+            dictMaxFilesExceeded: "Nelze nahrát víc souborů (maximální počet je 10)",
+            dictFileTooBig: "Soubor je moc velký. Maximální povolená velikost: 1 MiB.", 
+            dictInvalidFileType: "Tento typ souboru není povolen (pouze obrázky ve formátu JPG, PNG)",
+        });
 
-    ],
-    'Klasická letadla (PPL+MEP)' => [
-        'AeroEngine',
-        'Letadla ',
-        'Přístroje a příslušenství',
-        'Spoluvlastnictví letadel',
-        'Vrtule a motory',
-    ],
-    'Vrtulníky a helikoptéry' => [
-        'Přístroje a příslušenství',
-        'Ultralehké vrtulníky (ULH)',
-        'Vrtule / Motory / Rotory',
-        'Vrtulníky a helikoptéry',
+        dropzone.on("success", function(file) {                
+            if (file.accepted) {
+                dropzone.removeFile(file);
+                totalFiles++;
+                
+                if (totalFiles < maxFiles) {
+                    let json = JSON.parse(file?.xhr?.response)
+                    let mockFile = { name: json.P2.file.name, size: json.P2.file.size, internalId: json.P2.file.name };
+                    dropzone.displayExistingFile(mockFile, json.P2.file.url);
+                    totalFiles++;
+                }
+            }
+        });
 
-    ],
-    'Větroně - Kluzáky (GLD)'  => [
-        'Motorové větroně ',
-        'Přístroje a příslušenství ',
-        'Spoluvlastnictví větroňů',
-        'Větroně a kluzáky ',
-    ],
-    'Ostatní inzerce a vybavení' => [
-        'Avionika a přístroje',
-        'Dokumentace a knihy ',
-        'Doplňky letadel ',
-        'GPS navigace, mapy ',
-        'Kamery, Foto, Videotechnika ',
-        'Modely letadel - modeláři ',
-        'Oblečení a doplňky ',
-        'Ostatní ',
-        'Pozemky a nemovitosti u letiště ',
-        'Rogala / Padáky / Motory ',
-    ],
-    'Práce v letectví' => [
-        'Nabídka práce v letectví',
-        'Poptávka práce v letectví',
-    ],
-    'Hangáry a parkování' => [
-        'Hangáry na Slovensku',
-        'Hangáry v Česku'
-    ],
-]}
+        dropzone.on("removedfile", file => {
+            totalFiles--;
+        });
+
+        dropzone.on("addedfile", file => {
+            if (file?.internalId) {
+                file.previewElement.dataset.id = file.internalId
+
+            }
+        });
+
+        dropzone.on("error", (file, message) => {
+            console.log("error occurrs");
+            console.log(file);
+            console.log(message);
+
+        });
 
 
+        // Sortable
+           let list = document.querySelector('.dropzone-photos');
+              var sortable = Sortable.create(list, {
+                handle: ".my-handle",
+                ghostClass: 'my-ghost',
+                animation: 150,
+                onSort: function(e) {
+                    console.log('onSort')
+                    console.log(sortable.toArray())
 
+                    let order = sortable.toArray(); // use instance
+                    let saveOrderLink = {link saveOrder!}
+                    naja.makeRequest('GET', saveOrderLink, { data: order }, { history: false } );
+                },
+                onSort__: function (e) {
+                  //  console.log('onSort')
+                  // console.log(sortable.toArray())
+                  
+                  let values = sortable.toArray()
+
+                  var my_options = select.children('option')
+
+                  my_options.sort(function(a,b) {
+                    const aIndex = values.indexOf(a.value);
+                    const bIndex = values.indexOf(b.value);
+                    
+                    if (aIndex === -1) {
+                      return 1;
+                    }
+                    if (bIndex === -1) {
+                      return -1;
+                    }
+                    return aIndex - bIndex;
+                  })
+
+                  // my_options.each(function (k) {
+                  //   console.log(k)
+                  // })
+                  select.empty().append(my_options);
+                 },
+                // onEnd: function (e) {
+                //    console.log('onEnd')
+                //  },
+              });
+
+    </script>
+{/block}
 
 {block content}
 
@@ -60,20 +112,19 @@
 
 
     <main class="BaseContainer__Main bg-gray-100">
-        
-        
+
         <div class="py-10">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
-                        
+
                         <h1 class="text-h2 mb-10 Lined-1 text-center">Vložit inzerát</h1>
-                
                         
                         <div class="mx-auto max-w-3xl bg-white rounded p-5 border  border-gray-200">
 
-                            <form class="space-y-8 divide-y divide-gray-200">
+                            <form n:name="addForm"" class="space-y-8 divide-y divide-gray-200">
                                 <div class="space-y-8 divide-y divide-gray-200">
+
                                     <div>
                                             <h3 class="text-h3 relative Lined-1 mb-8">Co nabízíte / poptáváte?</h3>
                                             {* Heading *}
@@ -91,10 +142,10 @@
                                             <div class="mb-5" x-data="{ chars: 0 }">
                                                 <label for="heading" class="block font-medium text-gray-700 text-base">Název inzerátu</label>
                                                 <div class="mt-1">
-                                                    <input id="heading" @input="chars = $el.value.length" maxlength="100"  name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <input id="heading" @input="chars = $el.value.length" maxlength="50"  name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     <div class="text-gray-400 text-sm pt-1 flex justify-between">
                                                         <span>Pojmenujte inzerát co nejvýstižněji</span>
-                                                        <span><span x-text="chars">0</span>/100</span>
+                                                        <span><span x-text="chars">0</span>/50</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,47 +155,28 @@
                                             <div class="mb-5" x-data="{ chars: 0 }">
                                                 <label for="about" class="block font-medium text-gray-700 text-base">Popište detail inzerátu</label>
                                                 <div class="mt-1">
-                                                    <textarea @input="chars = $el.value.length" maxlength="1000" id="about" name="about" rows="6" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                                    <textarea @input="chars = $el.value.length" maxlength="500" id="about" name="about" rows="6" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
                                                     <div class="text-gray-400 text-sm pt-1 flex justify-between">
-                                                        <span>Nepovinné, max. 1000 znaků</span>
-                                                        <span><span x-text="chars">0</span>/1000</span>
+                                                        <span>Nepovinné, max. 500 znaků</span>
+                                                        <span><span x-text="chars">0</span>/500</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="mb-5">
                                                 <label for="cover-photo" class="block font-medium text-gray-700 text-base">Fotografie</label>
-                                                <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-                                                    <div class="space-y-1 text-center">
-                                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
-                                                        <div class="flex text-sm text-gray-600">
-                                                            <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
-                                                                <span>Nahrát fotografie</span>
-                                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                                            </label>
-                                                            <p class="pl-1">nebo přetáhněte ze svého PC</p>
-                                                        </div>
-                                                        <p class="text-xs text-gray-500">PNG; JPG do 5MB</p>
-                                                    </div>
+                                                <div class="dropzone" id="dropzone">
+                                                    <div class="dropzone-previews  dropzone-photos"></div>
                                                 </div>
-                                                <div class="text-gray-400 text-sm pt-1">Nepovinné, maximálně lze vložit 10 fotografií</div>
+                                                <div class="text-gray-400 text-sm pt-1">Nepovinné, maximálně lze vložit 10 fotografií, (fotografie lze mezi sebou přesouvat, první fotografie bude nastavena jako hlavní).</div>
                                             </div>
 
                                             <h3 class="text-h3 relative Lined-1 mt-8 mb-8">Kategorie a cena</h3>
 
                                             <div class="mb-5">
-                                                <label for="country" class="block font-medium text-gray-700 text-base">Kategorie</label>
+                                                <label n:name="navigation_id" class="block font-medium text-gray-700 text-base">Kategorie</label>
                                                 <div class="mt-1">
-                                                    <select id="category" name="category" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        {foreach $categories as $category => $arr}
-                                                            <optgroup label="{$category}">
-                                                                {foreach $arr as $subcategory}
-                                                                    <option value="{$subcategory}">{$subcategory}</option>
-                                                                {/foreach}
-                                                            </optgroup>
-                                                        {/foreach}
+                                                    <select n:name="navigation_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </select>
                                                 </div>
                                             </div>
@@ -241,12 +273,13 @@
                                         </div>
 
 
-                                        <div class="flex justify-end">
+                                        <div class="flex justify-center mt-6">
                                             <button type="submit" class="Btn -Black">Uložit</button>
                                         </div>
                                     </div>
-                                 </div>
+                                 
                             </form>
+
                         </div>
 
 
@@ -259,10 +292,36 @@
 
 
   
-        </section>
-
 
     </main>
+    
+    <div id="x" class="XXX dropzone-previews"></div>
+    <template id="tpl">
+        <div class="dz-preview dz-file-preview">
+            <span class="my-handle absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-lg cursor-pointer! border border-gray-200 z-[100]">
+                 {='assets/gfx/svg/move.svg'|svg:'w-5 h-5'|noescape}
+            </span>
+            <div class="dz-image"><img data-dz-thumbnail /></div>
+            <div class="dz-details">
+                <div class="dz-size"><span data-dz-size></span></div>
+                <div class="dz-filename"><span data-dz-name></span></div>
+            </div>
+            <div class="dz-progress">
+                <span class="dz-upload" data-dz-uploadprogress></span>
+            </div>
+            <div class="dz-error-message"><span data-dz-errormessage></span></div>
+            <div class="dz-success-mark">
+                <svg width="54" height="54" viewBox="0 0 54 54" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.2071 29.7929L14.2929 25.7071C14.6834 25.3166 15.3166 25.3166 15.7071 25.7071L21.2929 31.2929C21.6834 31.6834 22.3166 31.6834 22.7071 31.2929L38.2929 15.7071C38.6834 15.3166 39.3166 15.3166 39.7071 15.7071L43.7929 19.7929C44.1834 20.1834 44.1834 20.8166 43.7929 21.2071L22.7071 42.2929C22.3166 42.6834 21.6834 42.6834 21.2929 42.2929L10.2071 31.2071C9.81658 30.8166 9.81658 30.1834 10.2071 29.7929Z" />
+                </svg>
+            </div>
+            <div class="dz-error-mark">
+                <svg width="54" height="54" viewBox="0 0 54 54" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M26.2929 20.2929L19.2071 13.2071C18.8166 12.8166 18.1834 12.8166 17.7929 13.2071L13.2071 17.7929C12.8166 18.1834 12.8166 18.8166 13.2071 19.2071L20.2929 26.2929C20.6834 26.6834 20.6834 27.3166 20.2929 27.7071L13.2071 34.7929C12.8166 35.1834 12.8166 35.8166 13.2071 36.2071L17.7929 40.7929C18.1834 41.1834 18.8166 41.1834 19.2071 40.7929L26.2929 33.7071C26.6834 33.3166 27.3166 33.3166 27.7071 33.7071L34.7929 40.7929C35.1834 41.1834 35.8166 41.1834 36.2071 40.7929L40.7929 36.2071C41.1834 35.8166 41.1834 35.1834 40.7929 34.7929L33.7071 27.7071C33.3166 27.3166 33.3166 26.6834 33.7071 26.2929L40.7929 19.2071C41.1834 18.8166 41.1834 18.1834 40.7929 17.7929L36.2071 13.2071C35.8166 12.8166 35.1834 12.8166 34.7929 13.2071L27.7071 20.2929C27.3166 20.6834 26.6834 20.6834 26.2929 20.2929Z" />
+                </svg>
+            </div>
+        </div>
+    </template>
 
 
     {include '../fragments/footer.latte'}

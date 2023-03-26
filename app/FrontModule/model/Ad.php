@@ -49,7 +49,7 @@ class Ad
 		if (isset($config['filters']) && isset($config['filters']['priceFrom']) && $config['filters']['priceFrom']) {
 			$selection->where('price >=', (int) $config['filters']['priceFrom']);
 		}
-		
+
 		if (isset($config['filters']) && isset($config['filters']['priceTo']) && $config['filters']['priceTo']) {
 			$selection->where('price <=', (int) $config['filters']['priceTo']);
 		}
@@ -57,7 +57,7 @@ class Ad
 		if (isset($config['filters']) && isset($config['filters']['county']) && $config['filters']['county']) {
 			$selection->where('county_id', (int) $config['filters']['county']);
 		}
-		
+
 
 		if ($q) {
 			$q = $this->search->parseQuery($config['q']);
@@ -101,7 +101,7 @@ class Ad
 		} else {
 			$selection->order('created DESC');
 		}
-			
+
 
 		if ($q) {
 			$selection->order(
@@ -220,5 +220,23 @@ class Ad
 		}
 
 		return $countyList;
+	}
+
+
+	public function listCategories()
+	{
+		$rows = $this->connection->table('navigation')->where('parent__navigation_id', 740)->order('rank');
+
+		$list = [];
+		foreach ($rows as $row) {
+
+			$children = $this->connection->table('navigation')->where('parent__navigation_id', $row->id)->order('title');
+			foreach ($children as $child) {
+				$list[$row->title][$child->id] = $child->title;
+
+			}
+		}
+
+		return $list;
 	}
 }

@@ -53,6 +53,36 @@ class AddAdPresenter extends FrontPresenter
 
 	}
 
+	public function handleUploadFiles()
+	{
+		\Tracy\Debugger::barDump($_FILES, 'files');
+		\Tracy\Debugger::barDump($_POST, 'post');
+
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Credentials: true");
+		header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+		header('Access-Control-Max-Age: 1000');
+		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+
+		$this->payload->state = 'OK';
+		$this->payload->P = $_FILES;
+		$this->payload->P2 = ['file' => [
+			'name' => 'file' . rand(1, 9999),
+			'size' => rand(500, 3000),
+			'url' => '/assets/gfx/hp-hero.jpg'
+		]];
+
+		$this->sendPayload();
+	}
+
+
+	public function handleSaveOrder(array $data = [])
+	{
+		\Tracy\Debugger::barDump($data, 'order');
+		$this->payload->state = 'OK';
+		$this->payload->order = $data;
+		$this->sendPayload();
+	}
 
 
 	protected function createComponentAddForm()
@@ -102,6 +132,8 @@ class AddAdPresenter extends FrontPresenter
 		$form->addText('contact_phone', 'Telefon:');
 		$form->addText('contact_town', 'Město:');
 		$form->addSelect('county_id', 'Kraj:', $this->model->listCounty())->setPrompt('Všude');
+
+		$form->addSelect('navigation_id', 'Kategorie:', $this->model->listCategories())->setPrompt('Vyberte kategorii')->setRequired('Vyberte kategorii');
 
 
 		$form->addSubmit('send', 'Uložit');

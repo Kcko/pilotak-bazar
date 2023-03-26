@@ -38,8 +38,13 @@
 
 
 		{* CSS *}
+		{block css}{/block}
+
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		<link rel="stylesheet" href="/assets/css/app.dev.css?{=filemtime('./assets/css/app.dev.css')}" />
+
+
+		{block js}{/block}
 
 		{* AOS *}
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>			
@@ -138,6 +143,8 @@
 				duration: 750,
 			});
 		</script>
+
+		{block js2}{/block}
 
 
 
