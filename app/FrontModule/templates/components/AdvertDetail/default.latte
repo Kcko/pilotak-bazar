@@ -1,0 +1,19 @@
+{foreach $adverts as $ad}
+    <div class="border border-gray-200 rounded p-px">
+        <a href="{$ad->url}" n:tag-if="$ad->url" target="_blank">
+
+            <div n:if="$ad->heading || $ad->content" class="p-4 space-y-4">
+                {if $ad->heading}
+                    <div class="text-base font-bold">{$ad->heading}</div>
+                {/if}
+                {if $ad->content}
+                    <div class="text-sm">{$ad->content|noescape}</div>
+                {/if}
+            </div>
+            
+            {if $ad->image_id}
+                {$ad->image->getImageElement('adv-detail')}
+            {/if}
+        </a>
+    </div>
+{/foreach}

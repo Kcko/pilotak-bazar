@@ -180,6 +180,7 @@ services:
 	- App\FrontModule\Model\Contact
 	- App\FrontModule\Model\Ad
 	- App\FrontModule\Model\AdSearch
+	- App\FrontModule\Model\AdvertDetail
 	- App\FrontModule\Model\PopoUser
 
 extensions:
