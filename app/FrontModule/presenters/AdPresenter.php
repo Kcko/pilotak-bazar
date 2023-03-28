@@ -43,7 +43,6 @@ class AdPresenter extends FrontPresenter
 	{
 		parent::startup();
 
-
 		if (!($this->adType == 'offers' || $this->adType == 'demands')) {
 			$this->error();
 		}
@@ -53,8 +52,10 @@ class AdPresenter extends FrontPresenter
 	public function actionDefault($q = null, $f = [])
 	{
 
-		/* Formular se odeslal, zpracovat hodnoty  */
+		$this['adCategoryMenu']->showSubcategoriesInfo = $this->presenter->navigation->navItem['parent__navigation_id'] === null;
 
+
+		/* Formular se odeslal, zpracovat hodnoty  */
 		$this['adListByCategories']->onFormFiltered[] = function ($control, $form, $values) {
 			$this->adType = $values->adType;
 
@@ -62,7 +63,7 @@ class AdPresenter extends FrontPresenter
 				'order' => $values->order,
 				'adType' => $values->adType,
 			];
-			
+
 
 			if (isset($values->priceFrom) && $values->priceFrom) {
 				$f['priceFrom'] = $values->priceFrom;

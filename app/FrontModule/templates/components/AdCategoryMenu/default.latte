@@ -40,7 +40,7 @@
                    
                 <div>
                     {$heading}
-                    <div class="text-xs text-gray-500 font-light">
+                    <div n:if="$showSubcategoriesInfo" class="text-xs text-gray-500 font-light">
                         {$subCount}
                         {if $subCount == 1}
                             kategorie
@@ -49,8 +49,8 @@
                         {else}
                             kategorií
                         {/if}
-
                     </div>
+
                     <div class="text-xs text-gray-500 font-light">
                         {$adCount['offers']}
                         {if $adCount['offers'] == 0}

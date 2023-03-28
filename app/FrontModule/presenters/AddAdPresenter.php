@@ -40,6 +40,10 @@ class AddAdPresenter extends FrontPresenter
 	 */
 	public $navigationWorker;
 
+	/**
+	 * @var string
+	 */
+	protected $operation = 'add';
 
 
 	public function startup()
@@ -106,12 +110,12 @@ class AddAdPresenter extends FrontPresenter
 
 		$form->addText('heading', 'Název inzerátu:')
 			->setRequired('Zadejte název')
-			->addRule($form::MAX_LENGTH, 50, 'Povoleno je maximálně 50 znaků');
+			->addRule($form::MAX_LENGTH, 'Povoleno je maximálně 50 znaků', 50);
 
 
 		$form->addTextArea('content', 'Detailní popis inzerátu:')
 			->setRequired('Zadejte název')
-			->addRule($form::MAX_LENGTH, 1000, 'Povoleno je maximálně 1000 znaků');
+			->addRule($form::MAX_LENGTH, 'Povoleno je maximálně 1000 znaků', 1000);
 
 		$form->addText('price', 'Cena:')
 			->setRequired(false)
@@ -160,27 +164,45 @@ class AddAdPresenter extends FrontPresenter
 		$values = $form->getValues(TRUE);
 
 		try {
-			if ($this->presenter->user->getAuthenticator()->getByLogin($values['email']))
-				throw new \Exception($this->presenter->translator->translate('Zadaný e-mail je již obsazen. Nezapomněli jste heslo ke svému účtu?'));
+			// if ($this->presenter->user->getAuthenticator()->getByLogin($values['email']))
+			// 	throw new \Exception($this->presenter->translator->translate('Zadaný e-mail je již obsazen. Nezapomněli jste heslo ke svému účtu?'));
 
-			$values['pwd'] = Andweb\Security\Authenticator::calculatePasswordHash($values['pwd']);
-			$values['reg_hash'] = md5(time() . '^AK~143');
-			$values['created'] = new \DateTime;
+
+
+			if ($this->operation == 'add') {
+				$values['token'] = md5(time() . '^AK~972') . '_' . date('His');
+				$values['top_date'] = $values['created'] = new \DateTime;
+			} else {
+				$ad = new \stdClass; // TODO ... realny radek
+				$values['updated'] = new \DateTime;
+				$values['updated_cnt'] = $ad->updated_cnt + 1;
+			}
+
+			$save = [
+				'ad_type_id' => $values['ad_type_id'],
+				'heading' => $values['heading'],
+				'content' => $values['content'],
+				'navigation_id' => $values['navigation_id'],
+				'price' => $values['price'],
+				'currency_id' => $values['currency_id'],
+			];
+
+			$ad = $this->model->saveAd($save, null, true);
 
 			// cloveku co se registruje
-			$message = $this->mail->getMessage('lostPassword');
-			unset($values['pwd1']);
-			unset($values['g_recaptcha_response']);
-			unset($values['action']);
+			// $message = $this->mail->getMessage('lostPassword');
+			// unset($values['pwd1']);
+			// unset($values['g_recaptcha_response']);
+			// unset($values['action']);
 
-			$newUserRow = $this->register->createUser($values);
+
 
 			// cloveku co se registruje
-			$message = $this->mail->getMessage('newRegistration');
-			$message->addTo($values['email']);
-			$template = $message->getTemplate();
-			$template->activationLink = $this->link('//:Front:PopoUser:userActivation', $values['reg_hash']);
-			$this->mail->sendMessage($message);
+			// $message = $this->mail->getMessage('newRegistration');
+			// $message->addTo($values['email']);
+			// $template = $message->getTemplate();
+			// $template->activationLink = $this->link('//:Front:PopoUser:userActivation', $values['reg_hash']);
+			// $this->mail->sendMessage($message);
 
 
 			// // adminovi jako notifikace
@@ -196,6 +218,9 @@ class AddAdPresenter extends FrontPresenter
 			$form->addError($this->presenter->translator->translate($e->getMessage()));
 		}
 	}
+
+
+
 
 
 }

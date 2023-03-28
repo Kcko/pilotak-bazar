@@ -6,6 +6,8 @@ use Nette,
 Andweb;
 
 use Andweb\Database\Context;
+use App\FrontModule\Model\NavigationWorker;
+
 
 class Ad
 {
@@ -20,11 +22,17 @@ class Ad
 	 */
 	protected $search;
 
+	/**
+	 * @var NavigationWorker
+	 */
+	protected $navigationWorker;
 
-	public function __construct(Context $connection, AdSearch $search)
+
+	public function __construct(Context $connection, AdSearch $search, NavigationWorker $navigationWorker)
 	{
 		$this->connection = $connection;
 		$this->search = $search;
+		$this->navigationWorker = $navigationWorker;
 	}
 
 
@@ -239,4 +247,35 @@ class Ad
 
 		return $list;
 	}
+
+
+
+	public function saveAd(array $data = [], $editRow = null, $createNavigation = false)
+	{
+		if ($editRow) {
+			$editRow->update($data);
+		} else {
+			$editRow = $this->connection->table('ad')->insert($data);
+		}
+
+		if ($createNavigation) {
+			$oldParentNavigationId = NULL;
+			$parentNavigationId = 735; /*$editRow['navigation_id'];*/
+
+			$this->navigationWorker->createOrUpdateNavItem(
+				$oldParentNavigationId,
+				$parentNavigationId,
+				trim(preg_replace('/\s+/', ' ', $editRow->heading)), // odstraneni new lines z nadpisu clanku
+				'detail',
+				$editRow->id,
+				NULL, //presenter id
+				$editRow->content, // page description
+				null
+			);
+		}
+
+		return $editRow;
+	}
+
+
 }

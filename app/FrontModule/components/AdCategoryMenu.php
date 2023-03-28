@@ -16,6 +16,7 @@ class AdCategoryMenu extends FrontControl
 	protected $config = [
 		'template' => 'default',
 		'parent' => null,
+		'showSubcategoriesInfo' => true,
 	];
 
 	/**
@@ -33,6 +34,11 @@ class AdCategoryMenu extends FrontControl
 		2 => 'demands'
 	];
 
+	/**
+	 * @var bool
+	 */
+	public $showSubcategoriesInfo;
+
 
 	public function __construct(FrontModule\Model\Ad $model, Navigation $modelNavigation)
 	{
@@ -44,6 +50,10 @@ class AdCategoryMenu extends FrontControl
 	public function getCurrentConfig(array $config = [], $lastConfig = FALSE)
 	{
 		$config = parent::getCurrentConfig($config);
+
+		if (isset($this->showSubcategoriesInfo)) {
+			$config['showSubcategoriesInfo'] = $this->showSubcategoriesInfo;
+		}
 
 		return $config;
 	}
@@ -108,6 +118,8 @@ class AdCategoryMenu extends FrontControl
 		$this->template->listByTree = $listByTree;
 		$this->template->info = $info;
 		$this->template->adCounts = $adCounts;
+
+		$this->template->showSubcategoriesInfo = $config['showSubcategoriesInfo'];
 
 
 		$this->render($config);

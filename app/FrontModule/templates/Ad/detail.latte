@@ -18,7 +18,7 @@
                             href="{plink Ad:default navId => $category->parent__navigation_id}" 
                             class="rounded border p-1 px-3 inline-flex items-center text-gray-500 text-sm">
                             {='assets/gfx/svg/icon-chevron-left.svg'|svg:'w-5 h-5 transform mr-1'|noescape}
-                            Zpět
+                            {_}Zpět{/_}
                         </a>
                     </div>
                 </div>
@@ -32,7 +32,10 @@
                 <div class="Row">
                     <div class="Col w-full">
                 
-                        <h1 class="text-h1 mb-10 Lined-1">{$ad->heading}</h1>
+                        <h1 class="text-h1 mb-10 Lined-1">
+                            {$ad->heading}
+                            <sup class="font-normal px-2 py-1 bg-white rounded border border-gray-200 text-[0.35em] top-[-1em]">{$presenter->adType == 'offers' ? 'nabídka' : 'poptávka'}</sup>
+                        </h1>
 
                         {var $photosEncoded = json_encode($photos)}
                         {var $firstPhoto = $photos[0]}

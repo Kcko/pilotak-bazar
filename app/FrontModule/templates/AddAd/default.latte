@@ -122,27 +122,25 @@
                         
                         <div class="mx-auto max-w-3xl bg-white rounded p-5 border  border-gray-200">
 
-                            <form n:name="addForm"" class="space-y-8 divide-y divide-gray-200">
+                            <form n:name="addForm" class="space-y-8 divide-y divide-gray-200">
                                 <div class="space-y-8 divide-y divide-gray-200">
 
                                     <div>
                                             <h3 class="text-h3 relative Lined-1 mb-8">Co nabízíte / poptáváte?</h3>
                                             {* Heading *}
                                             <div class="mb-5">
-                                                <label for="country" class="block font-medium text-gray-700 text-base">Typ inzerátu</label>
+                                                <label n:name="add_type_id" class="block font-medium text-gray-700 text-base">Typ inzerátu</label>
                                                 <div class="mt-1">
-                                                    <select id="type" name="type" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        <option>Prodám</option>
-                                                        <option>Koupím</option>
+                                                    <select n:name="add_type_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </select>
                                                 </div>
                                             </div>
 
 
                                             <div class="mb-5" x-data="{ chars: 0 }">
-                                                <label for="heading" class="block font-medium text-gray-700 text-base">Název inzerátu</label>
+                                                <label n:name="heading" class="block font-medium text-gray-700 text-base">Název inzerátu</label>
                                                 <div class="mt-1">
-                                                    <input id="heading" @input="chars = $el.value.length" maxlength="50"  name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <input n:name="heading" @input="chars = $el.value.length" maxlength="50"  name="heading" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     <div class="text-gray-400 text-sm pt-1 flex justify-between">
                                                         <span>Pojmenujte inzerát co nejvýstižněji</span>
                                                         <span><span x-text="chars">0</span>/50</span>
@@ -153,9 +151,12 @@
 
                                             {* Content *}
                                             <div class="mb-5" x-data="{ chars: 0 }">
-                                                <label for="about" class="block font-medium text-gray-700 text-base">Popište detail inzerátu</label>
+                                                <label n:name="content" class="block font-medium text-gray-700 text-base">Popište detail inzerátu</label>
                                                 <div class="mt-1">
-                                                    <textarea @input="chars = $el.value.length" maxlength="500" id="about" name="about" rows="6" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                                    <textarea @input="chars = $el.value.length" maxlength="500" 
+                                                    n:name="content"
+                                                    rows="6" 
+                                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
                                                     <div class="text-gray-400 text-sm pt-1 flex justify-between">
                                                         <span>Nepovinné, max. 500 znaků</span>
                                                         <span><span x-text="chars">0</span>/500</span>
@@ -185,20 +186,18 @@
                                             <div class="grid grid-cols-3 gap-5 mb-5">
                                             
                                                 <div class="col-span-2">
-                                                    <label for="price" class="block font-medium text-gray-700 text-base">Cena</label>
+                                                    <label n:name="price" class="block font-medium text-gray-700 text-base">Cena</label>
                                                     <div class="mt-1">
-                                                        <input id="price" name="price" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <input n:name="price" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                         <div class="text-gray-400 text-sm pt-1">Nepovinné, při neuvedení ceny se zobrazí "neuvedeno"</div>
                                                     
                                                     </div>
                                                 </div>
 
                                                 <div>
-                                                    <label for="currency" class="block font-medium text-gray-700 text-base">Měna</label>
+                                                    <label n:name="currency_id" class="block font-medium text-gray-700 text-base">Měna</label>
                                                     <div class="mt-1">
-                                                        <select id="currency" name="currency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        <option value="Kč">Kč</option>
-                                                        <option value="Eur">Eur</option>
+                                                        <select n:name="currency_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -211,16 +210,16 @@
                                             
                                             <div class="grid grid-cols-2 gap-5 mb-5">
                                                 <div>
-                                                    <label for="email" class="block font-medium text-gray-700 text-base">E-mail</label>
+                                                    <label n:name="contact_email" class="block font-medium text-gray-700 text-base">E-mail</label>
                                                     <div class="mt-1">
-                                                          <input id="email" name="email" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                          <input n:name="contact_email" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </div>
                                                 </div>
 
                                                 <div>
-                                                    <label for="phone" class="block font-medium text-gray-700 text-base">Telefon</label>
+                                                    <label n:name="contact_phone" class="block font-medium text-gray-700 text-base">Telefon</label>
                                                     <div class="mt-1">
-                                                          <input id="phone" name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                          <input n:name="contact_phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,28 +227,9 @@
  
                                             <div class="grid grid-cols-2 gap-5 mb-5">
                                                 <div>
-                                                    <label for="currency" class="block font-medium text-gray-700 text-base">Kraj</label>
+                                                    <label n:name="county_id" class="block font-medium text-gray-700 text-base">Kraj</label>
                                                     <div class="mt-1">
-                                                        <select id="currency" name="currency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        <optgroup label="Česká republika">
-                                                       
-                                                            <option value="1">Praha</option>
-                                                            <option value="2">Liberecký</option>
-                                                            <option value="3">Zlínský</option>
-                                                            <option value="4">Moravský</option>
-                                                            <option value="5">Středočeský</option>
-                                                            <option value="5">Liberecký</option>
-                                                            <option value="6">KráloveHradecký</option>
-                                                            <option value="7">Ústecký</option>
-                                                            <option value="8">Plzeňský</option>
-                                                            <option value="9">Jihočeský</option>
-                                                            <option value="10">Ostravský</option>
-                                                            <option value="11">Vysočina</option>
-                                                        </optgroup>
-
-                                                        <optgroup label="Slovensko">
-                                                            <option value="xx">Celé slovensko</option>
-                                                        </optgroup>
+                                                        <select n:name="county_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -257,7 +237,7 @@
                                                 <div>
                                                     <label for="phone" class="block font-medium text-gray-700 text-base">Město</label>
                                                     <div class="mt-1">
-                                                          <input id="phone" name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <input id="phone" name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </div>
                                                 </div>
                                             </div>
@@ -274,7 +254,7 @@
 
 
                                         <div class="flex justify-center mt-6">
-                                            <button type="submit" class="Btn -Black">Uložit</button>
+                                            <button n:name="send"  class="Btn -Black" />
                                         </div>
                                     </div>
                                  
