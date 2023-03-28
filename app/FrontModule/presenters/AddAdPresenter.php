@@ -8,6 +8,7 @@ App;
 
 use App\FrontModule\Model;
 use App\FrontModule\Model\NavigationWorker;
+use Andweb\Model\Mail;
 
 
 class AddAdPresenter extends FrontPresenter
@@ -39,6 +40,12 @@ class AddAdPresenter extends FrontPresenter
 	 * @var NavigationWorker
 	 */
 	public $navigationWorker;
+
+	/**
+	 * @var Mail
+	 * @inject
+	 */
+	public $mail;
 
 	/**
 	 * @var string
@@ -102,7 +109,7 @@ class AddAdPresenter extends FrontPresenter
 			->setValue('validate_captcha');
 
 
-		$form->addSelect('add_type_id', 'Typ inzerátu:', [
+		$form->addSelect('ad_type_id', 'Typ inzerátu:', [
 			1 => 'Nabízím',
 			2 => 'Prodám',
 		])->setDefaultValue(1);
@@ -167,17 +174,6 @@ class AddAdPresenter extends FrontPresenter
 			// if ($this->presenter->user->getAuthenticator()->getByLogin($values['email']))
 			// 	throw new \Exception($this->presenter->translator->translate('Zadaný e-mail je již obsazen. Nezapomněli jste heslo ke svému účtu?'));
 
-
-
-			if ($this->operation == 'add') {
-				$values['token'] = md5(time() . '^AK~972') . '_' . date('His');
-				$values['top_date'] = $values['created'] = new \DateTime;
-			} else {
-				$ad = new \stdClass; // TODO ... realny radek
-				$values['updated'] = new \DateTime;
-				$values['updated_cnt'] = $ad->updated_cnt + 1;
-			}
-
 			$save = [
 				'ad_type_id' => $values['ad_type_id'],
 				'heading' => $values['heading'],
@@ -185,24 +181,37 @@ class AddAdPresenter extends FrontPresenter
 				'navigation_id' => $values['navigation_id'],
 				'price' => $values['price'],
 				'currency_id' => $values['currency_id'],
+				'county_id' => $values['county_id'],
+				'contact_email' => $values['contact_email'],
+				'contact_town' => $values['contact_town'],
+				'contact_phone' => $values['contact_phone'],
+				'is_visible' => 1,
 			];
+
+			if ($this->operation == 'add') {
+				$save['token'] = md5(time() . '^AK~972') . '_' . date('His');
+				$save['top_date'] = $save['created'] = new \DateTime;
+				$save['expiration'] = new \DateTime('+' . Model\Ad::EXPIRATION_IN_DAYS . ' days');
+			} else {
+				$ad = new \stdClass; // TODO ... realny radek
+				$save['updated'] = new \DateTime;
+				$save['updated_cnt'] = $ad->updated_cnt + 1;
+			}
+
+
 
 			$ad = $this->model->saveAd($save, null, true);
 
-			// cloveku co se registruje
-			// $message = $this->mail->getMessage('lostPassword');
-			// unset($values['pwd1']);
-			// unset($values['g_recaptcha_response']);
-			// unset($values['action']);
 
-
-
-			// cloveku co se registruje
-			// $message = $this->mail->getMessage('newRegistration');
-			// $message->addTo($values['email']);
-			// $template = $message->getTemplate();
-			// $template->activationLink = $this->link('//:Front:PopoUser:userActivation', $values['reg_hash']);
-			// $this->mail->sendMessage($message);
+			// vklada inzerat
+			$message = $this->mail->getMessage('adAdded');
+			$message->addTo($values['contact_email']);
+			$template = $message->getTemplate();
+			//$template->activationLink = $this->link('//:Front:PopoUser:userActivation', $values['reg_hash']);
+			$template->adDetailUrl = 'ADD';
+			$template->adEditUrl = 'EDIT';
+			$template->adDeleteUrl = 'DELETE';
+			$this->mail->sendMessage($message);
 
 
 			// // adminovi jako notifikace
@@ -212,7 +221,7 @@ class AddAdPresenter extends FrontPresenter
 			// $template->link = $this->link('//:Back:User:AdminUser:edit', ['pKey' => (array) $newUserRow->id]);
 			// $this->mail->sendMessage($message);
 
-			$this->flashMessage('Registrace proběhla úspěšně. Nyní si prosím zkontrolujte svojí e-mailovou schránku a potvrďte registraci odkazem, který jsme Vám právě poslali.', 'Success');
+			$this->flashMessage('Inzerát úspěšně přidán', 'Success');
 
 		} catch (\Exception $e) {
 			$form->addError($this->presenter->translator->translate($e->getMessage()));
