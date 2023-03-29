@@ -59,9 +59,34 @@ class AddAdPresenter extends FrontPresenter
 	}
 
 
-	public function actionDefault($q = null, $f = [])
+	// vlozen noveho i editace stavajiciho ;)
+	public function actionDefault($id = null, $token = null)
 	{
+		$this->template->testAd = $this->model->getById(502);
+	}
 
+	public function actionDelete($id, $token = null)
+	{
+		$ad = $this->template->ad = $this->model->getById($id);
+
+		try {
+			if (!$ad) {
+				 throw new \Exception('Tento inzerát neexistuje');
+			}
+
+			elseif ($ad->user_id && !$this->getUser()->isLoggedIn()) {
+				 throw new \Exception('Přihlašte se prosím');
+			}
+
+			elseif ($ad->user_id && $this->getUser()->isLoggedIn() && $ad->token !== $token) {
+				 throw new \Exception('Inzerát nelze smazat jako nepřihlášený uživatel');
+			}
+		}
+		catch (\Exception $e) {
+			$this->template->error = $e->getMessage();
+		}
+
+	
 	}
 
 	public function handleUploadFiles()
@@ -84,6 +109,11 @@ class AddAdPresenter extends FrontPresenter
 		]];
 
 		$this->sendPayload();
+	}
+
+	public function handleDeleteConfirmation()
+	{
+
 	}
 
 
@@ -150,7 +180,7 @@ class AddAdPresenter extends FrontPresenter
 		$form->addSubmit('send', 'Uložit');
 
 		$form->onValidate[] = [$this, 'validate'];
-		$form->onSuccess[] = [$this, 'saveAdd'];
+		$form->onSuccess[] = [$this, 'save'];
 
 		return $form;
 	}
@@ -166,7 +196,7 @@ class AddAdPresenter extends FrontPresenter
 	}
 
 
-	public function saveAdd($form)
+	public function save($form)
 	{
 		$values = $form->getValues(TRUE);
 
@@ -227,6 +257,8 @@ class AddAdPresenter extends FrontPresenter
 			$form->addError($this->presenter->translator->translate($e->getMessage()));
 		}
 	}
+
+
 
 
 

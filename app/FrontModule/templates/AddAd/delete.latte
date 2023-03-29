@@ -1,0 +1,52 @@
+{var $htmlClass = 'homepage'}
+
+
+
+
+{block content}
+
+    {include '../fragments/header.latte'}
+
+
+    <main class="BaseContainer__Main bg-gray-100">
+
+        <div class="py-10">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+
+                        
+                        
+                        <div class="mx-auto max-w-3xl bg-white rounded p-5 border  border-gray-200">
+
+                            <h1 class="text-h2 mb-10 Lined-1 text-left">Potvrdit smazání inzerátu</h1>
+
+                            {if isset($error)}
+                                <div class="Alert Alert-Error">{_}{$error}{/_}</div>
+                            {else}
+                                <h2 class="text-h3">Skutečně si přejete smazat inzerát - 
+                                    <a n:href="Ad:detail, $ad->id" target="_blank" class="underline">{$ad->heading}</a>
+                                </h2>
+                                <div class="flex flex-wrap gap-4">
+                                    <a n:href="/" class="Btn -White">Na úvodní stránku</a>
+                                    <a n:href="deleteConfirmation!" class="Btn -Black">Smazat</a>
+                                </div>
+                            {/if}
+                            
+                
+                        </div>
+
+
+                
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    {include '../fragments/footer.latte'}
+    
+{/block}
