@@ -25,7 +25,7 @@ class MainAdvertItems
 	public function getList()
 	{
 		$selection = $this->connection->table('advert_item');
-		$selection->order('rank DESC');
+		$selection->order('rank ASC');
 
 		return $selection;
 	}

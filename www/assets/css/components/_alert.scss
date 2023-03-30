@@ -22,13 +22,16 @@
   }
 
   .Alert.Alert--Error,
-  .alert.-error {
+  .Alert.Alert-Error,
+  .alert.-error,
+  .alert.--error {
     @apply bg-red-200  rounded text-red-600;
     background-image: url(/assets/gfx/svg/alert-alert.svg);
   }
 
   .Alert.Alert--Success,
-  .alert.-success {
+  .alert.-success,
+  .Alert.Alert--success {
     @apply bg-green-200  rounded  text-green-600;
     background-image: url(/assets/gfx/svg/alert-success.svg);
   }

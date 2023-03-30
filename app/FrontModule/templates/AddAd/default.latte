@@ -123,12 +123,28 @@
                         <hr />
 
 
-                        <h1 class="text-h2 mb-10 Lined-1 text-center">Vložit inzerát</h1>
+                        
                         
                         <div class="mx-auto max-w-3xl bg-white rounded p-5 border  border-gray-200">
 
-                            <form n:name="addForm" class="space-y-8 divide-y divide-gray-200">
+                            <h1 n:if="$operation == 'add'" class="text-h2 mb-10 Lined-1 text-center">{_}Vložit inzerát{/_}</h1>
+                            <h1 n:if="$operation == 'edit'" class="text-h2 mb-10 Lined-1 text-center">{_}Upravit inzerát{/_}</h1>
+
+                            <div n:if="$flashes">
+                                <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
+                            </div>
+
+                            
+                            {if isset($error)}
+                                <div class="Alert Alert--Error">{_}{$error}{/_}</div>
+                            {/if}
+
+                            <form n:if="!isset($error)" n:name="addForm" class="space-y-8 divide-y divide-gray-200">
                                 <div class="space-y-8 divide-y divide-gray-200">
+
+                                    <div class="errors" n:if="$form->hasErrors()">
+                                        <div n:foreach="$form->errors as $error" class="Alert Alert--Error">{$error}</div>
+                                    </div>
 
                                     <div>
                                             <h3 class="text-h3 relative Lined-1 mb-8">Co nabízíte / poptáváte?</h3>
@@ -240,9 +256,9 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="phone" class="block font-medium text-gray-700 text-base">Město</label>
+                                                    <label n:name="contact_town" class="block font-medium text-gray-700 text-base">Město</label>
                                                     <div class="mt-1">
-                                                        <input id="phone" name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <input n:name="contact_town" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                     </div>
                                                 </div>
                                             </div>

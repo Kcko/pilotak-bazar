@@ -21,14 +21,18 @@
 
                             <h1 class="text-h2 mb-10 Lined-1 text-left">Potvrdit smazání inzerátu</h1>
 
+                            <div n:if="$flashes">
+                                <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
+                            </div>
+
                             {if isset($error)}
-                                <div class="Alert Alert-Error">{_}{$error}{/_}</div>
+                                <div class="Alert Alert--Error">{_}{$error}{/_}</div>
                             {else}
                                 <h2 class="text-h3">Skutečně si přejete smazat inzerát - 
                                     <a n:href="Ad:detail, $ad->id" target="_blank" class="underline">{$ad->heading}</a>
                                 </h2>
                                 <div class="flex flex-wrap gap-4">
-                                    <a n:href="/" class="Btn -White">Na úvodní stránku</a>
+                                    <a href="/" class="Btn -White">Na úvodní stránku</a>
                                     <a n:href="deleteConfirmation!" class="Btn -Black">Smazat</a>
                                 </div>
                             {/if}

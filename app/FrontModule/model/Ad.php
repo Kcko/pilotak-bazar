@@ -53,8 +53,12 @@ class Ad
 		$selection->where('is_visible', 1);
 		$selection->where('expiration >', new \DateTime);
 
-		if (isset($config['user_id']) && $config['user_id']) {
+		if (isset($config['user_id']) && $config['user_id'] && isset($config['liked']) && $config['liked']) {
 			$selection->where(':ad_fav.user_id', $config['user_id']);
+		}
+
+		if (isset($config['user_id']) && $config['user_id'] && isset($config['my']) && $config['my']) {
+			$selection->where('user_id', $config['user_id']);
 		}
 
 		if (isset($config['filters']) && isset($config['filters']['priceFrom']) && $config['filters']['priceFrom']) {
@@ -141,7 +145,7 @@ class Ad
 
 	public function getById($id)
 	{
-		return $this->connection->table('ad')->get($id);
+		return $this->connection->table('ad')->where('id', $id)->fetch();
 	}
 
 
@@ -278,6 +282,14 @@ class Ad
 		}
 
 		return $editRow;
+	}
+
+
+	public function isEmailExists($email)
+	{
+		return $this->connection->table('user')
+			->where('email', $email)
+			->fetch();
 	}
 
 

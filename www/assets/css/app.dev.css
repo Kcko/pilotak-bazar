@@ -1129,7 +1129,9 @@ html.Lock,
 }
 
 .Alert.Alert--Error,
-  .alert.-error {
+  .Alert.Alert-Error,
+  .alert.-error,
+  .alert.--error {
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
@@ -1139,7 +1141,8 @@ html.Lock,
 }
 
 .Alert.Alert--Success,
-  .alert.-success {
+  .alert.-success,
+  .Alert.Alert--success {
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
   background-color: rgb(187 247 208 / var(--tw-bg-opacity));

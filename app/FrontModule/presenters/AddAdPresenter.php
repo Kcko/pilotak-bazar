@@ -63,6 +63,44 @@ class AddAdPresenter extends FrontPresenter
 	public function actionDefault($id = null, $token = null)
 	{
 		$this->template->testAd = $this->model->getById(502);
+
+		if ($id) {
+			$ad = $this->template->ad = $this->model->getById($id);
+			$this->operation = 'edit';
+
+			try {
+				if (!$ad) {
+					throw new \Exception('Tento inzerát neexistuje');
+				} elseif ($ad->user_id && !$this->getUser()->isLoggedIn()) {
+					throw new \Exception('Přihlašte se prosím');
+				} elseif ($ad->user_id && $this->getUser()->isLoggedIn() && $ad->token !== $token) {
+					throw new \Exception('Inzerát nelze upravit jako nepřihlášený uživatel');
+				} elseif (!$this->getUser()->isLoggedIn() && $ad->token !== $token) {
+					throw new \Exception('Inzerát nelze upravit, odkaz není platný');
+				} elseif ($ad->is_visible === 0) {
+					throw new \Exception('Inzerát neexistuje');
+				}
+
+				// vychozi hodnoty
+				$this['addForm']->setDefaults($ad->toArray());
+
+			} catch (\Exception $e) {
+				$this->template->error = $e->getMessage();
+			}
+		} else {
+			if ($this->getUser()->isLoggedIn()) {
+				$identity = $this->getUser()->getIdentity();
+				$this['addForm']->setDefaults([
+					'contact_email' => $identity->email,
+					'contact_phone' => $identity->phone
+				]);
+			}
+		}
+	}
+
+	public function renderDefault($id = null, $token = null)
+	{
+		$this->template->operation = $this->operation;
 	}
 
 	public function actionDelete($id, $token = null)
@@ -71,22 +109,19 @@ class AddAdPresenter extends FrontPresenter
 
 		try {
 			if (!$ad) {
-				 throw new \Exception('Tento inzerát neexistuje');
+				throw new \Exception('Tento inzerát neexistuje');
+			} elseif ($ad->user_id && !$this->getUser()->isLoggedIn()) {
+				throw new \Exception('Přihlašte se prosím');
+			} elseif ($ad->user_id && $this->getUser()->isLoggedIn() && $ad->token !== $token) {
+				throw new \Exception('Inzerát nelze smazat jako nepřihlášený uživatel');
+			} elseif (!$this->getUser()->isLoggedIn() && $ad->token !== $token) {
+				throw new \Exception('Inzerát nelze smazat, odkaz není platný');
+			} elseif ($ad->is_visible === 0) {
+				throw new \Exception('Inzerát neexistuje');
 			}
-
-			elseif ($ad->user_id && !$this->getUser()->isLoggedIn()) {
-				 throw new \Exception('Přihlašte se prosím');
-			}
-
-			elseif ($ad->user_id && $this->getUser()->isLoggedIn() && $ad->token !== $token) {
-				 throw new \Exception('Inzerát nelze smazat jako nepřihlášený uživatel');
-			}
-		}
-		catch (\Exception $e) {
+		} catch (\Exception $e) {
 			$this->template->error = $e->getMessage();
 		}
-
-	
 	}
 
 	public function handleUploadFiles()
@@ -113,6 +148,14 @@ class AddAdPresenter extends FrontPresenter
 
 	public function handleDeleteConfirmation()
 	{
+		if ($this->template->ad->is_visible) {
+			$this->template->ad->update([
+				'is_visible' => 0,
+				'deleted' => new \DateTime
+			]);
+
+			$this->flashMessage('Inzerát odstraněn', 'success');
+		}
 
 	}
 
@@ -189,7 +232,12 @@ class AddAdPresenter extends FrontPresenter
 	public function validate($form)
 	{
 		try {
+			if (!$this->getUser()->isLoggedIn() && $this->model->isEmailExists($form->getValues(true)['contact_email'])) {
+				throw new \Exception("Tento e-mail nelze použít, patří registrovanému uživateli");
+			}
+
 			$this->recaptchaValidationV3->validate($form->getValues(true), $this->recaptchaValidationV3Config->getSecretKey());
+
 		} catch (\Exception $e) {
 			$form->addError($e->getMessage());
 		}
@@ -200,10 +248,9 @@ class AddAdPresenter extends FrontPresenter
 	{
 		$values = $form->getValues(TRUE);
 
-		try {
-			// if ($this->presenter->user->getAuthenticator()->getByLogin($values['email']))
-			// 	throw new \Exception($this->presenter->translator->translate('Zadaný e-mail je již obsazen. Nezapomněli jste heslo ke svému účtu?'));
+		\Tracy\Debugger::barDump($values);
 
+		try {
 			$save = [
 				'ad_type_id' => $values['ad_type_id'],
 				'heading' => $values['heading'],
@@ -222,19 +269,21 @@ class AddAdPresenter extends FrontPresenter
 				$save['token'] = md5(time() . '^AK~972') . '_' . date('His');
 				$save['top_date'] = $save['created'] = new \DateTime;
 				$save['expiration'] = new \DateTime('+' . Model\Ad::EXPIRATION_IN_DAYS . ' days');
+
+				$ad = $this->model->saveAd($save, null, true);
+
 			} else {
-				$ad = new \stdClass; // TODO ... realny radek
+				$ad = $this->template->ad;
 				$save['updated'] = new \DateTime;
 				$save['updated_cnt'] = $ad->updated_cnt + 1;
+
+				$ad = $this->model->saveAd($save, $this->template->ad, false);
 			}
 
 
 
-			$ad = $this->model->saveAd($save, null, true);
-
-
 			// vklada inzerat
-			$message = $this->mail->getMessage('adAdded');
+			$message = $this->mail->getMessage($this->operation == 'add' ? 'adAdded' : 'adEdited');
 			$message->addTo($values['contact_email']);
 			$template = $message->getTemplate();
 			//$template->activationLink = $this->link('//:Front:PopoUser:userActivation', $values['reg_hash']);
@@ -251,7 +300,10 @@ class AddAdPresenter extends FrontPresenter
 			// $template->link = $this->link('//:Back:User:AdminUser:edit', ['pKey' => (array) $newUserRow->id]);
 			// $this->mail->sendMessage($message);
 
-			$this->flashMessage('Inzerát úspěšně přidán', 'Success');
+			if ($this->operation == 'add')
+				$this->flashMessage('Inzerát úspěšně přidán', 'Success');
+			else
+				$this->flashMessage('Inzerát úspěšně upraven', 'Success');
 
 		} catch (\Exception $e) {
 			$form->addError($this->presenter->translator->translate($e->getMessage()));

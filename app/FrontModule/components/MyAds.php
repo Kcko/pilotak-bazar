@@ -11,13 +11,13 @@ use App\FrontModule;
 use Nette\Application\UI;
 
 
-class AdPopularByUser extends AbstractList
+class MyAds extends AbstractList
 {
 	protected $config = [
 		'template' => 'default',
 		'limit' => 16,
 		'paging' => true,
-		'liked' => true,
+		'my' => true,
 	];
 
 	/**
