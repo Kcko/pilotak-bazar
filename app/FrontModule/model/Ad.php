@@ -257,7 +257,7 @@ class Ad
 
 
 
-	public function saveAd(array $data = [], $editRow = null, $createNavigation = false)
+	public function saveAd(array $data = [], $editRow = null, $createNavigation = false): Nette\Database\Table\ActiveRow
 	{
 		if ($editRow) {
 			$editRow->update($data);

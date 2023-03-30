@@ -180,6 +180,8 @@ class AdPresenter extends FrontPresenter
 		// $this->template->backUrl = $category->parent__navigation->getUrl();
 		$this->template->category = $category;
 
+		$this->template->isMyAdd = $this->getUser()->isLoggedIn() && $this->getUser()->getId() === $ad->user_id;
+
 
 		// photos
 		$photos = [];

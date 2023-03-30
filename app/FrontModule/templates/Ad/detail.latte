@@ -31,7 +31,18 @@
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
+
+                        {* Editace / Smazani, jen prihlaseny uzivatel *}
+                        <div n:if="$isMyAdd" class="bg-gray-100 p-4 mb-8 flex flex-wrap gap-4 gap-x-8 justify-start items-center">
+                            <div>{_}Toto vidíte jen Vy, jako přihlášený uživatel{/_}</div>
+                            <a n:href="AddAd:default, $ad->id, $ad->token" class="Btn -Black -Xs">Upravit inzerát</a>
+                            <a n:href="AddAd:delete, $ad->id, $ad->token" class="Btn -BlackOutlined -Xs">Smazat inzerát</a>
+                        </div>
                 
+                        <div n:if="$flashes" class="mb-8">
+                            <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
+                        </div>
+
                         <h1 class="text-h1 mb-10 Lined-1">
                             {$ad->heading}
                             <sup class="font-normal px-2 py-1 bg-white rounded border border-gray-200 text-[0.35em] top-[-1em]">{$presenter->adType == 'offers' ? 'nabídka' : 'poptávka'}</sup>
@@ -75,7 +86,7 @@
                                     }" 
                                     class="mb-10">
                                     <div class="relative mb-4">
-                                            <span b:if="$adv->top" class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-sm"
+                                            <span n:if="$ad->top" class="absolute top-4 border border right-2.5 rounded px-1 font-normal bg-yellow-400 text-_black text-sm"
                                             >TOP</span>
 
                                             {if !isset($ad['adv'])}

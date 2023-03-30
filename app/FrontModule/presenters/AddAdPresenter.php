@@ -248,8 +248,6 @@ class AddAdPresenter extends FrontPresenter
 	{
 		$values = $form->getValues(TRUE);
 
-		\Tracy\Debugger::barDump($values);
-
 		try {
 			$save = [
 				'ad_type_id' => $values['ad_type_id'],
@@ -280,16 +278,15 @@ class AddAdPresenter extends FrontPresenter
 				$ad = $this->model->saveAd($save, $this->template->ad, false);
 			}
 
-
-
 			// vklada inzerat
 			$message = $this->mail->getMessage($this->operation == 'add' ? 'adAdded' : 'adEdited');
 			$message->addTo($values['contact_email']);
 			$template = $message->getTemplate();
-			//$template->activationLink = $this->link('//:Front:PopoUser:userActivation', $values['reg_hash']);
-			$template->adDetailUrl = 'ADD';
-			$template->adEditUrl = 'EDIT';
-			$template->adDeleteUrl = 'DELETE';
+
+			$template->adDetailUrl = $this->link('//:Front:Ad:detail', $ad->id);
+			$template->adEditUrl = $this->link('//:Front:AddAd:default', $ad->id, $ad->token);
+			$template->adDeleteUrl = $this->link('//:Front:AddAd:delete', $ad->id, $ad->token);
+
 			$this->mail->sendMessage($message);
 
 
@@ -305,7 +302,14 @@ class AddAdPresenter extends FrontPresenter
 			else
 				$this->flashMessage('Inzerát úspěšně upraven', 'Success');
 
+
+			$this->redirect('Ad:detail', $ad->id);
+
 		} catch (\Exception $e) {
+			if ($e instanceof Nette\Application\AbortException) {
+				throw $e;
+			}
+
 			$form->addError($this->presenter->translator->translate($e->getMessage()));
 		}
 	}
