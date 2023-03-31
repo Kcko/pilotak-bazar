@@ -25,8 +25,15 @@
             class="absolute  top-4 border border right-2.5 rounded px-1 font-normal bg-red-400 text-white text-xs"
         >Reklama</span>
 
-        {if $adv->image}
-            {$adv->image->getImageElement('hero', [':class' => "{ 'h-56  w-full object-cover' : view == 'columns' || !view, 'h-20 w-20 md:h-56 md:w-56 object-cover' : view == 'rows' }"])}
+
+        {var $photos = $adv->ad_photo}
+        
+        {if count($photos)}
+            {foreach $photos as $photo}
+                {var $image = $photo}
+                {php break}
+            {/foreach}
+            {$image->getImageElement('hero', [':class' => "{ 'h-56  w-full object-cover' : view == 'columns' || !view, 'h-20 w-20 md:h-56 md:w-56 object-cover' : view == 'rows' }"])}
         {else}
             <img 
             alt="" 

@@ -30,12 +30,18 @@ class Ad
 	 */
 	protected $navigationWorker;
 
+	/**
+	 * @var Nette\Http\Request
+	 */
+	protected $httpRequest;
 
-	public function __construct(Context $connection, AdSearch $search, NavigationWorker $navigationWorker)
+
+	public function __construct(Context $connection, AdSearch $search, NavigationWorker $navigationWorker, Nette\Http\Request $httpRequest)
 	{
 		$this->connection = $connection;
 		$this->search = $search;
 		$this->navigationWorker = $navigationWorker;
+		$this->httpRequest = $httpRequest;
 	}
 
 
@@ -291,6 +297,7 @@ class Ad
 			->where('email', $email)
 			->fetch();
 	}
+
 
 
 }

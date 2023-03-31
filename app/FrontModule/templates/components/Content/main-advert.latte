@@ -13,12 +13,14 @@
 
                             <p class="flex gap-3 mb-10">
                                 {var $url = ''}
+                                {var $external = false}
                                 {if $data->btn__navigation_id}
                                     {var $url = $data->btn__navigation->getUrl()}
                                 {elseif $data->btn__external_url}
                                     {var $url = $data->btn__external_url}
+                                    {var $external = true}
                                 {/if}
-                                <a n:if="$url" href="{$url}" class="Btn -BlackOutlined -Xl min-w-[150px]">{$data->btn_text}</a>
+                                <a n:if="$url" href="{$url}" {if $external}target="_blank"{/if} class="Btn -BlackOutlined -Xl min-w-[150px]">{$data->btn_text}</a>
                             </p>
 
                         </div>

@@ -61,7 +61,6 @@ class AdPresenter extends FastAdminTablePresenter
 		]);
 
 		$this->addEditTab('Média*6b*12c', [
-			['image_id*12'],
 			['ad_photo*12'],
 			['video*12'],
 		]);

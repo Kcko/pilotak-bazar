@@ -19,7 +19,13 @@ class AddAdPresenter extends FrontPresenter
 	 * @var Model\Ad
 	 * @inject
 	 */
-	public $model;
+	public $ad;
+
+	/**
+	 * @var Model\AdPhoto
+	 * @inject
+	 */
+	public $adPhoto;
 
 	/**
 	 * @var Model\RecaptchaValidationV3
@@ -52,20 +58,38 @@ class AddAdPresenter extends FrontPresenter
 	 */
 	protected $operation = 'add';
 
+	/**
+	 * @var Nette\Http\Session|Nette\Http\SessionSection
+	 */
+	protected $session;
+
 
 	public function startup()
 	{
 		parent::startup();
+		$this->session = $this->getSession('AD');
 	}
 
 
 	// vlozen noveho i editace stavajiciho ;)
 	public function actionDefault($id = null, $token = null)
 	{
-		$this->template->testAd = $this->model->getById(502);
+		if ($id) {
+			$this->session->relationToken = $id;
+		} else {
+			if (!isset($this->session->relationToken)) {
+				$this->session->relationToken = Nette\Utils\Random::generate(20) . date('jnYHis');
+			}
+		}
+
+		\Tracy\Debugger::barDump(gettype($this->session->relationToken));
+
+		$this->template->relationToken = $this->session->relationToken;
+		$this->template->savedPhotosByRelation = $this->adPhoto->getImagesByRelToken($this->session->relationToken);
+
 
 		if ($id) {
-			$ad = $this->template->ad = $this->model->getById($id);
+			$ad = $this->template->ad = $this->ad->getById($id);
 			$this->operation = 'edit';
 
 			try {
@@ -105,7 +129,7 @@ class AddAdPresenter extends FrontPresenter
 
 	public function actionDelete($id, $token = null)
 	{
-		$ad = $this->template->ad = $this->model->getById($id);
+		$ad = $this->template->ad = $this->ad->getById($id);
 
 		try {
 			if (!$ad) {
@@ -126,8 +150,8 @@ class AddAdPresenter extends FrontPresenter
 
 	public function handleUploadFiles()
 	{
-		\Tracy\Debugger::barDump($_FILES, 'files');
-		\Tracy\Debugger::barDump($_POST, 'post');
+		// \Tracy\Debugger::barDump($_FILES, 'files');
+		// \Tracy\Debugger::barDump($this->session->relationToken, 'relationToken');
 
 		header('Access-Control-Allow-Origin: *');
 		header("Access-Control-Allow-Credentials: true");
@@ -135,16 +159,67 @@ class AddAdPresenter extends FrontPresenter
 		header('Access-Control-Max-Age: 1000');
 		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 
+		$data = [
+			'image_folder_id' => 31,
+		];
+
+		$photo = $this->adPhoto->addImageByToken($data, $_FILES['file'], $this->session->relationToken);
+
 		$this->payload->state = 'OK';
 		$this->payload->P = $_FILES;
 		$this->payload->P2 = ['file' => [
-			'name' => 'file' . rand(1, 9999),
-			'size' => rand(500, 3000),
-			'url' => '/assets/gfx/hp-hero.jpg'
+			'id' => $photo->id,
+			'name' => $photo->file_name,
+			'size' => $photo->size,
+			'url' => $photo->image->getImageUrl('thumb')
 		]];
 
 		$this->sendPayload();
 	}
+
+
+	public function handleSaveOrder(array $data = [])
+	{
+		$editState = $this->adPhoto->isAdExistsYet($this->session->relationToken);
+		if ($editState) {
+			$adId = $this->session->relationToken;
+		}
+
+		$this->adPhoto->reorderRanks($data, $this->session->relationToken);
+
+		if ($editState && $adId) {
+			$this->adPhoto->sync($adId, $this->session->relationToken);
+		}
+
+		$this->payload->state = 'OK';
+		$this->payload->order = $data;
+
+		$this->sendPayload();
+	}
+
+	public function handleDeleteImage($imageId)
+	{
+		$editState = $this->adPhoto->isAdExistsYet($this->session->relationToken);
+		if ($editState) {
+			$adId = $this->session->relationToken;
+		}
+
+		if ($editState) {
+			$adId = $this->session->relationToken;
+		}
+
+		$this->adPhoto->deleteImageByToken($imageId, $this->session->relationToken);
+
+		if ($editState && $adId) {
+			$this->adPhoto->sync($adId, $this->session->relationToken);
+		}
+
+		$this->payload->state = 'OK';
+		$this->payload->imageId = $imageId;
+
+		$this->sendPayload();
+	}
+
 
 	public function handleDeleteConfirmation()
 	{
@@ -156,16 +231,6 @@ class AddAdPresenter extends FrontPresenter
 
 			$this->flashMessage('Inzerát odstraněn', 'success');
 		}
-
-	}
-
-
-	public function handleSaveOrder(array $data = [])
-	{
-		\Tracy\Debugger::barDump($data, 'order');
-		$this->payload->state = 'OK';
-		$this->payload->order = $data;
-		$this->sendPayload();
 	}
 
 
@@ -215,9 +280,9 @@ class AddAdPresenter extends FrontPresenter
 
 		$form->addText('contact_phone', 'Telefon:');
 		$form->addText('contact_town', 'Město:');
-		$form->addSelect('county_id', 'Kraj:', $this->model->listCounty())->setPrompt('Všude');
+		$form->addSelect('county_id', 'Kraj:', $this->ad->listCounty())->setPrompt('Všude');
 
-		$form->addSelect('navigation_id', 'Kategorie:', $this->model->listCategories())->setPrompt('Vyberte kategorii')->setRequired('Vyberte kategorii');
+		$form->addSelect('navigation_id', 'Kategorie:', $this->ad->listCategories())->setPrompt('Vyberte kategorii')->setRequired('Vyberte kategorii');
 
 
 		$form->addSubmit('send', 'Uložit');
@@ -232,7 +297,7 @@ class AddAdPresenter extends FrontPresenter
 	public function validate($form)
 	{
 		try {
-			if (!$this->getUser()->isLoggedIn() && $this->model->isEmailExists($form->getValues(true)['contact_email'])) {
+			if (!$this->getUser()->isLoggedIn() && $this->ad->isEmailExists($form->getValues(true)['contact_email'])) {
 				throw new \Exception("Tento e-mail nelze použít, patří registrovanému uživateli");
 			}
 
@@ -268,14 +333,14 @@ class AddAdPresenter extends FrontPresenter
 				$save['top_date'] = $save['created'] = new \DateTime;
 				$save['expiration'] = new \DateTime('+' . Model\Ad::EXPIRATION_IN_DAYS . ' days');
 
-				$ad = $this->model->saveAd($save, null, true);
+				$ad = $this->ad->saveAd($save, null, true);
 
 			} else {
 				$ad = $this->template->ad;
 				$save['updated'] = new \DateTime;
 				$save['updated_cnt'] = $ad->updated_cnt + 1;
 
-				$ad = $this->model->saveAd($save, $this->template->ad, false);
+				$ad = $this->ad->saveAd($save, $this->template->ad, false);
 			}
 
 			// vklada inzerat
@@ -289,19 +354,19 @@ class AddAdPresenter extends FrontPresenter
 
 			$this->mail->sendMessage($message);
 
+			// ulozeny fotek
+			$editState = $this->adPhoto->isAdExistsYet($this->session->relationToken);
+			if (!$editState) {
+				$adId = $ad->id;
+				$this->adPhoto->finallySaveNewAdPhotos($adId, $this->session->relationToken);
+			}
+			$this->session->relationToken = null;
 
-			// // adminovi jako notifikace
-			// $message = $this->mail->getMessage('newRegistrationAdmin');
-			// $template = $message->getTemplate();
-			// $template->setParameters($values);
-			// $template->link = $this->link('//:Back:User:AdminUser:edit', ['pKey' => (array) $newUserRow->id]);
-			// $this->mail->sendMessage($message);
 
 			if ($this->operation == 'add')
 				$this->flashMessage('Inzerát úspěšně přidán', 'Success');
 			else
 				$this->flashMessage('Inzerát úspěšně upraven', 'Success');
-
 
 			$this->redirect('Ad:detail', $ad->id);
 

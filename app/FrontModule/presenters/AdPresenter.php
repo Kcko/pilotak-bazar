@@ -185,9 +185,9 @@ class AdPresenter extends FrontPresenter
 
 		// photos
 		$photos = [];
-		if ($ad->image_id) {
-			$photos[] = $ad->image->getImageUrl('hero');
-		}
+		// if ($ad->image_id) {
+		// 	$photos[] = $ad->image->getImageUrl('hero');
+		// }
 		foreach ($this->template->ad['ad_photo'] as $photo) {
 			$photos[] = $photo->getImageUrl('hero');
 		}

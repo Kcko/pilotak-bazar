@@ -19,11 +19,35 @@
             acceptedFiles: "image/*",
             addRemoveLinks: true,
             dictRemoveFile: "Odstranit",
+            dictCancelUpload: "Zrušit nahrávání",
+            dictUploadCanceled: "Nahrávání zrušeno",
+            dictCancelUploadConfirmation: "Opravdu zrušit nahrávání?",
             dictDefaultMessage: "Vložte fotografie nebo přetáhněte ze svého PC",
             dictMaxFilesExceeded: "Nelze nahrát víc souborů (maximální počet je 10)",
             dictFileTooBig: "Soubor je moc velký. Maximální povolená velikost: 1 MiB.", 
             dictInvalidFileType: "Tento typ souboru není povolen (pouze obrázky ve formátu JPG, PNG)",
         });
+
+        // saved photos behem relace
+        {if true}
+            let mockFile
+            let ids = []
+            {foreach $savedPhotosByRelation as $photo}
+                    mockFile = { name: {$photo->file_name}, size: {$photo->size}, internalId: {$photo->id} };
+                    dropzone.displayExistingFile(mockFile, {$photo->image->getImageUrl('thumb')});
+                    totalFiles++;
+                    ids.push({ id:  {$photo->id} })
+            {/foreach}
+
+            
+            setTimeout(() => {
+                let photoCards = document.querySelectorAll('.dropzone-photos > .dz-preview')
+                ids.forEach((o, index) => {
+                    photoCards[index].dataset.id = o.id
+                })
+            }, 100)
+        {/if}
+        
 
         dropzone.on("success", function(file) {                
             if (file.accepted) {
@@ -32,7 +56,7 @@
                 
                 if (totalFiles < maxFiles) {
                     let json = JSON.parse(file?.xhr?.response)
-                    let mockFile = { name: json.P2.file.name, size: json.P2.file.size, internalId: json.P2.file.name };
+                    let mockFile = { name: json.P2.file.name, size: json.P2.file.size, internalId: json.P2.file.id };
                     dropzone.displayExistingFile(mockFile, json.P2.file.url);
                     totalFiles++;
                 }
@@ -40,20 +64,21 @@
         });
 
         dropzone.on("removedfile", file => {
-            totalFiles--;
+            if (file?.internalId) {
+                let deleteImage = {link deleteImage!}
+                naja.makeRequest('GET', deleteImage, { imageId: file.internalId }, { history: false } );
+            }
+            totalFiles--
         });
 
         dropzone.on("addedfile", file => {
             if (file?.internalId) {
                 file.previewElement.dataset.id = file.internalId
-
             }
         });
 
         dropzone.on("error", (file, message) => {
-            console.log("error occurrs");
-            console.log(file);
-            console.log(message);
+         
 
         });
 
@@ -65,8 +90,6 @@
                 ghostClass: 'my-ghost',
                 animation: 150,
                 onSort: function(e) {
-                    console.log('onSort')
-                    console.log(sortable.toArray())
 
                     let order = sortable.toArray(); // use instance
                     let saveOrderLink = {link saveOrder!}
@@ -104,6 +127,7 @@
               });
 
     </script>
+    
 {/block}
 
 {block content}
