@@ -11,6 +11,16 @@
                                 {$data->content|noescape}
                             </div>
 
+                            <p class="flex gap-3 mb-10">
+                                {var $url = ''}
+                                {if $data->btn__navigation_id}
+                                    {var $url = $data->btn__navigation->getUrl()}
+                                {elseif $data->btn__external_url}
+                                    {var $url = $data->btn__external_url}
+                                {/if}
+                                <a n:if="$url" href="{$url}" class="Btn -BlackOutlined -Xl min-w-[150px]">{$data->btn_text}</a>
+                            </p>
+
                         </div>
                         <div>
                             {* <img  src="/assets/gfx/tmp/superman.svg" class="max-w-[70%] block mx-auto" alt="" /> *}
