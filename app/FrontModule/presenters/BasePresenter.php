@@ -26,23 +26,27 @@ class BasePresenter extends App\Presenters\BasePresenter
 		$storage = $this->getUser()->getStorage();
 		$storage->setNamespace("Front");
 
+		if (isset($this['adSearch'])) {
+			$this['adSearch']->onSearch[] = function ($o, $q) {
+				if ($q) {
+					$presenter = $this->getPresenterInfo();
 
-		$this['adSearch']->onSearch[] = function ($o, $q) {
-			if ($q) {
-				$presenter = $this->getPresenterInfo();
+					$this->redirect('Ad:default', ['navId' => 740, 'q' => $q]);
 
-				$this->redirect('Ad:default', ['navId' => 740, 'q' => $q]);
-
-				/*
-				// ad default ok na tu samou
-				if ($presenter['name'] == 'front.ad' && $presenter['action'] == 'default') {
-				$this->redirect('Ad:default', ['navId' => $this->presenter->navigation->navItem['id'], 'q' => $q]);
-				} else {
-				$this->redirect('Ad:default', ['navId' => 740, 'q' => $q]);
+					/*
+					// ad default ok na tu samou
+					if ($presenter['name'] == 'front.ad' && $presenter['action'] == 'default') {
+					$this->redirect('Ad:default', ['navId' => $this->presenter->navigation->navItem['id'], 'q' => $q]);
+					} else {
+					$this->redirect('Ad:default', ['navId' => 740, 'q' => $q]);
+					}
+					*/
 				}
-				*/
-			}
-		};
+			};
+
+		}
+
+
 
 
 
@@ -81,7 +85,7 @@ class BasePresenter extends App\Presenters\BasePresenter
 		// FB + Common
 		$this['metaHeaders']->setHeader('og:locale', $locale);
 		$this['metaHeaders']->setHeader('og:type', 'website');
-		$this['metaHeaders']->setHeader('og:site_name', 'Pilotak.cz - letecký bazar');
+		$this['metaHeaders']->setHeader('og:site_name', 'Pilotak.cz - letecký bazar a inzerce');
 
 		$this['metaHeaders']->setHeader('og:title', $title);
 		$this['metaHeaders']->setHeader('og:description', $description);

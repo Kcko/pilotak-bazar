@@ -1,5 +1,10 @@
 {var $htmlClass = 'homepage'}
 
+
+{block js}
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6427d6fd8c76d700122756f9&product=inline-share-buttons&source=platform" async="async"></script>
+{/block}
+
 {block content}
 
     {include '../fragments/header.latte'}
@@ -153,7 +158,7 @@
                                 </div>
 
 
-                                <div class="border border-gray-200 p-5 rounded-md">
+                                <div class="border border-gray-200 p-5 rounded-md mb-8">
                                     <div class="text-h3 mb-3">Kontakt</div>
                                     <div n:if="$ad->user_id">
                                         <span class="text-gray-400">E-mail:</span> {$ad->user->email|mailObfuscate|noescape} <br />
@@ -165,7 +170,10 @@
                                         <span class="text-gray-400">Telefon:</span> {$ad->contact_phone|phoneObfuscate|noescape} <br />
                                         <span class="text-gray-400">Město:</span> {$ad->contact_town} <br />
                                     </div>
-                            
+                                </div>
+
+                                <div>
+                                    <div class="sharethis-inline-share-buttons"></div>
                                 </div>
 
                             </div>

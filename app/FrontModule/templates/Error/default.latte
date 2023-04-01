@@ -11,13 +11,13 @@
         <div class="Container pb-16">
             <div class="Row">
                 <main class="Col w-full lg:w-5/12 lg:pr-20" role="main">
-					<h1 class="text-h1 mt-12 mb-12 Lined-1">Stránka nenalezena</h1>
+					<h1 class="text-h1 mt-12 mb-12 Lined-1">{$presenter->navigation->navItem['title']}</h1>
                     <div class="RichText mb-10">
               		    {control content}
                     </div>
             
                     <div>
-                        <a href="" class="Btn -BlackOutlined">
+                        <a href="/" class="Btn -BlackOutlined">
                             {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 transform rotate-90 mr-2'|noescape}
                             Zpět
                         </a>

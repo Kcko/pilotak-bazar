@@ -185,10 +185,11 @@ class AdPresenter extends FrontPresenter
 
 		// photos
 		$photos = [];
-		// if ($ad->image_id) {
-		// 	$photos[] = $ad->image->getImageUrl('hero');
-		// }
+		$image = null;
 		foreach ($this->template->ad['ad_photo'] as $photo) {
+			if (!$image) {
+				$image = $photo;
+			}
 			$photos[] = $photo->getImageUrl('hero');
 		}
 
@@ -197,6 +198,22 @@ class AdPresenter extends FrontPresenter
 		}
 
 		$this->template->photos = $photos;
+
+		if ($image)
+			$image = $image->getImageUrl('//facebook');
+
+		$this['metaHeaders']->setHeader("og:type", "article");
+		$this['metaHeaders']->setHeader("og:title", $ad->heading . ' (Pilotak.cz)');
+		$this['metaHeaders']->setHeader("og:description", strip_tags($ad->content));
+
+		if ($image) {
+			$this['metaHeaders']->setHeader("og:image", $image);
+			$this['metaHeaders']->setHeader("twitter:image", $image);
+		}
+
+		$this['metaHeaders']->setHeader("twitter:card", "summary");
+		$this['metaHeaders']->setHeader("twitter:title", $ad->heading . ' (Pilotak.cz)');
+		$this['metaHeaders']->setHeader("twitter:description", strip_tags($ad->content));
 
 	}
 
