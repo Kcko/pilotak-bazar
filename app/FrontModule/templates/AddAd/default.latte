@@ -291,8 +291,11 @@
                                         </div>
 
 
-                                        <div class="flex justify-center mt-6">
-                                            <button n:name="send"  class="Btn -Black" />
+                                        <div x-data class="flex justify-center mt-6">
+                                            <button 
+                                                @click="$el.innerHTML = 'Ukládám...', setTimeout(() => $el.disabled = true, 0)"
+                                                n:name="send"  class="Btn -Black" 
+                                            />
                                         </div>
                                     </div>
                                  
