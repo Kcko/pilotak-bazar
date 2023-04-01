@@ -351,6 +351,7 @@ class AddAdPresenter extends FrontPresenter
 			$template->adDetailUrl = $this->link('//:Front:Ad:detail', $ad->id);
 			$template->adEditUrl = $this->link('//:Front:AddAd:default', $ad->id, $ad->token);
 			$template->adDeleteUrl = $this->link('//:Front:AddAd:delete', $ad->id, $ad->token);
+			$template->expiration = $ad->expiration->format('j.n.Y');
 
 			$this->mail->sendMessage($message);
 

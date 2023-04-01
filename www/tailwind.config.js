@@ -36,6 +36,9 @@ module.exports = {
       fontSize: {
         base: '0.9375rem',
         basexl: '1rem'
+      },
+      screens: {
+        betterhover: { raw: '(hover: hover)' }
       }
     }
   },

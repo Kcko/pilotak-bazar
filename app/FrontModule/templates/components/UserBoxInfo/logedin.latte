@@ -1,7 +1,8 @@
 <li x-data="{ opened: false }" class="relative">
     <span @click="opened = !opened" class="Btn px-0 inline-flex items-center gap-x-2">
         {='assets/gfx/svg/icon-user.svg'|svg:'w-8 h-8 md:w-5 md:h-5'|noescape}
-        {$user->identity->email}
+        {$user->identity->name[0]}
+        {$user->identity->surname[0]}
         {='assets/gfx/svg/icon-chevron-down.svg'|svg:'w-5 h-5 -ml-1'|noescape}
         
     </span>

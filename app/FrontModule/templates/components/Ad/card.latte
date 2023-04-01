@@ -3,7 +3,7 @@
         relative
         transition-transform
         duration-200
-        transform hover:-translate-y-1 hover:shadow-md
+        transform md:hover:-translate-y-1 md:hover:shadow-md
         flex rounded-md border border-gray-200',
         isset($adv[top]) && $adv->top ? 'bg-yellow-100'
         "
@@ -64,7 +64,9 @@
                 <p class="border-t -ml-5 -mr-5 px-5 pt-2 mt-2 text-xs text-gray-500 flex flex-wrap justify-between">
                     <span class="inline-flex items-center gap-x-1 -ml-0.5">
                         {='assets/gfx/svg/icon-pin.svg'|svg:'w-4 h-4'|noescape}
-                        {$adv->county->name}
+                        {if isset($adv->county_id)}
+                            {$adv->county->name}
+                        {/if}
                     </span>
                     <span>{$adv->created->format('j.n.Y')} </span>
                 </p>
