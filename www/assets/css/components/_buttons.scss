@@ -19,6 +19,9 @@
     @apply rounded-md border border-transparent;
     @apply font-normal;
 
+    &[disabled] {
+      @apply opacity-30;
+    }
     /* aka typo */
 
     &.-Black {

@@ -25,8 +25,8 @@
                                 <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
                             </div>
 
-                            {if isset($error)}
-                                <div class="Alert Alert--Error">{_}{$error}{/_}</div>
+                            {if isset($validationError)}
+                                <div class="Alert Alert--validationError">{_}{$error}{/_}</div>
                             {else}
                                 <h2 class="text-h3">Skutečně si přejete smazat inzerát - 
                                     <a n:href="Ad:detail, $ad->id" target="_blank" class="underline">{$ad->heading}</a>

@@ -109,7 +109,7 @@ class AddAdPresenter extends FrontPresenter
 				$this['addForm']->setDefaults($ad->toArray());
 
 			} catch (\Exception $e) {
-				$this->template->error = $e->getMessage();
+				$this->template->vaidationError = $e->getMessage();
 			}
 		} else {
 			if ($this->getUser()->isLoggedIn()) {
@@ -144,7 +144,7 @@ class AddAdPresenter extends FrontPresenter
 				throw new \Exception('Inzerát neexistuje');
 			}
 		} catch (\Exception $e) {
-			$this->template->error = $e->getMessage();
+			$this->template->vaidationError = $e->getMessage();
 		}
 	}
 
@@ -259,8 +259,8 @@ class AddAdPresenter extends FrontPresenter
 
 
 		$form->addTextArea('content', 'Detailní popis inzerátu:')
-			->setRequired('Zadejte název')
-			->addRule($form::MAX_LENGTH, 'Povoleno je maximálně 1000 znaků', 1000);
+			->setRequired('Zadejte popis')
+			->addRule($form::MAX_LENGTH, 'Povoleno je maximálně 500 znaků', 500);
 
 		$form->addText('price', 'Cena:')
 			->setRequired(false)

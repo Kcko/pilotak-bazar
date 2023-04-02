@@ -152,11 +152,21 @@
                             </div>
 
                             
-                            {if isset($error)}
-                                <div class="Alert Alert--Error">{_}{$error}{/_}</div>
+                            {if isset($validationError)}
+                                <div class="Alert Alert--Error">{_}{$validationError}{/_}</div>
                             {/if}
 
-                            <form n:if="!isset($error)" n:name="addForm" class="space-y-8 divide-y divide-gray-200">
+                            <form 
+                                x-data
+                                n:if="!isset($error)" 
+                                @submit="setTimeout(() => {
+                                    if (window.Nette.formErrors.length === 0) {
+                                        $refs.send.innerHTML = 'Odesilám...'
+                                        $refs.send.disabled = true
+                                    }
+                                }, 0)"
+                                n:name="addForm" 
+                                class="space-y-8 divide-y divide-gray-200">
                                 <div class="space-y-8 divide-y divide-gray-200">
 
                                     <div class="errors" n:if="$form->hasErrors()">
@@ -287,13 +297,13 @@
 
                                     <div class="pt-5">
                                         <div class="text-sm text-gray-400">
-                                            Odesláním formuláře souhlasíte se <a href="" class="underline">smluvními podmínkami</a>.
+                                            {_}Odesláním formuláře souhlasíte se smluvními podmínkami{/_}
                                         </div>
 
 
-                                        <div x-data class="flex justify-center mt-6">
+                                        <div class="flex justify-center mt-6">
                                             <button 
-                                                @click="$el.innerHTML = 'Ukládám...', setTimeout(() => $el.disabled = true, 0)"
+                                                x-ref="send"
                                                 n:name="send"  class="Btn -Black" 
                                             />
                                         </div>

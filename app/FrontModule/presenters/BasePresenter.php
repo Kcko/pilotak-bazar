@@ -46,10 +46,6 @@ class BasePresenter extends App\Presenters\BasePresenter
 
 		}
 
-
-
-
-
 		// Prihlaseni / Odhlaseni / LOGOVANI
 		$this->user->onLoggedIn[] = function () {
 			$this->popoUser->saveLogin($this->getUser()->getId());
@@ -125,4 +121,5 @@ class BasePresenter extends App\Presenters\BasePresenter
 	{
 
 	}
+
 }
