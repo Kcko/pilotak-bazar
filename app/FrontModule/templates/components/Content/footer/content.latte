@@ -4,38 +4,24 @@
             <div class="Col w-full">
                 <div class="grid sm:grid-cols-3 md:grid-cols-5 gap-8">
                     <div class="sm:col-span-3 md:col-span-2">
-                            <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading1}</h3>
+                        <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading1}</h3>
 
-                            <div class="space-y-5 mb-5 text-sm text-_white max-w-[40ch]">
-                                {$data->text1|noescape}
-                            {* <p><a href="" class="underline">Pilotak.cz</a> - centrum letecké zábavy, sportovního a rekreačního létání a sami si tak můžete vyzkoušet, jaké je to být pilotem letadla nebo pilotem vrtulníku na zkoušku.</p>
-                            <p>Pokud se Vám takový let zalíbí, můžete také absolvovat letecký výcvik na sportovních letadlech a Vaší odměnou bude získání pilotního průkazu.</p> *}
-                            </div>
+                        <div class="space-y-5 mb-5 text-sm text-_white max-w-[40ch]">
+                            {$data->text1|noescape}
+                        {* <p><a href="" class="underline">Pilotak.cz</a> - centrum letecké zábavy, sportovního a rekreačního létání a sami si tak můžete vyzkoušet, jaké je to být pilotem letadla nebo pilotem vrtulníku na zkoušku.</p>
+                        <p>Pokud se Vám takový let zalíbí, můžete také absolvovat letecký výcvik na sportovních letadlech a Vaší odměnou bude získání pilotního průkazu.</p> *}
+                        </div>
 
-                            <div class="text-xs text-_white">© 2007 – {=date('Y')} Pilotak.cz</div>
+                        <div class="text-xs text-_white">© 2007 – {=date('Y')} Pilotak.cz</div>
                     </div>
                     <div>
-                            <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading2}</h3>
-                            <ul class="BulletListYellow text-_white text-sm space-y-2">
-                            <li><a href="" class="hover:text-white hover:underline">Vyhlídkové lety</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Lety na zkoušku</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Lety vrtulníkem</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Lety dronem</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Letecké práce</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Firemní akce</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Teambuilding</a></li>
-                            <li><a href="" class="hover:text-white hover:underline">Objednávka</a></li>
-                            </ul>
+                        <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading2}</h3>
+                        {$data->text2|replace:'<a':'<a class="underline"'|replace:'<ul>':' <ul class="BulletListYellow text-_white text-sm space-y-2">'|noescape}
+
                     </div>
                     <div>
                         <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading3}</h3>
-                        <ul class="BulletListYellow text-_white text-sm space-y-2">
-                            <li><a href="" class="hover:text-white hover:underline">Smluvní podmínky</a>
-                            <li><a href="" class="hover:text-white hover:underline">Ochrana údajů</a>
-                            <li><a href="" class="hover:text-white hover:underline">Pilotak.cz</a>
-                            <li><a href="" class="hover:text-white hover:underline">Reklama</a>
-                            <li><a href="" class="hover:text-white hover:underline">Kontakt</a>
-                        </ul>
+                        {$data->text3|replace:'<a':'<a class="underline"'|replace:'<ul>':' <ul class="BulletListYellow text-_white text-sm space-y-2">'|noescape}
                     </div>
                     
                     <div n:if="$data->block4_show" class="md:text-center">

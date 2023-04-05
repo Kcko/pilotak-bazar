@@ -57,7 +57,7 @@
                     {if !$adv['price']}
                         <span class="text-gray-500 text-sm">cena neuvedena</span>
                     {else}
-                        {$adv['price']} 
+                        {$adv['price']|number:0, ' ', ' '} 
                         {$adv->currency->symbol}
                     {/if}
                 </p>

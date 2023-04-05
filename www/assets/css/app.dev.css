@@ -837,13 +837,6 @@ html.Lock,
   }
 }
 
-@media (hover: hover) {
-
-  .debug-screens::before {
-    content: 'screen: betterhover';
-  }
-}
-
 .text-h1 {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -5223,11 +5216,6 @@ https://picsum.photos/id/13/1810/1150
 
 .hover\:bg-white\/90:hover {
   background-color: rgb(255 255 255 / 0.9);
-}
-
-.hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {

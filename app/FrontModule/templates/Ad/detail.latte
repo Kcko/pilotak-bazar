@@ -131,7 +131,7 @@
                                 <div class="text-h3">
                                     <span class="font-normal">Cena:</span>
                                     {if $ad->price}
-                                         {$ad->price}
+                                         {$ad->price|number:0, ' ', ' '}
                                          {$ad->currency->symbol}
                                     {else}
                                         neuvedeno
@@ -161,6 +161,7 @@
                                 <div class="border border-gray-200 p-5 rounded-md mb-8">
                                     <div class="text-h3 mb-3">Kontakt</div>
                                     <div n:if="$ad->user_id">
+                                        <span class="font-medium">{$ad->user->name} {$ad->user->surname}</span><br />
                                         <span class="text-gray-400">E-mail:</span> {$ad->user->email|mailObfuscate|noescape} <br />
                                         <span class="text-gray-400">Telefon:</span> {$ad->user->phone|phoneObfuscate|noescape} <br />
                                         <span class="text-gray-400">Město:</span> {$ad->contact_town} <br />
