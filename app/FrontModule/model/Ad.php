@@ -251,7 +251,7 @@ class Ad
 		$list = [];
 		foreach ($rows as $row) {
 
-			$children = $this->connection->table('navigation')->where('parent__navigation_id', $row->id)->order('title');
+			$children = $this->connection->table('navigation')->where('parent__navigation_id', $row->id)->order('rank');
 			foreach ($children as $child) {
 				$list[$row->title][$child->id] = $child->title;
 

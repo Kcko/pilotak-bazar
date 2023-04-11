@@ -82,8 +82,6 @@ class AddAdPresenter extends FrontPresenter
 			}
 		}
 
-		\Tracy\Debugger::barDump(gettype($this->session->relationToken));
-
 		$this->template->relationToken = $this->session->relationToken;
 		$this->template->savedPhotosByRelation = $this->adPhoto->getImagesByRelToken($this->session->relationToken);
 
@@ -284,6 +282,7 @@ class AddAdPresenter extends FrontPresenter
 
 		$form->addSelect('navigation_id', 'Kategorie:', $this->ad->listCategories())->setPrompt('Vyberte kategorii')->setRequired('Vyberte kategorii');
 
+		$form->addCheckbox('terms', 'Terms')->setRequired('Pro odeslání formulář je nutné souhlasit s obchodními podmínkami');
 
 		$form->addSubmit('send', 'Uložit');
 

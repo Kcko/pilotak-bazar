@@ -217,7 +217,10 @@
                                                 <div class="dropzone" id="dropzone">
                                                     <div class="dropzone-previews  dropzone-photos"></div>
                                                 </div>
-                                                <div class="text-gray-400 text-sm pt-1">Nepovinné, maximálně lze vložit 10 fotografií, (fotografie lze mezi sebou přesouvat, první fotografie bude nastavena jako hlavní).</div>
+                                                <div class="text-gray-400 text-sm pt-1">
+                                                {_}Nepovinné, maximálně lze vložit 10 fotografií, (fotografie lze mezi sebou přesouvat, první fotografie bude nastavena jako hlavní). Velikost jedné fotografie může být maximáln 1MB, celkem tedy 10MB.{/_}
+                                                    
+                                                    </div>
                                             </div>
 
                                             <h3 class="text-h3 relative Lined-1 mt-8 mb-8">Kategorie a cena</h3>
@@ -296,9 +299,12 @@
                 
 
                                     <div class="pt-5">
-                                        <div class="text-sm text-gray-400">
-                                            {_}Odesláním formuláře souhlasíte se smluvními podmínkami{/_}
-                                        </div>
+                                        <label class="text-sm text-gray-400 flex items-center gap-x-3">
+                                            <input type="checkbox" n:name="terms" class="border-gray-300" />
+                                            <span>
+                                                {_}Odesláním formuláře souhlasíte se smluvními podmínkami{/_}
+                                            </span>
+                                        </label>
 
 
                                         <div class="flex justify-center mt-6">

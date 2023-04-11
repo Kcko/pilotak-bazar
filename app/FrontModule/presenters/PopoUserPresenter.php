@@ -75,6 +75,13 @@ class PopoUserPresenter extends FrontPresenter
 		}
 	}
 
+	public function actionMyAds()
+	{
+		if (!$this->user->isLoggedIn()) {
+			$this->redirectUrl('/');
+		}
+	}
+
 
 	public function actionSettings()
 	{
