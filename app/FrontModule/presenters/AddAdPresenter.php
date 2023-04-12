@@ -325,6 +325,7 @@ class AddAdPresenter extends FrontPresenter
 				'contact_town' => $values['contact_town'],
 				'contact_phone' => $values['contact_phone'],
 				'is_visible' => 1,
+				'user_id' => $this->getUser()->isLoggedIn() ? $this->getUser()->getId() : null,
 			];
 
 			if ($this->operation == 'add') {
