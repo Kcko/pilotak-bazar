@@ -38,10 +38,17 @@
                     <div class="Col w-full">
 
                         {* Editace / Smazani, jen prihlaseny uzivatel *}
-                        <div n:if="$isMyAdd" class="bg-gray-100 p-4 mb-8 flex flex-wrap gap-4 gap-x-8 justify-start items-center">
-                            <div>{_}Toto vidíte jen Vy, jako přihlášený uživatel{/_}</div>
-                            <a n:href="AddAd:default, $ad->id, $ad->token" class="Btn -Black -Xs">Upravit inzerát</a>
-                            <a n:href="AddAd:delete, $ad->id, $ad->token" class="Btn -BlackOutlined -Xs">Smazat inzerát</a>
+                        <div n:if="$isMyAdd" class="bg-gray-100 p-4 mb-8 flex flex-wrap gap-4 gap-x-4 justify-start items-center">
+                            <div>
+                                {_}Toto vidíte jen Vy, jako přihlášený uživatel{/_}
+                                <span class="px-2">&bull;</span>
+                                <small class="text-gray-500">Inzerát expiruje {$ad->expiration->format('j.n.Y')}</small>
+                                <span class="px-2">&bull;</span>
+                            </div>
+                            <div class="space-x-1">
+                                <a n:href="AddAd:default, $ad->id, $ad->token" class="Btn -Black -Xs">Upravit inzerát</a>
+                                <a n:href="AddAd:delete, $ad->id, $ad->token" class="Btn -BlackOutlined -Xs">Smazat inzerát</a>
+                            </div>
                         </div>
                 
                         <div n:if="$flashes" class="mb-8">
