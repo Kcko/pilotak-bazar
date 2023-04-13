@@ -300,7 +300,7 @@ class AddAdPresenter extends FrontPresenter
 				throw new \Exception("Tento e-mail nelze použít, patří registrovanému uživateli");
 			}
 
-			$this->recaptchaValidationV3->validate($form->getValues(true), $this->recaptchaValidationV3Config->getSecretKey());
+			$this->recaptchaValidationV3->validate($form->getValues(true));
 
 		} catch (\Exception $e) {
 			$form->addError($e->getMessage());
@@ -310,7 +310,7 @@ class AddAdPresenter extends FrontPresenter
 
 	public function save($form)
 	{
-		$values = $form->getValues(TRUE);
+		$values = $form->getValues(true);
 
 		try {
 			$save = [
@@ -348,6 +348,7 @@ class AddAdPresenter extends FrontPresenter
 			$message->addTo($values['contact_email']);
 			$template = $message->getTemplate();
 
+			$template->adHeading = $values['heading'];
 			$template->adDetailUrl = $this->link('//:Front:Ad:detail', $ad->id);
 			$template->adEditUrl = $this->link('//:Front:AddAd:default', $ad->id, $ad->token);
 			$template->adDeleteUrl = $this->link('//:Front:AddAd:delete', $ad->id, $ad->token);
@@ -355,14 +356,13 @@ class AddAdPresenter extends FrontPresenter
 
 			$this->mail->sendMessage($message);
 
-			// ulozeny fotek
+			// ulozeni fotek
 			$editState = $this->adPhoto->isAdExistsYet($this->session->relationToken);
 			if (!$editState) {
 				$adId = $ad->id;
 				$this->adPhoto->finallySaveNewAdPhotos($adId, $this->session->relationToken);
 			}
 			$this->session->relationToken = null;
-
 
 			if ($this->operation == 'add')
 				$this->flashMessage('Inzerát úspěšně přidán', 'Success');
@@ -376,7 +376,7 @@ class AddAdPresenter extends FrontPresenter
 				throw $e;
 			}
 
-			$form->addError($this->presenter->translator->translate($e->getMessage()));
+			$form->addError($this->getPresenter()->translator->translate($e->getMessage()));
 		}
 	}
 
