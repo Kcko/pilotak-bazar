@@ -8,7 +8,7 @@
 
                         <div class="space-y-5 mb-5 text-sm text-_white max-w-[40ch]">
                             {$data->text1|noescape}
-                        {* <p><a href="" class="underline">Pilotak.cz</a> - centrum letecké zábavy, sportovního a rekreačního létání a sami si tak můžete vyzkoušet, jaké je to být pilotem letadla nebo pilotem vrtulníku na zkoušku.</p>
+                        {* <p><a href="" class="underline hover:text-gray-500">Pilotak.cz</a> - centrum letecké zábavy, sportovního a rekreačního létání a sami si tak můžete vyzkoušet, jaké je to být pilotem letadla nebo pilotem vrtulníku na zkoušku.</p>
                         <p>Pokud se Vám takový let zalíbí, můžete také absolvovat letecký výcvik na sportovních letadlech a Vaší odměnou bude získání pilotního průkazu.</p> *}
                         </div>
 
@@ -16,12 +16,12 @@
                     </div>
                     <div>
                         <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading2}</h3>
-                        {$data->text2|replace:'<a':'<a class="underline"'|replace:'<ul>':' <ul class="BulletListYellow text-_white text-sm space-y-2">'|noescape}
+                        {$data->text2|replace:'<a':'<a class="underline hover:text-white"'|replace:'<ul>':' <ul class="BulletListYellow text-_white text-sm space-y-2">'|noescape}
 
                     </div>
                     <div>
                         <h3 class="text-h4 Lined-2 text-_yellow mb-8">{$data->heading3}</h3>
-                        {$data->text3|replace:'<a':'<a class="underline"'|replace:'<ul>':' <ul class="BulletListYellow text-_white text-sm space-y-2">'|noescape}
+                        {$data->text3|replace:'<a':'<a class="underline hover:text-white"'|replace:'<ul>':' <ul class="BulletListYellow text-_white text-sm space-y-2">'|noescape}
                     </div>
                     
                     <div n:if="$data->block4_show" class="md:text-center">
@@ -48,8 +48,16 @@
                     </div>
                 
                 </div>
+
+                <div>
+                    <div class="mt-8 text-_white text-sm">
+                         Created by <a href="https://rjwebdesign.cz?ref=pilotakbazar" class="Link border-b border-dotted" title="RJwebdesign - Roman Janko - Tvorba profesionálních webových prezentací, specialista na sportovní systémy"><b class="text-white">RJ</b>webdesign.cz</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </footer>
+
 <div class="bg-_yellow h-1.5"></div>

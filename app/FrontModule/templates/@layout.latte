@@ -24,12 +24,6 @@
 		<meta name="theme-color" content="#ffffff">
 		{* /Favicon *}
 
-
-		{* Fonts *}
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-
 		<style>
 			[x-cloak] {
 				display: none;
@@ -37,17 +31,23 @@
 		</style>
 
 
+		{* Fonts *}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
 		{* CSS *}
 		{block css}{/block}
 
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		{* <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> *}
 		<link rel="stylesheet" href="/assets/css/app.dev.css?{=filemtime('./assets/css/app.dev.css')}" />
 
 
 		{block js}{/block}
 
 		{* AOS *}
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>			
+		{* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>			 *}
 		
 		{* Modal gallery *}
 		<script src="/assets/js/vndr/fslightbox/fslightbox.js"></script>
@@ -88,7 +88,7 @@
 
 
 
-		<!-- Global site tag (gtag.js) - Google Analytics -->
+		{* Global site tag (gtag.js) - Google Analytics *}
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-11880989-1"></script>
 		<script n:syntax="off">
 			window.dataLayer = window.dataLayer || [];
@@ -100,15 +100,18 @@
 
 	</head>
 
-
-	{* Preloader *}
-	{if empty($_SESSION['web-preloader'])}
-		<div id="web-preloader">
-			<div id="web-status">&nbsp;</div>
-		</div>
-	{/if}
-
 	<body n:class="App\Bootstrap::$debugMode ? 'debug-screens'">
+
+
+		{* Preloader *}
+		{if empty($_SESSION['web-preloader'])}
+			<div id="web-preloader">
+				<div id="web-status">&nbsp;</div>
+			</div>
+		{/if}
+
+
+
 
 		{* MAIN CONTENT *}
 		<div class="BaseContainer">
@@ -116,51 +119,27 @@
 		</div>
 		{* //MAIN CONTENT *}
 
-		{* JS *}
-		{* <script src="/node_modules/requirejs/require.js"></script>
-		{var $bust = \App\Bootstrap::$debugMode ? 'bust='.SYSTEM_VERSION : 'bust='.SYSTEM_VERSION}
-		<script>
-			requirejs.config({
-				waitSeconds : 30,
-				baseUrl: '/node_modules',
-				urlArgs: {$bust}
-			});
-		</script> *}
-		
-		{* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcFgoyHWelsoBm3W_VKNhriydSnM4mWJI&amp;libraries=places"></script> *}
+
 		{block recaptcha}
-			{* {if in_array($presenter->navigation->navItem['id'], [7, 9])
-				|| in_array($presenter->getName(), ['Front:PopoUser'])
-			} *}
+			 {if in_array($presenter->navigation->navItem['id'], [7, 9])
+				|| in_array($presenter->getName(), ['Front:AddAd', 'Front:PopoUser'])
+			} 
 				<script src="https://www.google.com/recaptcha/api.js?render={$presenter->recaptchaConfig->getSiteKey()}"></script>
-			{* {/if} *}
+			 {/if} 
 		{/block}
 	
-		{* {control assets:Js 'basejs', [
-			"/assets/js/app.js",
-		], false} *}
-
-		{* COOKIES *}
-		{* {include './fragments/eu-cookies.latte'} *}
-		{* //COOKIES *}
-
-
-		{* Modal*}
 		
 		{block modalGallery}{/block}
 
-		<script	n:syntax="off"> 
+		{* <script	n:syntax="off"> 
 			AOS.init({
 				once: true,
 				disable: 'mobile',
 				duration: 750,
 			});
-		</script>
+		</script> *}
 
 		{block js2}{/block}
-
-
-
 
 
 
