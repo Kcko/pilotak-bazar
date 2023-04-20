@@ -1,12 +1,12 @@
 parameters:
 	db:
-		dsn: 'mysql:host=mysql.andweb.cz;dbname=102_pilotakbazar'
-		user: 102_pilotakbazar
-		password: pNXzcEb0qIPnkRF
+		dsn: 'mysql:host=web.pilotak.cz;dbname=pilotak_bazar'
+		user: pilotak_bazar
+		password: 32wGxfQvYH~xhqbboE
 		reflection: Andweb\Database\Conventions\Conventions
 
 database:
-	dsn: 'mysql:host=mysql.andweb.cz;dbname=102_pilotakbazar'
-	user: 102_pilotakbazar
-	password: pNXzcEb0qIPnkRF
+	dsn: 'mysql:host=web.pilotak.cz;dbname=pilotak_bazar'
+	user: pilotak_bazar
+	password: 32wGxfQvYH~xhqbboE
 	reflection: Andweb\Database\Conventions\Conventions

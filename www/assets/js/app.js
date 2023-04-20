@@ -20,6 +20,17 @@ function googleRecaptcha() {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
+  const originalTitle = document.title
+  const backTitle = 'Hej Piloťáku, vrať se brzy ;-)'
+
+  window.addEventListener('focus', () => {
+    document.title = originalTitle
+  })
+
+  window.addEventListener('blur', () => {
+    document.title = backTitle
+  })
+
   // Naja / ajax snippets
   naja.initialize()
   googleRecaptcha()

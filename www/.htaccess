@@ -8,7 +8,7 @@ Options -Indexes
 # enable cool URL
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteBase /
+	# RewriteBase /
 
  
 	# prevents files starting with dot to be viewed by browser
@@ -17,10 +17,13 @@ Options -Indexes
 	RewriteRule /\.|^\. - [F] 
  	RewriteRule ^(log/|temp/) - [F,L,NC]
 
+	# zapnuti https pokud nejsme na testu
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} ^bazar\.pilotak\.cz$ [NC]
+	RewriteRule ^(.*)$ https://bazar.pilotak.cz/$1 [R=301,L]
 
 	RedirectMatch 301 /cs$ /
 	RedirectMatch 301 /cs/(.*) /
-
 
 	# back controller
 	RewriteCond %{REQUEST_URI} \.js$
@@ -65,45 +68,45 @@ Options -Indexes
 	RewriteRule !\.(pdf|ico|css|rar|zip|tar\.gz|php)$ index.php [L]
 </IfModule>
 
-# enable gzip compression
-<IfModule mod_deflate.c>
-	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json
-</IfModule>
+# # enable gzip compression
+# <IfModule mod_deflate.c>
+# 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json image/svg+xml
+# </IfModule>
 
 
-# allow combined JavaScript & CSS. Inside of script.combined.js you could use <!--#include file="script.js" -->
-<IfModule mod_include.c>
-	<FilesMatch "\.combined\.(js|css)$">
-		Options +Includes
-		SetOutputFilter INCLUDES
-	</FilesMatch>
-</IfModule>
+# # allow combined JavaScript & CSS. Inside of script.combined.js you could use <!--#include file="script.js" -->
+# <IfModule mod_include.c>
+# 	<FilesMatch "\.combined\.(js|css)$">
+# 		Options +Includes
+# 		SetOutputFilter INCLUDES
+# 	</FilesMatch>
+# </IfModule>
 
-php_flag zlib.output_compression on
-php_value zlib.output_compression_level 8
+# php_flag zlib.output_compression on
+# php_value zlib.output_compression_level 8
 
-<IfModule mod_mime.c>
-	AddType font/opentype .otf
-	AddType font/eot .eot
-	AddType font/truetype .ttf
-</IfModule>
+# <IfModule mod_mime.c>
+# 	AddType font/opentype .otf
+# 	AddType font/eot .eot
+# 	AddType font/truetype .ttf
+# </IfModule>
 
-<IfModule mod_expires.c>
-	ExpiresActive On
-	ExpiresDefault "access plus 1 seconds"
-	ExpiresByType text/html "access plus 1 seconds"
-	ExpiresByType image/x-icon "access plus 2592000 seconds"
-	ExpiresByType image/gif "access plus 2592000 seconds"
-	ExpiresByType image/jpeg "access plus 2592000 seconds"
-	ExpiresByType image/png "access plus 2592000 seconds"
-	ExpiresByType text/css "access plus 2592000 seconds"
-	ExpiresByType text/javascript "access plus 2592000 seconds"
-	ExpiresByType application/javascript "access plus 2592000 seconds"
-	ExpiresByType application/x-javascript "access plus 2592000 seconds"
-	ExpiresByType font/opentype "access plus 2592000 seconds"
-	ExpiresByType font/eot "access plus 2592000 seconds"
-	ExpiresByType font/truetype "access plus 2592000 seconds"
-</IfModule>
+# <IfModule mod_expires.c>
+# 	ExpiresActive On
+# 	ExpiresDefault "access plus 1 seconds"
+# 	ExpiresByType text/html "access plus 1 seconds"
+# 	ExpiresByType image/x-icon "access plus 2592000 seconds"
+# 	ExpiresByType image/gif "access plus 2592000 seconds"
+# 	ExpiresByType image/jpeg "access plus 2592000 seconds"
+# 	ExpiresByType image/png "access plus 2592000 seconds"
+# 	ExpiresByType text/css "access plus 2592000 seconds"
+# 	ExpiresByType text/javascript "access plus 2592000 seconds"
+# 	ExpiresByType application/javascript "access plus 2592000 seconds"
+# 	ExpiresByType application/x-javascript "access plus 2592000 seconds"
+# 	ExpiresByType font/opentype "access plus 2592000 seconds"
+# 	ExpiresByType font/eot "access plus 2592000 seconds"
+# 	ExpiresByType font/truetype "access plus 2592000 seconds"
+# </IfModule>
 
 
 
