@@ -229,7 +229,7 @@ class AddAdPresenter extends FrontPresenter
 
 			$this->flashMessage('Inzerát odstraněn', 'success');
 		}
-	}
+	} 
 
 
 	protected function createComponentAddForm()
@@ -247,7 +247,7 @@ class AddAdPresenter extends FrontPresenter
 
 		$form->addSelect('ad_type_id', 'Typ inzerátu:', [
 			1 => 'Nabízím',
-			2 => 'Prodám',
+			2 => 'Poptávám',
 		])->setDefaultValue(1);
 
 
