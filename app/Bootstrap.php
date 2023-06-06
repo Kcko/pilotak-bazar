@@ -64,6 +64,7 @@ class Bootstrap
 	 */
 	public static $debugModeSetup = [
 		'pilotak-bazar' => TRUE,
+		'web-pilotak' => TRUE,
 		'*.dev71.andweb.cz' => TRUE,
 		'*.test71.andweb.cz' => TRUE,
 		'*.local' => TRUE,
@@ -78,6 +79,7 @@ class Bootstrap
 	 */
 	public static $configSectionSetup = [
 		'pilotak-bazar' => 'dev',
+		'web-pilotak' => 'dev',
 		'*.dev71.andweb.cz' => 'dev',
 		'*.test71.andweb.cz' => 'preprod', // 'dev'
 		'*.local' => 'dev',

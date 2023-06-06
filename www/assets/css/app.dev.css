@@ -1243,6 +1243,16 @@ html.Lock,
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+.Btn.-Yellow {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 208 21 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .Btn.-BlackOutlined {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1492,6 +1502,10 @@ input[readonly]:focus {
   bottom: 0px;
 }
 
+.bottom-1 {
+  bottom: 0.25rem;
+}
+
 .bottom-2 {
   bottom: 0.5rem;
 }
@@ -1564,6 +1578,10 @@ input[readonly]:focus {
   top: 100%;
 }
 
+.z-0 {
+  z-index: 0;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1582,6 +1600,10 @@ input[readonly]:focus {
 
 .z-\[222\] {
   z-index: 222;
+}
+
+.z-\[2\] {
+  z-index: 2;
 }
 
 .z-\[3\] {
@@ -1928,12 +1950,24 @@ input[readonly]:focus {
   height: 100%;
 }
 
+.max-h-\[350px\] {
+  max-height: 350px;
+}
+
 .min-h-\[300px\] {
   min-height: 300px;
 }
 
 .min-h-\[36px\] {
   min-height: 36px;
+}
+
+.min-h-\[50vh\] {
+  min-height: 50vh;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-10 {
@@ -2262,6 +2296,18 @@ input[readonly]:focus {
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.space-x-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(2rem * var(--tw-space-x-reverse));
+  margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -2272,6 +2318,12 @@ input[readonly]:focus {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.space-y-20 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(5rem * var(--tw-space-y-reverse));
 }
 
 .space-y-3 > :not([hidden]) ~ :not([hidden]) {
@@ -2348,6 +2400,10 @@ input[readonly]:focus {
   border-width: 0px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
 .border-8 {
   border-width: 8px;
 }
@@ -2392,6 +2448,11 @@ input[readonly]:focus {
 .bg-_black-light {
   --tw-bg-opacity: 1;
   background-color: rgb(32 32 32 / var(--tw-bg-opacity));
+}
+
+.bg-_blue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 103 255 / var(--tw-bg-opacity));
 }
 
 .bg-_yellow {
@@ -2441,9 +2502,19 @@ input[readonly]:focus {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
+.bg-_blue-light {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 241 251 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-fill {
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .p-1 {
@@ -2460,6 +2531,11 @@ input[readonly]:focus {
 
 .p-px {
   padding: 1px;
+}
+
+.\!px-0 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .px-0 {
@@ -2520,6 +2596,11 @@ input[readonly]:focus {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-14 {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
 }
 
 .pb-0 {
@@ -2755,12 +2836,6 @@ input[readonly]:focus {
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.brightness-75 {
-  --tw-brightness: brightness(.75);
-  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .transition-all {
   -webkit-transition-property: all;
   -o-transition-property: all;
@@ -2881,6 +2956,15 @@ input[readonly]:focus {
   border: 0px solid pink;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.HeroWeb {
+  position: relative;
+  overflow: hidden;
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 103 255 / var(--tw-bg-opacity));
+  padding-bottom: 5rem;
+  min-height: 550px;
 }
 
 /* @import 'components/accordion';*/

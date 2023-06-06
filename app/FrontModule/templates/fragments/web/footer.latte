@@ -1,0 +1,19 @@
+{control footerContent2}
+
+
+{* to top *}
+<span
+    x-data="{ isVisible: false }"
+    x-cloak
+    @click="scrollTo(0, 0)"
+    @scroll.window="isVisible = window.scrollY > 200 ?  true : false"
+    x-show="isVisible"
+    x-transition
+    class="fixed  bottom-2 right-2 z-[222]"
+>
+
+    <span 
+        class="cursor-pointer bg-_blue w-10 h-10 flex items-center justify-center rounded-full">
+        {='assets/gfx/svg/icon-chevron-up.svg'|svg:'w-8 h-8 text-_black'|noescape}
+    </span>
+</span>

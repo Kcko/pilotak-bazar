@@ -24,11 +24,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // pilotak
         _yellow: '#FFD015',
-        _black: '#020101',
         '_black-light': '#202020',
+        _black: '#020101',
         _white: '#BDBDBD',
-        bg: '#202124'
+        bg: '#202124',
+        // web
+        _blue: '#4F67FF',
+        '_blue-light': '#EFF1FB'
       },
       fontFamily: {
         inter: ['Inter']

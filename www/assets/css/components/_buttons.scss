@@ -32,6 +32,10 @@
       }
     }
 
+    &.-Yellow {
+      @apply bg-_yellow text-white inline-flex;
+    }
+
     &.-BlackOutlined {
       @apply text-_black inline-flex border-black;
 

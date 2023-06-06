@@ -1,5 +1,4 @@
-.Hero {
-  h1 br {
-    @apply hidden md:inline-block;
-  }
+.HeroWeb {
+  @apply bg-_blue relative overflow-hidden pb-20;
+  min-height: 550px;
 }
