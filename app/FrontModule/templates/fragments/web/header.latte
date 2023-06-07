@@ -6,21 +6,21 @@
         <div class="Container">
             <div class="Row">
                 <div class="Col flex w-full space-x-5 py-4 !px-0 text-white items-center justify-between">
-                    <div class="space-x-8 text-sm">
-                        <span class="inline-flex gap-2 items-center">
+                    <div class="space-x-8">
+                        <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
                             pilotak@pilotak.cz
                         </span>
-                        <span class="inline-flex gap-2 items-center">
+                        <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/phone.svg'|svg:'w-5 h-5'|noescape}
                             608 118 811
                         </span>
                     </div>
 
                     <div>
-                        <a href="https://bazar.pilotak.cz" class="Btn -Yellow -Xs">
+                        <a href="https://bazar.pilotak.cz" class="inline-flex items-center text-_yellow text-sm">
                             Letecký bazar
-                             {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
                         </a>
                     </div>
                 </div>
@@ -31,14 +31,18 @@
                         <nav class="text-_black flex-g flex-shrink-0 flex-grow">
                             <ul class="flex items-center gap-x-0 md:gap-x-6">
                                 <li class="ml-auto relative">
-                                    <a href="" class="Btn px-0 font-medium">Vyhlídkové lety</a>
-                                    <span class="bg-_blue w-4 h-1 absolute bottom-1 left-0 right-0 mx-auto"></span>
-                                
+                                    <a href="" class="Btn px-0 font-medium text-lg">Vyhlídkové lety</a>
+                                    <span class="bg-_blue w-2 h-2 rounded-full absolute bottom-0 left-0 right-0 mx-auto"></span>
                                 </li>
-                                <li><a href="" class="Btn px-0 font-medium">Letecký park</a></li>
-                                <li><a href="" class="Btn px-0 font-medium">Kde létáme</a></li>
-                                <li><a href="" class="Btn px-0 font-medium">Kontakt</a></li>
-                                <li class="ml-auto"><a href="" class="Btn -Black  font-medium">Objednat</a></li>
+                                <li><a href="" class="Btn px-0 font-medium text-lg">Letecký park</a></li>
+                                <li><a href="" class="Btn px-0 font-medium text-lg">Kde létáme</a></li>
+                                <li><a href="" class="Btn px-0 font-medium text-lg">Kontakt</a></li>
+                                <li class="ml-auto">
+                                    <a href="" class="Btn -Blue  font-medium">
+                                        Objednat
+                                        {='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

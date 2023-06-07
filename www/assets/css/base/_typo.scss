@@ -61,6 +61,20 @@
     }
   }
 
+  .Lined-3 {
+    @apply relative;
+
+    &:before {
+      content: '';
+      height: 4px;
+      width: 40px;
+      @apply bg-_blue;
+      @apply absolute;
+      top: 120%;
+      transform: skewY(-5deg);
+    }
+  }
+
   .RichText {
     h2 {
       @apply text-h2 Lined-1;

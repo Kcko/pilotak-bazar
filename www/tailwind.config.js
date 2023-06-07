@@ -32,7 +32,9 @@ module.exports = {
         bg: '#202124',
         // web
         _blue: '#4F67FF',
-        '_blue-light': '#EFF1FB'
+        '_blue-light': '#EFF1FB',
+        '_blue-dark': '#2E2BA6',
+        _purple: '#D23C8E'
       },
       fontFamily: {
         inter: ['Inter']

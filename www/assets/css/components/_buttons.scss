@@ -36,6 +36,22 @@
       @apply bg-_yellow text-white inline-flex;
     }
 
+    &.-BlueLight {
+      @apply bg-_blue-light text-white inline-flex;
+    }
+
+    &.-Blue {
+      @apply bg-_blue text-white inline-flex;
+    }
+
+    &.-BlueDark {
+      @apply bg-_blue-dark text-white inline-flex;
+    }
+
+    &.-Purple {
+      @apply bg-_purple text-white inline-flex;
+    }
+
     &.-BlackOutlined {
       @apply text-_black inline-flex border-black;
 
