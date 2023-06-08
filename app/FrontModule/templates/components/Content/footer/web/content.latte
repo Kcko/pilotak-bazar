@@ -1,0 +1,63 @@
+<footer class="Footer bg-_blue-light min-h-[300px] py-10">
+    <div class="Container">
+        <div class="Row">
+            <div class="Col w-full">
+                <div class="grid sm:grid-cols-3 md:grid-cols-5 gap-8">
+                    <div class="sm:col-span-3 md:col-span-2">
+                        <h3 class="text-h4 Lined-3 mb-8">{$data->heading1}</h3>
+
+                        <div class="space-y-5 mb-5 text-sm  max-w-[40ch]">
+                           
+                        <p><a href="" class="underline hover:text-gray-500">Pilotak.cz</a> - centrum letecké zábavy, sportovního a rekreačního létání a sami si tak můžete vyzkoušet, jaké je to být pilotem letadla nebo pilotem vrtulníku na zkoušku.</p>
+                        <p>Pokud se Vám takový let zalíbí, můžete také absolvovat letecký výcvik na sportovních letadlech a Vaší odměnou bude získání pilotního průkazu.</p>
+                        </div>
+
+                        <div class="text-xs ">© 2007 – {=date('Y')} Pilotak.cz</div>
+                    </div>
+                    <div>
+                        <h3 class="text-h4 Lined-3 mb-8">{$data->heading2}</h3>
+                        {$data->text2|replace:'<a':'<a class="underline hover:opacity-80"'|replace:'<ul>':' <ul class="BulletListYellow  text-sm space-y-2">'|noescape}
+
+                    </div>
+                    <div>
+                        <h3 class="text-h4 Lined-3 mb-8">{$data->heading3}</h3>
+                        {$data->text3|replace:'<a':'<a class="underline hover:opacity-80"'|replace:'<ul>':' <ul class="BulletListYellow  text-sm space-y-2">'|noescape}
+                    </div>
+                    
+                    <div n:if="$data->block4_show" class="md:text-center">
+                        
+                        <div class="mb-8">
+                            <h3 class="text-h4 Lined-3 mb-8">{$data->heading4}</h3>
+                            <div class="flex md:justify-center flex-wrap gap-3">
+                            <a n:if="$data->fb_link" href="{$data->fb_link}" class="transform duration-200 hover:scale-110 transition-transform bg-_blue w-10 h-10 rounded-full inline-flex items-center justify-center">
+                                {='assets/gfx/svg/icon-facebook.svg'|svg:'w-6 h-6 text-_black'|noescape}
+                            </a>
+                            <a n:if="$data->yt_link" href="{$data->yt_link}" class="transform duration-200 hover:scale-110 transition-transform bg-_blue w-10 h-10 rounded-full inline-flex items-center justify-center">
+                                {='assets/gfx/svg/icon-youtube.svg'|svg:'w-6 h-6 text-_black'|noescape}
+                            </a>
+                            <a n:if="$data->ig_link" href="{$data->ig_link}" class="transform duration-200 hover:scale-110 transition-transform bg-_blue w-10 h-10 rounded-full inline-flex items-center justify-center">
+                                {='assets/gfx/svg/icon-instagram.svg'|svg:'w-6 h-6 text-_black'|noescape}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:flex items-center md:justify-center">
+                            <img src="/assets/gfx/svg/footer-plane.svg" alt="" />
+                        </div>
+  
+                    </div>
+                
+                </div>
+
+                <div>
+                    <div class="mt-8  text-xs brightness-50 hover:brightness-100">
+                         Created by <a target="_blank" href="https://rjwebdesign.cz?ref=pilotak" class="Link border-b border-dotted" title="RJwebdesign - Roman Janko - Tvorba profesionálních webových prezentací, specialista na sportovní systémy"><b class="text-green-600">RJ</b>webdesign.cz</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="bg-_blue h-1.5"></div>

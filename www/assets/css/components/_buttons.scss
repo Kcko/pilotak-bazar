@@ -38,14 +38,17 @@
 
     &.-BlueLight {
       @apply bg-_blue-light text-white inline-flex;
+      box-shadow: rgba(46, 43, 166, 0.4) 0px 13px 48px 0px;
     }
 
     &.-Blue {
       @apply bg-_blue text-white inline-flex;
+      box-shadow: rgba(46, 43, 166, 0.4) 0px 13px 48px 0px;
     }
 
     &.-BlueDark {
       @apply bg-_blue-dark text-white inline-flex;
+      box-shadow: rgba(46, 43, 166, 0.4) 0px 13px 48px 0px;
     }
 
     &.-Purple {

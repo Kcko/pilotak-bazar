@@ -11,10 +11,18 @@
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
+
+                        <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Letět nebo rovnou pilotovat?</div>
                         <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Vyhlídkové lety</h2>
 
-                        <div class="grid grid-cols-3 gap-8">
+                        <div class="grid grid-cols-3 gap-8 mb-16 relative rotate rotate">
+
+                            {* bird *}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] left-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] left-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
+
                             <div class="rounded-md p-8 shadow-86">
+
                                 <div class="flex justify-center">
                                     <div class="w-20 h-20 rounded-full bg-_yellow mb-8 inline-flex items-center justify-center">
                                         {='assets/gfx/svg/airplane-3.svg'|svg:'w-10 h-10'|noescape}
@@ -23,7 +31,7 @@
                                 <h3 class="text-h3 text-center">Letadlem</h3>
                                 <div class="text-base text-center text-gray-600 space-y-4">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
+                                  
                                 </div>
                             </div>
                             
@@ -36,7 +44,7 @@
                                 <h3 class="text-h3 text-center">Vrtulníkem</h3>
                                 <div class="text-base text-center text-gray-600 space-y-4">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
+                                    
                                 </div>
                             </div>
 
@@ -49,11 +57,22 @@
                                 <h3 class="text-h3 text-center">Pilotem na zkoušku</h3>
                                 <div class="text-base text-center text-gray-600 space-y-4">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
+                                    
                                 </div>
                             </div>
                         
                         </div>
+
+
+
+                        <div class="text-center">
+                            <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Blue -Xl min-w-[150px] mx-auto">
+                                Více o vyhlídkových letech
+                                {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            </a>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -61,13 +80,17 @@
 
 
 
+        <section class="bg-_blue-light py-20 relative overflow-hidden">
+
+            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[400px] h-[400px] opacity-[2.5%] right-0 bottom-0'|noescape}
 
 
-        <section class="bg-_blue-light py-20">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
-                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Náš letecký park</h2>
+
+                        <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Oblíbené</div>
+                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Populární vyhlídkové lety</h2>
                         
 
                         <div 
@@ -97,59 +120,130 @@
                                     },
                                 },
                                 })"
-                            class="relative mb-14 /*grid grid-cols-4 gap-4*/"
+                            class="relative mb-16 /*grid grid-cols-4 gap-4*/"
                         >
 
                             <div class="swiper-container" x-ref="container">
                                 <div class="swiper-wrapper | py-2" >
 
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/zenair-ch-601.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Cesna 126</h3>
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
+                                        <a href="#" class="block">
+                                            <div class="space-y-5">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/zenair-ch-601.jpg" alt="" />
+                                                <h3 class="text-h3 text-center">Cesna 126</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Plzeň
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        20 minut
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        3 osoby
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                               4 900 Kč
+                                            </div>
+
+
                                         </a>
                                     </div>
 
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/ul-argo.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Robinson R23</h3>
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
+                                        <a href="#" class="block">
+                                            <div class="space-y-5">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/ul-argo.jpg" alt="" />
+                                                <h3 class="text-h3 text-center">Robinson R23</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Jaroměř
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        30 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                2 500 Kč
+                                            </div>
+                                            
                                         </a>
                                     </div>
 
 
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/cessna-152.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Cesna 96</h3>
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
+                                        <a href="#" class="block">
+                                            <div class="space-y-5">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/cessna-152.jpg" alt="" />
+                                                <h3 class="text-h3 text-center">Cesna 96</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Kolín
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        20 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                3 000 Kč
+                                            </div>
                                         </a>
                                     </div>
 
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/eurostar-ev-97.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Rogalo A526</h3>
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
+                                        <a href="#" class="block">
+                                            <div class="space-y-5">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/eurostar-ev-97.jpg" alt="" />
+                                                <h3 class="text-h3 text-center">Rogalo A526</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Ostrava
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        45 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                4 500 Kč
+                                            </div>
                                         </a>
                                     </div>
 
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Cesna 926</h3>
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
+                                        <a href="#" class="block">
+                                            <div class="space-y-5">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
+                                                <h3 class="text-h3 text-center">Cesna 926</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Slaný
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        30 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                3 500 Kč
+                                            </div>
                                         </a>
                                     </div>
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Cesna 926</h3>
-                                        </a>
-                                    </div>
-                                    <div class="bg-white rounded-md p-5 shadow-86 swiper-slide">
-                                        <a href="#" class="block space-y-5">
-                                            <img class="rounded-md" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
-                                            <h3 class="text-h3 text-center">Cesna 926</h3>
-                                        </a>
-                                    </div>
+
 
                                 </div>
                             </div>
@@ -169,7 +263,7 @@
 
 
                         <div class="text-center">
-                            <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Blue min-w-[150px] mx-auto">
+                            <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Blue -Xl min-w-[150px] mx-auto">
                                 Kompletní letecký park
                                 {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
                             </a>
@@ -189,131 +283,200 @@
                 <div class="Row">
                     <div class="Col w-full">
                         
-                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Letiště</h2>
+                        <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Letiště</div>
+                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Odkud létáme</h2>
                         
-                        <div class="grid grid-cols-3 gap-10">
-                            <div class="col-span-2 relative">
+                        <div class="grid grid-cols-5 gap-10 relative">
+
+                            {* bird *}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] right-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] right-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
+
+
+                            <div class="col-span-3 relative">
 
                                 <img src="/assets/gfx/svg/cz.svg" alt="" />
                                 
-                                <a href="#" class="Point absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 30%; left: 24%;">
-                                    <div class="block bg-white w-2 h-2 rounded-full"></div>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 30%; left: 24%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Brno</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 50%; left: 34%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Příbram</div>
+                                </a>
+                                
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 60%; left: 33%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Kroměříž</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 33%; left: 40%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Roudnice nad Labem</div>
+                                </a>
+                                
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 44%; left: 20%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Mladá Boleslav</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 62%; left: 64%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Zbraslavice</div>
+                                </a>
+                                
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 70%; left: 18%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
                                     <div class="text-sm font-medium text-white">Plzeň</div>
                                 </a>
-
-                                <a href="#" class="Point absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 60%; left: 34%;">
-                                    <div class="block bg-white w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Praha</div>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 18%; left: 19%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Karlovy Vary</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 54%; left: 19%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Slaný</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 28%; left: 55%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Jihlava</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 40%; left: 69%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Moravská Třebová</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 68%; left: 45%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Jaroměř</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 38%; left: 33%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Kolín</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 21%; left: 35%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Hradec Králové</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 40%; left: 10%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Hodkovice</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 54%; left: 53.3%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Kříženec</div>
+                                </a>
+                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 47%; left: 64.5%;">
+                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                    <div class="text-sm font-medium text-white">Olomouc</div>
                                 </a>
 
                             </div>
-                            <div>
-                                <ul class="space-y-2 columns-2">
+                            <div class="col-span-2">
+                                <ul class="grid grid-cols-2 auto gap-2">
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Brno
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Slaný
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Příbram
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Jihlava
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Kroměříž
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Moravská Třebová
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             České Budějovice
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Jaroměř
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Roudnice nad Labem
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Kolín
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Mladá Boleslav
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Hradec Králové
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Zbraslavice
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Hodkovice
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Plzeň
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Kříženec
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Karlovy Vary
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="shadow-86 bg-white rounded-md flex flex-wrap items-center gap-2 p-2 text-base font-medium hover:opacity-80 hover:underline" href="">
-                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
+                                        <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
+                                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
                                             Olomouc
                                         </a>
                                     </li>
@@ -328,9 +491,47 @@
         </section>
 
 
+
+
+        <div class="bg-_blue-dark py-20">
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+                        <div class="text-center">
+                            <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Úspěšná statistika</div>
+                            <h2 class="text-h2 text-left mb-14 Lined-2 text-center text-white">Piloťák v řeči čísel</h2>
+                            <dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+                                <div class="flex flex-col bg-white/10 p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-100">Letišt po celé ČR</dt>
+                                    <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">18</dd>
+                                </div>
+                                <div class="flex flex-col bg-white/10 p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-100">Letadel a vrtulníků</dt>
+                                    <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">12</dd>
+                                </div>
+                                <div class="flex flex-col bg-white/10 p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-100">Létáme s vámi již 2 dekády</dt>
+                                    <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">20</dd>
+                                </div>
+                                <div class="flex flex-col bg-white/10 p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-100">Uskutečněných letů</dt>
+                                    <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">2500+</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
     </main>
 
 
     {include '../../fragments/web/footer.latte'}
     
+
+
 {/block}

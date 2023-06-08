@@ -1,0 +1,55 @@
+@keyframes Bird1 {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -20px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes Bird2 {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12.5px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes Airplane1 {
+  0%,
+  50% {
+    translate: 0 0;
+  }
+
+  70% {
+    translate: 500px -1000px;
+  }
+  75% {
+    opacity: 0.25;
+  }
+  76% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.Bird1 {
+  animation: Bird1 3s ease-in-out infinite;
+}
+
+.Bird2 {
+  animation: Bird2 3s 1500ms ease-in-out infinite;
+}
+
+.Airplane1 {
+  animation: Airplane1 12s 1500ms ease-in-out infinite backwards;
+}
