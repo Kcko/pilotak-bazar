@@ -28,7 +28,7 @@
                                         {='assets/gfx/svg/airplane-3.svg'|svg:'w-10 h-10'|noescape}
                                     </div>
                                 </div>
-                                <h3 class="text-h3 text-center">Letadlem</h3>
+                                <h3 class="text-h4 text-center">Letadlem</h3>
                                 <div class="text-base text-center text-gray-600 space-y-4">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
                                   
@@ -41,7 +41,7 @@
                                     {='assets/gfx/svg/helicopter.svg'|svg:'w-10 h-10'|noescape}
                                     </div>
                                 </div>
-                                <h3 class="text-h3 text-center">Vrtulníkem</h3>
+                                <h3 class="text-h4 text-center">Vrtulníkem</h3>
                                 <div class="text-base text-center text-gray-600 space-y-4">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
                                     
@@ -51,10 +51,10 @@
                             <div class="rounded-md p-8 shadow-86">
                                 <div class="flex justify-center">
                                     <div class="w-20 h-20 rounded-full bg-_yellow mb-8 inline-flex items-center justify-center">
-                                         {='assets/gfx/svg/airplane-3.svg'|svg:'w-10 h-10'|noescape}
+                                         {='assets/gfx/svg/pilot.svg'|svg:'w-10 h-10'|noescape}
                                     </div>
                                 </div>
-                                <h3 class="text-h3 text-center">Pilotem na zkoušku</h3>
+                                <h3 class="text-h4 text-center">Pilotem na zkoušku</h3>
                                 <div class="text-base text-center text-gray-600 space-y-4">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, dolorem fugiat! Iusto ullam distinctio quis reiciendis cum numquam cumque voluptatem totam possimus, aspernatur aut voluptas quibusdam, hic a natus ducimus.</p>
                                     
@@ -82,7 +82,7 @@
 
         <section class="bg-_blue-light py-20 relative overflow-hidden">
 
-            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[400px] h-[400px] opacity-[2.5%] right-0 bottom-0'|noescape}
+            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[30vw] h-[30vw] opacity-[2.5%] right-0 bottom-0'|noescape}
 
 
             <div class="Container">
@@ -90,7 +90,14 @@
                     <div class="Col w-full">
 
                         <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Oblíbené</div>
-                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Populární vyhlídkové lety</h2>
+                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">
+                            Populární vyhlídkové 
+                            <span class="relative Love">
+                                lety
+                                {='assets/gfx/svg/love.svg'|svg:'Love w-14 h-14 absolute right-[-30px] top-[-60px]'|noescape}
+                            </span>
+                            
+                        </h2>
                         
 
                         <div 
@@ -126,11 +133,11 @@
                             <div class="swiper-container" x-ref="container">
                                 <div class="swiper-wrapper | py-2" >
 
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
-                                        <a href="#" class="block">
-                                            <div class="space-y-5">
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
                                                 <img class="" src="https://www.pilotak.cz/images/resource/letadla/zenair-ch-601.jpg" alt="" />
-                                                <h3 class="text-h3 text-center">Cesna 126</h3>
+                                                <h3 class="text-h4 text-center">Cesna 126</h3>
                                                 <div class="text-sm flex flex-wrap gap-2 justify-center">
                                                     <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
                                                         {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
@@ -154,11 +161,11 @@
                                         </a>
                                     </div>
 
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
-                                        <a href="#" class="block">
-                                            <div class="space-y-5">
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
                                                 <img class="" src="https://www.pilotak.cz/images/resource/letadla/ul-argo.jpg" alt="" />
-                                                <h3 class="text-h3 text-center">Robinson R23</h3>
+                                                <h3 class="text-h4 text-center">Robinson R23</h3>
                                                 <div class="text-sm flex flex-wrap gap-2 justify-center">
                                                     <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
                                                         {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
@@ -178,11 +185,11 @@
                                     </div>
 
 
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
-                                        <a href="#" class="block">
-                                            <div class="space-y-5">
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
                                                 <img class="" src="https://www.pilotak.cz/images/resource/letadla/cessna-152.jpg" alt="" />
-                                                <h3 class="text-h3 text-center">Cesna 96</h3>
+                                                <h3 class="text-h4 text-center">Cesna 96</h3>
                                                 <div class="text-sm flex flex-wrap gap-2 justify-center">
                                                     <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
                                                         {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
@@ -200,11 +207,11 @@
                                         </a>
                                     </div>
 
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
-                                        <a href="#" class="block">
-                                            <div class="space-y-5">
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
                                                 <img class="" src="https://www.pilotak.cz/images/resource/letadla/eurostar-ev-97.jpg" alt="" />
-                                                <h3 class="text-h3 text-center">Rogalo A526</h3>
+                                                <h3 class="text-h4 text-center">Rogalo A526</h3>
                                                 <div class="text-sm flex flex-wrap gap-2 justify-center">
                                                     <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
                                                         {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
@@ -222,11 +229,11 @@
                                         </a>
                                     </div>
 
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide">
-                                        <a href="#" class="block">
-                                            <div class="space-y-5">
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
                                                 <img class="" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
-                                                <h3 class="text-h3 text-center">Cesna 926</h3>
+                                                <h3 class="text-h4 text-center">Cesna 926</h3>
                                                 <div class="text-sm flex flex-wrap gap-2 justify-center">
                                                     <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
                                                         {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}

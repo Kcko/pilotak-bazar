@@ -5,7 +5,7 @@
     <header class="Header bg-_blue relative z-[2]">
         <div class="Container">
             <div class="Row">
-                <div class="Col flex w-full space-x-5 py-4 !px-0 text-white items-center justify-between">
+                <div class="Col flex w-full space-x-5 py-4  text-white items-center justify-between">
                     <div class="inline-flex items-center gap-8">
                         <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
@@ -25,8 +25,8 @@
                     </div>
                 </div>
 
-                <div class="Col w-full bg-white rounded-md shadow-lg">
-                    <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5">
+                <div class="Col w-full">
+                    <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 bg-white rounded-md shadow-lg">
                         <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-16" alt="" /></a>
                         <nav class="text-_black flex-g flex-shrink-0 flex-grow">
                             <ul class="flex items-center gap-x-0 md:gap-x-6">
@@ -50,6 +50,10 @@
             </div>
         </div>
     </header>
+
+    <div class="relative h-0">
+        {='assets/gfx/svg/airplane-2.svg'|svg:'Airplane2 absolute top-[-60px] w-14 h-14 text-_yellow'|noescape}
+    </div>
 
     <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" />
 
