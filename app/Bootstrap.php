@@ -80,6 +80,8 @@ class Bootstrap
 	public static $configSectionSetup = [
 		'pilotak-bazar' => 'dev',
 		'web-pilotak' => 'dev',
+		'pilotak-bazar.rjwebdesign.cz' => 'preprod',
+		'pilotak-web.rjwebdesign.cz' => 'preprod',
 		'*.dev71.andweb.cz' => 'dev',
 		'*.test71.andweb.cz' => 'preprod', // 'dev'
 		'*.local' => 'dev',
@@ -130,6 +132,7 @@ class Bootstrap
 
 		$this->initDebugger($configurator);
 		$this->initSentry();
+
 
 		$robotLoader = $configurator->createRobotLoader();
 		$robotLoader->addDirectory(__DIR__);

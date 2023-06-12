@@ -1,1 +1,17 @@
-/**/
+/*
+web 
+*/
+
+.MobileNavOpened {
+  @apply fixed inset-0 bg-white block z-[1000];
+  animation: openMobileNav 300ms ease-in-out;
+}
+
+@keyframes openMobileNav {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

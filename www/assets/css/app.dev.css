@@ -1581,12 +1581,8 @@ input[readonly]:focus {
   left: 0.625rem;
 }
 
-.left-\[-30px\] {
-  left: -30px;
-}
-
-.left-\[-60px\] {
-  left: -60px;
+.left-\[10px\] {
+  left: 10px;
 }
 
 .left-auto {
@@ -1609,8 +1605,8 @@ input[readonly]:focus {
   right: -30px;
 }
 
-.right-\[-60px\] {
-  right: -60px;
+.right-\[10px\] {
+  right: 10px;
 }
 
 .right-auto {
@@ -1635,6 +1631,10 @@ input[readonly]:focus {
 
 .top-20 {
   top: 5rem;
+}
+
+.top-3 {
+  top: 0.75rem;
 }
 
 .top-4 {
@@ -1685,12 +1685,12 @@ input[readonly]:focus {
   z-index: 1;
 }
 
-.z-\[222\] {
-  z-index: 222;
+.z-\[200\] {
+  z-index: 200;
 }
 
-.z-\[2\] {
-  z-index: 2;
+.z-\[222\] {
+  z-index: 222;
 }
 
 .z-\[3\] {
@@ -1713,6 +1713,12 @@ input[readonly]:focus {
   -webkit-box-ordinal-group: -9998;
       -ms-flex-order: -9999;
           order: -9999;
+}
+
+.order-last {
+  -webkit-box-ordinal-group: 10000;
+      -ms-flex-order: 9999;
+          order: 9999;
 }
 
 .col-span-2 {
@@ -2003,10 +2009,6 @@ input[readonly]:focus {
   height: 3.5rem;
 }
 
-.h-16 {
-  height: 4rem;
-}
-
 .h-2 {
   height: 0.5rem;
 }
@@ -2055,8 +2057,8 @@ input[readonly]:focus {
   height: 2rem;
 }
 
-.h-\[30vw\] {
-  height: 30vw;
+.h-\[20vw\] {
+  height: 20vw;
 }
 
 .h-full {
@@ -2073,10 +2075,6 @@ input[readonly]:focus {
 
 .min-h-\[36px\] {
   min-height: 36px;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .w-10 {
@@ -2131,8 +2129,8 @@ input[readonly]:focus {
   width: 2rem;
 }
 
-.w-\[30vw\] {
-  width: 30vw;
+.w-\[20vw\] {
+  width: 20vw;
 }
 
 .w-\[400px\] {
@@ -2141,6 +2139,14 @@ input[readonly]:focus {
 
 .w-full {
   width: 100%;
+}
+
+.w-4\/12 {
+  width: 33.333333%;
+}
+
+.w-8\/12 {
+  width: 66.666667%;
 }
 
 .min-w-\[150px\] {
@@ -2275,10 +2281,6 @@ input[readonly]:focus {
 
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .grid-cols-6 {
@@ -2455,16 +2457,16 @@ input[readonly]:focus {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
+.space-y-16 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(4rem * var(--tw-space-y-reverse));
+}
+
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-
-.space-y-20 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(5rem * var(--tw-space-y-reverse));
 }
 
 .space-y-3 > :not([hidden]) ~ :not([hidden]) {
@@ -2495,6 +2497,12 @@ input[readonly]:focus {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.space-y-10 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
 }
 
 .divide-y > :not([hidden]) ~ :not([hidden]) {
@@ -2662,6 +2670,11 @@ input[readonly]:focus {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#fff\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .stroke-_blue {
   stroke: #4F67FF;
 }
@@ -2681,6 +2694,10 @@ input[readonly]:focus {
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .p-4 {
@@ -2747,11 +2764,6 @@ input[readonly]:focus {
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-}
-
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 
 .py-3 {
@@ -2826,6 +2838,10 @@ input[readonly]:focus {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
 }
 
 .text-left {
@@ -2904,6 +2920,10 @@ input[readonly]:focus {
   line-height: 1.5rem;
 }
 
+.leading-relaxed {
+  line-height: 1.625;
+}
+
 .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -2970,11 +2990,6 @@ input[readonly]:focus {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
-}
-
-.text-green-600 {
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 
 .text-red-500 {
@@ -3286,14 +3301,17 @@ input[readonly]:focus {
     translate: 70px 0;
   }
   60% {
-    opacity: 0.9;
+    opacity: 1;
   }
   75% {
     translate: 500px 0;
   }
   80% {
-    opacity: 0.6;
-    translate: 2500px 0;
+    opacity: 0.8;
+    translate: 2000px 0;
+  }
+  81% {
+    opacity: 0;
   }
 
   85% {
@@ -3319,14 +3337,17 @@ input[readonly]:focus {
     translate: 70px 0;
   }
   60% {
-    opacity: 0.9;
+    opacity: 1;
   }
   75% {
     translate: 500px 0;
   }
   80% {
-    opacity: 0.6;
-    translate: 2500px 0;
+    opacity: 0.8;
+    translate: 2000px 0;
+  }
+  81% {
+    opacity: 0;
   }
 
   85% {
@@ -3428,6 +3449,36 @@ input[readonly]:focus {
   }
 }
 
+@-webkit-keyframes flash {
+  0%,
+  30%,
+  50%,
+  70% {
+    opacity: 1;
+  }
+
+  40%,
+  60%,
+  80% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  0%,
+  30%,
+  50%,
+  70% {
+    opacity: 1;
+  }
+
+  40%,
+  60%,
+  80% {
+    opacity: 0;
+  }
+}
+
 .Bird1 {
   -webkit-animation: Bird1 3s ease-in-out infinite;
           animation: Bird1 3s ease-in-out infinite;
@@ -3471,13 +3522,67 @@ input[readonly]:focus {
           animation-delay: 790ms;
 }
 
+.Transparent {
+  padding: 0.25rem;
+  display: inline-block;
+  position: relative;
+  border-radius: 2px;
+  font-family: system-ui;
+  font-size: 11px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  margin-right: 1rem;
+}
+
+.Transparent__line {
+  width: 1rem;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+}
+
+.Transparent__name {
+  /*animation: flash ease 3.5s infinite;*/
+}
+
 .HeroWeb {
   position: relative;
   overflow: hidden;
   --tw-bg-opacity: 1;
   background-color: rgb(79 103 255 / var(--tw-bg-opacity));
-  padding-bottom: 5rem;
-  min-height: 550px;
+  padding-bottom: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+
+  .HeroWeb {
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+.HeroWeb {
+    min-height: 550px
+}
+  }
+
+.HeroWeb.-MobileNavOpened {
+    overflow: visible;
+  }
+
+.HeroWeb.-Short {
+    min-height: auto !important;
+    padding-bottom: 1.25rem;
+  }
+
+@media (min-width: 1024px) {
+
+  .HeroWeb.-Short {
+    padding-bottom: 2rem;
+  }
 }
 
 .shadow-86 {
@@ -3489,13 +3594,41 @@ input[readonly]:focus {
     rgba(169, 167, 167, 0.01) -82px 99px 51px 0px, rgba(169, 167, 167, 0) -128px 154px 56px 0px;
 }
 
-/* @import 'components/accordion';*/
+/*
+web 
+*/
 
-/* @import 'components/desktop-filters';*/
+.MobileNavOpened {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1000;
+  display: block;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  -webkit-animation: openMobileNav 300ms ease-in-out;
+          animation: openMobileNav 300ms ease-in-out;
+}
 
-/* @import 'components/mobile-filters';*/
+@-webkit-keyframes openMobileNav {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 
-/* @import 'components/header';*/
+@keyframes openMobileNav {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 
 /**/
 
@@ -5830,6 +5963,24 @@ https://picsum.photos/id/13/1810/1150
   margin-right: -50vw;
 }
 
+@media (min-width: 768px) {
+  .md\:text-h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+  }
+  @media (min-width: 1024px) {
+
+    .md\:text-h1 {
+      font-size: 3.75rem;
+      line-height: 1;
+    }
+  }
+  .md\:text-h1 {
+    line-height: 1.053;
+  }
+}
+
 .hover\:-translate-y-1:hover {
   --tw-translate-y: -0.25rem;
   -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -5959,6 +6110,10 @@ https://picsum.photos/id/13/1810/1150
     display: block;
   }
 
+  .sm\:grid {
+    display: grid;
+  }
+
   .sm\:hidden {
     display: none;
   }
@@ -5989,6 +6144,14 @@ https://picsum.photos/id/13/1810/1150
 
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
+  }
+
+  .md\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  .md\:mb-14 {
+    margin-bottom: 3.5rem;
   }
 
   .md\:mb-8 {
@@ -6023,6 +6186,10 @@ https://picsum.photos/id/13/1810/1150
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:h-16 {
+    height: 4rem;
   }
 
   .md\:h-5 {
@@ -6105,6 +6272,19 @@ https://picsum.photos/id/13/1810/1150
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
+  .md\:p-8 {
+    padding: 2rem;
+  }
+
+  .md\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .md\:pb-20 {
+    padding-bottom: 5rem;
+  }
+
   .md\:text-center {
     text-align: center;
   }
@@ -6125,6 +6305,42 @@ https://picsum.photos/id/13/1810/1150
 }
 
 @media (min-width: 1024px) {
+
+  .lg\:static {
+    position: static;
+  }
+
+  .lg\:bottom-0 {
+    bottom: 0px;
+  }
+
+  .lg\:left-0 {
+    left: 0px;
+  }
+
+  .lg\:left-\[-30px\] {
+    left: -30px;
+  }
+
+  .lg\:left-\[-60px\] {
+    left: -60px;
+  }
+
+  .lg\:right-0 {
+    right: 0px;
+  }
+
+  .lg\:right-\[-30px\] {
+    right: -30px;
+  }
+
+  .lg\:right-\[-60px\] {
+    right: -60px;
+  }
+
+  .lg\:top-auto {
+    top: auto;
+  }
 
   .lg\:order-1 {
     -webkit-box-ordinal-group: 2;
@@ -6149,6 +6365,11 @@ https://picsum.photos/id/13/1810/1150
   .lg\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
+  }
+
+  .lg\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .lg\:-ml-4 {
@@ -6177,6 +6398,10 @@ https://picsum.photos/id/13/1810/1150
 
   .lg\:mb-8 {
     margin-bottom: 2rem;
+  }
+
+  .lg\:ml-auto {
+    margin-left: auto;
   }
 
   .lg\:mt-0 {
@@ -6231,6 +6456,12 @@ https://picsum.photos/id/13/1810/1150
 
   .lg\:gap-8 {
     gap: 2rem;
+  }
+
+  .lg\:space-y-20 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(5rem * var(--tw-space-y-reverse));
   }
 
   .lg\:p-0 {

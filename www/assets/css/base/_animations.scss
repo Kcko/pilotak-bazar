@@ -56,14 +56,17 @@
     translate: 70px 0;
   }
   60% {
-    opacity: 0.9;
+    opacity: 1;
   }
   75% {
     translate: 500px 0;
   }
   80% {
-    opacity: 0.6;
-    translate: 2500px 0;
+    opacity: 0.8;
+    translate: 2000px 0;
+  }
+  81% {
+    opacity: 0;
   }
 
   85% {
@@ -120,6 +123,21 @@
   }
 }
 
+@keyframes flash {
+  0%,
+  30%,
+  50%,
+  70% {
+    opacity: 1;
+  }
+
+  40%,
+  60%,
+  80% {
+    opacity: 0;
+  }
+}
+
 .Bird1 {
   animation: Bird1 3s ease-in-out infinite;
 }
@@ -151,4 +169,28 @@
 
 .Love svg path:nth-child(3) {
   animation-delay: 790ms;
+}
+
+.Transparent {
+  padding: 0.25rem;
+  display: inline-block;
+  position: relative;
+  border-radius: 2px;
+  font-family: system-ui;
+  font-size: 11px;
+  @apply bg-white;
+  margin-right: 1rem;
+}
+
+.Transparent__line {
+  width: 1rem;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+}
+
+.Transparent__name {
+  //animation: flash ease 3.5s infinite;
 }

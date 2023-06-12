@@ -1,12 +1,16 @@
 
 
-<div class="HeroWeb relative space-y-20">
+<div 
+    x-data="{ opened: false }"
+    n:class="'HeroWeb relative space-y-16 lg:space-y-20',  isset($full) ? '-Full' : '-Short'"
+    :class="{ '-MobileNavOpened' : opened }"
+    >
 
-    <header class="Header bg-_blue relative z-[2]">
+    <header n:class="'Header bg-_blue relative z-[200]'">
         <div class="Container">
             <div class="Row">
                 <div class="Col flex w-full space-x-5 py-4  text-white items-center justify-between">
-                    <div class="inline-flex items-center gap-8">
+                    <div class="inline-flex flex-wrap items-center gap-2 md:gap-8">
                         <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
                             pilotak@pilotak.cz
@@ -27,17 +31,28 @@
 
                 <div class="Col w-full">
                     <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 bg-white rounded-md shadow-lg">
-                        <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-16" alt="" /></a>
-                        <nav class="text-_black flex-g flex-shrink-0 flex-grow">
-                            <ul class="flex items-center gap-x-0 md:gap-x-6">
-                                <li class="ml-auto relative">
-                                    <a href="" class="Btn px-0 font-medium text-lg">Vyhlídkové lety</a>
-                                    <span class="bg-_blue w-2 h-2 rounded-full absolute bottom-0 left-0 right-0 mx-auto"></span>
+                        <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-12 md:h-16" alt="" /></a>
+                        
+                        <nav 
+                            x-transition 
+                            x-trap.noscroll.inert="opened"
+                            class="text-_black hidden lg:block flex-shrink-0 flex-grow"
+                            :class="{ 'MobileNavOpened' : opened }"
+                            >
+
+                            <div class="flex justify-end lg:hidden">
+                                <button @click="opened = false" class="p-3">{='assets/gfx/svg/close.svg'|svg:'w-8 h-8'|noescape}</button>
+                            </div>
+
+                            <ul class="block px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
+                                <li class="lg:ml-auto relative">
+                                    <a href="" class="Btn px-0 font-medium text-lg relative lg:static">Vyhlídkové lety</a>
+                                    <span class="bg-_blue w-2 h-2 rounded-full absolute top-3 lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
                                 </li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Odkud létáme</a></li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Letecký park</a></li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Kontakt</a></li>
-                                <li class="ml-auto">
+                                <li class="ml-auto mt-4 lg:mt-0">
                                     <a href="" class="Btn -Blue  font-medium">
                                         Objednat
                                         {='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
@@ -45,32 +60,45 @@
                                 </li>
                             </ul>
                         </nav>
+
+                        <button @click="opened = !opened" class="lg:hidden ml-auto">{='assets/gfx/svg/hamburger.svg'|svg:'w-8 h-8'|noescape}</button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="relative h-0">
-        {='assets/gfx/svg/airplane-2.svg'|svg:'Airplane2 absolute top-[-60px] w-14 h-14 text-_yellow'|noescape}
-    </div>
 
-    <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" />
+    {if isset($full)}
 
-    <div class="Container relative z-[3]">
-        <div class="Row items-center">
-            <div class="Col w-1/2">
-                <h1 class="text-h1 text-white">
-                    <span class="text-_yellow">Piloťák</span> - centrum letecké zábavy, sportovního a rekreačního létání
-                </h1>
-            </div>
-            
-            <div class="Col w-1/2">
+        <div class="relative h-0">
+            <span class="Airplane2 absolute top-[-60px] inline-flex items-center">
+                <div class="Transparent">
+                    <span class="Transparent__name">Piloťák</span>
+                    <span class="Transparent__line"></span>
+                </div>
+                {='assets/gfx/svg/airplane-2.svg'|svg:'w-14 h-14 text-_yellow'|noescape}
+            </span>
+        </div>
 
-                 <iframe width="560" height="315" class="rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                {* <img src="/assets/gfx/svg/footer-plane.svg" class="max-h-[350px]" alt="" /> *}
+        <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" />
+
+        <div class="Container relative z-[3]">
+            <div class="Row items-center">
+                <div class="Col md:w-1/2">
+                    <h1 class="text-h2 leading-relaxed md:text-h1 text-white">
+                        <span class="text-_yellow">Piloťák</span> - centrum letecké zábavy, sportovního a rekreačního létání
+                    </h1>
+                </div>
+                
+                <div class="Col hidden md:block md:w-1/2">
+
+                    <iframe width="560" height="315" class="rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    {* <img src="/assets/gfx/svg/footer-plane.svg" class="max-h-[350px]" alt="" /> *}
+                </div>
             </div>
         </div>
-    </div>
+
+    {/if}
 
 </div>

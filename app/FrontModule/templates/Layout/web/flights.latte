@@ -1,0 +1,94 @@
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../../fragments/web/header.latte'}
+
+    <main class="BaseContainer__Main">
+
+        <section class="bg-[#f9f9fa] pb-10 md:pb-20 pt-10">
+
+            <div class="Container mb-10">
+                <div class="Row">
+                    <div class="Col w-full">
+                        {control breadcrumbs}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="Container">
+            
+                <div class="Row">
+                    <div class="Col w-12/12">
+                        <h1 class="text-h1 mb-16 Lined-3">Vyhlídkové lety po celé České republice</h1>
+
+                        <div class="space-y-16">
+
+                            <div class="grid grid-cols-2 gap-8">
+                                <div>
+                                    <img src="/assets/gfx/tmp/airplane-1.jpg" class="rounded-md" alt="" />
+                                </div>
+                                <div class="space-y-5">
+                                    <h2 class="text-h2">Letadlem</h2>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam iusto, vitae porro, aperiam nemo at dolorum eveniet voluptas obcaecati corporis eaque distinctio suscipit laudantium labore ab placeat expedita hic nisi?</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam iusto, vitae porro, aperiam nemo at dolorum eveniet voluptas obcaecati corporis eaque distinctio suscipit laudantium labore ab placeat expedita hic nisi?</p>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed nisi fugit ipsum, doloremque sunt dignissimos voluptatem porro cumque. Qui esse obcaecati tempora ab nobis optio quasi ea vel vero quas! Id, cum? Praesentium illo earum nulla eveniet ipsum recusandae? Saepe illum maiores aut tenetur nihil est, soluta cumque enim ea!</p>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="grid grid-cols-2 gap-8">
+                                <div class="order-last">
+                                    <img src="/assets/gfx/tmp/helicopter-1.jpg" class="rounded-md" alt="" />
+                                </div>
+                                <div class="space-y-5">
+                                    <h2 class="text-h2">Vrtulníkem</h2>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam iusto, vitae porro, aperiam nemo at dolorum eveniet voluptas obcaecati corporis eaque distinctio suscipit laudantium labore ab placeat expedita hic nisi?</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam iusto, vitae porro, aperiam nemo at dolorum eveniet voluptas obcaecati corporis eaque distinctio suscipit laudantium labore ab placeat expedita hic nisi?</p>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed nisi fugit ipsum, doloremque sunt dignissimos voluptatem porro cumque. Qui esse obcaecati tempora ab nobis optio quasi ea vel vero quas! Id, cum? Praesentium illo earum nulla eveniet ipsum recusandae? Saepe illum maiores aut tenetur nihil est, soluta cumque enim ea!</p>
+                                </div>
+                            </div>
+
+
+                            <hr />
+
+                            <div class="grid grid-cols-2 gap-8">
+                                <div>
+                                    <img src="/assets/gfx/tmp/helicopter-1.jpg" class="rounded-md" alt="" />
+                                </div>
+                                <div class="space-y-5">
+                                    <h2 class="text-h2">Stát se piloťákem</h2>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam iusto, vitae porro, aperiam nemo at dolorum eveniet voluptas obcaecati corporis eaque distinctio suscipit laudantium labore ab placeat expedita hic nisi?</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam iusto, vitae porro, aperiam nemo at dolorum eveniet voluptas obcaecati corporis eaque distinctio suscipit laudantium labore ab placeat expedita hic nisi?</p>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed nisi fugit ipsum, doloremque sunt dignissimos voluptatem porro cumque. Qui esse obcaecati tempora ab nobis optio quasi ea vel vero quas! Id, cum? Praesentium illo earum nulla eveniet ipsum recusandae? Saepe illum maiores aut tenetur nihil est, soluta cumque enim ea!</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    {* <div class="Col w-4/12">
+                        <nav class="rounded-md p-8 shadow-86 bg-white">
+                            <ul>
+                                <li><a href="">Letadlem</a></li>
+                                <li><a href="">Vrtulníkem</a></li>
+                                <li><a href="">Pilotem na zkoušku</a></li>
+                            </ul>
+                        </nav>
+                    </div> *}
+                </div>
+
+
+            </div>   
+
+        </section> 
+    
+    </main>
+
+
+    {include '../../fragments/web/footer.latte'}
+    
+{/block}

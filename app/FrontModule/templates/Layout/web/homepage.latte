@@ -2,24 +2,24 @@
 
 {block content}
 
-    {include '../../fragments/web/header.latte'}
+    {include '../../fragments/web/header.latte', full => true}
 
     <main class="BaseContainer__Main">
 
 
-        <section class="bg-[#f9f9fa] py-20">
+        <section class="bg-[#f9f9fa] py-10 md:py-20">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
 
                         <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Letět nebo rovnou pilotovat?</div>
-                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Vyhlídkové lety</h2>
+                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">Vyhlídkové lety</h2>
 
-                        <div class="grid grid-cols-3 gap-8 mb-16 relative rotate rotate">
+                        <div class="grid md:grid-cols-3 gap-8 mb-8 lg:mb-16 relative rotate rotate">
 
                             {* bird *}
-                            {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] left-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
-                            {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] left-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] left-[10px] lg:left-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] lg:left-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
 
                             <div class="rounded-md p-8 shadow-86">
 
@@ -80,9 +80,9 @@
 
 
 
-        <section class="bg-_blue-light py-20 relative overflow-hidden">
+        <section class="bg-_blue-light py-10 md:py-20 relative overflow-hidden">
 
-            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[30vw] h-[30vw] opacity-[2.5%] right-0 bottom-0'|noescape}
+            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[20vw] h-[20vw] opacity-[2.5%] right-0 bottom-0'|noescape}
 
 
             <div class="Container">
@@ -90,7 +90,7 @@
                     <div class="Col w-full">
 
                         <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Oblíbené</div>
-                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">
+                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">
                             Populární vyhlídkové 
                             <span class="relative Love">
                                 lety
@@ -127,7 +127,7 @@
                                     },
                                 },
                                 })"
-                            class="relative mb-16 /*grid grid-cols-4 gap-4*/"
+                            class="relative mb-8 lg:mb-16 /*grid grid-cols-4 gap-4*/"
                         >
 
                             <div class="swiper-container" x-ref="container">
@@ -285,100 +285,102 @@
         </section>
 
 
-        <section class="bg-[#f9f9fa] py-20">
+        <section class="bg-[#f9f9fa] py-10 md:py-20">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
                         
                         <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Letiště</div>
-                        <h2 class="text-h2 text-left mb-14 Lined-3 text-center">Odkud létáme</h2>
+                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">Odkud létáme</h2>
                         
-                        <div class="grid grid-cols-5 gap-10 relative">
+                        <div class="grid md:grid-cols-5 gap-10 relative">
 
                             {* bird *}
-                            {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] right-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
-                            {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] right-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] right-0 lg:right-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
+                            {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] right-[10px] lg:right-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
 
 
-                            <div class="col-span-3 relative">
+                            <div class="hidden md:block md:col-span-3 ">
 
-                                <img src="/assets/gfx/svg/cz.svg" alt="" />
-                                
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 30%; left: 24%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Brno</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 50%; left: 34%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Příbram</div>
-                                </a>
-                                
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 60%; left: 33%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Kroměříž</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 33%; left: 40%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Roudnice nad Labem</div>
-                                </a>
-                                
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 44%; left: 20%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Mladá Boleslav</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 62%; left: 64%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Zbraslavice</div>
-                                </a>
-                                
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 70%; left: 18%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Plzeň</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 18%; left: 19%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Karlovy Vary</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 54%; left: 19%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Slaný</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 28%; left: 55%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Jihlava</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 40%; left: 69%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Moravská Třebová</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 68%; left: 45%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Jaroměř</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 38%; left: 33%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Kolín</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 21%; left: 35%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Hradec Králové</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 40%; left: 10%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Hodkovice</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 54%; left: 53.3%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Kříženec</div>
-                                </a>
-                                <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 47%; left: 64.5%;">
-                                    <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
-                                    <div class="text-sm font-medium text-white">Olomouc</div>
-                                </a>
+                                <span class="relative">
+                                    <img src="/assets/gfx/svg/cz.svg" alt="" />
+                                    
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 30%; left: 24%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Brno</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 50%; left: 34%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Příbram</div>
+                                    </a>
+                                    
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 60%; left: 33%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Kroměříž</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 33%; left: 40%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Roudnice nad Labem</div>
+                                    </a>
+                                    
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 44%; left: 20%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Mladá Boleslav</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 62%; left: 64%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Zbraslavice</div>
+                                    </a>
+                                    
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 70%; left: 18%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Plzeň</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 18%; left: 19%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Karlovy Vary</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 54%; left: 19%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Slaný</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 28%; left: 55%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Jihlava</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 40%; left: 69%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Moravská Třebová</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 68%; left: 45%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Jaroměř</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 38%; left: 33%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Kolín</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 21%; left: 35%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Hradec Králové</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 40%; left: 10%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Hodkovice</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 54%; left: 53.3%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Kříženec</div>
+                                    </a>
+                                    <a href="#" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 47%; left: 64.5%;">
+                                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                                        <div class="text-sm font-medium text-white">Olomouc</div>
+                                    </a>
+                                </span>
 
                             </div>
-                            <div class="col-span-2">
-                                <ul class="grid grid-cols-2 auto gap-2">
+                            <div class="md:col-span-2">
+                                <ul class="flex flex-wrap sm:grid sm:grid-cols-2 auto gap-2">
                                     <li>
                                         <a class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light" href="">
                                             {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
@@ -500,27 +502,27 @@
 
 
 
-        <div class="bg-_blue-dark py-20">
+        <div class="bg-_blue-dark py-10 md:py-20">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
                         <div class="text-center">
                             <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Úspěšná statistika</div>
-                            <h2 class="text-h2 text-left mb-14 Lined-2 text-center text-white">Piloťák v řeči čísel</h2>
+                            <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-2 text-center text-white">Piloťák v řeči čísel</h2>
                             <dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
-                                <div class="flex flex-col bg-white/10 p-8">
+                                <div class="flex flex-col bg-white/10 p-5 md:p-8">
                                     <dt class="text-sm font-semibold leading-6 text-gray-100">Letišt po celé ČR</dt>
                                     <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">18</dd>
                                 </div>
-                                <div class="flex flex-col bg-white/10 p-8">
+                                <div class="flex flex-col bg-white/10 p-5 md:p-8">
                                     <dt class="text-sm font-semibold leading-6 text-gray-100">Letadel a vrtulníků</dt>
                                     <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">12</dd>
                                 </div>
-                                <div class="flex flex-col bg-white/10 p-8">
+                                <div class="flex flex-col bg-white/10 p-5 md:p-8">
                                     <dt class="text-sm font-semibold leading-6 text-gray-100">Létáme s vámi již 2 dekády</dt>
                                     <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">20</dd>
                                 </div>
-                                <div class="flex flex-col bg-white/10 p-8">
+                                <div class="flex flex-col bg-white/10 p-5 md:p-8">
                                     <dt class="text-sm font-semibold leading-6 text-gray-100">Uskutečněných letů</dt>
                                     <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">2500+</dd>
                                 </div>
