@@ -9,8 +9,8 @@
     <header n:class="'Header bg-_blue relative z-[200]'">
         <div class="Container">
             <div class="Row">
-                <div class="Col flex w-full space-x-5 py-4  text-white items-center justify-between">
-                    <div class="inline-flex flex-wrap items-center gap-2 md:gap-8">
+                <div class="Col flex w-full space-x-5 py-4  text-white items-center justify-end">
+                    {* <div class="inline-flex flex-wrap items-center gap-2 md:gap-8">
                         <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
                             pilotak@pilotak.cz
@@ -19,17 +19,17 @@
                             {='assets/gfx/svg/phone.svg'|svg:'w-5 h-5'|noescape}
                             608 118 811
                         </span>
-                    </div>
+                    </div> *}
 
                     <div>
-                        <a href="https://bazar.pilotak.cz" class="inline-flex items-center text-_yellow text-sm">
+                        <a href="https://bazar.pilotak.cz" class="Btn -Yellow -Xs">
                             Letecký bazar
                             {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
                         </a>
                     </div>
                 </div>
 
-                <div class="Col w-full">
+                <div class="Col w-full sticky z-50 top-1">
                     <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 bg-white rounded-md shadow-lg">
                         <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-12 md:h-16" alt="" /></a>
                         
@@ -47,7 +47,7 @@
                             <ul class="block px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
                                 <li class="lg:ml-auto relative">
                                     <a href="" class="Btn px-0 font-medium text-lg relative lg:static">Vyhlídkové lety</a>
-                                    <span class="bg-_blue w-2 h-2 rounded-full absolute top-3 lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
+                                    <span class="bg-_yellow w-8 h-1  absolute top-3 lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
                                 </li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Odkud létáme</a></li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Letecký park</a></li>
@@ -71,7 +71,8 @@
 
     {if isset($full)}
 
-        <div class="relative h-0">
+        {* Animace vypnuto --  *}
+        {* <div class="relative h-0">
             <span class="Airplane2 absolute top-[-60px] inline-flex items-center">
                 <div class="Transparent">
                     <span class="Transparent__name">Piloťák</span>
@@ -79,21 +80,23 @@
                 </div>
                 {='assets/gfx/svg/airplane-2.svg'|svg:'w-14 h-14 text-_yellow'|noescape}
             </span>
-        </div>
+        </div> *}
 
         <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" />
 
         <div class="Container relative z-[3]">
             <div class="Row items-center">
                 <div class="Col md:w-1/2">
-                    <h1 class="text-h2 leading-relaxed md:text-h1 text-white">
-                        <span class="text-_yellow">Piloťák</span> - centrum letecké zábavy, sportovního a rekreačního létání
+                    <h1 class="text-h2  leading-relaxed  text-white">
+                        <span class="text-h2 md:text-h1 text-_yellow">Piloťák</span> - centrum letecké zábavy, sportovního a rekreačního létání
                     </h1>
                 </div>
                 
                 <div class="Col hidden md:block md:w-1/2">
 
-                    <iframe width="560" height="315" class="rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <img src="/assets/gfx/web-cover.png" alt="" />
+
+                    {* <iframe width="560" height="315" class="rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> *}
                     {* <img src="/assets/gfx/svg/footer-plane.svg" class="max-h-[350px]" alt="" /> *}
                 </div>
             </div>
