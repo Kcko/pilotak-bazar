@@ -1,15 +1,15 @@
-
-
 <div 
     x-data="{ opened: false }"
-    n:class="'HeroWeb relative space-y-16 lg:space-y-20',  isset($full) ? '-Full' : '-Short'"
+    n:class="'HeroWeb relative',  isset($full) ? '-Full' : '-Short'"
     :class="{ '-MobileNavOpened' : opened }"
     >
 
-    <header n:class="'Header bg-_blue relative z-[200]'">
+    <div class="h-24 lg:h-40"></div>
+
+    <header n:class="'Header bg-_blue fixed left-0 right-0 top-0 h-24 lg:h-40 z-[200]'">
         <div class="Container">
             <div class="Row">
-                <div class="Col flex w-full space-x-5 py-4  text-white items-center justify-end">
+                <div class="Col flex w-full space-x-5 py-2 lg:py-4  text-white items-center justify-end">
                     {* <div class="inline-flex flex-wrap items-center gap-2 md:gap-8">
                         <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
@@ -21,8 +21,8 @@
                         </span>
                     </div> *}
 
-                    <div>
-                        <a href="https://bazar.pilotak.cz" class="Btn -Yellow -Xs">
+                    <div class="hidden lg:block">
+                        <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow -Xs">
                             Letecký bazar
                             {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
                         </a>
@@ -44,18 +44,28 @@
                                 <button @click="opened = false" class="p-3">{='assets/gfx/svg/close.svg'|svg:'w-8 h-8'|noescape}</button>
                             </div>
 
-                            <ul class="block px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
+                            <ul class="block space-y-4 lg:space-y-0 px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
                                 <li class="lg:ml-auto relative">
                                     <a href="" class="Btn px-0 font-medium text-lg relative lg:static">Vyhlídkové lety</a>
-                                    <span class="bg-_yellow w-8 h-1  absolute top-3 lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
+                                    <span class="bg-_yellow w-8 h-1  
+                                        absolute 
+                                        -bottom-0.5 
+                                        left-0
+                                        lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
                                 </li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Odkud létáme</a></li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Letecký park</a></li>
                                 <li><a href="" class="Btn px-0 font-medium text-lg">Kontakt</a></li>
-                                <li class="ml-auto mt-4 lg:mt-0">
-                                    <a href="" class="Btn -Blue  font-medium">
+                                <li class="ml-auto !mt-8 lg:!mt-0">
+                                    <a href="" class="Btn -Blue  font-medium w-[200px]">
                                         Objednat
                                         {='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
+                                    </a>
+                                </li>
+                                <li class="!mt-12 lg:hidden">
+                                    <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow w-[200px]">
+                                        Letecký bazar
+                                        {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
                                     </a>
                                 </li>
                             </ul>
@@ -82,7 +92,7 @@
             </span>
         </div> *}
 
-        <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" />
+        {* <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" /> *}
 
         <div class="Container relative z-[3]">
             <div class="Row items-center">
@@ -92,7 +102,7 @@
                     </h1>
                 </div>
                 
-                <div class="Col hidden md:block md:w-1/2">
+                <div class="Col  md:block md:w-1/2">
 
                     <img src="/assets/gfx/web-cover.png" alt="" />
 

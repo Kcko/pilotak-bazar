@@ -1,8 +1,8 @@
 .HeroWeb {
-  @apply bg-_blue relative overflow-hidden pb-5 lg:pb-20;
+  @apply bg-_blue relative pt-8 pb-12;
 
   @screen md {
-    min-height: 550px;
+    //min-height: 550px;
   }
 
   &.-MobileNavOpened {
@@ -11,6 +11,6 @@
 
   &.-Short {
     min-height: auto !important;
-    @apply pb-5 lg:pb-8;
+    @apply pt-0 pb-0;
   }
 }
