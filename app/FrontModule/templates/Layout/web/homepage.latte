@@ -21,7 +21,7 @@
                             {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] left-[10px] lg:left-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
                             {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] lg:left-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
 
-                            <div class="rounded-md p-8 shadow-86">
+                            <div class="rounded-md p-5 shadow-86">
 
                                 <div class="flex justify-center mb-6 relative">
                                      <div class="w-20 h-20 rounded-full bg-_yellow mb-8 inline-flex items-center justify-center absolute left-0 right-0 mx-auto -top-24 ring-8 ring-_yellow/50">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             
-                            <div class="rounded-md p-8 shadow-86">
+                            <div class="rounded-md p-5 shadow-86">
                                 <div class="flex justify-center mb-6 relative">
                                      <div class="w-20 h-20 rounded-full bg-_yellow mb-8 inline-flex items-center justify-center absolute left-0 right-0 mx-auto -top-24 ring-8 ring-_yellow/50">
                                     {='assets/gfx/svg/helicopter.svg'|svg:'w-10 h-10'|noescape}
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
 
-                            <div class="rounded-md p-8 shadow-86">
+                            <div class="rounded-md p-5 shadow-86">
                                 <div class="flex justify-center mb-6 relative">
                                      <div class="w-20 h-20 rounded-full bg-_yellow mb-8 inline-flex items-center justify-center absolute left-0 right-0 mx-auto -top-24 ring-8 ring-_yellow/50">
                                          {='assets/gfx/svg/pilot.svg'|svg:'w-10 h-10'|noescape}
@@ -86,218 +86,13 @@
 
 
 
-        <section class="bg-_blue-light py-10 md:py-20 relative overflow-hidden">
-
-            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[20vw] h-[20vw] opacity-[2.5%] right-0 bottom-0'|noescape}
-
-
-            <div class="Container">
-                <div class="Row">
-                    <div class="Col w-full">
-
-                        <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Oblíbené</div>
-                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">
-                            Populární vyhlídkové 
-                            <span class="relative Love">
-                                lety
-                                {='assets/gfx/svg/love.svg'|svg:'Love w-14 h-14 absolute right-[-30px] top-[-60px]'|noescape}
-                            </span>
-                            
-                        </h2>
-                        
-
-                        <div 
-                            x-data="{ swiper: null }" 
-                            x-init="swiper = new Swiper($refs.container, {
-                                loop: false,
-                                slidesPerView: 1,
-                                spaceBetween: 0,
-                                speed: 700,
-                                navigation: {
-                                nextEl: '#a-next',
-                                prevEl: '#a-prev',
-                                },
-                            
-                                breakpoints: {
-                                    640: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 16,
-                                    },
-                                    768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 16,
-                                    },
-                                    1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 16,
-                                    },
-                                },
-                                })"
-                            class="relative mb-8 lg:mb-16 /*grid grid-cols-4 gap-4*/"
-                        >
-
-                            <div class="swiper-container" x-ref="container">
-                                <div class="swiper-wrapper | py-2" >
-
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="#" class="block flex flex-col h-full">
-                                            <div class="space-y-5 flex-grow">
-                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/zenair-ch-601.jpg" alt="" />
-                                                <h3 class="text-h4 text-center">Cesna 126</h3>
-                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        Plzeň
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        20 minut
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        3 osoby
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
-                                               4 900 Kč
-                                            </div>
-
-
-                                        </a>
-                                    </div>
-
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="#" class="block flex flex-col h-full">
-                                            <div class="space-y-5 flex-grow">
-                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/ul-argo.jpg" alt="" />
-                                                <h3 class="text-h4 text-center">Robinson R23</h3>
-                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        Jaroměř
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        30 minut
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
-                                                2 500 Kč
-                                            </div>
-                                            
-                                        </a>
-                                    </div>
-
-
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="#" class="block flex flex-col h-full">
-                                            <div class="space-y-5 flex-grow">
-                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/cessna-152.jpg" alt="" />
-                                                <h3 class="text-h4 text-center">Cesna 96</h3>
-                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        Kolín
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        20 minut
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
-                                                3 000 Kč
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="#" class="block flex flex-col h-full">
-                                            <div class="space-y-5 flex-grow">
-                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/eurostar-ev-97.jpg" alt="" />
-                                                <h3 class="text-h4 text-center">Rogalo A526</h3>
-                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        Ostrava
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        45 minut
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
-                                                4 500 Kč
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="#" class="block flex flex-col h-full">
-                                            <div class="space-y-5 flex-grow">
-                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
-                                                <h3 class="text-h4 text-center">Cesna 926</h3>
-                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        Slaný
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        30 minut
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
-                                                3 500 Kč
-                                            </div>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div id="a-prev" class="absolute inset-y-0 left-0 z-[3]  flex items-center">
-                                <button  class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
-                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                </button>
-                            </div>
-
-                            <div id="a-next" class="absolute inset-y-0 right-0 z-[3] flex items-center">
-                                <button  class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
-                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-
-                        <div class="text-center">
-                            <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Blue -Xl min-w-[150px] mx-auto">
-                                Kompletní letecký park
-                                {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
-                            </a>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="bg-[#f9f9fa] py-10 md:py-20">
+        <section class="bg-[#fff] py-10 md:py-20">
             <div class="Container">
                 <div class="Row">
                     <div class="Col w-full">
                         
                         <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Letiště</div>
-                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">Odkud létáme</h2>
+                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">Odkud poletíte?</h2>
                         
                         <div class="grid md:grid-cols-5 gap-10 relative">
 
@@ -506,6 +301,209 @@
         </section>
 
 
+
+
+        <section class="bg-_blue-light py-10 md:py-20 relative overflow-hidden">
+
+            {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[20vw] h-[20vw] opacity-[2.5%] right-0 bottom-0'|noescape}
+
+
+            <div class="Container">
+                <div class="Row">
+                    <div class="Col w-full">
+
+                        <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">Oblíbené</div>
+                        <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">
+                            Populární vyhlídkové 
+                            <span class="relative Love">
+                                lety
+                                {='assets/gfx/svg/love.svg'|svg:'Love w-14 h-14 absolute right-[-30px] top-[-60px]'|noescape}
+                            </span>
+                            
+                        </h2>
+                        
+
+                        <div 
+                            x-data="{ swiper: null }" 
+                            x-init="swiper = new Swiper($refs.container, {
+                                loop: false,
+                                slidesPerView: 1,
+                                spaceBetween: 0,
+                                speed: 700,
+                                navigation: {
+                                nextEl: '#a-next',
+                                prevEl: '#a-prev',
+                                },
+                            
+                                breakpoints: {
+                                    640: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 16,
+                                    },
+                                    768: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 16,
+                                    },
+                                    1024: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 16,
+                                    },
+                                },
+                                })"
+                            class="relative mb-8 lg:mb-16 /*grid grid-cols-4 gap-4*/"
+                        >
+
+                            <div class="swiper-container" x-ref="container">
+                                <div class="swiper-wrapper | py-2" >
+
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/zenair-ch-601.jpg" alt="" />
+                                                <h3 class="text-h4 text-center">Cesna 126</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Plzeň
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        20 minut
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        3 osoby
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                               4 900 Kč
+                                            </div>
+
+
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/ul-argo.jpg" alt="" />
+                                                <h3 class="text-h4 text-center">Robinson R23</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Jaroměř
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        30 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                2 500 Kč
+                                            </div>
+                                            
+                                        </a>
+                                    </div>
+
+
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/cessna-152.jpg" alt="" />
+                                                <h3 class="text-h4 text-center">Cesna 96</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Kolín
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        20 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                3 000 Kč
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/eurostar-ev-97.jpg" alt="" />
+                                                <h3 class="text-h4 text-center">Rogalo A526</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Ostrava
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        45 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                4 500 Kč
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                        <a href="#" class="block flex flex-col h-full">
+                                            <div class="space-y-5 flex-grow">
+                                                <img class="" src="https://www.pilotak.cz/images/resource/letadla/robin-dr-400.jpg" alt="" />
+                                                <h3 class="text-h4 text-center">Cesna 926</h3>
+                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        Slaný
+                                                    </div>
+                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                        30 minut
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-2xl font-bold mb-0 text-_blue-dark mt-4">
+                                                3 500 Kč
+                                            </div>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div id="a-prev" class="absolute inset-y-0 left-0 z-[3]  flex items-center">
+                                <button  class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+
+                            <div id="a-next" class="absolute inset-y-0 right-0 z-[3] flex items-center">
+                                <button  class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        {* <div class="text-center">
+                            <a href="{plink Ad:default, navId => 740, adType => offers}" class="Btn -Blue -Xl min-w-[150px] mx-auto">
+                                Kompletní letecký park
+                                {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            </a>
+                        </div> *}
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
         <div class="bg-_blue-dark py-10 md:py-20">

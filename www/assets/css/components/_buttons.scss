@@ -58,6 +58,10 @@
 
     &.-Purple {
       @apply bg-_purple text-white inline-flex;
+
+      &:hover {
+        @apply bg-pink-700;
+      }
     }
 
     &.-BlackOutlined {
