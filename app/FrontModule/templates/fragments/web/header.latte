@@ -4,12 +4,13 @@
     :class="{ '-MobileNavOpened' : opened }"
     >
 
-    <div class="h-24 lg:h-40"></div>
+    <div class="h-24 lg:h-28"></div>
 
-    <header n:class="'Header bg-_blue fixed left-0 right-0 top-0 h-24 lg:h-40 z-[200]'">
+    <header n:class="'Header bg-_blue fixed left-0 right-0 top-0 h-24 lg:h-28 z-[200]'">
         <div class="Container">
             <div class="Row">
-                <div class="Col flex w-full space-x-5 py-2 lg:py-4  text-white items-center justify-end">
+              
+                <div class="Col flex w-full space-x-5 py-2 text-white items-center justify-end">
                     {* <div class="inline-flex flex-wrap items-center gap-2 md:gap-8">
                         <span class="inline-flex gap-2 items-center text-sm">
                             {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
@@ -21,13 +22,16 @@
                         </span>
                     </div> *}
 
-                    <div class="hidden lg:block">
-                        <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow -Xs">
-                            Letecký bazar
-                            {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
-                        </a>
-                    </div>
+                    {if false}
+                        <div class="hidden lg:block">
+                            <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow -Xs">
+                                Letecký bazar
+                                {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            </a>
+                        </div>
+                    {/if}
                 </div>
+             
 
                 <div class="Col w-full sticky z-50 top-1">
                     <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 bg-white rounded-md shadow-lg">
@@ -61,8 +65,8 @@
                                         {='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
                                     </a>
                                 </li>
-                                <li class="!mt-12 lg:hidden">
-                                    <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow w-[200px]">
+                                <li class="!mt-8 lg:!mt-0">
+                                    <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow">
                                         Letecký bazar
                                         {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
                                     </a>

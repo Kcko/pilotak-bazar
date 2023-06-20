@@ -17,44 +17,47 @@
             </div>
 
 
-            <div class="Container mb-10">
+            <div class="Container mb-14">
                 <div class="Row">
-                    <div class="Col w-full grid gap-8 md:grid-cols-2 relative">
+                    <div class="Col w-full  relative">
 
                         {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-50px] right-0 lg:right-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
                         {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-80px] right-[10px] lg:right-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
 
-                        <div class="order-last md:order-first">
-                            <iframe class="w-full aspect-video md:aspect-square" src="https://frame.mapy.cz/s/cepenuduba" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                        <div class="space-y-5 relative order-first md:order-last">
 
-                            <h1 class="text-h1">Jihlava</h1>
-
-                            <h2 class="text-h3 mb-3">O letišti:</h2>
-                            <p>
-                                Letiště Jihlava, známé též jako Jihlava – Henčov, je veřejné vnitrostátní letiště ležící na Moravě, 4 km severovýchodně od intravilánu Jihlavy při hranici s Čechami, poblíž místní části Henčov.
-                                Letiště leží v nadmořské výšce 555 m, současná vzletová dráha: 10/28. Součástí letiště je i prostor pro provoz leteckých modelářů.
-                            </p>
-
-                            <h2 class="text-h3 mb-3">Jak se tam dostanu?</h2>
-                            <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit adipisci quas voluptatibus placeat dolorem omnis veniam natus iste dolores quisquam atque eos numquam quod dolore quo incidunt veritatis temporibus, animi sed corporis deleniti ratione vitae! Vitae vero suscipit ipsam?</p>
-                       
-                            <h2 class="text-h3 mb-3">Základní informace</h2>
-                            <div class="RichText">
-                                <ul>
-                                    <li><b class="mr-1">Typ letiště:</b>	veřejné vnitrostátní civilní</li>
-                                    <li><b class="mr-1">Provozovatel:</b>	Aeroklub Jihlava</li>
-                                    <li><b class="mr-1">Nejbližší město:</b>	Jihlava (4 km)</li>
-                                    <li><b class="mr-1">Kód letiště ICAO:</b>	LKJI</li>
-                                    <li><b class="mr-1">Kód letiště IATA:</b>	-</li>
-                                    <li><b class="mr-1">Souřadnice:</b>	49°25′10″ s. š., 15°38′7″ v. d.</li>
-                                </ul>
+                        <div class="grid md:gap-8 md:grid-cols-2 bg-white shadow-86 rounded-md p-5">
+                            <div class="order-last md:order-first">
+                                <iframe class="w-full aspect-video md:aspect-square" src="https://frame.mapy.cz/s/cepenuduba" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
+                            <div class="space-y-5 relative order-first md:order-last">
+
+                                <h1 class="text-h1 text-_blue">Jihlava</h1>
+
+                                <h2 class="text-h3 mb-3">O letišti:</h2>
+                                <p>
+                                    Letiště Jihlava, známé též jako Jihlava – Henčov, je veřejné vnitrostátní letiště ležící na Moravě, 4 km severovýchodně od intravilánu Jihlavy při hranici s Čechami, poblíž místní části Henčov.
+                                    Letiště leží v nadmořské výšce 555 m, současná vzletová dráha: 10/28. Součástí letiště je i prostor pro provoz leteckých modelářů.
+                                </p>
+
+                                <h2 class="text-h3 mb-3">Jak se tam dostanu?</h2>
+                                <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit adipisci quas voluptatibus placeat dolorem omnis veniam natus iste dolores quisquam atque eos numquam quod dolore quo incidunt veritatis temporibus, animi sed corporis deleniti ratione vitae! Vitae vero suscipit ipsam?</p>
+                        
+                                <h2 class="text-h3 mb-3">Základní informace</h2>
+                                <div class="RichText">
+                                    <ul>
+                                        <li><b class="font-medium mr-1">Typ letiště:</b>	veřejné vnitrostátní civilní</li>
+                                        <li><b class="font-medium mr-1">Provozovatel:</b>	Aeroklub Jihlava</li>
+                                        <li><b class="font-medium mr-1">Nejbližší město:</b>	Jihlava (4 km)</li>
+                                        <li><b class="font-medium mr-1">Kód letiště ICAO:</b>	LKJI</li>
+                                        <li><b class="font-medium mr-1">Kód letiště IATA:</b>	-</li>
+                                        <li><b class="font-medium mr-1">Souřadnice:</b>	49°25′10″ s. š., 15°38′7″ v. d.</li>
+                                    </ul>
+                                </div>
 
 
-                       
+                        
+                            </div>
                         </div>
                     </div>
             
@@ -63,7 +66,7 @@
 
 
             {* Animace vypnuto --  *}
-            <div class="relative h-14">
+            {* <div class="relative h-14">
                 <span class="Airplane2 absolute top-[-30px] inline-flex items-center">
                     <div class="Transparent">
                         <span class="Transparent__name">Piloťák</span>
@@ -71,7 +74,7 @@
                     </div>
                     {='assets/gfx/svg/airplane-2.svg'|svg:'w-14 h-14 text-_yellow'|noescape}
                 </span>
-            </div>
+            </div> *}
 
 
             <div class="Container">
@@ -79,7 +82,7 @@
                     <div class="Col w-full">
                         <h2 class="text-h2 Lined-3 mb-14">Nabídka vyhlídkových letů</h2>
 
-                        <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="grid lg:grid-cols-2 gap-5 md:gap-8">
 
                             {* CARD *}
                             <div class="shadow-86 rounded-md p-5 bg-white | grid sm:grid-cols-2 gap-8 content-start">
@@ -105,7 +108,7 @@
 
                                 <div class="sm:col-span-2 /*bg-[#f9f9fa] sm:p-3 rounded-md*/">
                                     <h4 class="text-h5 text-left mb-4 text-_blue">Varianty</h4>
-                                    <div class="grid sm:grid-cols-4 gap-y-1 sm:gap-3 text-sm">
+                                    <div class="grid grid-cols-4 gap-1 sm:gap-3 text-sm">
                                         <div>15 minut</div>
                                         <div class="text-_blue">vyhlídkový let</div>
                                         <div>2900 Kč</div>
@@ -169,7 +172,7 @@
 
                                 <div class="sm:col-span-2 /*bg-[#f9f9fa] sm:p-3 rounded-md*/">
                                     <h4 class="text-h5 text-left mb-4 text-_blue">Varianty</h4>
-                                    <div class="grid sm:grid-cols-4 sm:gap-3 text-sm">
+                                    <div class="grid grid-cols-4 gap-1 sm:gap-3 text-sm">
 
 
                                         <div>30 minut</div>
@@ -220,7 +223,7 @@
 
                                 <div class="sm:col-span-2 /*bg-[#f9f9fa] sm:p-3 rounded-md*/">
                                     <h4 class="text-h5 text-left mb-4 text-_blue">Varianty</h4>
-                                    <div class="grid sm:grid-cols-4 sm:gap-3 text-sm">
+                                    <div class="grid grid-cols-4 gap-1 sm:gap-3 text-sm">
                                         <div>15 minut</div>
                                         <div class="text-_blue">vyhlídkový let</div>
                                         <div>2900 Kč</div>
@@ -294,7 +297,7 @@
 
                                 <div class="sm:col-span-2 /*bg-[#f9f9fa] sm:p-3 rounded-md*/">
                                     <h4 class="text-h5 text-left mb-4 text-_blue">Varianty</h4>
-                                    <div class="grid sm:grid-cols-4 sm:gap-3 text-sm">
+                                    <div class="grid grid-cols-4 gap-1 sm:gap-3 text-sm">
 
 
                                         <div>30 minut</div>
