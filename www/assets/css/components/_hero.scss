@@ -1,6 +1,17 @@
 .HeroWeb {
   @apply bg-_blue relative pt-8 pb-8;
 
+  &:after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1001%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c139 C 57.6%2c192 172.8%2c404 288%2c404 C 403.2%2c404 460.8%2c153 576%2c139 C 691.2%2c125 748.8%2c349.2 864%2c334 C 979.2%2c318.8 1036.8%2c50.6 1152%2c63 C 1267.2%2c75.4 1382.4%2c329.4 1440%2c396L1440 560L0 560z' fill='%23184a7e'%3e%3c/path%3e%3cpath d='M 0%2c427 C 96%2c359.4 288%2c89.6 480%2c89 C 672%2c88.4 768%2c433.8 960%2c424 C 1152%2c414.2 1344%2c116.8 1440%2c40L1440 560L0 560z' fill='%232264ab'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1001'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+
+    @apply inset-0 absolute;
+    content: '';
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 70%;
+    opacity: 0.55;
+  }
+
   @screen md {
     //min-height: 550px;
   }
