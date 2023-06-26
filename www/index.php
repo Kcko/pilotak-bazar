@@ -9,9 +9,15 @@ use Nette\Application\Application;
 define('INDEX_DIR', __DIR__);
 
 // AUTH
-// if (strpos($_SERVER['HTTP_HOST'], 'andweb.cz') !== false) {
-	//require 'auth.php';
-// }
+if (  
+		(strpos($_SERVER['HTTP_HOST'], 'pilotak-bazar.rjwebdesign.cz') !== false)  ||
+		(strpos($_SERVER['HTTP_HOST'], 'pilotak-web.rjwebdesign.cz') !== false)  ||
+		(strpos($_SERVER['HTTP_HOST'], 'web.pilotak.cz') !== false)  
+
+) {
+	require 'auth.php';
+}
+
 
 
 if (file_exists(__DIR__ . '/../.maintenance.php')) {

@@ -1,8 +1,8 @@
 <?php
 
 $LoginSuccessful = FALSE;
-$login = '2021';
-$password = '2021';
+$login = 'pilotak';
+$password = 'pil0tak';
 
 if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])){
  

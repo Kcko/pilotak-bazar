@@ -1,0 +1,36 @@
+<div class="grid md:grid-cols-5 gap-10 relative">
+
+        {* bird *}
+        {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] right-0 lg:right-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
+        {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] right-[10px] lg:right-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
+
+
+        <div class="hidden md:block md:col-span-3 ">
+
+            <span class="relative">
+                <img src="/assets/gfx/svg/cz.svg" alt="" />
+                
+                {foreach $list as $airport}
+                    <a href="{plink Airport:detail $airport->id}" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 30%; left: 24%;">
+                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                        <div class="text-sm font-medium text-white">{$airport->name}</div>
+                    </a>
+                {/foreach}
+
+            </span>
+
+        </div>
+        <div class="md:col-span-2">
+            <ul class="flex flex-wrap sm:grid sm:grid-cols-2 auto gap-2">
+                {foreach $list as $airport}
+                    <li>
+                        <a href="{plink Airport:detail $airport->id}" class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light">
+                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                            {$airport->name}
+                        </a>
+                    </li>
+                {/foreach}
+            </ul>
+        </div>
+
+    </div>

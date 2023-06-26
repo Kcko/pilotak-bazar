@@ -11,25 +11,7 @@
             <div class="Row">
               
                 <div class="Col flex w-full space-x-5 py-2 text-white items-center justify-end">
-                    {* <div class="inline-flex flex-wrap items-center gap-2 md:gap-8">
-                        <span class="inline-flex gap-2 items-center text-sm">
-                            {='assets/gfx/svg/email.svg'|svg:'w-5 h-5'|noescape}
-                            pilotak@pilotak.cz
-                        </span>
-                        <span class="inline-flex gap-2 items-center text-sm">
-                            {='assets/gfx/svg/phone.svg'|svg:'w-5 h-5'|noescape}
-                            608 118 811
-                        </span>
-                    </div> *}
-
-                    {if false}
-                        <div class="hidden lg:block">
-                            <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow -Xs">
-                                Letecký bazar
-                                {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
-                            </a>
-                        </div>
-                    {/if}
+                    {* Placeholder *}
                 </div>
              
 
@@ -37,42 +19,8 @@
                     <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 pl-2.5 bg-white rounded-md shadow-lg">
                         <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-12 md:h-16" alt="" /></a>
                         
-                        <nav 
-                            x-transition 
-                            x-trap.noscroll.inert="opened"
-                            class="text-_black hidden lg:block flex-shrink-0 flex-grow"
-                            :class="{ 'MobileNavOpened' : opened }"
-                            >
+                        {control menu, navigation_group => 1, template => 'main'}
 
-                            <div class="flex justify-end lg:hidden">
-                                <button @click="opened = false" class="p-3">{='assets/gfx/svg/close.svg'|svg:'w-8 h-8'|noescape}</button>
-                            </div>
-
-                            <ul class="block space-y-4 lg:space-y-0 px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
-                                <li class="lg:ml-auto relative">
-                                    <a href="" class="Btn px-0 font-medium text-lg relative lg:static">Vyhlídkové lety</a>
-                                    <span class="bg-_yellow w-8 h-1  
-                                        absolute 
-                                        -bottom-0.5 
-                                        left-0
-                                        lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
-                                </li>
-                                <li><a href="" class="Btn px-0 font-medium text-lg">Odkud létáme</a></li>
-                                <li><a href="" class="Btn px-0 font-medium text-lg">Kontakt</a></li>
-                                <li class="ml-auto !mt-8 lg:!mt-0">
-                                    <a href="" class="Btn -Blue  font-medium w-[200px]">
-                                        Objednat
-                                        {='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
-                                    </a>
-                                </li>
-                                <li class="!mt-8 lg:!mt-0">
-                                    <a href="https://bazar.pilotak.cz" target="_blank" class="Btn -Yellow">
-                                        Letecký bazar
-                                        {='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
 
                         <button @click="opened = !opened" class="lg:hidden ml-auto">{='assets/gfx/svg/hamburger.svg'|svg:'w-8 h-8'|noescape}</button>
                     </div>
@@ -95,42 +43,8 @@
             </span>
         </div> *}
 
-        {* <img src="/assets/gfx/bg-blue.png" alt="" class="absolute h-full w-full object-fit z-0 block" /> *}
+        {control hero}
 
-{* 
-        <svg class="absolute h-full w-full object-fit z-0 block" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
-            <g mask="url(&quot;#SvgjsMask1030&quot;)" fill="none">
-                <path d="M1536 560L0 560 L0 478.03Q28.51 434.54, 72 463.06Q100.71 419.77, 144 448.49Q218.7 403.19, 264 477.9Q292.13 434.02, 336 462.15Q365.39 419.54, 408 448.94Q458.51 427.45, 480 477.96Q509.09 435.05, 552 464.15Q605.07 397.22, 672 450.29Q724.66 430.96, 744 483.62Q773.83 441.45, 816 471.28Q868.38 403.66, 936 456.05Q984.98 433.03, 1008 482.01Q1037.76 439.76, 1080 469.52Q1105.32 422.83, 1152 448.15Q1207.36 431.51, 1224 486.87Q1278.87 421.74, 1344 476.61Q1366.55 427.16, 1416 449.71Q1494.67 408.38, 1536 487.06z" fill="#182f5d"></path>
-                <path d="M1488 560L0 560 L0 504.72Q46.68 431.4, 120 478.09Q186.73 424.82, 240 491.55Q306.63 438.19, 360 504.82Q408.21 433.03, 480 481.25Q545.94 427.19, 600 493.14Q646.91 468.06, 672 514.97Q716.03 439, 792 483.04Q835.13 454.18, 864 497.31Q931.31 444.63, 984 511.94Q1027.99 435.94, 1104 479.93Q1172.61 428.53, 1224 497.14Q1267.89 469.03, 1296 512.92Q1340.24 437.16, 1416 481.41Q1459.68 453.1, 1488 496.78z" fill="#25467d"></path>
-                <path d="M1536 560L0 560 L0 538.36Q22.83 489.19, 72 512.02Q115.6 483.62, 144 527.21Q186.48 497.69, 216 540.17Q264.17 468.34, 336 516.51Q402.05 462.56, 456 528.6Q480.75 481.35, 528 506.1Q569.48 475.58, 600 517.06Q645.62 490.68, 672 536.3Q716.68 460.98, 792 505.66Q834.13 475.79, 864 517.93Q931.2 465.13, 984 532.33Q1031.19 459.52, 1104 506.71Q1169.37 452.08, 1224 517.45Q1265.58 487.03, 1296 528.61Q1363.29 475.9, 1416 543.2Q1460.27 467.47, 1536 511.74z" fill="#356cb1"></path>
-                <path d="M1464 560L0 560 L0 550.41Q64.51 494.92, 120 559.44Q143.05 510.49, 192 533.54Q258.16 479.7, 312 545.86Q358.5 520.37, 384 566.87Q427.77 490.64, 504 534.42Q547.52 505.94, 576 549.47Q642.07 495.54, 696 561.6Q718.68 512.28, 768 534.96Q811.9 506.86, 840 550.76Q881.87 520.63, 912 562.5Q957.63 488.13, 1032 533.77Q1100.67 482.44, 1152 551.12Q1220.18 499.31, 1272 567.49Q1315.83 491.32, 1392 535.14Q1435.02 506.16, 1464 549.18z" fill="white"></path>
-            </g>
-            <defs>
-                <mask id="SvgjsMask1030">
-                    <rect width="1440" height="560" fill="#ffffff"></rect>
-                </mask>
-            </defs>
-        </svg> *}
-
-
-
-        <div class="Container relative z-[3]">
-            <div class="Row items-center">
-                <div class="Col md:w-1/2">
-                    <h1 class="text-h2  leading-relaxed  text-white">
-                        <span class="text-h2 md:text-h1 text-_yellow">Piloťák</span> - centrum letecké zábavy, sportovního a rekreačního létání
-                    </h1>
-                </div>
-                
-                <div class="Col  md:block md:w-1/2">
-
-                    <img src="/assets/gfx/web-cover.png" alt="" />
-
-                    {* <iframe width="560" height="315" class="rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> *}
-                    {* <img src="/assets/gfx/svg/footer-plane.svg" class="max-h-[350px]" alt="" /> *}
-                </div>
-            </div>
-        </div>
 
     {/if}
 

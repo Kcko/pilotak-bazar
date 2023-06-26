@@ -183,6 +183,7 @@ services:
 	- App\FrontModule\Model\AdSearch
 	- App\FrontModule\Model\AdvertDetail
 	- App\FrontModule\Model\PopoUser
+	- App\FrontModule\Model\Airport
 
 extensions:
 	front: App\FrontModule\DI\FrontExtension

@@ -1,36 +1,66 @@
-{var $icons = [
-	2 => 'uvod',
-	3 => 'urad',
-	4 => 'obec',
-	29 => 'telefon',
-	661 => 'chat',
-]}
+<nav 
+	x-transition 
+	x-trap.noscroll.inert="opened"
+	class="text-_black hidden lg:block flex-shrink-0 flex-grow"
+	:class="{ 'MobileNavOpened' : opened }"
+	role="navigation"
+	>
 
-<nav class="MainNavigation" role="navigation">
-	{block #nav}
-		<ul>
-			{foreach $model->getChildren($parent) as $child}
-				{var $hasChildren = $model->hasChildren($child['id'])}
-				<li id="nav-{$child->id}" n:class="in_array($child['id'], $selectedItems) ? '-active'">
-					<a href="{$child['url']}">
-						{if $depth == 1}
-							{='assets/gfx/svg/'.$icons[$child->id].'.svg'|svg:'m-auto w-8 h-8 mb-1 hidden lg:block'|noescape}
-						{/if}
-						{$child->title} 
+	<div class="flex justify-end lg:hidden">
+		<button @click="opened = false" class="p-3">{='assets/gfx/svg/close.svg'|svg:'w-8 h-8'|noescape}</button>
+	</div>
 
-						{if $hasChildren}
-							<span class="MainNavigation__Arrow">{='assets/gfx/svg/chevron-down.svg'|svg:''|noescape}</span>
-						{/if}
-					</a>
-					{if $hasChildren}
-					
-						{include this, 
-							model => $model, 
-							parent => $child['id'], 
-							depth => $depth + 1}
-					{/if}
-				</li>
-			{/foreach}
-		</ul>
-	{/block}
+	<ul class="block space-y-4 lg:space-y-0 px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
+		{foreach $model->getChildren($parent) as $child}
+			<li n:if="$child->alias == 'vyhlidkoveLety'" class="lg:ml-auto relative">
+				<a href="{$child->getUrl()}" class="Btn px-0 font-medium text-lg relative lg:static">{$child->title}</a>
+				{if in_array($child->id, $selectedItems)}
+					<span class="bg-_yellow w-8 h-1  
+						absolute 
+						-bottom-0.5 
+						left-0
+						lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
+				{/if}
+			</li>
+
+			<li n:if="in_array($child->alias, ['odkudLetame'])" class="relative">
+				<a href="{$child->getUrl()}" class="Btn px-0 font-medium text-lg">{$child->title}</a>
+				{if in_array($child->id, $selectedItems) || $presenter->getPresenter()->getName() == 'Front:Airport'}
+					<span class="bg-_yellow w-8 h-1  
+						absolute 
+						-bottom-0.5 
+						left-0
+						lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
+				{/if}
+			</li>
+
+			<li n:if="in_array($child->alias, ['kontakt'])" class="relative">
+				<a href="{$child->getUrl()}" class="Btn px-0 font-medium text-lg">{$child->title}</a>
+				{if in_array($child->id, $selectedItems)}
+					<span class="bg-_yellow w-8 h-1  
+						absolute 
+						-bottom-0.5 
+						left-0
+						lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
+				{/if}
+			</li>
+			
+			<li 
+				n:if="$child->alias == 'objednat'" 
+				class="ml-auto !mt-8 lg:!mt-0">
+				<a href="{$child->getUrl()}" class="Btn -Blue  font-medium w-[200px]">
+					{$child->title}
+					{='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
+				</a>
+			</li>
+			<li 
+				n:if="$child->alias == 'leteckyBazar'" 
+				class="!mt-8 lg:!mt-0">
+				<a href="{$child->getUrl()}" target="_blank" class="Btn -Yellow">
+					{$child->title}
+					{='assets/gfx/svg/external.svg'|svg:'w-5 h-5 ml-2'|noescape}
+				</a>
+			</li>
+		{/foreach}
+	</ul>
 </nav>
