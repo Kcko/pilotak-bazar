@@ -271,4 +271,22 @@ class PopovickyFilters
 
 		return $s;
 	}
+
+
+	public static function ytCode($s)
+	{
+		//return 'xxx';
+		try {
+	
+			preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)|(shorts)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $s, $match);
+			if ($match[1] == 'shorts') {
+				return $match[2];
+			}
+			
+			return $match[2];
+
+		} catch (\Exception $e) {
+			return null;
+		}
+	}
 }

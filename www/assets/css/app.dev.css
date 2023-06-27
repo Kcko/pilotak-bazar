@@ -1714,10 +1714,6 @@ input[readonly]:focus {
   top: 100%;
 }
 
-.z-0 {
-  z-index: 0;
-}
-
 .z-10 {
   z-index: 10;
 }
@@ -1815,6 +1811,11 @@ input[readonly]:focus {
 .my-0 {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.my-20 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .my-4 {
@@ -2176,10 +2177,6 @@ input[readonly]:focus {
 
 .w-4 {
   width: 1rem;
-}
-
-.w-4\/12 {
-  width: 33.333333%;
 }
 
 .w-5 {
@@ -2811,10 +2808,6 @@ input[readonly]:focus {
   padding: 1.25rem;
 }
 
-.p-8 {
-  padding: 2rem;
-}
-
 .p-px {
   padding: 1px;
 }
@@ -2974,11 +2967,6 @@ input[readonly]:focus {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-\[0\.35em\] {

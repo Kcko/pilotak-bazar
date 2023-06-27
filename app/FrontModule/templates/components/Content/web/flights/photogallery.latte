@@ -1,0 +1,41 @@
+{if $data->heading}
+
+    {var $_photos = []}
+
+    {foreach $photos as $photo}
+        {var $_photos[] = $photo->getImageUrl('hero')}
+    {/foreach}
+
+    {var $photosEncoded = json_encode($_photos)}
+
+
+
+    <hr />
+
+    <div>
+        <div class="space-y-5">
+            <h2 class="text-h2">{$data->heading}</h2>
+            <div 
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px"
+                x-data="{                    
+                    init() {
+                        this.lightbox = new FsLightbox()
+                        this.lightbox.props.sources = this.images
+                    },
+                    lightbox: '',
+                    images: {$photosEncoded},
+                    openPhoto(i) {
+                        this.lightbox.open(i)
+                    }
+                }"
+                >
+                {foreach $photos as $image}
+                    <div @click="openPhoto({$iterator->counter - 1})" class="pointer">
+                        {$image->getImageElement('hero', ['class' => 'block w-full h-full object-cover'])}
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+
+{/if}

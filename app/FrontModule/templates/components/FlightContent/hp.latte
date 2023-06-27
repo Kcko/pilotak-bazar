@@ -1,0 +1,22 @@
+{foreach $list as $f}
+
+    <div class="rounded-md p-5 shadow-86">
+        <div class="flex justify-center mb-6 relative">
+                <div class="w-20 h-20 rounded-full bg-_yellow mb-8 inline-flex items-center justify-center absolute left-0 right-0 mx-auto -top-12 ring-8 ring-_yellow/50">
+                {if $f->svg__image_id}
+                    {='.'.$f->svg__image->getImageUrl('original')|svg:'w-10 h-10'|noescape}
+                {/if}
+            </div> 
+
+            {if $f->image_id}
+                {$f->image->getImageElement('hero', ['class' => 'h-60 object-fill w-full block'])}
+            {/if}
+        </div>
+        <h3 class="text-h3 mb-4 text-center">{$f->name}</h3>
+        <div class="text-base text-center text-gray-600 space-y-4 px-4 pb-2">
+            <p>{$f->short_content}</p>
+            
+        </div>
+    </div>
+
+{/foreach}

@@ -1,0 +1,30 @@
+
+<section class="bg-[#f9f9fa] py-10 md:py-20">
+    <div class="Container">
+        <div class="Row">
+            <div class="Col w-full">
+
+                <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">{$data->subheading}</div>
+                <h2 class="text-h2 text-left mb-32 Lined-3 text-center">{$data->heading}</h2>
+
+                <div class="grid md:grid-cols-3 gap-28 md:gap-8 mb-8 lg:mb-16 relative rotate rotate">
+
+                    {* bird *}
+                    {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] left-[10px] lg:left-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
+                    {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] lg:left-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
+
+                    {control flightContent, template => 'hp'}
+
+                </div>
+
+                <div class="text-center">
+                    <a href="{$data->button_url}" class="Btn -Blue -Xl min-w-[150px] mx-auto">
+                        {$data->button_text}
+                        {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

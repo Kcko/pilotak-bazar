@@ -1,0 +1,28 @@
+{foreach $list as $f}
+
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12" id="flight-{$f->name|webalize}">
+        <div>
+            {if $f->image_id}
+                {$f->image->getImageElement('hero', ['class' => 'w-full block rounded-md border-8 shadow-86 border-white'])}
+            {/if}
+        </div>
+        <div class="space-y-5">
+            <h2 class="text-h2">{$f->name}</h2>
+            {$f->full_content|noescape}
+
+            <div class="!mt-10">
+                <a href="{$f->button_url}" class="Btn -Blue -Xl min-w-[150px] mx-auto">
+                    {$f->button_text}
+                    {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                </a>
+            </div>
+        
+        </div>
+    </div>
+
+    {sep}
+        <hr />
+    {/sep}
+  
+
+{/foreach}

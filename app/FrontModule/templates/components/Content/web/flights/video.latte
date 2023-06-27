@@ -1,0 +1,11 @@
+{if $data->heading}
+    <hr />
+
+    <div>
+        <div class="space-y-5">
+            <h2 class="text-h2">{$data->heading}</h2>
+
+            <iframe n:if="$data->video_url" class="aspect-video rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/{$data->video_url|ytCode}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+{/if}
