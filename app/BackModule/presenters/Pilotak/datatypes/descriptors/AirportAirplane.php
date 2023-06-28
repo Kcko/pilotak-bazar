@@ -12,7 +12,14 @@ abstract class AirportAirplane extends Table
 	protected function init()
 	{
 		parent::init();
-		$this['tags']->setItems(['Value A' => 'Acko', 'Value B' => 'Bcko']);
+		$this['tags']->setItems([
+				'Action' => 'Action', 
+				'Popular' => 'Popular',
+				'New' => 'New',
+				'Discount' => 'Discount',
+				'Last Chance' => 'Last Chance',
+			
+			]);
 		
 	}
 

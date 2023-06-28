@@ -37,6 +37,7 @@ class AirportPresenter extends FastAdminTablePresenter
 			['name*12'],
 			['navigation_id*12'],
 			['code*12'],
+			['image_id*12'],
 			['map_iframe*12'],
 			['basic_info*12'],
 			['map_x*6', 'map_y*6'],

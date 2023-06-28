@@ -7,7 +7,7 @@ Andweb;
 
 use Andweb\Database\Context;
 
-class Airport
+class AirportRoute
 {
 
 	/**
@@ -22,17 +22,11 @@ class Airport
 	}
 
 
-	public function getList()
+	public function getList($airportId)
 	{
-		return $this->connection->table('airport')
-			->where('active', 1)
-			->order('name');
-	}
-
-
-	public function getById($id)
-	{
-		return $this->connection->table('airport')->where('id', $id)->fetch();
+		return $this->connection->table('airport_route')
+			->where('airport_id', $airportId)
+			->order('rank');
 	}
 
 

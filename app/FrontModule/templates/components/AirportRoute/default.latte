@@ -1,0 +1,18 @@
+<div class="flex flex-wrap justify-start gap-5 mb-10 text-sm">
+    {foreach $list as $row}
+        <div class="bg-_blue-light rounded-lg  px-3 py-1 border border-black/0.5">⭐️ {$row->heading}</div>
+    {/foreach}
+
+</div>
+
+<div class="grid lg:grid-cols-3 mb-14 gap-5 md:gap-8">
+    {foreach $list as $row}
+        {continueIf !$row->content}
+        <div class="p-5 bg-_blue-light rounded-md p-5 border border-black/0.5">
+            <h3 class="text-h4">{$row->heading}</h3>
+            <div class="space-y-4 text-sm RichText">
+                {$row->content|noescape}
+            </div>
+        </div> 
+    {/foreach}
+</div>

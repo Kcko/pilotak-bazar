@@ -184,6 +184,7 @@ services:
 	- App\FrontModule\Model\AdvertDetail
 	- App\FrontModule\Model\PopoUser
 	- App\FrontModule\Model\Airport
+	- App\FrontModule\Model\AirportRoute
 	- App\FrontModule\Model\FlightContent
 
 extensions:
