@@ -34,6 +34,10 @@ class AirportPresenter extends FrontPresenter
 		}
 
 
+		$this['airportRoute']->setAirport($airport->id);
+		$this['flightOffers']->setAirport($airport->id);
+		
+
 		$image = null;
 		if ($airport->image_id)
 			$image = $airport->image->getImageUrl('//facebook');

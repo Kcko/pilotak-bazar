@@ -1,0 +1,80 @@
+<div class="grid lg:grid-cols-2 gap-5 md:gap-8">
+
+        {* CARD *}
+
+        {foreach $list as $airPlaneId => $rows}
+
+            {var $aa = $airplanes[$airPlaneId]}
+            {dump $aa}
+
+            {* CARD *}
+            <div class="shadow-86 rounded-md p-5 bg-white | grid sm:grid-cols-2 gap-8 content-start">
+                <div>
+                   
+                    {if $aa->image_id}
+                        {$aa->image->getImageElement('hero', ['class' => 'block w-full'])}
+                    {/if}
+                </div>  
+                <div class="space-y-3">
+                    <h3 class="text-h4 text-left mb-0">{$aa->name}</h3>
+                    <div class="text-base RichText">
+                        <p>
+                            {$aa->short_content}
+                        </p>
+                    </div>
+                    <div class="text-sm flex flex-wrap gap-2 justify-start">
+                        <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                            {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                            {$aa->person_no}
+                            {if $aa->person_no == 1} osoba
+                            {elseif $aa->person_no < 5} osoby
+                            {else} osob
+                            {/if}
+                        </div>
+                        {* <div class="flex items-center py-1 px-2 gap-1 bg-red-200 rounded-full">
+                            {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 text-red-500'|noescape}
+                            Oblíbené
+                        </div> *}
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2 /*bg-[#f9f9fa] sm:p-3 rounded-md*/">
+                    <h4 class="text-h4 text-left mb-4 text-_blue border-b border-_blue/30 pb-3">{_}Varianty{/_}</h4>
+                    <div class="grid grid-cols-4 gap-1 sm:gap-3 text-sm">
+
+                        {foreach $rows as $row}
+                            {include variant, row => $row, copilot => false}
+                            {if $row->price_copilot}
+                                {include variant, row => $row, copilot => true}
+                            {/if}
+                        {/foreach}
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        {/foreach}
+    
+    </div>
+
+
+
+    {define variant}
+        <div>{$row->duration} minut</div>
+        {if !$copilot}
+            <div class="text-_blue">vyhlídkový let</div>
+            <div>{$row->price|number:0, ' ', ' '} Kč</div>
+        {else}
+            <div class="text-_purple">pilotovat</div>
+            <div>{$row->price_copilot|number:0, ' ', ' '} Kč</div>
+        {/if}
+        
+
+        {if !$copilot}
+            <a href="?_id={$row->id}" class="Btn -Xs -Blue mb-5 sm:mb-0">Objednat</a>
+        {else}
+            <a href="?_id={$row->id}&copilot=1" class="Btn -Xs -Purple mb-5 sm:mb-0">Objednat</a>
+        {/if}
+    {/define}

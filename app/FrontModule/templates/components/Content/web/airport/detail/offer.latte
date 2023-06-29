@@ -1,0 +1,13 @@
+<div class="Container mb-14">
+        <div class="Row">
+            <div class="Col w-full">
+                <h2 class="text-h2 Lined-3 mb-14 text-center">{$data->heading}</h2>
+                <div class="max-w-4xl mx-auto text-xl font-normal text-center mb-16">
+                    {$data->content|noescape}
+                </div>
+
+                {control $presenter['flightOffers']}
+          
+            </div>
+        </div>
+    </div>

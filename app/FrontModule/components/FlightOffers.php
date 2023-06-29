@@ -11,7 +11,7 @@ use App\FrontModule;
 use Nette\Application\UI;
 
 
-class AirportRoute extends FrontControl
+class FlightOffers extends FrontControl
 {
 	protected $config = [
 		'template' => 'default',
@@ -19,9 +19,9 @@ class AirportRoute extends FrontControl
 	];
 
 	/**
-	 * @var FrontModule\Model\AirportRoute
+	 * @var FrontModule\Model\FlightOffers
 	 */
-	protected $airportRoute;
+	protected $flightOffers;
 
 	/**
 	 * @var Navigation
@@ -35,9 +35,9 @@ class AirportRoute extends FrontControl
 	protected $airportId;
 
 
-	public function __construct(FrontModule\Model\AirportRoute $airportRoute, Navigation $modelNavigation)
+	public function __construct(FrontModule\Model\FlightOffers $flightOffers, Navigation $modelNavigation)
 	{
-		$this->airportRoute = $airportRoute;
+		$this->flightOffers = $flightOffers;
 		$this->modelNavigation = $modelNavigation;
 		parent::__construct();
 	}
@@ -57,8 +57,10 @@ class AirportRoute extends FrontControl
 	public function renderDefault(array $config = [])
 	{
 		$config = $this->getCurrentConfig($config);
-
-		$this->template->list = $this->airportRoute->getList($this->airportId);
+		
+		$list = $this->flightOffers->getList($this->airportId);
+		$this->template->list = $list['list'];
+		$this->template->airplanes = $list['airplanes'];
 		
 		$this->render($config);
 	}

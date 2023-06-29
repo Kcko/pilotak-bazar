@@ -11,7 +11,7 @@ class AirplanePresenter extends FastAdminTablePresenter
 
 	public $moduleName = 'Letadla a vrtulníky';
 	protected $table = 'airplane';
-	protected $colsOrder = array('name', 'person_no', 'active');
+	protected $colsOrder = array('image_id', 'name', 'person_no', 'active');
 
 
 
@@ -21,6 +21,8 @@ class AirplanePresenter extends FastAdminTablePresenter
 
 		$this->addEditTab('Obecné*8a*12', [
 			['name*12'],
+			['image_id*12'],
+			['short_content*12'],
 			['person_no*12'],
 			['active*12'],
 		]);
