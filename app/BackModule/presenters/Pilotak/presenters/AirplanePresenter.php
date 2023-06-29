@@ -24,6 +24,7 @@ class AirplanePresenter extends FastAdminTablePresenter
 			['image_id*12'],
 			['short_content*12'],
 			['person_no*12'],
+			['tags*12'],
 			['active*12'],
 		]);
 

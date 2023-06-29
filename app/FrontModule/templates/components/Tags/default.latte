@@ -1,0 +1,21 @@
+{if count($tags)}
+
+    {* 'Action','Popular','New','Discount','Last Chance' *}
+    {var $TAGS = [
+        'Action'      => ['Akce', 'bg-red-200', 'text-red-500', 'action'],
+        'Popular'     => ['Populární', 'bg-lime-200', 'text-lime-500', 'icon-heart-empty'],
+        'New'         => ['Novinka', 'bg-blue-200', 'text-blue-500', 'new'],
+        'Discount'    => ['Sleva', 'bg-yellow-200', 'text-yellow-500', 'discount'],
+        'Last Chance' => ['Poslední šance', 'bg-green-200', 'text-green-500', 'time'],
+    ]}
+
+    {foreach $tags as $tag}
+
+        <div class="flex items-center py-1 px-2 gap-1 {$TAGS[$tag][1]} rounded-full">
+            {='assets/gfx/svg/'.$TAGS[$tag][3].'.svg'|svg:'w-4 h-4 {$TAGS[$tag][2]}'|noescape}
+            {$TAGS[$tag][0]}
+        </div> 
+
+    {/foreach}
+
+{/if}

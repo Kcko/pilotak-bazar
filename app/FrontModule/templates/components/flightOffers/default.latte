@@ -24,17 +24,20 @@
                     </div>
                     <div class="text-sm flex flex-wrap gap-2 justify-start">
                         <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                            {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                            {='assets/gfx/svg/user.svg'|svg:'w-4 h-4 text-_blue-dark'|noescape}
                             {$aa->person_no}
                             {if $aa->person_no == 1} osoba
                             {elseif $aa->person_no < 5} osoby
                             {else} osob
                             {/if}
                         </div>
-                        {* <div class="flex items-center py-1 px-2 gap-1 bg-red-200 rounded-full">
+                        {* 
+                        <div class="flex items-center py-1 px-2 gap-1 bg-red-200 rounded-full">
                             {='assets/gfx/svg/icon-heart-empty.svg'|svg:'w-5 h-5 text-red-500'|noescape}
                             Oblíbené
-                        </div> *}
+                        </div> 
+                        *}
+                        {control tags, 'tags' => $aa->tags}
                     </div>
                 </div>
 
