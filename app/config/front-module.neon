@@ -187,6 +187,7 @@ services:
 	- App\FrontModule\Model\AirportRoute
 	- App\FrontModule\Model\FlightOffers
 	- App\FrontModule\Model\FlightContent
+	- App\FrontModule\Model\FlightList
 
 extensions:
 	front: App\FrontModule\DI\FrontExtension

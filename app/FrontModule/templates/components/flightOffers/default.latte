@@ -5,7 +5,6 @@
         {foreach $list as $airPlaneId => $rows}
 
             {var $aa = $airplanes[$airPlaneId]}
-            {dump $aa}
 
             {* CARD *}
             <div class="shadow-86 rounded-md p-5 bg-white | grid sm:grid-cols-2 gap-8 content-start">
@@ -26,10 +25,7 @@
                         <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
                             {='assets/gfx/svg/user.svg'|svg:'w-4 h-4 text-_blue-dark'|noescape}
                             {$aa->person_no}
-                            {if $aa->person_no == 1} osoba
-                            {elseif $aa->person_no < 5} osoby
-                            {else} osob
-                            {/if}
+                            {$aa->formatPersonNumber()}
                         </div>
                         {* 
                         <div class="flex items-center py-1 px-2 gap-1 bg-red-200 rounded-full">

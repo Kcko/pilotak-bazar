@@ -6,22 +6,14 @@ Andweb\Datatypes\Descriptors\Tables;
 
 use Andweb\Database\Table\Datatypes\ITableExtension;
 
-abstract class Airplane extends Table
+abstract class FlightList extends Table
 {
 
 	protected function init()
 	{
 		parent::init();
-		
-		$this['tags']->setItems([
-				'Action' => 'Action', 
-				'Popular' => 'Popular',
-				'New' => 'New',
-				'Discount' => 'Discount',
-				'Last Chance' => 'Last Chance',
-			
-			]);
-		
+		$this->addHasMany(DescriptorFactory::create(Tables\FlightListAirportAirplane::class, 'flight_list_airport_airplane', 'Vyhlídkové lety'));
+
 	}
 
 }
