@@ -6,10 +6,15 @@ class Airplane extends Table
 {
     public function formatPersonNumber()
 	{
-		if ($this->person_no == 1) 
+		self::personFormatter($this->person_no);
+	}
+
+	public static function personFormatter($n)
+	{
+		if ($n == 1) 
 			return 'osoba';
 
-		if ($this->person_no < 5)
+		if ($n < 5)
 			return 'osoby';
 
 		return 'osob';

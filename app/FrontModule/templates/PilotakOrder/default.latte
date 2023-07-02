@@ -1,0 +1,260 @@
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../fragments/web/header.latte'}
+
+    <main class="BaseContainer__Main">
+
+        <section class="bg-[#f9f9fa] pb-10 md:pb-20 pt-10">
+
+            <div class="Container mb-10">
+                <div class="Row">
+                    <div class="Col w-full">
+                        {control breadcrumbs}
+                    </div>
+                </div>
+            </div>
+
+            {control orderHeroText}
+
+            <div class="mt-14 mx-auto max-w-3xl bg-white rounded p-5 border  border-gray-200">
+
+                <div n:if="$flashes">
+                    <div n:foreach="$flashes as $flash" class="Alert Alert--{$flash->type}">{$flash->message}</div>
+                </div>
+
+                
+                {if isset($validationError)}
+                    <div class="Alert Alert--Error">{_}{$validationError}{/_}</div>
+                {/if}
+
+                <form 
+                        x-data
+                        n:if="!isset($error)" 
+                        @submit="setTimeout(() => {
+                            if (window.Nette.formErrors.length === 0) {
+                                $refs.send.innerHTML = 'Odesilám...'
+                                $refs.send.disabled = true
+                            }
+                        }, 0)"
+                        n:name="orderForm" 
+                        class="space-y-10">
+                        <div class="space-y-10">
+
+                            <div class="errors" n:if="$form->hasErrors()">
+                                <div n:foreach="$form->errors as $error" class="Alert Alert--Error">{$error}</div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-h3 relative Lined-3 mb-8">Kontaktní údaje</h3>
+                                
+                                <div class="grid grid-cols-2 gap-5 mb-5">
+                                    <div>
+                                        <label n:name="fullname" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="fullname" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label n:name="email" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="email" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label n:name="phone" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="phone" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label n:name="street" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="street" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label n:name="city" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="city" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label n:name="zip" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="zip" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-pink-100 p-3">
+                                <h3 class="text-h3 relative Lined-3 mb-8">🎀 {_}Bude to pro někoho dárek?{/_}</h3>
+                                <div class="grid gap-5 mb-5">
+                                    <div>
+                                        <label n:name="gift_name" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <input n:name="gift_name" type="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                        </div>
+                                        <div class="text-gray-400 text-sm pt-1 flex justify-between">
+                                            <span>Nepovinné</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <h3 class="text-h3 relative Lined-3 mb-8">{_}Odkud a čím poletíte?{/_}</h3>
+                                
+                                <div class="grid grid-cols-2 gap-5 mb-5">
+                                    <div>
+                                        <label n:name="airport_id" class="block font-medium text-gray-700 text-base">Letiště:</label>
+                                        <div class="mt-1">
+                                            <select n:name="airport_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </select>
+                                        </div>
+                                    </div>
+                          
+                                    <div>
+                                        <label n:name="airplane_id" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <select n:name="airplane_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label n:name="airport_airplane_id" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <select n:name="airport_airplane_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label n:name="payment" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <select n:name="payment" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <h3 class="text-h3 relative Lined-3 mt-8 mb-8">{_}Než odešlete objednávku{/_}</h3>
+
+                                <div class="grid  gap-5 mb-5">
+
+                                    {* Content *}
+                                    <div x-data="{ chars: 0 }">
+                                        <label n:name="message" class="block font-medium text-gray-700 text-base" />
+                                        <div class="mt-1">
+                                            <textarea @input="chars = $el.value.length" maxlength="500" 
+                                            n:name="message"
+                                            rows="6" 
+                                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                            <div class="text-gray-400 text-sm pt-1 flex justify-between">
+                                                <span>Nepovinné, max. 500 znaků</span>
+                                                <span><span x-text="chars">0</span>/500</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+     
+
+                            <div>
+                                <label class="text-sm text-gray-400 flex items-center gap-x-3">
+                                    <input type="checkbox" n:name="terms" class="border-gray-300" />
+                                    {control orderFormGdpr}
+                                </label>
+
+
+                                <div class="flex justify-center mt-10">
+                                    <button 
+                                        x-ref="send"
+                                        n:name="send"  class="Btn -Blue" 
+                                    />
+                                </div>
+                            </div>
+
+
+                        </div>
+        
+
+  
+                            
+                    </form>
+
+            </div>
+
+        </section> 
+
+
+    </main>
+
+
+    <script>
+    
+            // najdeme na stránce všechny podřízené selectboxy
+        document.querySelectorAll('select[data-depends]').forEach((childSelect) => {
+            let parentSelect = childSelect.form[childSelect.dataset.depends]; // nadřízený <select>
+            let url = childSelect.dataset.url; // atribut data-url
+
+           
+            let items = JSON.parse(childSelect.dataset.items || {}); // atribut data-items
+
+            // když uživatel změní vybranou položku v nadřízeném selectu...
+            parentSelect.addEventListener('change', () => {
+
+                // pokud existuje atribut data-items...
+                if (items) {
+                    // nahrajeme rovnou do podřízeného selectboxu nové položky
+                    if (parentSelect.name === 'airport_airplane_id') {
+                        updateSelectbox(childSelect, parseInt(parentSelect.options[parentSelect.selectedIndex]?.value)  ? items : {});
+
+                    } else {
+                        updateSelectbox(childSelect, items[parentSelect.value]);
+
+                    }
+
+                    childSelect.dispatchEvent(new Event('change'))
+                }
+
+                // pokud existuje atribut data-url...
+                if (url) {
+                    // uděláme AJAXový požadavek na endpoint s vybranou položkou místo placeholderu
+                    fetch(url.replace(encodeURIComponent('#'), encodeURIComponent(parentSelect.value)))
+                        .then((response) => response.json())
+                        // a nahrajeme do podřízeného selectboxu nové položky
+                        .then((data) => updateSelectbox(childSelect, data));
+                }
+            });
+        });
+
+        // přepíše <options> v <select>
+        function updateSelectbox(select, items)
+        {
+            select.innerHTML = ''; // odstraníme vše
+            for (let id in items) { // vložíme nové
+                let el = document.createElement('option');
+                el.setAttribute('value', id);
+                el.innerText = items[id];
+                select.appendChild(el);
+            }
+        }
+    </script>
+
+
+
+    {include '../fragments/web/footer.latte'}
+    
+{/block}
