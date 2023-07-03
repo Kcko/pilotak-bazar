@@ -39,10 +39,20 @@ class PilotakOrderPresenter extends FrontPresenter
 	public $mail;
 
 	
-	public function actionDefault()
+	public function actionDefault(array $_params = [])
 	{
 		$this->template->mapFlights = $this->order->flightsMap();
 		$this->template->mapPayments = $this->order->paymentMap();
+
+		if (count($_params)) {
+			$this->template->preloadFlight = $this->order->aaById($_params['id']);
+			$this->template->preloadCopilot = $_params['copilot'];
+		
+			if (!$this->template->preloadFlight) {
+				$this->error('Tento let neexistuje');
+			}
+		}
+
 	}
 
 

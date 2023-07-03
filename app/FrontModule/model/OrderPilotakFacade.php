@@ -54,7 +54,7 @@ class OrderPilotakFacade
 
 		$airplanes = [];
 		foreach ($selection as $row) {
-			$airplanes[$row->airplaneId][$row->airportId . ':' . $row->airplaneId] = $row->airplaneName . ' / ' . $row->person_no . ' ' . \Andweb\Datatypes\Airplane::personFormatter($row->person_no);
+			$airplanes[$row->airportId][$row->airportId . ':' . $row->airplaneId] = $row->airplaneName . ' / ' . $row->person_no . ' ' . \Andweb\Datatypes\Airplane::personFormatter($row->person_no);
 		}
 
 		$items = [];

@@ -6,7 +6,7 @@ class Airplane extends Table
 {
     public function formatPersonNumber()
 	{
-		self::personFormatter($this->person_no);
+		return self::personFormatter($this->person_no);
 	}
 
 	public static function personFormatter($n)

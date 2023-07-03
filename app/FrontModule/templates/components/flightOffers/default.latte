@@ -72,8 +72,8 @@
         
 
         {if !$copilot}
-            <a href="?_id={$row->id}" class="Btn -Xs -Blue mb-5 sm:mb-0">Objednat</a>
+            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 0]}" class="Btn -Xs -Blue mb-5 sm:mb-0">Objednat</a>
         {else}
-            <a href="?_id={$row->id}&copilot=1" class="Btn -Xs -Purple mb-5 sm:mb-0">Objednat</a>
+            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 1]}" class="Btn -Xs -Purple mb-5 sm:mb-0">Objednat</a>
         {/if}
     {/define}

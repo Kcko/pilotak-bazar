@@ -215,7 +215,7 @@
         function calculatePrice()
         {
             
-            const aa =  document.querySelector('#frm-orderForm-airport_airplane_id')
+            const aa = document.querySelector('#frm-orderForm-airport_airplane_id')
             const payment =  document.querySelector('#frm-orderForm-payment')
 
             if (aa.value && payment.value) {
@@ -272,6 +272,32 @@
                 select.appendChild(el);
             }
         }
+
+
+        // preload
+        {ifset $preloadFlight}
+        {
+
+            const airport = document.querySelector('#frm-orderForm-airport_id')
+            const airplane = document.querySelector('#frm-orderForm-airplane_id')
+            const aa = document.querySelector('#frm-orderForm-airport_airplane_id')
+            
+            airport.value = {$preloadFlight->airport_id}
+            airport.dispatchEvent(new Event('change'))
+
+            setTimeout(() => {
+                airplane.value = {$preloadFlight->airport_id.':'.$preloadFlight->airplane_id}
+                airplane.dispatchEvent(new Event('change'))
+            }, 100)
+
+
+            setTimeout(() => {
+                aa.value = {$preloadFlight->id.':copilot'.($preloadCopilot ? '1':'0')}
+                aa.dispatchEvent(new Event('change'))
+            }, 100)
+         
+        }
+        {/ifset}
     </script>
 
 
