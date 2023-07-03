@@ -41,7 +41,8 @@ class PilotakOrderPresenter extends FrontPresenter
 	
 	public function actionDefault()
 	{
-
+		$this->template->mapFlights = $this->order->flightsMap();
+		$this->template->mapPayments = $this->order->paymentMap();
 	}
 
 
@@ -103,7 +104,7 @@ class PilotakOrderPresenter extends FrontPresenter
 			->addRule($form::NOT_EQUAL, 'Vyberte dobu letu !', 0);
 
 
-		$form->addSelect('payment', 'Typ platby:')
+		$payment = $form->addSelect('payment', 'Typ platby:')
 			->setRequired('Vyberte typ platby')
 			->setHtmlAttribute('data-depends', $aa->getHtmlName())
 			->setHtmlAttribute('data-items', $this->order->listPayment())
@@ -118,11 +119,23 @@ class PilotakOrderPresenter extends FrontPresenter
 		$form->addSubmit('send', 'Odeslat objednávku');
 
 
+		$form->onAnchor[] = function() use ($airport, $airplane) {
+			$airplane->setItems($airport->getValue() ? $this->order->listAirplane()[$airport->getValue()] : []);
+		};
+
+		$form->onAnchor[] = function() use ($airplane, $aa) {
+			$aa->setItems($airplane->getValue() ? $this->order->listFlights()[$airplane->getValue()] : []);
+		};
+
+		$form->onAnchor[] = function() use ($aa, $payment) {
+			$payment->setItems($aa->getValue() ? $this->order->listPayment() : []);
+		};
+		
+
 		$form->onValidate[] = [$this, 'validate'];
 		$form->onSuccess[] = [$this, 'save'];
 
 		return $form;
-		
 	}
 
 
@@ -140,7 +153,91 @@ class PilotakOrderPresenter extends FrontPresenter
 
 	public function save($form)
 	{
-		$values = $form->getValues(true);
+	
+		try {
+
+			$values = $form->getValues(true);
+
+			list($aaId, $aaCopilot) = explode(':', $values['airport_airplane_id']);
+			$isCopilot = $aaCopilot == 'copilot1';
+			$airport = $this->order->airportById($values['airport_id']);
+			$airplane = $this->order->airplaneById($values['airplane_id']);
+			$aa = $this->order->aaById($aaId);
+			$payment = $this->order->paymentById($values['payment']);
+			$paymentName = $this->order->paymentNameById($values['payment']);
+
+			$save = [
+				'fullname'            => $values['fullname'],
+				'email'               => $values['email'],
+				'phone'               => $values['phone'],
+				'street'              => $values['street'],
+				'city'                => $values['city'],
+				'zip'                 => $values['zip'],
+				'gift_name'           => $values['gift_name'],
+				'message'             => $values['message'],
+				'airport_id'          => $values['airport_id'],
+				'airplane_id'         => $values['airplane_id'],
+				'airport_airplane_id' => $aaId,
+				'copilot'             => $isCopilot ? 1 : 0,
+				'created'             => new \DateTime,
+				'ip'                  => $_SERVER['REMOTE_ADDR'],
+				'price'               => $isCopilot ? $aa['price_copilot'] : $aa['price'],
+				'price_payment'       => $payment,
+			];
+			$save['total_price'] = $save['price'] + $payment;
+
+			// ulozeni
+			$this->order->saveOrder($save);
+
+
+			// odeslani emailu
+			$params = [
+				'service'             => $aa . ' / '.$aa->duration.' minut ', // sluzba slozenina
+				'name'                => $save['fullname'], // fullname
+				'gift'                => $save['gift_name'] ,
+				'street'              => $save['street'],
+				'city'                => $save['city'],
+				'zip'                 => $save['zip'],
+				'email'               => $save['email'],
+				'phone'               => $save['phone'],
+				'airport'             => $airport, // letiste
+				'aircraft'            => $airplane, // letadlo
+				'flight'              => $aa . ' / '.$aa->duration.' minut / ' . ($isCopilot ? ' vyhlídkový let včetně pilotování' : ' vyhlídkový let') , // vybrany let + pilotak nebo ne
+				'flightPrice'         => $aa->price, // zakladni cena
+				'additionalPriceName' => ($aa->price_copilot - $aa->price), // priplatek za pilotovani
+				'payment'             => $paymentName, // typ platby
+				'totalPrice'          => $save['total_price'], // doprava
+				'comment'             => $save['message'],
+			];
+			
+			// admin
+			$message = $this->mail->getMessage('orderAdmin');
+			$template = $message->getTemplate();
+			$template->setParameters($params);
+			$this->mail->sendMessage($message);
+
+			// client
+			$message = $this->mail->getMessage('orderClient');
+			$message->addTo($values['email']);
+			$template = $message->getTemplate();
+			$template->setParameters($params);
+			$this->mail->sendMessage($message);
+
+			/*
+			$stop();
+			throw new \Exception('saving ...');
+			*/
+
+			$this->flashMessage('Objednávka úspěšně uložena, děkujeme. Brzy Vás budeme kontaktovat.', 'Success');
+			$this->redirect('this');
+
+		} catch (\Exception $e) {
+			if ($e instanceof Nette\Application\AbortException) {
+				throw $e;
+			}
+
+			$form->addError($this->getPresenter()->translator->translate($e->getMessage()));
+		}
 	}
 
 }

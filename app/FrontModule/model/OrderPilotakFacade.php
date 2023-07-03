@@ -96,4 +96,74 @@ class OrderPilotakFacade
 	}
 
 
+	public function airportById($id) 
+	{
+		return $this->connection->table('airport')
+			->where('id', $id)
+			->fetch();
+	}
+
+
+	public function airplaneById($id) 
+	{
+		return $this->connection->table('airplane')
+			->where('id', $id)
+			->fetch();
+	}
+
+
+	public function aaById($id) 
+	{
+		return $this->connection->table('airport_airplane')
+			->where('id', $id)
+			->fetch();
+	}
+
+	public function paymentById($id)
+	{
+		return $this->paymentMap()[$id];
+	}
+
+
+	public function paymentNameById($id)
+	{
+		return self::$listPayment[$id];
+	}
+
+
+	public function flightsMap()
+	{
+		$selection = $this->connection->table('vw_flights')
+			->select('*')
+			->order('rank');
+
+		$items = [];
+		foreach ($selection as $row)
+		{
+			$items[$row->id] = [
+				'price' => $row->price,
+				'price_copilot' => $row->price_copilot,
+			];
+		}
+
+
+		return $items;
+	}
+
+
+	public function paymentMap() 
+	{
+		return [
+			100 => 0,
+			101 => 200
+		];
+	}
+
+
+	public function saveOrder($data)
+	{
+		$this->connection->table('pilotak_order')
+			->save($data);
+	}
+
 }

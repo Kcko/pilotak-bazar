@@ -178,6 +178,9 @@
                                 </label>
 
 
+                                <div id="TotalPrice" class="hidden mt-10 bg-_blue-light p-3 rounded-md text-xl">Celková cena: <span>?</span></div>
+
+
                                 <div class="flex justify-center mt-10">
                                     <button 
                                         x-ref="send"
@@ -188,10 +191,7 @@
 
 
                         </div>
-        
 
-  
-                            
                     </form>
 
             </div>
@@ -203,21 +203,50 @@
 
 
     <script>
+
+        const MAP_FLIGHTS = {$mapFlights}
+        const MAP_PAYMENTS = {$mapPayments}
+
+
+        //frm-orderForm-airport_airplane_id
+        document.querySelector('#frm-orderForm-airport_airplane_id').addEventListener('change', calculatePrice)
+        document.querySelector('#frm-orderForm-payment').addEventListener('change', calculatePrice)
+
+        function calculatePrice()
+        {
+            
+            const aa =  document.querySelector('#frm-orderForm-airport_airplane_id')
+            const payment =  document.querySelector('#frm-orderForm-payment')
+
+            if (aa.value && payment.value) {
+                const isCopilot = aa.value.split(':')[1] == 'copilot1'
+                const aaId = aa.value.split(':')[0]
+
+                let priceAA = MAP_FLIGHTS[aaId][isCopilot ? 'price_copilot' : 'price']
+                let pricePayment = MAP_PAYMENTS[payment.value]
+
+                let totalPrice = document.querySelector('#TotalPrice');
+                let totalPriceSpan = totalPrice.querySelector('span');
+
+                priceAA = parseInt(priceAA)
+                pricePayment = parseInt(pricePayment)
+                
+                totalPrice.classList.add('hidden')
+                if (priceAA + pricePayment) {
+                    totalPriceSpan.innerText = (priceAA + pricePayment) + ',-'
+                    totalPrice.classList.remove('hidden')
+                }
+            }  
+        }
+
     
-            // najdeme na stránce všechny podřízené selectboxy
         document.querySelectorAll('select[data-depends]').forEach((childSelect) => {
-            let parentSelect = childSelect.form[childSelect.dataset.depends]; // nadřízený <select>
-            let url = childSelect.dataset.url; // atribut data-url
+            let parentSelect = childSelect.form[childSelect.dataset.depends];      
+            let items = JSON.parse(childSelect.dataset.items || {}); 
 
-           
-            let items = JSON.parse(childSelect.dataset.items || {}); // atribut data-items
-
-            // když uživatel změní vybranou položku v nadřízeném selectu...
             parentSelect.addEventListener('change', () => {
-
-                // pokud existuje atribut data-items...
                 if (items) {
-                    // nahrajeme rovnou do podřízeného selectboxu nové položky
+
                     if (parentSelect.name === 'airport_airplane_id') {
                         updateSelectbox(childSelect, parseInt(parentSelect.options[parentSelect.selectedIndex]?.value)  ? items : {});
 
@@ -227,15 +256,7 @@
                     }
 
                     childSelect.dispatchEvent(new Event('change'))
-                }
-
-                // pokud existuje atribut data-url...
-                if (url) {
-                    // uděláme AJAXový požadavek na endpoint s vybranou položkou místo placeholderu
-                    fetch(url.replace(encodeURIComponent('#'), encodeURIComponent(parentSelect.value)))
-                        .then((response) => response.json())
-                        // a nahrajeme do podřízeného selectboxu nové položky
-                        .then((data) => updateSelectbox(childSelect, data));
+                    calculatePrice()
                 }
             });
         });

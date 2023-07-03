@@ -121,9 +121,7 @@
 
 
 		{block recaptcha}
-			 {if in_array($presenter->navigation->navItem['id'], [7, 9])
-				|| in_array($presenter->getName(), ['Front:AddAd', 'Front:PopoUser'])
-			} 
+			 {if in_array($presenter->getName(), ['Front:PilotakOrder'])} 
 				<script src="https://www.google.com/recaptcha/api.js?render={$presenter->recaptchaConfig->getSiteKey()}"></script>
 			 {/if} 
 		{/block}
