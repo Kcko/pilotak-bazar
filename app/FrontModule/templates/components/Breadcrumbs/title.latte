@@ -1,7 +1,9 @@
+
+
 {ifset $forceTitle}
 	{$forceTitle}
 {else}
 	{foreach $data as $title}
-		{last}{$title} |  Letecký bazar a inzerce - Pilotak.cz{/last} {* Schválně last, v title se má vypisovat poslední konkreténí položka, ne celá cesta - <RJ> *}
+		{last}{$title} | {$presenter->domain == 1 ? 'Letecký bazar a inzerce - Pilotak.cz' : 'centrum letecké zábavy sportovního a rekreačního létání - Pilotak.cz'}{/last} {* Schválně last, v title se má vypisovat poslední konkreténí položka, ne celá cesta - <RJ> *}
 	{/foreach}
 {/ifset}

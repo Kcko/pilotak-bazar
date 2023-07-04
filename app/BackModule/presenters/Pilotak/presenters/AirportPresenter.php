@@ -80,10 +80,10 @@ class AirportPresenter extends FastAdminTablePresenter
 		$oldParentNavigationId = NULL;
 
 		if ($oldValues) {
-			$oldParentNavigationId = 825; /*$oldValues['navigation_id'];*/
+			$oldParentNavigationId = 845; /*$oldValues['navigation_id'];*/
 		}
 
-		$parentNavigationId = 825; /*$editRow['navigation_id'];*/
+		$parentNavigationId = 845; /*$editRow['navigation_id'];*/
 
 		$this->navigationWorker->createOrUpdateNavItem(
 			$oldParentNavigationId,

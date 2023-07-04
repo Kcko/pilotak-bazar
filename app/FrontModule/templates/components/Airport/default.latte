@@ -11,7 +11,7 @@
                 <img src="/assets/gfx/svg/cz.svg" alt="" />
                 
                 {foreach $list as $airport}
-                    <a href="{plink Airport:detail $airport->id}" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: 30%; left: 24%;">
+                    <a href="{plink Airport:detail $airport->id}" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: {$airport->map_y|noescape}%; left: {$airport->map_x|noescape}%;">
                         <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
                         <div class="text-sm font-medium text-white">{$airport->name}</div>
                     </a>

@@ -15,7 +15,7 @@ if (
 		(strpos($_SERVER['HTTP_HOST'], 'web.pilotak.cz') !== false)  
 
 ) {
-	require 'auth.php';
+	//require 'auth.php';
 }
 
 
