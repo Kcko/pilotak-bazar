@@ -2,9 +2,16 @@
 
 {var $htmlClass = 'bg-pp-blue-light'}
 
-{block content}
+{var $header = 'header.latte'}
+{var $footer = 'footer.latte'}
 
-    {include '../fragments/header.latte'}
+{if $presenter->navigation->navItem['domain_id'] == 2}
+    {var $header = 'web/header.latte'}
+    {var $footer = 'web/footer.latte'} 
+{/if}
+
+{block content}
+    {include '../fragments/'.$header}
     
     <div class="BaseContainer__Main">
 
@@ -33,7 +40,7 @@
 
     </div>
 
-    {include '../fragments/footer.latte'}
+  {include '../fragments/'.$footer}
     
 
 {/block}
