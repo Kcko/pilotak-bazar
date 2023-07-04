@@ -2794,11 +2794,6 @@ input[readonly]:focus {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
 .stroke-_blue {
   stroke: #4F67FF;
 }
@@ -3956,6 +3951,13 @@ web
 }
 
 /* // forms*/
+
+.help-block.text-danger {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
 
 /* Select*/
 

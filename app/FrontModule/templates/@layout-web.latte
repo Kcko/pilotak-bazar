@@ -59,7 +59,10 @@
 		<script src="/assets/js/app.js?{=filemtime('./assets/js/app.js')}" defer type="module"></script>
 
 		{* Nette forms *}
-		<script src="https://nette.github.io/resources/js/2/netteForms.js" defer>script>
+		{* <script src="https://nette.github.io/resources/js/2/netteForms.js" defer></script> *} 
+		{* are included in live form validation *}
+
+		<script src="https://cdn.jsdelivr.net/gh/contributte/live-form-validation@v1.9.0/live-form-validation.js" defer></script>
 
 		<script type="text/javascript">
 	        var presenter = {$presenterInfo};

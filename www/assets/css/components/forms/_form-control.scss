@@ -31,3 +31,7 @@
     @apply bg-gray-100 focus:outline-none;
   }
 }
+
+.help-block.text-danger {
+  @apply text-sm text-red-600;
+}
