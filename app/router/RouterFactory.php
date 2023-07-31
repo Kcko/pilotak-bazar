@@ -54,6 +54,12 @@ class RouterFactory
 			'action' => 'default',
 		]);
 
+
+		$router[] = new Route('/api/v1/test', [
+			'module' => 'Service',
+			'presenter' => 'TestApi',
+		]);
+
 		$router[] = $navigationRouter;
 		$router[] = new InvalidRequestRouter();
 		

@@ -63,6 +63,20 @@ class PopovickyFilters
 		}
 	}
 
+
+	public static function removeWidthAndHeightAttributes($html) 
+	{
+		// Definujeme regulární výrazy pro vyhledání a nahrazení atributů width a height
+		$pattern = '/(<iframe[^>]+)\s+width="[^"]*"/i';
+		$html = preg_replace($pattern, '$1', $html);
+		
+		$pattern = '/(<iframe[^>]+)\s+height="[^"]*"/i';
+		$html = preg_replace($pattern, '$1', $html);
+
+		return $html;
+	}
+
+
 	public static function relativeDate($date, $withTime = false)
 	{
 		if (!$date) {

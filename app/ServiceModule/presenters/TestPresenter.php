@@ -10,35 +10,14 @@ Nette\Application;
 
 use Andweb\Database\Context;
 
-class TestPresenter extends App\Presenters\BasePresenter
+class TestApiPresenter extends App\Presenters\BasePresenter
 {
-
-	/**
-	 * @var Andweb\Database\Context
-	 */
-	public $connection;
-
-
-	public function __construct(Andweb\Database\Context $connection)
+	public function run(Nette\Application\Request $request)
 	{
-		$this->connection = $connection;
+		$message = $request->getParameter('message');
+
+
+		return new Nette\Application\Responses\JsonResponse(['message' => "$message"]);
 	}
-
-
-
-	public function beforeRender()
-	{
-		parent::beforeRender();
-
-		$this->getTemplate()->addFilter('toJs', function ($s) {
-
-			$s = (string) str_replace(array("\r", "\r\n", "\n"), '', $s);
-			$s = str_replace("'", "\"", $s);
-
-			return $s;
-		});
-	}
-
-
-
 }
+

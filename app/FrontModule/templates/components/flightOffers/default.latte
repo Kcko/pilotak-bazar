@@ -63,17 +63,17 @@
     {define variant}
         <div>{$row->duration} minut</div>
         {if !$copilot}
-            <div class="text-_blue">vyhlídkový let</div>
+            <div class="text-_blue">{_}vyhlídkový let{/_}</div>
             <div>{$row->price|number:0, ' ', ' '} Kč</div>
         {else}
-            <div class="text-_purple">pilotovat</div>
+            <div class="text-_purple">{_}pilotovat{/_}</div>
             <div>{$row->price_copilot|number:0, ' ', ' '} Kč</div>
         {/if}
         
 
         {if !$copilot}
-            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 0]}" class="Btn -Xs -Blue mb-5 sm:mb-0">Objednat</a>
+            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 0]}" class="Btn -Xs -Blue mb-5 sm:mb-0">{_}Objednat{/_}</a>
         {else}
-            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 1]}" class="Btn -Xs -Purple mb-5 sm:mb-0">Objednat</a>
+            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 1]}" class="Btn -Xs -Purple mb-5 sm:mb-0">{_}Objednat{/_}</a>
         {/if}
     {/define}

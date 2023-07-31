@@ -28,7 +28,7 @@ class FlightOffers
 			->where('airport_id', $airportId)
 			->where('airplane.active', 1)
 			->where('airport_airplane.active', 1)
-			->order('airplane.name, rank');
+			->order('rank');
 
 		$list = [];
 		$airplanes = [];

@@ -29,6 +29,7 @@ class AirportPresenter extends FastAdminTablePresenter
 
 
 		$this->onAfterSave[] = [$this, 'createOrUpdateNavItem'];
+		$this->onAfterSave[] = [$this, 'fixTags'];
 		$this->onAfterDelete[] = [$this, 'removeNavItem'];
 
 
@@ -108,6 +109,18 @@ class AirportPresenter extends FastAdminTablePresenter
 			'detail',
 			$editRow->id
 		);
+	}
+
+
+	public function fixTags($editRow, $values, $form, $oldValues)
+	{
+		$aa = $editRow->related('airport_airplane');
+		foreach ($aa as $row) {
+			if ($row->tags == '') {
+				$row->update(['tags' => null]);
+			}
+		}
+		
 	}
 
 

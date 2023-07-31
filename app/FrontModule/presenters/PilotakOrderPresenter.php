@@ -92,8 +92,10 @@ class PilotakOrderPresenter extends FrontPresenter
 			->setRequired('Zadejte PSČ');	
 
 		$form->addText('gift_name', 'Bude to dárek pro:')
+			->setRequired('Zadejte jméno obdarovaného')
 			->getControlPrototype()
 			->setAttribute('placeholder', 'Jméno obdarovaného');
+
 
 		$airport = $form->addSelect('airport_id', 'Letiště:')
 			->setItems($this->order->listAirport())

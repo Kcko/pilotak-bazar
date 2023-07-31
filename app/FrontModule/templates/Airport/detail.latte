@@ -30,8 +30,8 @@
 
                                 {if $airport->image_id}
                                     {$airport->image->getImageElement('hero', ['class' => 'w-full block mx-auto'])}
-                                {elseif $airport->iframe_url}
-                                    {$airport->iframe_url|replace:'<iframe':'<iframe class="w-full aspect-video md:aspect-square'}
+                                {elseif $airport->map_iframe}
+                                    {$airport->map_iframe|replace:'<iframe':'<iframe class="w-full aspect-video md:aspect-square'|removeWidthAndHeightAttributes|noescape}
                                     {* <iframe class="w-full aspect-video md:aspect-square" src="https://frame.mapy.cz/s/cepenuduba" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> *}
                                 {/if}
   

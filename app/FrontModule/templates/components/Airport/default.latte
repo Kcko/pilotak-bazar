@@ -1,9 +1,12 @@
-<div class="grid md:grid-cols-5 gap-10 relative">
+<div 
+    x-data="{ currentAirportId: 0, setAirport(id) {
+        this.currentAirportId = id
+    } }"
+    class="grid md:grid-cols-5 gap-10 relative">
 
         {* bird *}
         {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-80px] right-0 lg:right-[-30px] rotate-[-10deg] stroke-_blue'|noescape}
         {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-110px] right-[10px] lg:right-[-60px] rotate-[-30deg] stroke-_blue-dark'|noescape}
-
 
         <div class="hidden md:block md:col-span-3 ">
 
@@ -11,8 +14,15 @@
                 <img src="/assets/gfx/svg/cz.svg" alt="" />
                 
                 {foreach $list as $airport}
-                    <a href="{plink Airport:detail $airport->id}" class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: {$airport->map_y|noescape}%; left: {$airport->map_x|noescape}%;">
-                        <div class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
+                    <a 
+                        @mouseover="setAirport({$airport->id})" 
+                        @mouseout="setAirport(0)" 
+                        href="{plink Airport:detail $airport->id}" 
+                        :class="{ '-Active': {$airport->id} == currentAirportId }"
+                        class="Point group absolute pointer inline-flex items-center gap-2 rounded-full px-4 py-1" style="top: {$airport->map_y|noescape}%; left: {$airport->map_x|noescape}%;">
+                        <div 
+                            :class="{ '!bg-_yellow !text-white': {$airport->id} == currentAirportId }"
+                            class="block bg-white ring-4 ring-_yellow/100 group-hover:bg-_yellow w-2 h-2 rounded-full"></div>
                         <div class="text-sm font-medium text-white">{$airport->name}</div>
                     </a>
                 {/foreach}
@@ -24,8 +34,13 @@
             <ul class="flex flex-wrap sm:grid sm:grid-cols-2 auto gap-2">
                 {foreach $list as $airport}
                     <li>
-                        <a href="{plink Airport:detail $airport->id}" class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue-light">
-                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                        <a 
+                            @mouseover="setAirport({$airport->id})" 
+                            @mouseout="setAirport(0)" 
+                            href="{plink Airport:detail $airport->id}" 
+                            :class="{ '!bg-_blue !text-white': {$airport->id} == currentAirportId }"
+                            class="shadow-86 bg-white rounded-md flex items-center gap-2 p-2 text-base font-medium hover:bg-_blue hover:text-white">
+                            {='assets/gfx/svg/airplane-3.svg'|svg:'w-5 h-5'|noescape}
                             {$airport->name}
                         </a>
                     </li>
