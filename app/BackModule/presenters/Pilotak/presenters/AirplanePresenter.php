@@ -19,6 +19,8 @@ class AirplanePresenter extends FastAdminTablePresenter
 	{
 		parent::startup();
 
+		$this->onAfterSave[] = [$this, 'fixTags'];
+
 		$this->addEditTab('Obecné*8a*12', [
 			['name*12'],
 			['image_id*12'],
@@ -28,6 +30,15 @@ class AirplanePresenter extends FastAdminTablePresenter
 			['active*12'],
 		]);
 
+	}
+
+
+	public function fixTags($editRow, $values, $form, $oldValues)
+	{
+		if ($editRow->tags == '') {
+			$editRow->update(['tags' => null]);
+		}
+		
 	}
 
 }

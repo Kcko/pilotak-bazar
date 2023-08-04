@@ -30,4 +30,12 @@ class AirportRoute
 	}
 
 
+	public function getCount($airportId)
+	{
+		return $this->connection->table('airport_route')
+			->where('airport_id', $airportId)
+			->count('*');
+	}
+
+
 }

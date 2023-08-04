@@ -64,5 +64,10 @@ class AirportRoute extends FrontControl
 	}
 
 
+	public function getCount(array $config = [])
+	{
+		return $this->airportRoute->getCount($this->airportId);
+	}
+
 
 }

@@ -93,11 +93,12 @@ class AirportPresenter extends FastAdminTablePresenter
 			'detail',
 			$editRow->id,
 			NULL, //presenter id
-			$editRow->basic_info, // page description
+			null, /*$editRow->basic_info, */// page description
 			null
 		);
 	}
 
+	
 	public function removeNavItem($editRow)
 	{
 		$oldParentNavigationId = $editRow['navigation_id'];

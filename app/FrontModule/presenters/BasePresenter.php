@@ -85,7 +85,7 @@ class BasePresenter extends App\Presenters\BasePresenter
 		if ($this->domain == 1)
 			$this['metaHeaders']->setHeader('og:site_name', 'Pilotak.cz - letecký bazar a inzerce');
 		else
-			$this['metaHeaders']->setHeader('og:site_name', 'Pilotak.cz - centrum letecké zábavy sportovního a rekreačního létání');
+			$this['metaHeaders']->setHeader('og:site_name', 'Pilotak.cz - Vyhlídkové lety letadlem, vrtulníkem | Pilotem na zkoušku');
 
 		$this['metaHeaders']->setHeader('og:title', $title);
 		$this['metaHeaders']->setHeader('og:description', $description);

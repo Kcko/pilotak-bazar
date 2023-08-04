@@ -18,6 +18,7 @@ abstract class AirportAirplane extends Table
 				'New' => 'New',
 				'Discount' => 'Discount',
 				'Last Chance' => 'Last Chance',
+				'Pilot exam' => 'Pilot exam',
 			
 			]);
 		
