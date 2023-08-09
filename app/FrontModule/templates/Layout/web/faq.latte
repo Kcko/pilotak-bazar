@@ -1,0 +1,37 @@
+{var $htmlClass = 'homepage'}
+
+{block content}
+
+    {include '../../fragments/web/header.latte'}
+
+    <main class="BaseContainer__Main bg-[#f9f9fa]">
+
+        <section class="pb-10 pt-10">
+
+            <div class="Container mb-10">
+                <div class="Row">
+                    <div class="Col w-full">
+                        {control breadcrumbs}
+                    </div>
+                </div>
+            </div>
+
+            <div class="pb-10">
+                <div class="Container">
+                    <div class="Row">
+                        <div class="Col w-full">
+                            {control content}
+                            {control faq}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    {include '../../fragments/web/footer.latte'}
+
+{/block}

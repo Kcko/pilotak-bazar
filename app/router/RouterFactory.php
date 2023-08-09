@@ -43,6 +43,7 @@ class RouterFactory
 			'domain' => 1
 		]);
 
+
 		$router[] = new Route('/service/<presenter>/<action>', [
 			'module' => 'Service'
 		]);
@@ -55,6 +56,11 @@ class RouterFactory
 		]);
 
 
+		$router[] = new Route('/api/v1/test', [
+			'module' => 'Service',
+			'presenter' => 'TestApi',
+		]);
+		
 		$router[] = new Route('/api/v1/test', [
 			'module' => 'Service',
 			'presenter' => 'TestApi',

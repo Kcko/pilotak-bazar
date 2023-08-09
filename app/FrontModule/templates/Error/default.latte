@@ -1,4 +1,4 @@
-{layout '../@layout.latte'}
+{layout '../@layout-domain-'.$presenter->navigation->navItem['domain_id']. '.latte'}
 
 {var $htmlClass = 'bg-pp-blue-light'}
 
@@ -10,9 +10,12 @@
     {var $footer = 'web/footer.latte'} 
 {/if}
 
+{$presenter->domain}
+
 {block content}
+
     {include '../fragments/'.$header}
-    
+
     <div class="BaseContainer__Main">
 
         <div class="Container pb-16">

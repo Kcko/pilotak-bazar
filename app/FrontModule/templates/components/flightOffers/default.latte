@@ -42,7 +42,9 @@
                     <div class="grid grid-cols-4 gap-1 sm:gap-3 text-sm">
 
                         {foreach $rows as $row}
-                            {include variant, row => $row, copilot => false}
+                            {if $row->price}
+                                {include variant, row => $row, copilot => false}
+                            {/if}
                             {if $row->price_copilot}
                                 {include variant, row => $row, copilot => true}
                             {/if}
@@ -72,8 +74,8 @@
         
 
         {if !$copilot}
-            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 0]}" class="Btn -Xs -Blue mb-5 sm:mb-0">{_}Objednat{/_}</a>
+            <a href="{plink PilotakOrder:default, $row->id, 0}" class="Btn -Xs -Blue mb-5 sm:mb-0">{_}Objednat{/_}</a>
         {else}
-            <a href="{plink PilotakOrder:default, [id => $row->id, copilot => 1]}" class="Btn -Xs -Purple mb-5 sm:mb-0">{_}Objednat{/_}</a>
+            <a href="{plink PilotakOrder:default, $row->id, 1}" class="Btn -Xs -Purple mb-5 sm:mb-0">{_}Objednat{/_}</a>
         {/if}
     {/define}

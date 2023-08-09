@@ -27,8 +27,8 @@
       &:before {
         content: '';
         @apply bg-_yellow absolute;
-        @apply w-1 h-1;
-        @apply top-[0.6em] left-0;
+        @apply w-1.5 h-1.5;
+        @apply top-[0.4em] left-0;
       }
     }
   }
@@ -91,10 +91,18 @@
 
     ul {
       @apply BulletListYellow mb-8;
+
+      li + li {
+        @apply mt-2.5;
+      }
     }
 
     p {
       @apply mb-6;
+    }
+
+    a {
+      @apply underline text-gray-500;
     }
   }
 }

@@ -80,7 +80,11 @@ class OrderPilotakFacade
 				$flights[$row->airportId . ':'. $row->airplaneId][0] = '-Vyberte-';
 			}
 
-			$flights[$row->airportId . ':'. $row->airplaneId][$row->id . ':copilot0'] = $row->duration . ' minut / ' . $row->price . ' Kč / (vyhlídkový let)';
+			
+			if ($row->price) {
+				$flights[$row->airportId . ':'. $row->airplaneId][$row->id . ':copilot0'] = $row->duration . ' minut / ' . $row->price . ' Kč / (vyhlídkový let)';
+			}
+
 			if ($row->price_copilot) {
 				$flights[$row->airportId . ':'. $row->airplaneId][$row->id . ':copilot1'] = $row->duration . ' minut / ' . $row->price_copilot . ' Kč / (pilotovat)';
 			}

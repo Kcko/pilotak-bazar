@@ -1,0 +1,28 @@
+<div x-data="{ 
+        active: null,
+        setActive(id) {
+            if (id === this.active) {
+                this.active = null
+            } else {
+                this.active = id
+            }
+        }
+    }" class="Row">
+    {foreach $faq as $index => $f}
+        <div class="Col w-full mb-5 self-start">
+            <div class="bg-white hover:bg-_blue-light rounded-md shadow-86">
+                <div @click="setActive({$f->id})" class="text-h3 p-5 mb-0 cursor-pointer flex items-center">
+                    <span class="bg-_blue text-white rounded-full w-8 h-8 inline-grid place-items-center mr-3 text-[75%] flex-shrink-0">{$index}.</span> 
+                    <span>{$f->heading}</span>
+                    <span class="transform transition ml-auto" :class="active == {$f->id} ? '-rotate-180' : ''">{='assets/gfx/svg/arrow-down.svg'|svg:'w-9 h-9'|noescape}</span>  
+                </div>
+                <div 
+                    x-cloak 
+                    :class="{ 'hidden': active != {$f->id} }">
+                    <div class="RichText p-5 pt-0">{$f->content|noescape}</div>
+                </div>    
+            </div>
+ 
+        </div>
+    {/foreach}
+</div>

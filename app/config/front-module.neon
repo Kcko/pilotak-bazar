@@ -189,6 +189,7 @@ services:
 	- App\FrontModule\Model\FlightContent
 	- App\FrontModule\Model\FlightList
 	- App\FrontModule\Model\OrderPilotakFacade
+	- App\FrontModule\Model\Faq
 
 extensions:
 	front: App\FrontModule\DI\FrontExtension

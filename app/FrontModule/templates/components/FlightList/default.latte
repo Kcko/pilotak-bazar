@@ -64,7 +64,7 @@
                                     {var $airplane = $aa->airplane}
 
                                     <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="{plink PilotakOrder:default, [id => $flight->id, copilot => 0]}" class="block flex flex-col h-full">
+                                        <a href="{plink PilotakOrder:default, $flight->id, $flight->price ? 0 : 1}" class="block flex flex-col h-full">
                                             <div class="space-y-5 flex-grow">
 
                                                 {if $airplane->image_id}
@@ -93,7 +93,11 @@
                                             
                                             <div class="mt-8">
                                                 <div class="text-center text-2xl font-bold mb-0 text-_blue-dark">
-                                                    od {$aa->price|number:0, ' ', ' '} Kč
+                                                    {if $flight->price}
+                                                        od {$aa->price|number:0, ' ', ' '} Kč
+                                                    {else}    
+                                                        od {$aa->price_copilot|number:0, ' ', ' '} Kč
+                                                    {/if}
                                                 </div>
                                                 <div class="flex justify-center mt-4">
                                                     <div class="Btn -Blue">{_}Objednat{/_}</div>

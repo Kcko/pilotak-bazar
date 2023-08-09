@@ -39,14 +39,14 @@ class PilotakOrderPresenter extends FrontPresenter
 	public $mail;
 
 	
-	public function actionDefault(array $_params = [])
+	public function actionDefault(int $id, int $copilot = 0)
 	{
 		$this->template->mapFlights = $this->order->flightsMap();
 		$this->template->mapPayments = $this->order->paymentMap();
 
-		if (count($_params)) {
-			$this->template->preloadFlight = $this->order->aaById($_params['id']);
-			$this->template->preloadCopilot = $_params['copilot'];
+		if ($id && isset($id)) {
+			$this->template->preloadFlight = $this->order->aaById($id);
+			$this->template->preloadCopilot = $copilot;
 		
 			if (!$this->template->preloadFlight) {
 				$this->error('Tento let neexistuje');
@@ -170,10 +170,14 @@ class PilotakOrderPresenter extends FrontPresenter
 
 			$values = $form->getValues(true);
 
+			// \Tracy\Debugger::barDump($values);
+			// $this->terminate();
+
 			list($aaId, $aaCopilot) = explode(':', $values['airport_airplane_id']);
+			$airPlaneId = explode(':', $values['airplane_id'])[1];
 			$isCopilot = $aaCopilot == 'copilot1';
 			$airport = $this->order->airportById($values['airport_id']);
-			$airplane = $this->order->airplaneById($values['airplane_id']);
+			$airplane = $this->order->airplaneById($airPlaneId); // airportId:airPlaneId
 			$aa = $this->order->aaById($aaId);
 			$payment = $this->order->paymentById($values['payment']);
 			$paymentName = $this->order->paymentNameById($values['payment']);
@@ -188,7 +192,7 @@ class PilotakOrderPresenter extends FrontPresenter
 				'gift_name'           => $values['gift_name'],
 				'message'             => $values['message'],
 				'airport_id'          => $values['airport_id'],
-				'airplane_id'         => $values['airplane_id'],
+				'airplane_id'         => $airPlaneId,
 				'airport_airplane_id' => $aaId,
 				'copilot'             => $isCopilot ? 1 : 0,
 				'created'             => new \DateTime,
@@ -215,8 +219,8 @@ class PilotakOrderPresenter extends FrontPresenter
 				'airport'             => $airport, // letiste
 				'aircraft'            => $airplane, // letadlo
 				'flight'              => $aa . ' / '.$aa->duration.' minut / ' . ($isCopilot ? ' vyhlídkový let včetně pilotování' : ' vyhlídkový let') , // vybrany let + pilotak nebo ne
-				'flightPrice'         => $aa->price, // zakladni cena
-				'additionalPriceName' => ($aa->price_copilot - $aa->price), // priplatek za pilotovani
+				'flightPrice'         => $isCopilot ? $aa['price_copilot'] : $aa['price'], 
+				//'additionalPriceName' => ($aa->price_copilot - $aa->price), // priplatek za pilotovani
 				'payment'             => $paymentName, // typ platby
 				'totalPrice'          => $save['total_price'], // doprava
 				'comment'             => $save['message'],
