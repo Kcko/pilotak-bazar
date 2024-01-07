@@ -2,7 +2,7 @@
 
     <section class="bg-_blue-light py-10 md:py-20 relative overflow-hidden">
 
-        {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[20vw] h-[20vw] opacity-[2.5%] right-0 bottom-0'|noescape}
+        {* {='assets/gfx/svg/airplane-3.svg'|svg:'Airplane1 absolute w-[20vw] h-[20vw] opacity-[2.5%] right-0 bottom-0'|noescape} *}
 
         {var $uid = uniqid()}
 
@@ -10,7 +10,7 @@
             <div class="Row">
                 <div class="Col w-full">
 
-                    <div class="text-_purple text-xs font-bold uppercase text-center mb-3 tracking-wide">{$l->subheading}</div>
+                    <div class="text-_purple text-base font-bold uppercase text-center mb-3 tracking-wide">{$l->subheading}</div>
                     <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-3 text-center">
                         {if Nette\Utils\Strings::contains($l->config, 'popular')}
                             <span class="relative Love">
@@ -24,94 +24,65 @@
                     </h2>
                     
 
-                    <div 
-                        x-data="{ swiper: null }" 
-                        x-init="swiper = new Swiper($refs.container{=$uid}, {
-                            loop: false,
-                            slidesPerView: 1,
-                            spaceBetween: 0,
-                            speed: 700,
-                            navigation: {
-                            nextEl: '#a-next{=$uid}',
-                            prevEl: '#a-prev{=$uid}',
-                            },
-                        
-                            breakpoints: {
-                                640: {
-                                slidesPerView: 2,
-                                spaceBetween: 16,
-                                },
-                                768: {
-                                slidesPerView: 3,
-                                spaceBetween: 16,
-                                },
-                                1024: {
-                                slidesPerView: 4,
-                                spaceBetween: 16,
-                                },
-                            },
-                            })"
-                        class="relative mb-8 lg:mb-16 /*grid grid-cols-4 gap-4*/"
-                    >
+                    <div class="relative mb-8 lg:mb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {var $limit = 0}
+                        {foreach $l->flight_list_airport_airplane as $flight}
+                            {if ++$limit > 8}
+                                {php break;}
+                            {/if}
 
-                        <div class="swiper-container" x-ref="container{=$uid}">
-                            <div class="swiper-wrapper | py-2" >
+                            {var $aa = $flight->airport_airplane}
+                            {var $airport = $aa->airport}
+                            {var $airplane = $aa->airplane}
 
-                                {foreach $l->flight_list_airport_airplane as $flight}
+                            <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
+                                <a href="{plink PilotakOrder:default, $flight->id, $flight->price ? 0 : 1}" class="block flex flex-col h-full">
+                                    <div class="space-y-5 flex-grow">
 
-                                    {var $aa = $flight->airport_airplane}
-                                    {var $airport = $aa->airport}
-                                    {var $airplane = $aa->airplane}
+                                        {if $airplane->image_id}
+                                            {$airplane->image->getImageElement('hero', ['class' => 'h-48 object-fill w-full block'])}
+                                        {/if}
 
-                                    <div class="bg-white rounded-md p-5 shadow-86-- swiper-slide"  style="height: auto !important;">
-                                        <a href="{plink PilotakOrder:default, $flight->id, $flight->price ? 0 : 1}" class="block flex flex-col h-full">
-                                            <div class="space-y-5 flex-grow">
-
-                                                {if $airplane->image_id}
-                                                    {$airplane->image->getImageElement('hero', ['class' => 'h-48 object-fill w-full block'])}
-                                                {/if}
-
-                                                <h3 class="text-h4 text-center">{$airplane->name}</h3>
-                                                <div class="text-sm flex flex-wrap gap-2 justify-center">
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        {$airport->name}
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        {$aa->duration} minut
-                                                    </div>
-                                                    <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
-                                                        {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
-                                                        {$airplane->person_no} 
-                                                        {$airplane->formatPersonNumber()}
-                                                    </div>
-                                                    
-                                                    {control tags, 'tags' => $aa->tags}
-                                                </div>
+                                        <h3 class="text-h4 text-center">{$airplane->name}</h3>
+                                        <div class="text-sm flex flex-wrap gap-2 justify-center">
+                                            <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                {='assets/gfx/svg/icon-pin.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                {$airport->name}
+                                            </div>
+                                            <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                {='assets/gfx/svg/duration.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                {$aa->duration} minut
+                                            </div>
+                                            <div class="flex items-center py-1 px-2 gap-1 bg-_blue-light rounded-full">
+                                                {='assets/gfx/svg/user.svg'|svg:'w-5 h-5 text-_blue-dark'|noescape}
+                                                {$airplane->person_no} 
+                                                {$airplane->formatPersonNumber()}
                                             </div>
                                             
-                                            <div class="mt-8">
-                                                <div class="text-center text-2xl font-bold mb-0 text-_blue-dark">
-                                                    {if $flight->price}
-                                                        od {$aa->price|number:0, ' ', ' '} Kč
-                                                    {else}    
-                                                        od {$aa->price_copilot|number:0, ' ', ' '} Kč
-                                                    {/if}
-                                                </div>
-                                                <div class="flex justify-center mt-4">
-                                                    <div class="Btn -Blue">{_}Objednat{/_}</div>
-                                                </div>
-
-                                            </div>
-                                        </a>
+                                            {control tags, 'tags' => $aa->tags}
+                                        </div>
                                     </div>
-                                {/foreach}
+                                    
+                                    <div class="mt-8">
+                                        <div class="text-center text-2xl font-bold mb-0 text-_blue-dark">
+                                            {if $flight->price}
+                                                od {$aa->price|number:0, ' ', ' '} Kč
+                                            {else}    
+                                                od {$aa->price_copilot|number:0, ' ', ' '} Kč
+                                            {/if}
+                                        </div>
+                                        <div class="flex justify-center mt-4">
+                                            <div class="Btn -Blue">{_}Objednat{/_}</div>
+                                        </div>
 
+                                    </div>
+                                </a>
                             </div>
-                        </div>
+                        {/foreach}
 
-                        <div id="a-prev{=$uid}" class="absolute inset-y-0 left-0 z-[3]  flex items-center">
+                       
+
+                        {* <div id="a-prev{=$uid}" class="absolute inset-y-0 left-0 z-[3]  flex items-center">
                             <button  class="bg-gray-50  hover:bg-gray-100 -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
                             <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                             </button>
@@ -121,7 +92,7 @@
                             <button  class="bg-gray-50  hover:bg-gray-100     -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
                             <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                             </button>
-                        </div>
+                        </div> *}
                     </div>
 
 
@@ -131,6 +102,21 @@
                             {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
                         </a>
                     </div> *}
+
+                    <div class="text-center">
+                            {var $url = ''}
+                            {var $external = false}
+                            {if $l->button__navigation_id}
+                                {var $url = $l->button__navigation->getUrl()}
+                            {elseif $l->button_url}
+                                {var $url = $l->button_url}
+                                {var $external = true}
+                            {/if}
+                            <a n:if="$url" href="{$url}" {if $external}target="_blank"{/if} class="Btn -Blue -Xl min-w-[150px]">
+                                {$l->button_text}
+                                {='assets/gfx/svg/icon-chevron-right.svg'|svg:'w-5 h-5 ml-2'|noescape}
+                            </a>
+                        </div>
 
 
                 </div>

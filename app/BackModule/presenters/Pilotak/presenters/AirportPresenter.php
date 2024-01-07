@@ -4,6 +4,7 @@ namespace App\BackModule\PilotakModule\Presenters;
 
 use App\BackModule\FastAdminModule\Presenters\FastAdminTablePresenter;
 use App\FrontModule\Model\NavigationWorker;
+use \DateTime;
 
 
 class AirportPresenter extends FastAdminTablePresenter
@@ -12,7 +13,7 @@ class AirportPresenter extends FastAdminTablePresenter
 
 	public $moduleName = 'Letiště';
 	protected $table = 'airport';
-	protected $colsOrder = array('name', 'active');
+	protected $colsOrder = array('name', 'heading_h1', 'active');
 
 	/**
 	 * Navigation worker
@@ -37,6 +38,8 @@ class AirportPresenter extends FastAdminTablePresenter
 		$this->addEditTab('Obecné*8a*12', [
 			['name*12'],
 			['navigation_id*12'],
+			['heading_h1*12'],
+			['heading_h2*12'],
 			['code*12'],
 			['image_id*12'],
 			['map_iframe*12'],

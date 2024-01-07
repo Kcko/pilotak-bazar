@@ -10,7 +10,7 @@ Options -Indexes
 	RewriteEngine On
 	# RewriteBase /
 
- 
+
 	# prevents files starting with dot to be viewed by browser
 	#RewriteRule ^index.php$ - [L]
 	RewriteRule "^.well-known/acme-challenge" - [L]
@@ -24,6 +24,19 @@ Options -Indexes
 
 	RedirectMatch 301 /cs$ /
 	RedirectMatch 301 /cs/(.*) /
+
+	# Odstranění lomítka na konci URL pro všechny cesty kromě /admin/
+	# RewriteCond %{REQUEST_URI} !^/admin/
+	# RewriteCond %{REQUEST_FILENAME} !-f
+	# RewriteCond %{REQUEST_FILENAME} !-d
+	# RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+	# proti zacykleni redirektu
+	# RewriteCond %{ENV:REDIRECT_STATUS} !^$
+	# RewriteRule .* - [L]
+	
+
+	
 
 	# back controller
 	RewriteCond %{REQUEST_URI} \.js$

@@ -10,7 +10,14 @@
 		<button @click="opened = false" class="p-3">{='assets/gfx/svg/close.svg'|svg:'w-8 h-8'|noescape}</button>
 	</div>
 
-	<ul class="block space-y-4 lg:space-y-0 px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6">
+	<ul class="block space-y-4 lg:space-y-0 px-5 lg:px-0 lg:flex items-center gap-x-0 md:gap-x-6
+		/* responsive */ 
+		max-h-[80vh]
+		overflow-y-auto
+		lg:overflow-y-visible
+		lg:max-h-none
+
+	">
 		{foreach $model->getChildren($parent) as $child}
 			<li n:if="$child->alias == 'vyhlidkoveLety'" class="lg:ml-auto relative">
 				<a href="{$child->getUrl()}" class="Btn px-0 font-medium text-lg relative lg:static">{$child->title}</a>
@@ -23,6 +30,38 @@
 				{/if}
 			</li>
 
+
+			<li
+				{* n:if="$_SERVER[REMOTE_ADDR] == '217.112.163.206' && *} n:if="in_array($child->alias, ['infoSubmenu'])"
+				x-data="{ opened: false }" 
+				@click="opened = !opened" 
+				@force-opened.window="opened = true" 
+				class="relative">
+				<a class="Btn px-0 font-medium text-lg cursor-pointer">
+					{$child->title}
+					{='assets/gfx/svg/chevron-down.svg'|svg:'w-5 h-5'|noescape}
+				</a>
+				<div @click.away="opened = false" x-show="opened" style="display: none" x-transition 
+					class="bg-white top-full mt-2 shadow lg:absolute rounded-md py-4 px-4 lg:w-[700px] left-[-350px]">
+					<div class="grid lg:grid-cols-3 gap-5">
+						<div class="lg:border-r border-gray-200">
+							<div class="font-medium mb-4 Lined-3">{_}Pilotak web - submenu - 1 skupina{/_}</div>
+							{control menu, navigation_group => 10, template => 'web-submenu'}
+						</div>
+						<div class="lg:border-r border-gray-200">
+							<div class="font-medium mb-4 Lined-3">{_}Pilotak web - submenu - 2 skupina{/_}</div>
+							{control menu, navigation_group => 11, template => 'web-submenu'}
+						</div>
+						<div>
+							<div class="font-medium mb-4 Lined-3">{_}Pilotak web - submenu - 3 skupina{/_}</div>
+							{control menu, navigation_group => 12, template => 'web-submenu'}
+						</div>
+					</div>
+				</div>
+			</li>
+
+
+
 			<li n:if="in_array($child->alias, ['odkudLetame'])" class="relative">
 				<a href="{$child->getUrl()}" class="Btn px-0 font-medium text-lg">{$child->title}</a>
 				{if in_array($child->id, $selectedItems) || $presenter->getPresenter()->getName() == 'Front:Airport'}
@@ -34,6 +73,8 @@
 				{/if}
 			</li>
 
+
+
 			<li n:if="in_array($child->alias, ['kontakt'])" class="relative">
 				<a href="{$child->getUrl()}" class="Btn px-0 font-medium text-lg">{$child->title}</a>
 				{if in_array($child->id, $selectedItems)}
@@ -44,11 +85,16 @@
 						lg:top-auto lg:bottom-0 lg:left-0 lg:right-0 lg:mx-auto"></span>
 				{/if}
 			</li>
+
+
+
+
+
 			
 			<li 
 				n:if="$child->alias == 'objednat'" 
 				class="ml-auto !mt-8 lg:!mt-0">
-				<a href="{$child->getUrl()}" class="Btn -Blue  font-medium w-[200px]">
+				<a href="{$child->getUrl()}" class="Btn -Blue  font-medium">
 					{$child->title}
 					{='assets/gfx/svg/cart.svg'|svg:'w-5 h-5 ml-3'|noescape}
 				</a>

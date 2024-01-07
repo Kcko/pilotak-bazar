@@ -3,14 +3,14 @@
         <div class="Row">
             <div class="Col w-full">
                 <div class="text-center">
-                    <div class="text-white/75 text-xs font-bold uppercase text-center mb-3 tracking-wide">{$data->heading}</div>
+                    <div class="text-white/75 text-base font-bold uppercase text-center mb-3 tracking-wide">{$data->heading}</div>
                     <h2 class="text-h2 text-left mb-12 md:mb-14 Lined-2 text-center text-white">{$data->subheading}</h2>
                     <dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
                        
                         {foreach range(1, 4) as $i}
                             <div class="flex flex-col bg-white/10 p-5 md:p-8">
                                 <dt class="text-sm font-semibold leading-6 text-gray-100">{$data['number_text_'.$i]}</dt>
-                                <dd class="order-first text-h1 mb-2 font-semibold tracking-tight text-_yellow">{$data['number_heading_'.$i]}</dd>
+                                <dd class="order-first text-h2 mb-2 font-semibold tracking-tight text-_yellow">{$data['number_heading_'.$i]}</dd>
                             </div>
                         {/foreach}
                     </dl>

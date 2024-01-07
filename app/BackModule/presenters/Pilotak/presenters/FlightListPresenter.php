@@ -23,6 +23,7 @@ class FlightListPresenter extends FastAdminTablePresenter
 			['heading*12'],
 			['subheading*12'],
 			['flight_list_airport_airplane*12'],
+			['button_text*4', 'button__navigation_id*4', 'button_url*4'],
 			['active*12'],
 			['rank*12'],
 			['config*12'],

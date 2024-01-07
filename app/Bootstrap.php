@@ -64,7 +64,10 @@ class Bootstrap
 	 */
 	public static $debugModeSetup = [
 		'pilotak-bazar' => TRUE,
-		//'web.pilotak.cz' => TRUE,
+
+		// 'pilotak.cz' => TRUE,
+		// 'www.pilotak.cz' => TRUE,
+		
 		'web-pilotak' => TRUE,
 		'*.dev71.andweb.cz' => TRUE,
 		'*.test71.andweb.cz' => TRUE,

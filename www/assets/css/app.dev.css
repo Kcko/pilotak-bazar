@@ -887,7 +887,7 @@ html.Lock,
 @media (min-width: 1024px) {
 
   .text-h1 {
-    font-size: 3.75rem;
+    font-size: 3rem;
     line-height: 1;
   }
 }
@@ -1681,6 +1681,10 @@ input[readonly]:focus {
   left: 0.625rem;
 }
 
+.left-\[-350px\] {
+  left: -350px;
+}
+
 .left-\[10px\] {
   left: 10px;
 }
@@ -1773,6 +1777,10 @@ input[readonly]:focus {
   z-index: 50;
 }
 
+.z-\[-1\] {
+  z-index: -1;
+}
+
 .z-\[100\] {
   z-index: 100;
 }
@@ -1829,8 +1837,16 @@ input[readonly]:focus {
   grid-column: span 4 / span 4;
 }
 
+.col-span-5 {
+  grid-column: span 5 / span 5;
+}
+
 .col-span-6 {
   grid-column: span 6 / span 6;
+}
+
+.col-span-7 {
+  grid-column: span 7 / span 7;
 }
 
 .col-start-2 {
@@ -2198,6 +2214,14 @@ input[readonly]:focus {
   max-height: 350px;
 }
 
+.max-h-\[80vh\] {
+  max-height: 80vh;
+}
+
+.max-h-full {
+  max-height: 100%;
+}
+
 .min-h-\[300px\] {
   min-height: 300px;
 }
@@ -2266,10 +2290,6 @@ input[readonly]:focus {
   width: 2.25rem;
 }
 
-.w-\[200px\] {
-  width: 200px;
-}
-
 .w-\[20vw\] {
   width: 20vw;
 }
@@ -2336,6 +2356,10 @@ input[readonly]:focus {
 
 .max-w-\[80\%\] {
   max-width: 80%;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 .max-w-lg {
@@ -2648,6 +2672,12 @@ input[readonly]:focus {
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
+.space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.625rem * var(--tw-space-y-reverse));
+}
+
 .space-y-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
@@ -2874,6 +2904,10 @@ input[readonly]:focus {
 .bg-red-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-white {
@@ -3314,6 +3348,10 @@ input[readonly]:focus {
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 .opacity-40 {
@@ -3919,6 +3957,36 @@ input[readonly]:focus {
     padding-top: 0px;
     padding-bottom: 0px;
   }
+
+.HeroWeb.-FullImage:after {
+  display: none;
+}
+
+.HeroWeb.-FullImage .HeroHeading {
+  background-color: rgb(0 0 0 / 0.5);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.HeroWeb.-FullImage .HeroButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.HeroWeb.-FullImage .HeroContent {
+  display: none;
+}
 
 .shadow-86 {
   -webkit-box-shadow: rgba(169, 167, 167, 0.1) 0px 0px 0px 0px, rgba(169, 167, 167, 0.1) -5px 6px 18px 0px,
@@ -6318,7 +6386,7 @@ https://picsum.photos/id/13/1810/1150
   @media (min-width: 1024px) {
 
     .md\:text-h1 {
-      font-size: 3.75rem;
+      font-size: 3rem;
       line-height: 1;
     }
   }
@@ -6608,6 +6676,10 @@ https://picsum.photos/id/13/1810/1150
     grid-auto-rows: minmax(0, 1fr);
   }
 
+  .md\:grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -6698,6 +6770,10 @@ https://picsum.photos/id/13/1810/1150
 
   .lg\:static {
     position: static;
+  }
+
+  .lg\:absolute {
+    position: absolute;
   }
 
   .lg\:bottom-0 {
@@ -6828,12 +6904,20 @@ https://picsum.photos/id/13/1810/1150
     height: 7rem;
   }
 
+  .lg\:max-h-none {
+    max-height: none;
+  }
+
   .lg\:w-5\/12 {
     width: 41.666667%;
   }
 
   .lg\:w-7\/12 {
     width: 58.333333%;
+  }
+
+  .lg\:w-\[700px\] {
+    width: 700px;
   }
 
   .lg\:grid-cols-2 {
@@ -6870,6 +6954,14 @@ https://picsum.photos/id/13/1810/1150
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
+  .lg\:overflow-y-visible {
+    overflow-y: visible;
+  }
+
+  .lg\:border-r {
+    border-right-width: 1px;
+  }
+
   .lg\:p-0 {
     padding: 0px;
   }
@@ -6898,6 +6990,11 @@ https://picsum.photos/id/13/1810/1150
 
   .lg\:pt-0 {
     padding-top: 0px;
+  }
+
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 

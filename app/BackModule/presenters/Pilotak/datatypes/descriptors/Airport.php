@@ -12,7 +12,8 @@ abstract class Airport extends Table
 	protected function init()
 	{
 		parent::init();
-		$this->addHasMany(DescriptorFactory::create(Tables\AirportAirplane::class, 'airport_airplane', 'Vyhlídkové lety'));
+		$list = $this->addHasMany(DescriptorFactory::create(Tables\AirportAirplane::class, 'airport_airplane', 'Vyhlídkové lety'));
+		$list(ITableExtension::class)->setOrder('rank ASC');
 
 	}
 

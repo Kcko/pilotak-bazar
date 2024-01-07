@@ -1,16 +1,99 @@
+{var $hp = $templateConfig['hp']}
+{var $fullImage =  ($hp && $data->bg__image_id) ? $data->bg__image->getImageUrl('hero-bg') : null}
 
-    <div class="Container relative z-[3]">
-        <div class="Row items-center">
-            <div class="Col md:w-1/2">
-                <h1 class="text-h2  leading-relaxed  text-white mb-0">
-                    <span class="text-h2 md:text-h1 text-_yellow">{$data->heading ?? 'Piloťák'}</span>
-                </h1>
-                <div class="text-white text-lg max-w-[500px]">
-                   {$data->content ?? 'centrum letecké zábavy  sportovního  a&nbsp;rekreačního létání'}
+<div 
+    x-data="{ opened: false }"
+    n:class="'HeroWeb relative',  isset($full) ? '-Full' : '-Short', $fullImage ? '-FullImage' : ''"
+    :class="{ '-MobileNavOpened' : opened }"
+    {if $hp && $fullImage}
+        style="background: url({$fullImage|noescape}) no-repeat center / cover"
+    {/if}
+    >
+
+    <div class="h-24 lg:h-28"></div>
+
+    <header n:class="'Header fixed left-0 right-0 top-0 h-24 lg:h-28 z-[200]', $fullImage ? 'bg-transparent' : 'bg-_blue'">
+        <div class="Container">
+            <div class="Row">
+            
+                <div class="Col flex w-full space-x-5 py-2 text-white items-center justify-end">
+                    {* Placeholder *}
+                </div>
+             
+                <div class="Col w-full sticky z-50 top-1">
+                    <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 pl-2.5 bg-white rounded-md shadow-lg">
+                        <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-12 md:h-16" alt="" /></a>
+                        
+                        {control menu, navigation_group => 1, template => 'main'}
+
+                        <button @click="opened = !opened" class="lg:hidden ml-auto">{='assets/gfx/svg/hamburger.svg'|svg:'w-8 h-8'|noescape}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div n:if="$templateConfig['hp']" class="Container relative z-[3]">
+        <div class="Row items-center relative">
+
+
+            {* {if $data->bg__image_id}
+                <div class="Col w-full absolute z-[-1] inset-0 overflow-hidden">
+                    {$data->bg__image->getImageElement('hero-bg', ['class' => 'z-1 w-full h-full block object-cover max-h-full max-w-full'])}
+                </div>
+            {/if} *}
+
+
+            <div class="Col {if $fullImage} w-full {else}md:w-1/2{/if} z-2">
+
+                <div n:class="'HeroWrapper'">
+                    <h1 class="HeroHeading text-h2  leading-relaxed  text-white mb-0">
+                        <span class="text-h2 md:text-h1 
+                        {if $fullImage}text-white/85]
+                        {else}text-_yellow{/if}
+                        ">{$data->heading ?? 'Piloťák'}</span>
+                    </h1>
+                    <div n:if="$fullImage" class="HeroButton">
+                        <div class="mt-5">
+                            {var $url = ''}
+                            {var $external = false}
+                            {if $data->btn__navigation_id}
+                                {var $url = $data->btn__navigation->getUrl()}
+                            {elseif $data->btn__external_url}
+                                {var $url = $data->btn__external_url}
+                                {var $external = true}
+                            {/if}
+                            <a n:if="$url" href="{$url}" {if $external}target="_blank"{/if} class="Btn -Blue -Xl min-w-[150px]">{$data->btn_text}</a>
+                        </div>
+                    </div>
+
+                    {var $content = $data->content}
+                    <div n:if="!$fullImage" class="HeroContent text-white text-lg max-w-[500px]">
+
+                        {if $content}
+                            <div class="RichText">{$content|noescape}</div>
+                        {else}
+                            centrum letecké zábavy  sportovního  a&nbsp;rekreačního létání
+                        {/if}
+
+                        <div class="mt-5 mb-5">
+                            {var $url = ''}
+                            {var $external = false}
+                            {if $data->btn__navigation_id}
+                                {var $url = $data->btn__navigation->getUrl()}
+                            {elseif $data->btn__external_url}
+                                {var $url = $data->btn__external_url}
+                                {var $external = true}
+                            {/if}
+                            <a n:if="$url" href="{$url}" {if $external}target="_blank"{/if} class="Btn -Blue -Xl min-w-[150px]">{$data->btn_text}</a>
+                        </div>
+                    
+                    </div>
                 </div>
             </div>
             
-            <div class="Col  md:block md:w-1/2">
+            <div n:if="!$fullImage" n:class="$data->bg__image_id ? 'opacity-0', 'Col md:block md:w-1/2'">
                 {if $data->image_id}
                     {$data->image->getImageElement('hero', ['class' => 'w-full block mx-auto'])}
                 {else}
@@ -18,8 +101,14 @@
                 {/if}
 
 
+
                 {* <iframe width="560" height="315" class="rounded-md block w-full border-4 border-white" src="https://www.youtube.com/embed/b1m9ZD_otdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> *}
                 {* <img src="/assets/gfx/svg/footer-plane.svg" class="max-h-[350px]" alt="" /> *}
             </div>
+
+
+      
         </div>
     </div>
+
+  </div>

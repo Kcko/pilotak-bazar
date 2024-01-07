@@ -77,7 +77,7 @@ class AddAdPresenter extends FrontPresenter
 		if ($id) {
 			$this->session->relationToken = $id;
 		} else {
-			if (!isset($this->session->relationToken)) {
+			if (!isset($this->session->relationToken)) { 
 				$this->session->relationToken = Nette\Utils\Random::generate(20) . date('jnYHis');
 			}
 		}

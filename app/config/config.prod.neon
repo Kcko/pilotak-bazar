@@ -1,0 +1,8 @@
+session:
+	cookieDomain: .pilotak.cz
+	cookieSamesite: Lax # https://doc.nette.org/cs/glossary#toc-samesite-cookie
+	#save_path: %tempDir%/sessions
+	autoStart: true
+	expiration: 14 days
+	debugger: true
+	name: PILOTAKSESSID

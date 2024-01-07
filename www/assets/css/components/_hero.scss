@@ -24,4 +24,28 @@
     min-height: auto !important;
     @apply pt-0 pb-0;
   }
+
+  &.-FullImage {
+    &:after {
+      @apply hidden;
+    }
+  }
+}
+
+.HeroWeb.-FullImage {
+  .HeroHeading {
+    @apply bg-black/50;
+    @apply py-3 px-6;
+    @apply my-4;
+    @apply text-center;
+  }
+
+  .HeroButton {
+    @apply flex justify-center;
+    @apply my-4 mb-8;
+  }
+
+  .HeroContent {
+    @apply hidden;
+  }
 }

@@ -24,7 +24,11 @@
                         {='assets/gfx/svg/bird.svg'|svg:'Bird1 w-8 h-8 absolute top-[-50px] right-0 lg:right-[-20px] rotate-[-10deg] stroke-_blue'|noescape}
                         {='assets/gfx/svg/bird.svg'|svg:'Bird2 w-8 h-8 absolute top-[-80px] right-[10px] lg:right-[-40px] rotate-[-30deg] stroke-_blue-dark'|noescape}
 
-
+                        <div class="mb-8">
+                            <h1 class="text-h1 mb-10 Lined-3"><span>{$airport->heading_h1 ?: $airport->name}</span></h1>
+                            <h2 n:if="$airport->heading_h2" class="text-lg lg:text-xl">{$airport->heading_h2}</h2>
+                        </div>
+                        
                         <div class="grid md:gap-8 md:grid-cols-2 bg-white shadow-86 rounded-md p-5">
                             <div class="order-last md:order-first">
 
@@ -39,7 +43,7 @@
 
                             <div class="space-y-5 relative order-first md:order-last">
 
-                                <h1 class="text-h1 text-_blue">{$airport->name}</h1>
+                                
 
                                 <div class="RichText">
                                     {* {if $airport->code}

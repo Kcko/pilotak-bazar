@@ -1,0 +1,6 @@
+<ul class="text-sm BulletListYellow space-y-2.5 mt-6">
+	{foreach $data as $item}
+		<li><a href="{$item->getUrl()}" n:class="in_array($item['id'], $selectedItems) ? '', 'block hover:underline'">{$item['title']}</a></li>
+	{/foreach}
+</ul>
+

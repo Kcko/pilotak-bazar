@@ -1,6 +1,6 @@
-<div class="grid md:grid-cols-2 gap-8">
+<div class="grid md:grid-cols-12 gap-8">
 
-    <div>
+    <div class="col-span-7">
 
         <h1 class="text-h2 Lined-1 mb-10">{$data->heading ?? $presenter->navigation->navItem['title']}</h1>
         <div class="RichText">
@@ -8,9 +8,16 @@
         </div>
 
     </div>
-    <div>
+    <div class="col-span-5">
         {if $data->image_id}
-            {$data->image->getImageElement('hero', ['class' => 'w-full block mx-auto max-w-[80%]'])}
+            {$data->image->getImageElement('hero', ['class' => 'w-full block mx-auto'])}
+        {/if}
+
+
+        {if isset($data->content_right) && $data->content_right}
+            <div class="RichText space-y-8">
+                {$data->content_right|replace:"/media-image":"/800x"|noescape}
+            </div>
         {/if}
     </div>
 

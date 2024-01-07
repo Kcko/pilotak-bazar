@@ -8,7 +8,9 @@
         </div>
         <div class="space-y-5">
             <h2 class="text-h2">{$f->name}</h2>
-            {$f->full_content|noescape}
+            <div class="RichText">
+                {$f->full_content|noescape}
+            </div>
 
             <div class="!mt-10">
                 <a href="{$f->button_url}" class="Btn -Blue -Xl min-w-[150px] mx-auto">

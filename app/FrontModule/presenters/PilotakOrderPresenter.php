@@ -39,12 +39,12 @@ class PilotakOrderPresenter extends FrontPresenter
 	public $mail;
 
 	
-	public function actionDefault(int $id, int $copilot = 0)
+	public function actionDefault(int $id = 0, int $copilot = 0)
 	{
 		$this->template->mapFlights = $this->order->flightsMap();
 		$this->template->mapPayments = $this->order->paymentMap();
 
-		if ($id && isset($id)) {
+		if (isset($id) && $id) {
 			$this->template->preloadFlight = $this->order->aaById($id);
 			$this->template->preloadCopilot = $copilot;
 		
@@ -238,6 +238,9 @@ class PilotakOrderPresenter extends FrontPresenter
 			$template = $message->getTemplate();
 			$template->setParameters($params);
 			$this->mail->sendMessage($message);
+
+
+			//$this->terminate();
 
 			/*
 			$stop();

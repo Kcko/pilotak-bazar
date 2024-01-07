@@ -1,51 +1,20 @@
-<div 
-    x-data="{ opened: false }"
-    n:class="'HeroWeb relative',  isset($full) ? '-Full' : '-Short'"
-    :class="{ '-MobileNavOpened' : opened }"
-    >
+{if isset($full)}
 
-    <div class="h-24 lg:h-28"></div>
-
-    <header n:class="'Header bg-_blue fixed left-0 right-0 top-0 h-24 lg:h-28 z-[200]'">
-        <div class="Container">
-            <div class="Row">
-              
-                <div class="Col flex w-full space-x-5 py-2 text-white items-center justify-end">
-                    {* Placeholder *}
-                </div>
-             
-
-                <div class="Col w-full sticky z-50 top-1">
-                    <div class="flex items-center md:justify-between py-2 gap-x-4 md:gap-x-10 p-5 pl-2.5 bg-white rounded-md shadow-lg">
-                        <a href="/" class="flex-shrink-0"><img src="/assets/gfx/logo.png" class="h-12 md:h-16" alt="" /></a>
-                        
-                        {control menu, navigation_group => 1, template => 'main'}
-
-
-                        <button @click="opened = !opened" class="lg:hidden ml-auto">{='assets/gfx/svg/hamburger.svg'|svg:'w-8 h-8'|noescape}</button>
-                    </div>
-                </div>
+    {* Animace vypnuto --  *}
+    {* <div class="relative h-0">
+        <span class="Airplane2 absolute top-[-60px] inline-flex items-center">
+            <div class="Transparent">
+                <span class="Transparent__name">Piloťák</span>
+                <span class="Transparent__line"></span>
             </div>
-        </div>
-    </header>
+            {='assets/gfx/svg/airplane-2.svg'|svg:'w-14 h-14 text-_yellow'|noescape}
+        </span>
+    </div> *}
 
+    {control hero, templateConfig => ['hp' => true]}
 
-    {if isset($full)}
+{else}
+    {include INDEX_DIR.'/../app/FrontModule/templates/components/Content/web/hp/hero.latte', 
+        templateConfig => ['hp' => false]}
+{/if}
 
-        {* Animace vypnuto --  *}
-        {* <div class="relative h-0">
-            <span class="Airplane2 absolute top-[-60px] inline-flex items-center">
-                <div class="Transparent">
-                    <span class="Transparent__name">Piloťák</span>
-                    <span class="Transparent__line"></span>
-                </div>
-                {='assets/gfx/svg/airplane-2.svg'|svg:'w-14 h-14 text-_yellow'|noescape}
-            </span>
-        </div> *}
-
-        {control hero}
-
-
-    {/if}
-
-</div>
