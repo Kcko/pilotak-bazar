@@ -42,7 +42,7 @@ class AdPresenter extends FrontPresenter
 	public function startup()
 	{
 		parent::startup();
-
+		
 		if (!($this->adType == 'offers' || $this->adType == 'demands')) {
 			$this->error();
 		}
@@ -90,6 +90,8 @@ class AdPresenter extends FrontPresenter
 
 
 		$this['adListByCategories']->setType($this->adType == 'offers' ? 1 : 2);
+		$this['adListByCategories']['filterForm']['adType']->setDefaultValue($this->adType);
+		$this['adListByCategories']['filterModalForm']['adType']->setDefaultValue($this->adType);
 
 		if ($f && count($f)) {
 			$this['adListByCategories']['filterForm']->setDefaults($f);

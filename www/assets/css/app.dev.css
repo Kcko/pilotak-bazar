@@ -3174,6 +3174,14 @@ input[readonly]:focus {
   line-height: 1rem;
 }
 
+.text-\[0\.55em\] {
+  font-size: 0.55em;
+}
+
+.text-\[0\.45em\] {
+  font-size: 0.45em;
+}
+
 .font-bold {
   font-weight: 700;
 }

@@ -32,10 +32,10 @@
                         <div class="Col w-full">
 
 							{ifset $q}
-                                <h2 class="text-h2 text-left mb-14 Lined-1">Vyhledávání <sup class="font-normal px-2 py-1 bg-white rounded border border-gray-200 text-[0.35em] top-[-1em]">{_}{$presenter->adType}{/_}</sup></h2>
+                                <h2 class="text-h2 text-left mb-14 Lined-1">Vyhledávání <sup class="font-normal px-2 py-1 bg-white rounded border border-gray-200 text-[0.45em] top-[-1em]">{_}{$presenter->adType}{/_}</sup></h2>
 								{control adListByCategories:searchTitle, template => 'searchTitle'}
                             {else}
-                                 <h2 class="text-h2 text-left mb-14 Lined-1">{$presenter->navigation->navItem['title']} <sup class="font-normal px-2 py-1 bg-white rounded border border-gray-200 text-[0.35em] top-[-1em]">{_}{$presenter->adType}{/_}</sup></h2>
+                                 <h2 class="text-h2 text-left mb-14 Lined-1">{$presenter->navigation->navItem['title']} <sup class="font-normal px-2 py-1 bg-white rounded border border-gray-200 text-[0.45em] top-[-1em]">{_}{$presenter->adType}{/_}</sup></h2>
 							{/ifset}
 
 				            {control adCategoryMenu, parent => $presenter->navigation->navItem['id']}

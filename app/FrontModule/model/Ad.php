@@ -12,7 +12,7 @@ use App\FrontModule\Model\NavigationWorker;
 class Ad
 {
 
-	const EXPIRATION_IN_DAYS = 365 * 10; // 10 let ..
+	const EXPIRATION_IN_DAYS = 365;
 
 
 	/**
